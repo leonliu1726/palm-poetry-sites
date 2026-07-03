@@ -1,0 +1,5 @@
+# 部署核对用的临时图，勿入库
+_chk_*.jpg
+_rot_*.jpg
+.DS_Store
+Thumbs.db
