@@ -1,14 +1,84 @@
-文 刃
-诗文天地
-WEN REN · POETRY & PROSE
-著　作　·　BOOK
-千山独行
-Beyond a Thousand Mountains
-加拿大华裔诗人文刃古诗文集，台湾中华书局出版。作者、书评、发布会、诗观与旅历。
-进入
-诗　社　·　CLUB
-掌心诗社
-The Palm Poetry Club
-2017 年创立于多伦多的国际华语诗社。缘起、同仁、诗选《萤火》、沙龙与文化交流。
-进入
-劉東 · 筆名文刃  |  现居加拿大
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文刃 · 诗文天地 | Wen Ren · Poetry</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#6b6257; --line:#e7e0d4;
+    --paper:#f6f1e7; --card:#fffdf8; --accent:#7a2e0b; --accent2:#0b4f30;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Noto Serif SC","Songti SC",Georgia,"Times New Roman",serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #fbf7ee 0%, var(--paper) 60%);
+    color:var(--ink); min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:6vh 20px; line-height:1.7;
+  }
+  .brand{ text-align:center; margin-bottom:clamp(28px,5vh,56px) }
+  .seal{
+    display:inline-block; font-size:13px; letter-spacing:.4em; color:#fff;
+    background:var(--accent); padding:6px 14px 6px 18px; border-radius:3px;
+    margin-bottom:22px;
+  }
+  h1{ font-size:clamp(30px,6vw,52px); font-weight:700; letter-spacing:.08em }
+  .pen{ color:var(--sub); font-size:clamp(14px,2.6vw,18px); letter-spacing:.35em; margin-top:10px }
+  .rule{ width:64px; height:2px; background:var(--accent); margin:22px auto 0; opacity:.7 }
+  .cards{
+    display:grid; gap:22px; width:100%; max-width:820px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  }
+  a.card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:30px 28px; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow:0 1px 0 #fff inset, 0 8px 24px -18px rgba(60,40,20,.5);
+  }
+  a.card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(60,40,20,.55); border-color:#d8ccb6 }
+  .tag{ font-size:12px; letter-spacing:.3em; color:var(--accent2) }
+  .card.b .tag{ color:var(--accent) }
+  .zh{ font-size:26px; font-weight:700; margin:12px 0 4px; letter-spacing:.06em }
+  .en{ color:var(--sub); font-size:14px; letter-spacing:.06em }
+  .desc{ margin-top:14px; color:#4a453d; font-size:15px }
+  .go{ display:inline-flex; align-items:center; gap:6px; margin-top:18px; color:var(--accent); font-size:14px; letter-spacing:.12em }
+  .go::after{ content:"→"; transition:transform .18s ease }
+  a.card:hover .go::after{ transform:translateX(4px) }
+  footer{ margin-top:clamp(30px,6vh,60px); color:var(--sub); font-size:13px; text-align:center; letter-spacing:.05em }
+  footer a{ color:var(--accent2); text-decoration:none; border-bottom:1px solid transparent }
+  footer a:hover{ border-bottom-color:var(--accent2) }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <span class="seal">文 刃</span>
+    <h1>诗文天地</h1>
+    <div class="pen">WEN&nbsp;REN&nbsp;·&nbsp;POETRY&nbsp;&amp;&nbsp;PROSE</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="cards">
+    <a class="card a" href="上线包_千山独行/">
+      <div class="tag">著　作　·　BOOK</div>
+      <div class="zh">千山独行</div>
+      <div class="en">Beyond a Thousand Mountains</div>
+      <div class="desc">加拿大华裔诗人文刃古诗文集，台湾中华书局出版。作者、书评、发布会、诗观与旅历。</div>
+      <span class="go">进入</span>
+    </a>
+
+    <a class="card b" href="上线包_掌心/">
+      <div class="tag">诗　社　·　CLUB</div>
+      <div class="zh">掌心诗社</div>
+      <div class="en">The Palm Poetry Club</div>
+      <div class="desc">2017 年创立于多伦多的国际华语诗社。缘起、同仁、诗选《萤火》、沙龙与文化交流。</div>
+      <span class="go">进入</span>
+    </a>
+  </div>
+
+  <footer>
+    劉東 · 筆名文刃 &nbsp;|&nbsp; 现居加拿大
+  </footer>
+</body>
+</html>
