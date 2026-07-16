@@ -462,6 +462,20 @@
 </style>
 </head>
 <body>
+<div id="pwgate" style="position:fixed;inset:0;z-index:99999;background:#f6f1e7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Georgia,serif">
+<div style="font-size:22px;color:#7a2e0b;margin-bottom:18px;letter-spacing:.2em">请输入访问密码</div>
+<input id="pwin" type="password" autocomplete="off" style="padding:10px 14px;border:1px solid #d8ccb6;border-radius:8px;font-size:16px;width:230px;text-align:center;outline:none">
+<div id="pwerr" style="color:#b00;font-size:13px;margin-top:10px;min-height:1em"></div>
+<div style="color:#9a8f7d;font-size:12px;margin-top:8px">输入密码后按回车</div>
+</div>
+<script>
+(function(){var PW="wenren2024";var g=document.getElementById('pwgate'),i=document.getElementById('pwin');
+function ok(){g.style.display='none';document.documentElement.style.overflow='';document.body.style.overflow='';}
+try{if(sessionStorage.getItem('pw_ok')==='1'){ok();return;}}catch(e){}
+document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';if(i)i.focus();
+if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===PW){try{sessionStorage.setItem('pw_ok','1')}catch(e){}ok();}else{document.getElementById('pwerr').textContent='密码不正确';i.value='';}}});
+})();
+</script>
 <div id="app">
 
   <nav>
@@ -1292,6 +1306,80 @@
           <figure><img src="网站图片/行者无疆/掌心相册/cx_32.jpg" loading="lazy"></figure>
           <figure><img src="网站图片/行者无疆/掌心相册/cx_33.jpg" loading="lazy"></figure>
           <figure><img src="网站图片/行者无疆/掌心相册/cx_35.jpg" loading="lazy"></figure>
+        
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_325.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_324.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_322.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_321.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_155.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_161.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_162.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_165.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_168.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_169.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_170.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_171.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_172.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_173.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_175.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_177.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_197.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_200.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_201.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_202.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_204.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_206.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_207.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_239.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_241.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_242.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_245.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_255.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_258.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_259.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_262.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_263.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_269.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_276.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_285.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_294.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_296.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_297.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_300.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_301.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_302.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_306.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_308.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_312.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_313.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_315.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_05.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_10.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_11.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_12.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_19.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_30.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_34.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_36.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_40.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_74.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_88.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_89.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_90.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_91.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_94.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_96.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_97.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_98.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_130.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_131.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_134.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_139.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_142.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_146.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_148.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_150.jpg" loading="lazy"></figure>
+          <figure><img src="网站图片/行者无疆/掌心相册/cx_115.jpg" loading="lazy"></figure>
         </div>
       </section>
 
