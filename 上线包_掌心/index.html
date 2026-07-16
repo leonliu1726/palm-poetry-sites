@@ -732,31 +732,34 @@
 <section id="guestbook" class="panel"><div class="wrap">
   <div class="sec-head"><h2>留言交流</h2><span class="en">Guestbook · Leave a Note</span><div class="rule"></div></div>
   <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录——掌心向所有爱诗的人敞开。</p>
-  <form name="liuyan" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="gbForm" style="max-width:680px;margin:0 auto">
-    <input type="hidden" name="form-name" value="liuyan">
-    <p style="display:none"><label>请勿填写：<input name="bot-field"></label></p>
+  <form id="gbForm" style="max-width:680px;margin:0 auto" novalidate>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
       <input type="text" name="name" required placeholder="昵称（必填）" style="flex:1;min-width:160px;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink)">
       <input type="email" name="email" placeholder="邮箱（选填，便于回复）" style="flex:1;min-width:160px;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink)">
     </div>
-    <textarea name="message" rows="4" required placeholder="欢迎留言、唱和、交流……（昵称必填，留言会送达掌心）" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);resize:vertical;box-sizing:border-box"></textarea>
+    <textarea name="message" rows="4" required placeholder="欢迎留言、唱和、交流……（点“提交”后会用你的邮箱把留言发给掌心）" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);resize:vertical;box-sizing:border-box"></textarea>
     <div style="text-align:center;margin-top:16px">
       <button type="submit" style="padding:10px 30px;border:1px solid var(--seal);background:var(--seal);color:var(--paper);border-radius:22px;font-family:var(--kai,serif);font-size:15px;letter-spacing:.1em;cursor:pointer">提交留言　Submit</button>
     </div>
-    <p id="gbStatus" style="text-align:center;margin-top:14px;color:var(--seal);font-size:14px;min-height:1em"></p>
+    <p id="gbStatus" style="text-align:center;margin-top:14px;color:var(--seal);font-size:14px;min-height:1em;line-height:1.7"></p>
   </form>
   <script>
     (function(){var f=document.getElementById('gbForm');if(!f)return;
       f.addEventListener('submit',function(e){e.preventDefault();
-        var s=document.getElementById('gbStatus');s.textContent='提交中……';
-        var body=new URLSearchParams(new FormData(f)).toString();
-        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
-          .then(function(r){if(!r.ok)throw 0;f.reset();s.textContent='谢谢你的留言！掌心已收到，与你共此诗心。';})
-          .catch(function(){s.textContent='提交失败，请稍后再试，或来信 huangxiaoyu2001@gmail.com';});
+        var s=document.getElementById('gbStatus');
+        var nick=(f.elements['name'].value||'').trim();
+        var mail=(f.elements['email'].value||'').trim();
+        var msg=(f.elements['message'].value||'').trim();
+        if(!nick||!msg){s.textContent='请填写昵称和留言内容。';return;}
+        var subject='掌心诗社留言 · '+nick;
+        var body='昵称：'+nick+'\n邮箱：'+(mail||'（未填）')+'\n\n留言：\n'+msg;
+        var url='mailto:huangxiaoyu2001@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+        window.location.href=url;
+        s.textContent='正在打开你的邮箱应用，请点“发送”完成留言。若未自动打开，请来信 huangxiaoyu2001@gmail.com';
       });
     })();
   </script>
-</div></section>
+  </div></section>
 </main>
 <footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.</footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
