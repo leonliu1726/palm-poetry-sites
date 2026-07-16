@@ -140,6 +140,20 @@
   body.en .e,body.en .langs .l b{opacity:1}
 </style></head>
 <body>
+<div id="pwgate" style="position:fixed;inset:0;z-index:99999;background:#f6f1e7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Georgia,serif">
+<div style="font-size:22px;color:#7a2e0b;margin-bottom:18px;letter-spacing:.2em">请输入访问密码</div>
+<input id="pwin" type="password" autocomplete="off" style="padding:10px 14px;border:1px solid #d8ccb6;border-radius:8px;font-size:16px;width:230px;text-align:center;outline:none">
+<div id="pwerr" style="color:#b00;font-size:13px;margin-top:10px;min-height:1em"></div>
+<div style="color:#9a8f7d;font-size:12px;margin-top:8px">输入密码后按回车</div>
+</div>
+<script>
+(function(){var PW="wenren2024";var g=document.getElementById('pwgate'),i=document.getElementById('pwin');
+function ok(){g.style.display='none';document.documentElement.style.overflow='';document.body.style.overflow='';}
+try{if(sessionStorage.getItem('pw_ok')==='1'){ok();return;}}catch(e){}
+document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';if(i)i.focus();
+if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===PW){try{sessionStorage.setItem('pw_ok','1')}catch(e){}ok();}else{document.getElementById('pwerr').textContent='密码不正确';i.value='';}}});
+})();
+</script>
 <nav><div class="wrap">
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></div>
   <button class="langbtn" id="langBtn" onclick="toggleLang()">EN</button>
@@ -347,28 +361,38 @@
     <img src="网站图片/掌心/连接世界/cx_60.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_58.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_04.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_05.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_06.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_192.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_193.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_316.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_100.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_102.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_110.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_116.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_123.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/连接世界/cx_304.jpg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9154.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9156.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9160.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9161.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9162.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9163.jpeg" alt="掌心活动与文化交流" loading="lazy">
+    <img src="网站图片/掌心/活动/IMG_9170.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_08.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_09.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_10.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_12.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_15.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_16.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_17.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_19.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_21.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_24.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_26.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_27.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_28.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_29.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_30.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_31.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_37.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_38.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_39.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_40.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_41.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_42.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_43.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -395,21 +419,13 @@
     <img src="网站图片/掌心/连接世界/cx_70.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_72.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_73.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_74.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9154.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9155.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9156.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9157.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9159.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9160.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9161.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9162.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9163.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9165.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9167.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9168.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9169.jpeg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/活动/IMG_9170.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9171.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9172.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9174.jpeg" alt="掌心活动与文化交流" loading="lazy">
@@ -417,49 +433,31 @@
     <img src="网站图片/掌心/连接世界/cx_221.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_224.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_230.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_259.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_280.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_317.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_321.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_100.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_102.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_103.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_104.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_110.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_111.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_114.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_116.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_117.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_123.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_124.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_126.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_132.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_133.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_134.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_135.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_137.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_138.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_139.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_140.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_141.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_142.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_144.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_145.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_146.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_148.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_149.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_150.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_151.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_154.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_155.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_157.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_164.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_166.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_167.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_168.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_169.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_170.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_177.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_178.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_179.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_180.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -473,17 +471,11 @@
     <img src="网站图片/掌心/连接世界/cx_189.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_190.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_191.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_192.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_193.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_194.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_195.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_196.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_197.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_198.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_199.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_200.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_201.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_202.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_203.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_228.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_229.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -492,30 +484,22 @@
     <img src="网站图片/掌心/连接世界/cx_247.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_251.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_252.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_258.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_260.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_261.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_262.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_269.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_270.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_271.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_272.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_275.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_276.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_277.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_278.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_279.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_282.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_284.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_291.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_304.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_309.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_310.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_311.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_312.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_316.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_319.jpg" alt="掌心活动与文化交流" loading="lazy">
-    <img src="网站图片/掌心/连接世界/cx_325.jpg" alt="掌心活动与文化交流" loading="lazy">
   </div>
 </div></section>
 
@@ -587,75 +571,32 @@
     <figure><img src="网站图片/掌心/连接世界/cx_80.jpg" alt="华沙王宫广场" loading="lazy"><figcaption>华沙王宫广场</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_85.jpg" alt="日本古城" loading="lazy"><figcaption>日本古城</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_86.jpg" alt="千本鸟居·京都" loading="lazy"><figcaption>千本鸟居 · 京都</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_88.jpg" alt="异国广场留影" loading="lazy"><figcaption>异国广场留影</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_89.jpg" alt="与各国友人相逢" loading="lazy"><figcaption>与各国友人相逢</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_90.jpg" alt="异国知音" loading="lazy"><figcaption>异国知音</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_91.jpg" alt="异国相逢" loading="lazy"><figcaption>异国相逢</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_94.jpg" alt="以文会友" loading="lazy"><figcaption>以文会友</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_95.jpg" alt="文化交流" loading="lazy"><figcaption>文化交流</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_96.jpg" alt="翰墨之交" loading="lazy"><figcaption>翰墨之交</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_97.jpg" alt="诗友相聚" loading="lazy"><figcaption>诗友相聚</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_98.jpg" alt="雅集" loading="lazy"><figcaption>雅集</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_11.jpg" alt="异国相逢·埃及" loading="lazy"><figcaption>异国相逢 · 埃及</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_34.jpg" alt="国际交流" loading="lazy"><figcaption>国际交流</figcaption></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_36.jpg" alt="诗友相逢" loading="lazy"><figcaption>诗友相逢</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_125.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_162.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_206.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_212.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_214.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_245.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_246.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_273.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_285.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_286.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_296.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_297.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_300.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_301.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_305.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_306.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_308.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_101.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_108.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_115.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_119.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_121.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_122.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_130.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_131.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_147.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_156.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_161.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_165.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_171.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_172.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_173.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_174.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_175.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_204.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_205.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_207.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_236.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_238.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_239.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_240.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_241.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_242.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_243.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_250.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_255.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_256.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_263.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_264.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_274.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_294.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_302.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_303.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_313.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_315.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_322.jpg" alt="连接世界" loading="lazy"></figure>
-    <figure><img src="网站图片/掌心/连接世界/cx_324.jpg" alt="连接世界" loading="lazy"></figure>
   </div>
   <div class="langs">
     <div class="l"><b>中文</b> 诗，是人类共同的语言。愿与你以诗相期。</div>
