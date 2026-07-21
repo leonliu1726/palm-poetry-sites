@@ -138,6 +138,22 @@
   .langbtn{margin-left:14px;flex:0 0 auto;background:none;border:1px solid var(--seal);color:var(--seal);border-radius:16px;padding:3px 12px;font-size:12px;letter-spacing:.08em;cursor:pointer;font-family:var(--serif-en);transition:.25s}
   .langbtn:hover{background:var(--seal);color:var(--paper)}
   body.en .e,body.en .langs .l b{opacity:1}
+  .m-card[data-m]{cursor:pointer;position:relative}
+  .m-card[data-m]::after{content:"›";position:absolute;top:10px;right:12px;color:var(--ink-faint);font-size:15px;opacity:0;transition:.2s}
+  .m-card[data-m]:hover::after{opacity:1;color:var(--seal)}
+  .m-modal{position:fixed;inset:0;background:rgba(22,19,15,.62);display:none;align-items:center;justify-content:center;z-index:320;padding:24px}
+  .m-modal.on{display:flex}
+  .m-box{background:var(--paper);max-width:560px;width:100%;max-height:88vh;overflow:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.42);position:relative;padding:30px 32px}
+  .m-box .m-close{position:absolute;top:10px;right:16px;border:none;background:none;font-size:26px;color:var(--ink-faint);cursor:pointer;line-height:1}
+  .m-box .m-close:hover{color:var(--seal)}
+  .m-head{display:flex;gap:20px;align-items:center;margin-bottom:16px}
+  .m-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:1px solid var(--line);background:#ece4d4;flex:0 0 auto}
+  .m-photo-ph{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 50% 35%,#efe7d7,#d9cdb4);display:flex;align-items:center;justify-content:center;font-family:var(--li);font-size:38px;color:var(--seal);flex:0 0 auto}
+  .m-h-txt .m-h-name{font-family:var(--li);font-size:26px;letter-spacing:.08em;margin:0}
+  .m-h-txt .m-h-role{font-family:var(--kai);color:var(--seal);font-size:14px;letter-spacing:.06em;margin-top:5px}
+  .m-bio{font-size:15px;color:var(--ink-soft);line-height:1.95;margin:0}
+  .m-bio.todo{color:var(--ink-faint);font-style:italic}
+  .m-sub{margin-top:16px;font-size:12.5px;color:var(--ink-faint);font-family:var(--kai);border-top:1px solid var(--line);padding-top:12px;line-height:1.7}
 </style></head>
 <body>
 <div id="pwgate" style="position:fixed;inset:0;z-index:99999;background:#f6f1e7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Georgia,serif">
@@ -206,80 +222,80 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">诗社成员 <span class="en">Members</span></div>
   <div class="m-grid">
-          <div class="m-card"><span class="m-name">文刃</span></div>
-          <div class="m-card"><span class="m-name">风动</span></div>
-          <div class="m-card"><span class="m-name">陶然</span></div>
-          <div class="m-card"><span class="m-name">海边</span></div>
-          <div class="m-card"><span class="m-name">古土</span></div>
-          <div class="m-card"><span class="m-name">丹丹</span></div>
-          <div class="m-card"><span class="m-name">杨青</span></div>
-          <div class="m-card"><span class="m-name">墨望山</span></div>
-          <div class="m-card"><span class="m-name">五月花</span></div>
-          <div class="m-card"><span class="m-name">湖边</span></div>
-          <div class="m-card"><span class="m-name">枫叶正红</span></div>
-          <div class="m-card"><span class="m-name">Tim</span></div>
-          <div class="m-card"><span class="m-name">晓鸣</span></div>
-          <div class="m-card"><span class="m-name">飞鸿</span></div>
-          <div class="m-card"><span class="m-name">石甫</span></div>
-          <div class="m-card"><span class="m-name">黄忠</span></div>
-          <div class="m-card"><span class="m-name">王雪君</span></div>
-          <div class="m-card"><span class="m-name">挑灯看剑</span></div>
+          <div class="m-card" data-m="文刃"><span class="m-name">文刃</span></div>
+          <div class="m-card" data-m="风动"><span class="m-name">风动</span></div>
+          <div class="m-card" data-m="陶然"><span class="m-name">陶然</span></div>
+          <div class="m-card" data-m="海边"><span class="m-name">海边</span></div>
+          <div class="m-card" data-m="古土"><span class="m-name">古土</span></div>
+          <div class="m-card" data-m="丹丹"><span class="m-name">丹丹</span></div>
+          <div class="m-card" data-m="杨青"><span class="m-name">杨青</span></div>
+          <div class="m-card" data-m="墨望山"><span class="m-name">墨望山</span></div>
+          <div class="m-card" data-m="五月花"><span class="m-name">五月花</span></div>
+          <div class="m-card" data-m="湖边"><span class="m-name">湖边</span></div>
+          <div class="m-card" data-m="枫叶正红"><span class="m-name">枫叶正红</span></div>
+          <div class="m-card" data-m="Tim"><span class="m-name">Tim</span></div>
+          <div class="m-card" data-m="晓鸣"><span class="m-name">晓鸣</span></div>
+          <div class="m-card" data-m="飞鸿"><span class="m-name">飞鸿</span></div>
+          <div class="m-card" data-m="石甫"><span class="m-name">石甫</span></div>
+          <div class="m-card" data-m="黄忠"><span class="m-name">黄忠</span></div>
+          <div class="m-card" data-m="王雪君"><span class="m-name">王雪君</span></div>
+          <div class="m-card" data-m="挑灯看剑"><span class="m-name">挑灯看剑</span></div>
   </div>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid">
-          <div class="m-card"><span class="m-name">颜钟祜</span></div>
-          <div class="m-card"><span class="m-name">骆奕同</span></div>
-          <div class="m-card"><span class="m-name">张喜英</span></div>
-          <div class="m-card"><span class="m-name">唐芒</span></div>
-          <div class="m-card"><span class="m-name">古谦</span></div>
-          <div class="m-card"><span class="m-name">胡杨</span></div>
-          <div class="m-card"><span class="m-name">张苏</span></div>
-          <div class="m-card"><span class="m-name">张文尧</span></div>
-          <div class="m-card"><span class="m-name">王慧</span></div>
-          <div class="m-card"><span class="m-name">欣欣向荣</span></div>
-          <div class="m-card"><span class="m-name">楚人</span></div>
-          <div class="m-card"><span class="m-name">傅毓华</span></div>
-          <div class="m-card"><span class="m-name">白水</span></div>
-          <div class="m-card"><span class="m-name">谢蓉枫</span></div>
-          <div class="m-card"><span class="m-name">陈河</span></div>
-          <div class="m-card"><span class="m-name">青枫</span></div>
-          <div class="m-card"><span class="m-name">诸黛红</span></div>
-          <div class="m-card"><span class="m-name">李昶</span></div>
-          <div class="m-card"><span class="m-name">谭新雄</span></div>
-          <div class="m-card"><span class="m-name">沈大勇</span></div>
-          <div class="m-card"><span class="m-name">韦小青</span></div>
-          <div class="m-card"><span class="m-name">久炜</span></div>
-          <div class="m-card"><span class="m-name">墨泉</span></div>
-          <div class="m-card"><span class="m-name">明洁</span></div>
-          <div class="m-card"><span class="m-name">以牧</span></div>
-          <div class="m-card"><span class="m-name">闻雁</span></div>
-          <div class="m-card"><span class="m-name">夏倩</span></div>
-          <div class="m-card"><span class="m-name">北江</span></div>
-          <div class="m-card"><span class="m-name">Peter Lin</span></div>
-          <div class="m-card"><span class="m-name">Claire F</span></div>
-          <div class="m-card"><span class="m-name">弄弦</span></div>
-          <div class="m-card"><span class="m-name">蓦然回首</span></div>
-          <div class="m-card"><span class="m-name">陈宁</span></div>
-          <div class="m-card"><span class="m-name">张迪</span></div>
-          <div class="m-card"><span class="m-name">陈龙</span></div>
-          <div class="m-card"><span class="m-name">姜尼</span></div>
-          <div class="m-card"><span class="m-name">若然</span></div>
-          <div class="m-card"><span class="m-name">王晓鸣</span></div>
-          <div class="m-card"><span class="m-name">陈蓉</span></div>
-          <div class="m-card"><span class="m-name">李宁远</span></div>
-          <div class="m-card"><span class="m-name">东冬生</span></div>
-          <div class="m-card"><span class="m-name">Kenneth</span></div>
-          <div class="m-card"><span class="m-name">Johnson</span></div>
-          <div class="m-card"><span class="m-name">Kristen</span></div>
-          <div class="m-card"><span class="m-name">苏奕歆</span></div>
-          <div class="m-card"><span class="m-name">Nil Rhoads</span></div>
-          <div class="m-card"><span class="m-name">俊英</span></div>
-          <div class="m-card"><span class="m-name">Tracy Gao</span></div>
-          <div class="m-card"><span class="m-name">Michael Zhang</span></div>
-          <div class="m-card"><span class="m-name">Grace Jiang</span></div>
-          <div class="m-card"><span class="m-name">Yu Qin Liu</span></div>
+          <div class="m-card" data-m="颜钟祜"><span class="m-name">颜钟祜</span></div>
+          <div class="m-card" data-m="骆奕同"><span class="m-name">骆奕同</span></div>
+          <div class="m-card" data-m="张喜英"><span class="m-name">张喜英</span></div>
+          <div class="m-card" data-m="唐芒"><span class="m-name">唐芒</span></div>
+          <div class="m-card" data-m="古谦"><span class="m-name">古谦</span></div>
+          <div class="m-card" data-m="胡杨"><span class="m-name">胡杨</span></div>
+          <div class="m-card" data-m="张苏"><span class="m-name">张苏</span></div>
+          <div class="m-card" data-m="张文尧"><span class="m-name">张文尧</span></div>
+          <div class="m-card" data-m="王慧"><span class="m-name">王慧</span></div>
+          <div class="m-card" data-m="欣欣向荣"><span class="m-name">欣欣向荣</span></div>
+          <div class="m-card" data-m="楚人"><span class="m-name">楚人</span></div>
+          <div class="m-card" data-m="傅毓华"><span class="m-name">傅毓华</span></div>
+          <div class="m-card" data-m="白水"><span class="m-name">白水</span></div>
+          <div class="m-card" data-m="谢蓉枫"><span class="m-name">谢蓉枫</span></div>
+          <div class="m-card" data-m="陈河"><span class="m-name">陈河</span></div>
+          <div class="m-card" data-m="青枫"><span class="m-name">青枫</span></div>
+          <div class="m-card" data-m="诸黛红"><span class="m-name">诸黛红</span></div>
+          <div class="m-card" data-m="李昶"><span class="m-name">李昶</span></div>
+          <div class="m-card" data-m="谭新雄"><span class="m-name">谭新雄</span></div>
+          <div class="m-card" data-m="沈大勇"><span class="m-name">沈大勇</span></div>
+          <div class="m-card" data-m="韦小青"><span class="m-name">韦小青</span></div>
+          <div class="m-card" data-m="久炜"><span class="m-name">久炜</span></div>
+          <div class="m-card" data-m="墨泉"><span class="m-name">墨泉</span></div>
+          <div class="m-card" data-m="明洁"><span class="m-name">明洁</span></div>
+          <div class="m-card" data-m="以牧"><span class="m-name">以牧</span></div>
+          <div class="m-card" data-m="闻雁"><span class="m-name">闻雁</span></div>
+          <div class="m-card" data-m="夏倩"><span class="m-name">夏倩</span></div>
+          <div class="m-card" data-m="北江"><span class="m-name">北江</span></div>
+          <div class="m-card" data-m="Peter Lin"><span class="m-name">Peter Lin</span></div>
+          <div class="m-card" data-m="Claire F"><span class="m-name">Claire F</span></div>
+          <div class="m-card" data-m="弄弦"><span class="m-name">弄弦</span></div>
+          <div class="m-card" data-m="蓦然回首"><span class="m-name">蓦然回首</span></div>
+          <div class="m-card" data-m="陈宁"><span class="m-name">陈宁</span></div>
+          <div class="m-card" data-m="张迪"><span class="m-name">张迪</span></div>
+          <div class="m-card" data-m="陈龙"><span class="m-name">陈龙</span></div>
+          <div class="m-card" data-m="姜尼"><span class="m-name">姜尼</span></div>
+          <div class="m-card" data-m="若然"><span class="m-name">若然</span></div>
+          <div class="m-card" data-m="王晓鸣"><span class="m-name">王晓鸣</span></div>
+          <div class="m-card" data-m="陈蓉"><span class="m-name">陈蓉</span></div>
+          <div class="m-card" data-m="李宁远"><span class="m-name">李宁远</span></div>
+          <div class="m-card" data-m="东冬生"><span class="m-name">东冬生</span></div>
+          <div class="m-card" data-m="Kenneth"><span class="m-name">Kenneth</span></div>
+          <div class="m-card" data-m="Johnson"><span class="m-name">Johnson</span></div>
+          <div class="m-card" data-m="Kristen"><span class="m-name">Kristen</span></div>
+          <div class="m-card" data-m="苏奕歆"><span class="m-name">苏奕歆</span></div>
+          <div class="m-card" data-m="Nil Rhoads"><span class="m-name">Nil Rhoads</span></div>
+          <div class="m-card" data-m="俊英"><span class="m-name">俊英</span></div>
+          <div class="m-card" data-m="Tracy Gao"><span class="m-name">Tracy Gao</span></div>
+          <div class="m-card" data-m="Michael Zhang"><span class="m-name">Michael Zhang</span></div>
+          <div class="m-card" data-m="Grace Jiang"><span class="m-name">Grace Jiang</span></div>
+          <div class="m-card" data-m="Yu Qin Liu"><span class="m-name">Yu Qin Liu</span></div>
   </div>
-  <p class="m-note">＊ 互动版上线后，成员可自行注册、开辟专栏、上传作品。</p>
+  <p class="m-note">＊ 点击任一姓名，即可查看其简介与照片；简介暂缺者，欢迎本人或知情诗友补充。互动版上线后，成员可自行注册、开辟专栏、维护个人页面。</p>
 </div></section>
 
 <section id="works" class="panel"><div class="wrap">
@@ -290,16 +306,16 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
 
   <div id="firefly-today" class="ff-today">
-    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date">夏至 · 仲夏方盛</span></div>
-    <h3 class="ff-title">夏至<span>现代诗</span></h3>
-    <div class="ff-author">海边<span class="en">Hǎi Biān</span>　·　录自《萤火》</div>
+    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date">中秋 · 千江同月</span></div>
+    <h3 class="ff-title">【五律】乙未年多伦多中秋月<span>古典诗词</span></h3>
+    <div class="ff-author">风动<span class="en">Fēng Dòng</span>　·　录自《萤火》· 卷首第一首</div>
     <div class="ff-poem">
-      <div class="ff-zh">这一天的到来，<br>惊动了耳朵里的无数精灵，<br>它们将肖邦夜曲锁进夜的森林，<br>放出野蜂飞舞，呼朋唤友，<br>在漫山遍野大声歌唱。<br>此刻流过身旁的小溪，<br>有些懵懂地皱起清波。<br>一阵松香拂过，一群小鱼游过，<br>风声悠长，云朵的影子变得匆忙。<br>这一天的到来，<br>被春日最后禁锢的花朵，<br>终于得以自由，舒展花骨，<br>以明媚，婉谢夏的光。<br>太多的来访者，堵在夏日的门口，<br>每位都带着一筐的故事，<br>准备用来换取诗意栖居的绿，<br>存下通往秋日的金和冬雪的银 -<br>热闹才刚刚开始，<br>每一位都在等着听，那个最精彩的故事。</div>
-      <div class="ff-en">The arrival of this day<br>stirs the countless sprites within the ear;<br>they lock Chopin's nocturnes deep in the night-forest<br>and set the wild bees awhirl, calling friend to friend,<br>singing aloud across hill and field.<br>The little brook that slips past me now<br>wrinkles its clear ripples, half-bewildered.<br>A breath of pine drifts by; a shoal of small fish swims past;<br>the wind's voice runs long, and the clouds' shadows grow hurried.<br>The arrival of this day:<br>the flowers, held captive by spring's last hold,<br>are freed at last, unfurling their petals,<br>and in their brightness gently thank the summer light.<br>So many visitors throng at summer's door,<br>each bearing a basketful of stories,<br>ready to trade them for the green of a poet's dwelling,<br>to lay by the gold that leads to autumn, the silver of winter snow -<br>the revelry has only just begun,<br>and each one waits to hear the most wondrous tale of all.</div>
+      <div class="ff-zh">月滿千江靜，銀輝萬戶眠。<br>暗風穿樹後，紅葉落窗前。<br>春去驚新夢，秋來恨舊年。<br>今宵頻望玉，愁緒又綿延。</div>
+      <div class="ff-en">The full moon stills a thousand rivers;<br>its silver light lulls ten thousand homes to sleep.<br>A hidden wind slips behind the trees;<br>red leaves fall before the window.<br>Spring's leaving startled a new dream;<br>autumn's coming resents the old year.<br>Tonight, again and again, I gaze at the jade orb —<br>and sorrow, once more, stretches on without end.</div>
     </div>
-    <div class="ff-guide">导读 · 夏至，一年中白昼最长的一天。海边以灵动之笔写仲夏之降临——精灵惊醒、野蜂高歌，被春日禁锢的群花终得自由，万物在盛极的光里彼此交换故事。诗末「秋日的金、冬雪的银」一语，于鼎盛中暗藏流转；今日正值夏至方过、长夏初启，最应此景。
-      <span class="ff-guide-en">Reader's note · Today the year reaches 夏至, the summer solstice — the longest day. With a quick, luminous hand Hǎi Biān paints midsummer's arrival: sprites startle awake, wild bees sing, the long-held flowers spring free, and all living things, at the fullness of the light, trade their stories. The closing image — "the gold that leads to autumn, the silver of winter snow" — folds the turning seasons into the very height of summer. A fitting verse as the solstice has just passed and the long days of high summer begin.</span></div>
-    <div class="ff-by">＊「今日萤火」每日自动从《萤火》中甄选一首应季、应景、与世界相通之作，附中英对照与导读。</div>
+    <div class="ff-guide">导读 · 这是风动在《萤火》中的第一首，一阕五律，写乙未年（2015）多伦多的中秋月。月满江静、银辉万户，是团圆的静好；暗风穿树、红叶落窗，却已暗递秋意。颔联写景，颈联转情——「春去惊新梦，秋来恨旧年」，一年光景在异乡悄然流转，游子之思尽在其中。结句「今宵频望玉，愁绪又绵延」，望月而愁绪不断，正是海外华人「每逢佳节倍思亲」的共通心事。以此为今日萤火之始，愿明月所照，山海同心。
+      <span class="ff-guide-en">Reader's note · This is Fēng Dòng's opening piece in Fireflies — a five-character regulated verse (wǔlǜ) on the mid-autumn moon over Toronto in 2015. A full moon stilling the rivers, its silver light over ten thousand homes: the quiet fullness of reunion. Yet a hidden wind behind the trees and red leaves at the window already carry autumn's turn. The poem moves from scene to feeling — "spring's leaving startled a new dream; autumn's coming resents the old year" — a whole year slipping by in a distant land. It closes on a gaze that will not end: the shared heart of every wanderer far from home. A fitting first light for our daily Firefly — may one moon join mountains and seas as one.</span></div>
+    <div class="ff-by">＊「今日萤火」从《萤火》中甄选应景、与世界相通之作，附中英对照与导读；本期特选风动卷中首篇。</div>
   </div>
 
   <div class="yh">
@@ -571,6 +587,8 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
 <section id="world" class="panel"><div class="wrap">
   <div class="sec-head"><h2>连接世界</h2><span class="en">Connecting the World</span><div class="rule"></div></div>
   <p data-en="The Palm opens its doors to poets the world over. Over the years, making friends through poetry, our steps have crossed five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — exchanging verse with poets, writers, scholars and artists everywhere. Wherever you are from, in whatever language you write, you are welcome here to share, to talk, and to answer song with song.">掌心向全世界的诗人敞开。多年来，我们以诗会友，足迹遍及五洲——登华沙古城、泛尼罗碧波、入大漠驼乡、访京都鸟居、立印度门前，与各国诗人、作家、学者与艺术家往来切磋。无论你来自何方、以何种语言写作，都欢迎在此发表、交流、唱和。</p>
+  <p style="color:var(--seal);font-family:var(--kai);margin:2px 0 6px;font-size:16px">诚邀掌心同仁与天下诗友，提供你在世界各地的亲身经历图片——旅次风物、异国街巷、与各地友人的相逢，连同一句注脚或一首小诗，一同汇入这面「连接世界」的画卷。</p>
+  <p style="color:var(--ink-soft);font-size:14px;margin:0 0 4px">来信投稿：<a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a>　·　我们会择要陆续上墙，署名致谢。</p>
   <div class="wgrid">
     <figure><img src="网站图片/掌心/连接世界/cx_80.jpg" alt="华沙王宫广场" loading="lazy"><figcaption>华沙王宫广场</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_85.jpg" alt="日本古城" loading="lazy"><figcaption>日本古城</figcaption></figure>
@@ -649,6 +667,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
 </main>
 <footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.</footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
+<div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
 <script>
   document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(e){var el=document.querySelector(this.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});
   (function(){var lb=document.getElementById('lightbox'),li=document.getElementById('lbimg');
@@ -663,5 +682,75 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
     });
     var btn=document.getElementById('langBtn'); if(btn) btn.textContent= en?'中文':'EN';
   }
+</script>
+<script>
+/* 成员简介与照片 · 点击姓名弹出。简介多录自《萤火》；照片按约定路径 网站图片/掌心/成员/姓名.jpg，缺图时自动以名首字占位。 */
+(function(){
+  var D={
+    "文刃":{role:"诗词 · 掌心诗社社长",bio:"祖籍山东，现居北美。长期从事实业与国际贸易，广泛参与社会公益，关注民生。著有诗选《千山独行》《国风入怀》及文选《南行》等。掌心诗社创社十二位共同发起人之一，社长。"},
+    "风动":{role:"新诗 · 神学",bio:"多伦多华裔。写诗多年，作品散见网络及海内外诗歌杂志与合集，收入《海外当代诗人作品荟萃》《时光流韵——北美十位华裔诗选集萃》。早期参与《北美枫》诗刊的创刊与编辑。诗路追寻回归本真，反对空洞的唯美，追求语言微弱的剩余价值。掌心诗社创社十二位共同发起人之一，共同主编、新诗编辑。"},
+    "陶然":{role:"古诗 · 古希腊文化",bio:"古典诗词研习者，曾用笔名乐而陶之、抱云轩主。药学专业出身，原中医药大学讲师；生于贵州贵阳，移居广东中山从事进出口贸易，后赴欧洲以希腊雅典为基地营商旅居四年，复定居加拿大多伦多。兼湖畔书院古典诗词讲师。掌心诗社创社十二位共同发起人之一，古诗编辑。"},
+    "海边":{role:"朗诵 · 诗评",bio:"本名黄广燕，祖籍山东，现居加拿大。中文老师、翻译、网络电台主播。曾出诗歌合集《天国的回音》、个人诗集《归》。愿以声音温暖灵魂，以翻译传递中文之美。掌心诗社创社十二位共同发起人之一，朗诵总监、秘书长。"},
+    "古土":{role:"诗评 · 佛学",bio:"诗人，资深媒体人，比较宗教学研究者。现居多伦多，主持以「独立之精神，自由之思想」为宗旨的湖畔书院。出国前为新华社主任记者，新闻多次获奖。诗作曾获首都大学生艺术节创作奖、诗刊首届新诗大奖赛优秀奖、加拿大大雅风诗歌提名奖、美国纽约法拉盛诗歌节二等奖等。掌心诗社创社十二位共同发起人之一，共同主编。"},
+    "丹丹":{role:"诗词",bio:"本名张丹，笔名天地一丹。旅居澳大利亚、美国，现居加拿大。喜好格律诗词、散文、小诗，随缘写作，只为安顿自己。掌心诗社创社十二位共同发起人之一，活动总监。"},
+    "杨青":{role:"翻译",bio:"英文名 Edith，加拿大华裔。美国《新文学》杂志编委、翻译栏目编辑，加拿大中国笔会会员、加拿大女作家协会会员。毕业于华侨大学中文系。合集出版中文诗集《天国的回音》，与枫舟合译《聂鲁达十四行爱情诗100首》在台湾出版。掌心诗社创社十二位共同发起人之一，翻译总监。"},
+    "墨望山":{role:"诗评",bio:"河南孟州人，曾就读河南大学哲学管理学院，习中国哲学专业。诗人、艺术评论家，现居加拿大多伦多。掌心诗社创社十二位共同发起人之一，评论编辑。"},
+    "五月花":{role:"翻译 · 英文诗",bio:"原名王梅兰，祖籍福建，毕业于福建师大外国语学院英语文学专业、研究生比较文学专业，曾任教于厦门某高校。2001年移民加拿大，就读温莎大学教育系，持安省教师资格证，有十五年以上公立教育教学经验。掌心诗社创社十二位共同发起人之一，翻译总监。"},
+    "湖边":{role:"诗词",bio:"Harry He，生于汉水之滨，现居安大略湖畔，职业工程师。崇拜科技，喜爱文史，偶有诗歌散文创作。掌心诗社创社十二位共同发起人之一，秘书长。"},
+    "枫叶正红":{role:"摄影 · 美术",bio:"本名张祖平，旅加著名摄影家，国际摄影家联盟（GPU）、国际影艺联盟（FIAP）、英国皇家摄影学会（RPS）会员。2017年获「加拿大建国150周年先锋摄影师」勋章及「世界优秀摄影师」称号，多次于国际摄影大赛获金奖；2022年获英女王伊丽莎白二世登基70周年白金禧勋章。掌心诗社创社十二位共同发起人之一，摄影及美术总监。"},
+    "Tim":{role:"诗友 · 活动总监",bio:"本名王挺，来自多伦多，酷爱诗词，不求闻达诸侯，唯愿以文会友，结交天下知音人。掌心诗社创社十二位共同发起人之一，活动总监（与丹丹同司活动）。"},
+    "晓鸣":{role:"诗词",bio:"四川古宋人，现居加拿大。上大学前发表过小说，1981年起有诗歌发表于《星星》等报刊。掌心诗社成员。"},
+    "飞鸿":{role:"书法",bio:"本名黄庆宏，理工专业，曾在中国科学院研究所及大学从事水文水资源的教学、科研及工程工作。业余爱好诗词、文史、书法。留学读博以色列，移民定居加拿大。掌心诗社成员。"},
+    "石甫":{role:"书法 · 景教碑",bio:"当代艺术家、意象艺术家，中国书法家协会会员。作品被中国书法馆、荣宝斋、东京日中会馆、多伦多大学东亚图书馆等机构收藏，「道艺书画」获加拿大联邦艺术局专项创作基金，为加拿大新时代杰出艺术家年奖得主。掌心诗社成员。"},
+    "黄忠":{role:"诗词"},
+    "王雪君":{role:"太极 · 英语朗诵",bio:"英文名 Harrison Wang，笔名滴水恩，诗人、太极学者。来自四川东坡故里，毕业于西南交通大学，现居加拿大。2017年出版诗集《橡树湖》，2022年出版中英双语诗集《曼美诗歌精选》，以「太极化诗，诗化太极」见称。掌心诗社成员。"},
+    "挑灯看剑":{role:"诗词",bio:"本名周克准，理工男，喜爱文学，业余以读书码字为消遣。著有长篇小说《沽河泪》及中短篇小说、诗词散文多篇。掌心诗社成员。"},
+    "颜钟祜":{role:"宗教与哲学",bio:"掌心学园讲者，主讲宗教与哲学系列、《中国哲学导论》，及「太初有道之道与道德经之道」「存在的焦虑与古典儒学的回应」等。"},
+    "骆奕同":{role:"博物 · 古琴",bio:"掌心学园讲者，博物与古琴皆通，主讲「都是青花惹的——博物馆杂谈」「马年说马」「古希腊文化游踪」等。"},
+    "张喜英":{role:"花卉"},
+    "唐芒":{role:"交响乐"},
+    "古谦":{role:"人类学",bio:"掌心学园讲者，主讲人类学系列——概览与体质人类学、考古学与语言人类学、文化人类学。"},
+    "胡杨":{role:"摄影"},
+    "张苏":{role:"芭蕾艺术"},
+    "张文尧":{role:"古琴 · 易经",bio:"掌心学园讲者，主讲古琴《流水》与《千山》、《易经》的产生发展及作用、《乾坤定位：中国传统的社会观》等。"},
+    "王慧":{},
+    "欣欣向荣":{},
+    "楚人":{},
+    "傅毓华":{},
+    "白水":{},
+    "谢蓉枫":{},
+    "陈河":{role:"印度行",bio:"掌心学园讲者，分享印度行见闻。"},
+    "青枫":{role:"印度旅行",bio:"掌心学园讲者，分享印度旅行见闻。"},
+    "诸黛红":{role:"西餐礼仪",bio:"掌心学园讲者，主讲西餐礼仪。"},
+    "李昶":{role:"西方文学",bio:"掌心学园讲者，主讲西方文学。"},
+    "谭新雄":{role:"瓷器 · 量子力学",bio:"掌心学园讲者，主讲瓷器渊源与量子力学。"},
+    "沈大勇":{role:"古埃及与阿拉伯世界",bio:"掌心学园讲者，主讲古埃及与阿拉伯世界。"}
+  };
+  var modal=document.getElementById('mModal'), box=document.getElementById('mBox');
+  function open(name){
+    var d=D[name]||{};
+    box.innerHTML='';
+    var close=document.createElement('button');close.className='m-close';close.setAttribute('aria-label','关闭');close.textContent='×';close.onclick=closeMember;
+    var head=document.createElement('div');head.className='m-head';
+    var img=document.createElement('img');img.className='m-photo';img.src=(d.photo||('网站图片/掌心/成员/'+name+'.jpg'));img.alt=name;
+    img.onerror=function(){var ph=document.createElement('div');ph.className='m-photo-ph';ph.textContent=name.charAt(0);if(img.parentNode)head.replaceChild(ph,img);};
+    var txt=document.createElement('div');txt.className='m-h-txt';
+    var nm=document.createElement('h3');nm.className='m-h-name';nm.textContent=name;txt.appendChild(nm);
+    if(d.role){var r=document.createElement('div');r.className='m-h-role';r.textContent=d.role;txt.appendChild(r);}
+    head.appendChild(img);head.appendChild(txt);
+    var bio=document.createElement('p');
+    if(d.bio){bio.className='m-bio';bio.textContent=d.bio;}
+    else{bio.className='m-bio todo';bio.textContent='简介待补充 —— 欢迎'+name+'本人或知情诗友提供简介与照片。';}
+    var sub=document.createElement('p');sub.className='m-sub';sub.textContent='＊ 如需补充或更新简介与照片，敬请来信 huangxiaoyu2001@gmail.com；互动版上线后亦可自行维护个人页面。';
+    box.appendChild(close);box.appendChild(head);box.appendChild(bio);box.appendChild(sub);
+    modal.classList.add('on');
+  }
+  window.closeMember=function(){modal.classList.remove('on');};
+  document.querySelectorAll('.m-card[data-m]').forEach(function(c){
+    c.addEventListener('click',function(){open(this.getAttribute('data-m'));});
+  });
+  modal.addEventListener('click',function(e){if(e.target===modal)closeMember();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMember();});
+})();
 </script>
 </body></html>
