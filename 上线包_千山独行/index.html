@@ -45,7 +45,7 @@
   nav ul{display:flex;gap:19px;list-style:none;align-items:flex-start}
   nav a{color:var(--ink-soft);text-decoration:none;font-size:15px;font-weight:600;letter-spacing:.12em;transition:color .2s;position:relative}
   nav ul li a{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.08;text-align:center}
-  nav ul li a .n-zh{font-size:14px;font-weight:600;letter-spacing:.1em}
+  nav ul li a .n-zh{white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.1em}
   nav ul li a .n-en{font-size:9px;font-weight:400;color:var(--ink-faint);letter-spacing:.03em;white-space:nowrap;line-height:1.1;text-align:center}
   nav ul li a:hover .n-en{color:var(--seal)}
   nav a:hover{color:var(--seal)}
@@ -480,7 +480,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
 
   <nav>
     <div class="wrap">
-      <div class="brand-wrap"><div class="brand" onclick="goHome()"><span class="zh">千山独行</span><span class="en">A Solitary Journey Across a Thousand Mountains</span></div><button class="lang-btn zh-on" id="langBtn"><span class="l-zh">中</span><span class="l-sep">/</span><span class="l-en">EN</span></button></div>
+      <div class="brand-wrap"><div class="brand" onclick="goHome()"><span class="zh">千山独行</span><span class="en">Beyond a Thousand Mountains — The Poetic Journey of Wen Ren</span></div><button class="lang-btn zh-on" id="langBtn"><span class="l-zh">中</span><span class="l-sep">/</span><span class="l-en">EN</span></button></div>
       <div class="nav-right">
         <ul id="menu">
           <li><a href="#home"><span class="n-zh">首页</span><span class="n-en">Home</span></a></li>
@@ -588,7 +588,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
         <blockquote class="hero-epigraph about-epigraph">
           <p class="he-zh">到远方不是为了看清世界，诗不是为了尽写人生。</p>
           <p class="he-en">“One does not travel far merely to see the world more plainly; nor is poetry written to recount the fullness of a life only.”</p>
-          <cite>文刃 · 《千山独行》作者　|　Wén Rèn, author of <em>A Solitary Journey Across Thousand Mountains</em></cite>
+          <cite>文刃 · 《千山独行》作者　|　Wén Rèn, author of <em>Beyond a Thousand Mountains</em></cite>
         </blockquote>
       </section>
 
@@ -607,7 +607,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
           </div>
           <p class="book-blurb">全书五百余页，分古诗《千山独行》、古诗《国风入怀》、文选《南行》三部分；自十五年间近千首作品中精选两百余首古诗、近百篇散文。书名取自作者词作《水调歌头·黄州快哉亭》「千年未远，大道欲隐士独行」。</p>
           <div class="block-label"><span data-zh="台湾中华书局 · 编者推荐" data-en="Editor’s Recommendation · Zhonghua, Taipei">台湾中华书局 · 编者推荐</span><div class="ln"></div></div>
-          <p class="er-zh" data-zh="《千山独行》是加拿大华裔诗人、作家文刃的第一部作品，也是他旅历人生最精华阶段的创作精华辑。内容包含《千山独行》《国风入怀》两部古诗，以及一部文集《南行》——看作者如何在中国故土及欧美生活中感悟、吟咏，或喜悦、或悲痛、或思想升华，将生命淬炼成诗。第一部《千山独行》，品味「仁者的吟咏」；第二部《国风入怀》，缅怀中土千年「士风气节」；第三部《南行》可为致青年的「启蒙文」。文刃以其朴实真挚不花巧的写作手法，乘载深厚的思想内涵，同时获得更广泛的共鸣！" data-en="The first book by the Chinese-Canadian poet and writer Wén Rèn — the distilled work of his richest years. It gathers two poetry collections, A Solitary Journey Across Thousand Mountains and Airs of the States Within, and the prose collection Journey South: the author sensing and singing his way through his Chinese homeland and life in Europe and America, refining a life into verse. Part one tastes “the song of the benevolent”; part two recalls a thousand years of scholarly integrity; part three reads as an “enlightenment” for the young. In plain, sincere, unadorned prose, he carries a deep inner world — and finds a wide echo.">《千山独行》是加拿大华裔诗人、作家文刃的第一部作品，也是他旅历人生最精华阶段的创作精华辑。内容包含《千山独行》《国风入怀》两部古诗，以及一部文集《南行》——看作者如何在中国故土及欧美生活中感悟、吟咏，或喜悦、或悲痛、或思想升华，将生命淬炼成诗。第一部《千山独行》，品味「仁者的吟咏」；第二部《国风入怀》，缅怀中土千年「士风气节」；第三部《南行》可为致青年的「启蒙文」。文刃以其朴实真挚不花巧的写作手法，乘载深厚的思想内涵，同时获得更广泛的共鸣！</p>
+          <p class="er-zh" data-zh="《千山独行》是加拿大华裔诗人、作家文刃的第一部作品，也是他旅历人生最精华阶段的创作精华辑。内容包含《千山独行》《国风入怀》两部古诗，以及一部文集《南行》——看作者如何在中国故土及欧美生活中感悟、吟咏，或喜悦、或悲痛、或思想升华，将生命淬炼成诗。第一部《千山独行》，品味「仁者的吟咏」；第二部《国风入怀》，缅怀中土千年「士风气节」；第三部《南行》可为致青年的「启蒙文」。文刃以其朴实真挚不花巧的写作手法，乘载深厚的思想内涵，同时获得更广泛的共鸣！" data-en="The first book by the Chinese-Canadian poet and writer Wén Rèn — the distilled work of his richest years. It gathers two poetry collections, Beyond a Thousand Mountains and Airs of the States Within, and the prose collection Journey South: the author sensing and singing his way through his Chinese homeland and life in Europe and America, refining a life into verse. Part one tastes “the song of the benevolent”; part two recalls a thousand years of scholarly integrity; part three reads as an “enlightenment” for the young. In plain, sincere, unadorned prose, he carries a deep inner world — and finds a wide echo.">《千山独行》是加拿大华裔诗人、作家文刃的第一部作品，也是他旅历人生最精华阶段的创作精华辑。内容包含《千山独行》《国风入怀》两部古诗，以及一部文集《南行》——看作者如何在中国故土及欧美生活中感悟、吟咏，或喜悦、或悲痛、或思想升华，将生命淬炼成诗。第一部《千山独行》，品味「仁者的吟咏」；第二部《国风入怀》，缅怀中土千年「士风气节」；第三部《南行》可为致青年的「启蒙文」。文刃以其朴实真挚不花巧的写作手法，乘载深厚的思想内涵，同时获得更广泛的共鸣！</p>
 
           <details class="group-acc"><summary>精选诗篇 · 附中英文导读（Substack / YouTube 同步发布）</summary>
           <div class="group-body">
@@ -617,7 +617,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
           </div></details>
           <details class="toc-full">
           <summary data-zh="展开 · 全书目次（台湾中华书局版）" data-en="Full table of contents (Zhonghua, Taipei)">展开 · 全书目次（台湾中华书局版）</summary>
-          <div class="toc-part" data-zh="第一部 ·《千山独行》古诗集" data-en="Part I — A Solitary Journey">第一部 ·《千山独行》古诗集</div>
+          <div class="toc-part" data-zh="第一部 ·《千山独行》古诗集" data-en="Part I — Beyond a Thousand Mountains">第一部 ·《千山独行》古诗集</div>
           <div class="toc-pian"><b>第1篇</b>泰岳歌、咏大明湖晏公庙、饮鹊山、咏仰天山摩云崮、凭海临风咏烟台</div>
           <div class="toc-pian"><b>第2篇</b>庐山谣、庐山大林寺原址、登庐山、咏九江周瑜点将台、咏滕王阁、咏绍兴兰亭、咏白鹿洞书院、咏会稽禹陵</div>
           <div class="toc-pian"><b>第3篇</b>过华山、忆同游西安赠友、洛阳走马、同游郑州黄河赠友、题开封、同游濮阳赠友</div>
@@ -656,7 +656,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
 
       <section id="launch">
         <div class="sec-head"><span class="idx">iii.</span><h2><span class="h-zh">发布</span><span class="h-en">Book Launch</span></h2><div class="rule"></div></div>
-        <p class="work-intro" data-zh="二〇二四年八月二十五日，《千山独行》新书发布会暨「掌心诗词艺术文化沙龙」原创作品展，在多伦多 North York Central 礼堂隆重举行。九十高龄的许之远先生作序并题写书名；现场朗诵《庐山谣》、访谈对话，掌心同仁的诗、书、画与新诗刊《萤火》一并展出，群贤毕至。红枫影视全程录制。" data-en="On August 25, 2024, the launch of A Solitary Journey — with the Palm Poetry Club Salon’s exhibition of original work — was held at the North York Central Auditorium in Toronto. Mr. Xu Zhiyuan, then ninety, wrote the preface and brushed the title; poems were recited, interviews held, and the members’ work and the journal Fireflies shown. Red Maple Movies filmed the event.">二〇二四年八月二十五日，《千山独行》新书发布会暨「掌心诗词艺术文化沙龙」原创作品展，在多伦多 North York Central 礼堂隆重举行。九十高龄的许之远先生作序并题写书名；现场朗诵《庐山谣》、访谈对话，掌心同仁的诗、书、画与新诗刊《萤火》一并展出，群贤毕至。红枫影视全程录制。</p>
+        <p class="work-intro" data-zh="二〇二四年八月二十五日，《千山独行》新书发布会暨「掌心诗词艺术文化沙龙」原创作品展，在多伦多 North York Central 礼堂隆重举行。九十高龄的许之远先生作序并题写书名；现场朗诵《庐山谣》、访谈对话，掌心同仁的诗、书、画与新诗刊《萤火》一并展出，群贤毕至。红枫影视全程录制。" data-en="On August 25, 2024, the launch of Beyond a Thousand Mountains — with the Palm Poetry Club Salon’s exhibition of original work — was held at the North York Central Auditorium in Toronto. Mr. Xu Zhiyuan, then ninety, wrote the preface and brushed the title; poems were recited, interviews held, and the members’ work and the journal Fireflies shown. Red Maple Movies filmed the event.">二〇二四年八月二十五日，《千山独行》新书发布会暨「掌心诗词艺术文化沙龙」原创作品展，在多伦多 North York Central 礼堂隆重举行。九十高龄的许之远先生作序并题写书名；现场朗诵《庐山谣》、访谈对话，掌心同仁的诗、书、画与新诗刊《萤火》一并展出，群贤毕至。红枫影视全程录制。</p>
         <p class="launch-meta" data-zh="2024年8月25日 13:00–16:00　·　多伦多 North York Central Auditorium" data-en="Aug 25, 2024, 1:00–4:00 pm · North York Central Auditorium, Toronto">2024年8月25日 13:00–16:00　·　多伦多 North York Central Auditorium</p>
         <div class="gallery">
           <figure><img src="网站图片/发布会/invitation.jpg" alt="新书发布会" loading="lazy"></figure>
@@ -729,7 +729,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
 
       <section id="reviews">
         <div class="sec-head"><span class="idx">iv.</span><h2><span class="h-zh">诗评</span><span class="h-en">Reviews</span></h2><div class="rule"></div></div>
-        <p class="work-intro" data-zh="诸位诗友、学者读《千山独行》后所撰序文与评赏，谨录于此。" data-en="Prefaces and appreciations of A Solitary Journey, written by the poet’s friends and fellow scholars.">诸位诗友、学者读《千山独行》后所撰序文与评赏，谨录于此。</p>
+        <p class="work-intro" data-zh="诸位诗友、学者读《千山独行》后所撰序文与评赏，谨录于此。" data-en="Prefaces and appreciations of Beyond a Thousand Mountains, written by the poet’s friends and fellow scholars.">诸位诗友、学者读《千山独行》后所撰序文与评赏，谨录于此。</p>
 
         <details class="essay-acc rev-acc">
           <summary><span class="acc-no">1</span><span class="acc-t">序<span class="essay-sub">—— 许之远（时年九十）</span></span><span class="acc-by">—— 许之远</span></summary>
@@ -1104,8 +1104,8 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
             <figure><img src="网站图片/华亭小隐书南行.jpg" alt="华亭小隐 草书 南行" loading="lazy"><figcaption data-zh="华亭小隐 草书《南行》" data-en="“Journey South” in cursive script by Huating Xiaoyin">华亭小隐 草书《南行》</figcaption></figure>
             <figure><img src="网站图片/飞鸿书晓鸣联_正.jpg" alt="许晓鸣撰联 飞鸿书" loading="lazy"><figcaption data-zh="《千山独行》读后联赠文刃 —— 许晓鸣 撰联，飞鸿 书" data-en="A couplet on reading the book, presented to Wén Rèn — composed by Xu Xiaoming, brushed by Feihong">《千山独行》读后联赠文刃 —— 许晓鸣 撰联，飞鸿 书</figcaption></figure>
             <figure><img src="网站图片/许之远书法.jpg" alt="许之远 题字" loading="lazy"><figcaption data-zh="许之远书法" data-en="Xu Zhiyuan — calligraphy">许之远书法</figcaption></figure>
-            <figure><img src="网站图片/发布会/new_26.jpg" alt="掌心同仁书法" loading="lazy"><figcaption data-zh="千山独行发布会展出" data-en="Shown at the A Solitary Journey launch">千山独行发布会展出</figcaption></figure>
-            <figure><img src="网站图片/发布会/congrats_02.jpg" alt="贺《千山独行》题词" loading="lazy"><figcaption data-zh="贺《千山独行》· 书法题赠" data-en="A calligraphic tribute to A Solitary Journey">贺《千山独行》· 书法题赠</figcaption></figure>
+            <figure><img src="网站图片/发布会/new_26.jpg" alt="掌心同仁书法" loading="lazy"><figcaption data-zh="千山独行发布会展出" data-en="Shown at the Beyond a Thousand Mountains launch">千山独行发布会展出</figcaption></figure>
+            <figure><img src="网站图片/发布会/congrats_02.jpg" alt="贺《千山独行》题词" loading="lazy"><figcaption data-zh="贺《千山独行》· 书法题赠" data-en="A calligraphic tribute to Beyond a Thousand Mountains">贺《千山独行》· 书法题赠</figcaption></figure>
           </div>
         <div class="block-label"><span data-zh="致谢 · With Thanks" data-en="With Thanks">致谢</span><div class="ln"></div></div>
         <p class="acclaim-more" data-zh="本书承蒙诸多诗人、评论家、好友与书法家读后心许，分别赐序、赐文、赐评、赐字、赐联，玉成此书——许之远、许厚全、冰清、古土、张丹、杨青、海边、风动、孟冲之、张祖平、大吕、梁溪散人，及黄耀俊、许晓鸣、黄庆宏（飞鸿）、华亭小隐、石甫、吕胜江、李斌等。谨向各位良师益友致以诚挚谢忱。" data-en="This book owes much to many poets, critics, friends and calligraphers who, moved by the work, gave prefaces, essays, reviews, inscriptions and couplets to bring it into being — Xu Zhiyuan, Xu Houquan, Bing Qing, Gu Tu, Zhang Dan, Yang Qing, Hai Bian, Feng Dong, Meng Chongzhi, Zhang Zuping, Da Lü, Liangxi Sanren, with Huang Yaojun, Xu Xiaoming, Huang Qinghong (Feihong), Huating Xiaoyin, Shi Fu, Lü Shengjiang, Li Bin and others. To all these mentors and friends, our heartfelt thanks.">本书承蒙诸多诗人、评论家、好友与书法家读后心许，分别赐序、赐文、赐评、赐字、赐联，玉成此书——许之远、许厚全、冰清、古土、张丹、杨青、海边、风动、孟冲之、张祖平、大吕、梁溪散人，及黄耀俊、许晓鸣、黄庆宏（飞鸿）、华亭小隐、石甫、吕胜江、李斌等。谨向各位良师益友致以诚挚谢忱。</p>
@@ -1249,7 +1249,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
         <div class="sec-head"><span class="idx">vi.</span><h2><span class="h-zh">行者</span><span class="h-en">The Wayfarer</span></h2><div class="rule"></div></div>
         <figure class="journey-lead"><img src="网站图片/行者无疆/IMG_E9603.jpg" alt="文刃 · 山间" loading="lazy"></figure>
         <blockquote class="journey-verse"><p class="jv-zh">远望珠峰，俯察群山；<br>反躬回首，我心依然。</p><p class="jv-en">Gazing afar to the snow-peaks, looking down upon the ranges; turning to face myself again — my heart remains as it was.</p><cite>文刃</cite></blockquote>
-        <p class="journey-summary" data-zh="千山独行，是诗里的意象，也是脚下的真实。十余年来，文刃的足迹遍及五洲四海——登埃及金字塔，访希腊古剧场，泛威尼斯水巷；春赏扶桑之樱，秋抵世界尽头乌斯怀亚，与企鹅冰川相对；从喜马拉雅的雪线，到加勒比的潮声，明月一路相随。他远行，不仅仅是为了遍观世界、沟通海洋，更为了在天地之间的行旅中安静地思考和体悟，感知自己的有限与无限的连接——爱因斯坦的 OCEANIC 是他漫长旅途最好的脚注。每一程的风霜雨雪与朝晖暮霞，都落进《千山独行》的诗句里——这，是诗人真正的「千山独行」。" data-en="&ldquo;A solitary journey across a thousand mountains&rdquo; is at once an image in the poems and a fact underfoot. Over more than a decade Wen Ren&rsquo;s steps have crossed the five continents — the pyramids of Egypt, the theatres of Greece, the canals of Venice; cherry blossoms in spring, Ushuaia at the end of the world among penguins and ice; from the snow-line of the Himalayas to the surf of the Caribbean, the moon his companion all the way. He travels not merely to behold the world and cross its oceans, but to think and feel quietly on the road between heaven and earth, sensing how his own finitude is joined to the infinite — Einstein&rsquo;s &lsquo;oceanic&rsquo; feeling is the best footnote to his long travels. Every frost and rain, every dawn and dusk, falls at last into the lines of A Solitary Journey. This is a poet&rsquo;s true &lsquo;solitary journey.&rsquo;">千山独行，是诗里的意象，也是脚下的真实。十余年来，文刃的足迹遍及五洲四海——登埃及金字塔，访希腊古剧场，泛威尼斯水巷；春赏扶桑之樱，秋抵世界尽头乌斯怀亚，与企鹅冰川相对；从喜马拉雅的雪线，到加勒比的潮声，明月一路相随。他远行，不仅仅是为了遍观世界、沟通海洋，更为了在天地之间的行旅中安静地思考和体悟，感知自己的有限与无限的连接——爱因斯坦的 OCEANIC 是他漫长旅途最好的脚注。每一程的风霜雨雪与朝晖暮霞，都落进《千山独行》的诗句里——这，是诗人真正的「千山独行」。</p>
+        <p class="journey-summary" data-zh="千山独行，是诗里的意象，也是脚下的真实。十余年来，文刃的足迹遍及五洲四海——登埃及金字塔，访希腊古剧场，泛威尼斯水巷；春赏扶桑之樱，秋抵世界尽头乌斯怀亚，与企鹅冰川相对；从喜马拉雅的雪线，到加勒比的潮声，明月一路相随。他远行，不仅仅是为了遍观世界、沟通海洋，更为了在天地之间的行旅中安静地思考和体悟，感知自己的有限与无限的连接——爱因斯坦的 OCEANIC 是他漫长旅途最好的脚注。每一程的风霜雨雪与朝晖暮霞，都落进《千山独行》的诗句里——这，是诗人真正的「千山独行」。" data-en="&ldquo;A solitary journey across a thousand mountains&rdquo; is at once an image in the poems and a fact underfoot. Over more than a decade Wen Ren&rsquo;s steps have crossed the five continents — the pyramids of Egypt, the theatres of Greece, the canals of Venice; cherry blossoms in spring, Ushuaia at the end of the world among penguins and ice; from the snow-line of the Himalayas to the surf of the Caribbean, the moon his companion all the way. He travels not merely to behold the world and cross its oceans, but to think and feel quietly on the road between heaven and earth, sensing how his own finitude is joined to the infinite — Einstein&rsquo;s &lsquo;oceanic&rsquo; feeling is the best footnote to his long travels. Every frost and rain, every dawn and dusk, falls at last into the lines of Beyond a Thousand Mountains. This is a poet&rsquo;s true &lsquo;solitary journey.&rsquo;">千山独行，是诗里的意象，也是脚下的真实。十余年来，文刃的足迹遍及五洲四海——登埃及金字塔，访希腊古剧场，泛威尼斯水巷；春赏扶桑之樱，秋抵世界尽头乌斯怀亚，与企鹅冰川相对；从喜马拉雅的雪线，到加勒比的潮声，明月一路相随。他远行，不仅仅是为了遍观世界、沟通海洋，更为了在天地之间的行旅中安静地思考和体悟，感知自己的有限与无限的连接——爱因斯坦的 OCEANIC 是他漫长旅途最好的脚注。每一程的风霜雨雪与朝晖暮霞，都落进《千山独行》的诗句里——这，是诗人真正的「千山独行」。</p>
         <div class="journey-grid">
           <figure><img src="网站图片/行者无疆/trips/southamerica/southamerica_19.jpg" alt="里约热内卢 · 山城" loading="lazy"><figcaption data-zh="里约热内卢 · 山城" data-en="Rio de Janeiro">里约热内卢 · 山城</figcaption></figure>
           <figure><img src="网站图片/行者无疆/trips/southamerica/southamerica_08.jpg" alt="巴塔哥尼亚 · 雪山湖" loading="lazy"><figcaption data-zh="巴塔哥尼亚 · 雪山湖" data-en="Patagonia · Lake & Peaks">巴塔哥尼亚 · 雪山湖</figcaption></figure>
@@ -1536,7 +1536,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
         <div class="sec-head"><span class="idx">ix.</span><h2><span class="h-zh">联系</span><span class="h-en">Contact</span></h2><div class="rule"></div></div>
         <div class="coda-words">
           <p class="cw-zh">「到远方不是为了看清世界——是为了看清自己的有限；诗不是为了尽写人生——而是为了对无限有所回馈。」真正的仁者，不仅不应拘于俗世社会的评价，甚至不应自限于形而下；他们当以山为坐标、以诗为利刃，划破语言的边界，去除遮蔽，让真自我显现。留一腔真诚，存一段善念，便可足慰平生。感谢假我之手完成《千山独行》——这是我生命的献礼！千山依然遥远，诗思徘徊在笔端——读到此处的你，也已是诗里的人了。</p>
-          <p class="cw-en">“One travels far not to see the world more clearly, but to see the limits of oneself; poetry is written not to exhaust a life, but to give something back to the infinite.”The truly benevolent should not be bound by the world’s judgments, nor confined to the merely physical; let them take the mountains for their compass and the poem for a blade — cutting through the bounds of language, clearing away what conceals, so the true self may appear.Keep a heart of sincerity, hold a thought of kindness, and a life is well consoled.I am grateful that A Solitary Journey was completed through my hand — the offering of my life.The thousand mountains are still far, and the poem still lingers at the brush-tip —and you, who have read to this line, are already a figure within the poem.</p>
+          <p class="cw-en">“One travels far not to see the world more clearly, but to see the limits of oneself; poetry is written not to exhaust a life, but to give something back to the infinite.”The truly benevolent should not be bound by the world’s judgments, nor confined to the merely physical; let them take the mountains for their compass and the poem for a blade — cutting through the bounds of language, clearing away what conceals, so the true self may appear.Keep a heart of sincerity, hold a thought of kindness, and a life is well consoled.I am grateful that Beyond a Thousand Mountains was completed through my hand — the offering of my life.The thousand mountains are still far, and the poem still lingers at the brush-tip —and you, who have read to this line, are already a figure within the poem.</p>
         </div>
       </section>
     </main>
@@ -1577,7 +1577,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
    现为占位样板，待真实内容发来后逐首替换。
    ========================================================================= */
   var SECTIONS = [
-    { zh:"千山独行", en:"A Solitary Journey", vno:"精选 · 逐句对译", flat:true, poems:[
+    { zh:"千山独行", en:"Beyond a Thousand Mountains", vno:"精选 · 逐句对译", flat:true, poems:[
         { no:1, zhTitle:"泰岳歌", enTitle:"Song of Mount Tai", style:"歌行体 · in the style of Percy Bysshe Shelley",
           guideZh:"《泰岳歌》取初唐歌行体，一气贯注，分三层递进。首层以神话立骨——盘古化山，泰山擎天接地，为五岳之首、东方之主、万物生发之源。中层转入摩崖石刻，由「仓颉已去书犹在」生出文明之忧——「大道曾可知」，全副分量都压在那个「曾」字上。末层入政治叩问：历代封禅，求富贵长安、以血洗路，诗人却以儒家古义作结——天听自民，敬天惜民者方称王者。朝阳悬于岱顶，是祝福，更是叩问。",
           guideEn:"Cast in the early-Tang gexing (“song”) form—unbound in line and rhyme—“Song of Mount Tai” moves in three tides. It opens in myth: Pangu’s death raises the mountain, first of the five sacred peaks and the source of all spring. It then descends to the cliff inscriptions and a meditation on the fragility of civilization—“once the Great Dao could be known,” the whole weight resting on that single past tense. It closes in political reckoning: emperors climbed here craving permanence and paved their paths in blood, yet the poem answers with an older truth—Heaven hears through the people, and only he who reveres Heaven and shelters them earns the name of king.",
