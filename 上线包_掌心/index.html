@@ -165,9 +165,9 @@
 <script>
 (function(){var PW="zhangxin2022";var g=document.getElementById('pwgate'),i=document.getElementById('pwin');
 function ok(){g.style.display='none';document.documentElement.style.overflow='';document.body.style.overflow='';}
-try{if(sessionStorage.getItem('pw_ok')==='1'){ok();return;}}catch(e){}
+
 document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';if(i)i.focus();
-if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===PW){try{sessionStorage.setItem('pw_ok','1')}catch(e){}ok();}else{document.getElementById('pwerr').textContent='密码不正确';i.value='';}}});
+if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===PW){try{}catch(e){}ok();}else{document.getElementById('pwerr').textContent='密码不正确';i.value='';}}});
 })();
 </script>
 <nav><div class="wrap">
