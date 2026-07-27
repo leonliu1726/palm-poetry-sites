@@ -1,0 +1,33 @@
+name: Sync YouTube to 千山独行 site
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"     # 每周一 09:00 UTC 自动检查
+  workflow_dispatch:          # 也可在 Actions 页手动点 "Run workflow"
+
+permissions:
+  contents: write             # 允许把改动提交回仓库
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync new YouTube videos into index.html
+        env:
+          WINDOW_DAYS: "8"   # 只收录最近 8 天内发布的新视频；改大（如 14/30）可一次收录更多
+        run: python3 scripts/sync_youtube.py
+
+      - name: Commit & push if changed
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name  "youtube-sync-bot"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "chore: 同步新 YouTube 视频到千山独行音像区"
+            git push
+          else
+            echo "No changes to commit."
+          fi
