@@ -8,7 +8,7 @@
 <meta content="《千山獨行》全書五百餘頁，分古詩《千山獨行》《國風入懷》與文選《南行》三部分；附臺灣中華書局編者推薦、全書目次與二〇二四年多倫多新書發布會實錄。" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="website" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="作品 · 全書目次 · 新書發布會 ｜ 千山獨行" property="og:title"/>
 <meta content="《千山獨行》全書五百餘頁，分古詩《千山獨行》《國風入懷》與文選《南行》三部分；附臺灣中華書局編者推薦、全書目次與二〇二四年多倫多新書發布會實錄。" property="og:description"/>
 <meta content="img/plate-jsqs.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 
@@ -978,7 +1126,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a aria-current="page" href="book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a href="poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
@@ -1005,13 +1153,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 <p class="book-blurb">全書五百餘頁，分古詩《千山獨行》、古詩《國風入懷》、文選《南行》三部分；自十五年間近千首作品中精選兩百餘首古詩、近百篇散文。書名取自作者詞作《水調歌頭·黃州快哉亭》「千年未遠，大道欲隱士獨行」。</p>
 <div class="block-label"><span data-en="Editor’s Recommendation · Zhonghua, Taipei" data-zh="臺灣中華書局 · 編者推薦">臺灣中華書局 · 編者推薦</span><span class="en-echo">Editor’s Recommendation · Zhonghua, Taipei</span><div class="ln"></div></div>
 <p class="er-zh" data-en="The first book by the Chinese-Canadian poet and writer Wén Rèn — the distilled work of his richest years. It gathers two poetry collections, Beyond a Thousand Mountains and Airs of the States Within, and the prose collection Journey South: the author sensing and singing his way through his Chinese homeland and life in Europe and America, refining a life into verse. Part one tastes “the song of the benevolent”; part two recalls a thousand years of scholarly integrity; part three reads as an “enlightenment” for the young. In plain, sincere, unadorned prose, he carries a deep inner world — and finds a wide echo." data-zh="《千山獨行》是加拿大華裔詩人、作家文刃的第一部作品，也是他旅歷人生最精華階段的創作精華輯。內容包含《千山獨行》《國風入懷》兩部古詩，以及一部文集《南行》——看作者如何在中國故土及歐美生活中感悟、吟詠，或喜悅、或悲痛、或思想昇華，將生命淬鍊成詩。第一部《千山獨行》，品味「仁者的吟詠」；第二部《國風入懷》，緬懷中土千年「士風氣節」；第三部《南行》可為致青年的「啟蒙文」。文刃以其樸實真摯不花巧的寫作手法，乘載深厚的思想內涵，同時獲得更廣泛的共鳴！">《千山獨行》是加拿大華裔詩人、作家文刃的第一部作品，也是他旅歷人生最精華階段的創作精華輯。內容包含《千山獨行》《國風入懷》兩部古詩，以及一部文集《南行》——看作者如何在中國故土及歐美生活中感悟、吟詠，或喜悅、或悲痛、或思想昇華，將生命淬鍊成詩。第一部《千山獨行》，品味「仁者的吟詠」；第二部《國風入懷》，緬懷中土千年「士風氣節」；第三部《南行》可為致青年的「啟蒙文」。文刃以其樸實真摯不花巧的寫作手法，乘載深厚的思想內涵，同時獲得更廣泛的共鳴！</p><div class="en-echo">The first book by the Chinese-Canadian poet and writer Wén Rèn — the distilled work of his richest years. It gathers two poetry collections, Beyond a Thousand Mountains and Airs of the States Within, and the prose collection Journey South: the author sensing and singing his way through his Chinese homeland and life in Europe and America, refining a life into verse. Part one tastes “the song of the benevolent”; part two recalls a thousand years of scholarly integrity; part three reads as an “enlightenment” for the young. In plain, sincere, unadorned prose, he carries a deep inner world — and finds a wide echo.</div>
-<details class="group-acc"><summary>精選詩篇 · 附中英文導讀（Substack / YouTube 同步發布）</summary>
-<div class="group-body">
-<p class="cat-note" data-en="The poems below carry a line-by-line Chinese–English translation, a reader’s guide and music, and are released in step on the author’s Substack and YouTube channels — click to open. The book’s complete contents follow under “Full Table of Contents.”" data-zh="以下詩篇均配逐句中英對譯、詩心導讀與配樂，可點擊展讀；並在作者 Substack 與 YouTube 頻道同步發布。全書完整篇目見下方「全書目次」。">以下詩篇均配逐句中英對譯、詩心導讀與配樂，可點擊展讀；並在作者 Substack 與 YouTube 頻道同步發布。全書完整篇目見下方「全書目次」。</p><div class="en-echo">The poems below carry a line-by-line Chinese–English translation, a reader’s guide and music, and are released in step on the author’s Substack and YouTube channels — click to open. The book’s complete contents follow under “Full Table of Contents.”</div>
-<p class="cat-note" style="margin-top:-4px"><a href="https://leonliu9789.substack.com" rel="noopener" style="color:var(--seal)" target="_blank">Substack · 文刃《千山獨行》</a>　·　<a href="https://www.youtube.com/@leonliu9789" rel="noopener" style="color:var(--seal)" target="_blank">YouTube · 文刃</a></p>
-<div class="cat-links" id="catalog"><div class="toc-grid"><a class="pcard" href="poems/song-of-mount-tai.html"><span class="no">01</span><span class="z">泰嶽歌</span><span class="e">Song of Mount Tai</span></a><a class="pcard" href="poems/hymn-to-mount-heng.html"><span class="no">02</span><span class="z">衡山吟</span><span class="e">Hymn to Mount Heng</span></a><a class="pcard" href="poems/ballad-of-mount-lu.html"><span class="no">03</span><span class="z">廬山謠</span><span class="e">Ballad of Mount Lu</span></a><a class="pcard" href="poems/ascending-mount-lu.html"><span class="no">04</span><span class="z">登廬山</span><span class="e">Ascending Mount Lu</span></a><a class="pcard" href="poems/ruins-of-dalin-temple.html"><span class="no">05</span><span class="z">廬山大林寺原址</span><span class="e">Among the Ruins of Dalin Temple, Mount Lu</span></a><a class="pcard" href="poems/white-deer-grotto-academy.html"><span class="no">06</span><span class="z">詠白鹿洞書院</span><span class="e">Ode to the White Deer Grotto Academy</span></a><a class="pcard" href="poems/zhou-yu-mustering-terrace.html"><span class="no">07</span><span class="z">詠九江周瑜點將臺</span><span class="e">Ode to Zhou Yu's Mustering Terrace at Jiujiang</span></a><a class="pcard" href="poems/pavilion-of-prince-teng.html"><span class="no">08</span><span class="z">詠滕王閣</span><span class="e">Ode to the Pavilion of Prince Teng</span></a><a class="pcard" href="poems/drinking-at-magpie-mountain.html"><span class="no">09</span><span class="z">飲鵲山</span><span class="e">Drinking at Magpie Mountain</span></a><a class="pcard" href="poems/ode-to-the-yan-temple-by-daming-lake.html"><span class="no">10</span><span class="z">詠大明湖晏公廟</span><span class="e">Ode to the Yan Temple by Daming Lake</span></a><a class="pcard" href="poems/mount-yangtian-moyun-crag.html"><span class="no">11</span><span class="z">詠仰天山摩雲崮</span><span class="e">Ode to Mount Yangtian and the Cloud-Piercing Peak</span></a><a class="pcard" href="poems/facing-the-sea-and-the-wind-at-yantai.html"><span class="no">12</span><span class="z">憑海臨風詠煙臺</span><span class="e">Facing the Sea and the Wind at Yantai</span></a><a class="pcard" href="poems/lodging-by-the-south-sea-in-sanya.html"><span class="no">13</span><span class="z">宿南海之濱三亞</span><span class="e">Lodging by the South Sea in Sanya</span></a><a class="pcard" href="poems/night-at-blue-mountain.html"><span class="no">14</span><span class="z">藍山夜臥</span><span class="e">Night at Blue Mountain</span></a><a class="pcard" href="poems/the-inscribed-sword.html"><span class="no">15</span><span class="z">題劍</span><span class="e">The Inscribed Sword</span></a><a class="pcard" href="poems/shigu-academy.html"><span class="no">16</span><span class="z">贊石鼓書院</span><span class="e">In Praise of the Shigu Academy</span></a><a class="pcard" href="poems/orchid-pavilion-shaoxing.html"><span class="no">17</span><span class="z">詠紹興蘭亭</span><span class="e">Ode to the Orchid Pavilion at Shaoxing</span></a></div></div>
-</div></details>
-<details class="toc-full">
+<details class="toc-full" id="toc-full">
 <summary data-en="Full table of contents (Zhonghua, Taipei)" data-zh="展開 · 全書目次（臺灣中華書局版）">展開 · 全書目次（臺灣中華書局版）<span class="en-echo">Full table of contents (Zhonghua, Taipei)</span></summary>
 <div class="toc-part" data-en="Part I — Beyond a Thousand Mountains" data-zh="第一部 ·《千山獨行》古詩集">第一部 ·《千山獨行》古詩集</div><div class="en-echo">Part I — Beyond a Thousand Mountains</div>
 <div class="toc-pian"><b>第1篇</b>泰嶽歌、詠大明湖晏公廟、飲鵲山、詠仰天山摩雲崮、憑海臨風詠煙臺</div>
@@ -1046,7 +1188,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </details>
 <p class="dl-line" data-en="Published by Chung Hwa Book Co. (Taiwan)." data-zh="本書由臺灣中華書局出版。">本書由臺灣中華書局出版　·　<a href="https://www.chunghwabook.com.tw/" rel="noopener" target="_blank">中華書局官網購書</a></p><div class="en-echo">Published by Chung Hwa Book Co. (Taiwan).</div>
 </div>
-</section></div><div class="screen free"><section id="launch">
+</section><a class="crossdoor" href="poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="d">十七首 · 一詩一頁 · 逐句中英對譯<span class="en">Seventeen poems, one page each, in Chinese and English.</span></span></a></div><div class="screen free"><section id="launch">
 <div class="sec-head"><span class="idx">iii.</span><h2><span class="h-zh">發布</span><span class="h-en">Book Launch</span></h2><div class="rule"></div></div>
 <p class="work-intro" data-en="On August 25, 2024, the launch of Beyond a Thousand Mountains — with the Palm Poetry Club Salon’s exhibition of original work — was held at the North York Central Auditorium in Toronto. Mr. Xu Zhiyuan, then ninety, wrote the preface and brushed the title; poems were recited, interviews held, and the members’ work and the journal Fireflies shown. Red Maple Movies filmed the event." data-zh="二〇二四年八月二十五日，《千山獨行》新書發布會暨「掌心詩詞藝術文化沙龍」原創作品展，在多倫多 North York Central 禮堂隆重舉行。九十高齡的許之遠先生作序並題寫書名；現場朗誦《廬山謠》、訪談對話，掌心同仁的詩、書、畫與新詩刊《螢火》一併展出，群賢畢至。紅楓影視全程錄製。">二〇二四年八月二十五日，《千山獨行》新書發布會暨「掌心詩詞藝術文化沙龍」原創作品展，在多倫多 North York Central 禮堂隆重舉行。九十高齡的許之遠先生作序並題寫書名；現場朗誦《廬山謠》、訪談對話，掌心同仁的詩、書、畫與新詩刊《螢火》一併展出，群賢畢至。紅楓影視全程錄製。</p><div class="en-echo">On August 25, 2024, the launch of Beyond a Thousand Mountains — with the Palm Poetry Club Salon’s exhibition of original work — was held at the North York Central Auditorium in Toronto. Mr. Xu Zhiyuan, then ninety, wrote the preface and brushed the title; poems were recited, interviews held, and the members’ work and the journal Fireflies shown. Red Maple Movies filmed the event.</div>
 <p class="launch-meta" data-en="Aug 25, 2024, 1:00–4:00 pm · North York Central Auditorium, Toronto" data-zh="2024年8月25日 13:00–16:00　·　多倫多 North York Central Auditorium">2024年8月25日 13:00–16:00　·　多倫多 North York Central Auditorium</p><div class="en-echo">Aug 25, 2024, 1:00–4:00 pm · North York Central Auditorium, Toronto</div>
@@ -1159,6 +1301,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

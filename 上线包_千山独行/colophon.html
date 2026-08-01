@@ -8,7 +8,7 @@
 <meta content="《千山獨行》讀本結卷：千里江山圖卷尾一段、全站圖像出處與許可、以及與詩人的聯繫方式。" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="website" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="結卷 · 圖像出處 · 聯繫 ｜ 千山獨行" property="og:title"/>
 <meta content="《千山獨行》讀本結卷：千里江山圖卷尾一段、全站圖像出處與許可、以及與詩人的聯繫方式。" property="og:description"/>
 <meta content="img/plate-qianli-b.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 
@@ -970,7 +1118,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a href="poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a aria-current="page" href="colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
@@ -990,8 +1138,37 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 <p class="cw-en">“One travels far not to see the world more clearly, but to see the limits of oneself; poetry is written not to exhaust a life, but to give something back to the infinite.”The truly benevolent should not be bound by the world’s judgments, nor confined to the merely physical; let them take the mountains for their compass and the poem for a blade — cutting through the bounds of language, clearing away what conceals, so the true self may appear.Keep a heart of sincerity, hold a thought of kindness, and a life is well consoled.I am grateful that Beyond a Thousand Mountains was completed through my hand — the offering of my life.The thousand mountains are still far, and the poem still lingers at the brush-tip —and you, who have read to this line, are already a figure within the poem.</p>
 </div>
 </section></div></div>
+<div class="screen free">
+<div class="lbl"><span class="z">留言</span><span class="e">Write to the Poet</span>
+<span class="ln"></span></div>
+<form class="cform" id="cform" novalidate="">
+<div class="row2">
+<div class="fld"><label for="cf-n">姓名<span class="en">Your name</span></label>
+<input autocomplete="name" id="cf-n" maxlength="60" name="n" required="" type="text"/>
+<div class="err" id="cf-n-e"></div></div>
+<div class="fld"><label for="cf-m">郵箱<span class="en">Your e-mail</span></label>
+<input autocomplete="email" id="cf-m" maxlength="120" name="m" required="" type="email"/>
+<div class="err" id="cf-m-e"></div></div>
+</div>
+<div class="fld"><label for="cf-s">主題<span class="en">Subject</span></label>
+<select id="cf-s" name="s">
+<option value="讀詩有感">讀詩有感　On reading the poems</option>
+<option value="約稿與轉載">約稿與轉載　Commissions &amp; reprints</option>
+<option value="購書">購書　Buying the book</option>
+<option value="掌心詩社">掌心詩社　The Palm Poetry Club</option>
+<option value="其他">其他　Other</option>
+</select></div>
+<div class="fld"><label for="cf-b">正文<span class="en">Message</span></label>
+<textarea id="cf-b" maxlength="4000" name="b" required=""></textarea>
+<div class="err" id="cf-b-e"></div></div>
+<button class="send" type="submit">寄　出<span class="en">Send</span></button>
+<div class="done" id="cf-ok">已打開你電腦上的郵件客戶端，信已代為填好，請按發送。
+  若沒有反應，說明這臺機器沒有配置郵件程序。
+  <span class="en">Your mail client should have opened with the message ready — press send there.
+  If nothing happened, this device has no mail client configured.</span></div>
+</form></div>
 <div class="screen free"><div class="lbl"><span class="z">圖像出處</span><span class="e">Picture Credits</span><span class="ln"></span></div><ol class="notes" style="font-size:13.5px"><li><b>王希孟《千里江山圖》卷首一段</b>北宋政和三年（1113）　絹本青綠設色　51.3 × 1191.5 cm　北京故宮博物院藏<span class="en">Wang Ximeng (1096–1119), A Thousand Li of Rivers and Mountains, opening section. 1113. Handscroll, ink and colour on silk, 51.3 × 1191.5 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li><li><b>夏圭《溪山清遠圖》卷首一段</b>南宋　紙本水墨　46.5 × 889.1 cm　臺北故宮博物院藏<span class="en">Xia Gui (act. c. 1195–1230), Pure and Remote View of Streams and Mountains, opening section. Southern Song. Handscroll, ink on paper, 46.5 × 889.1 cm. National Palace Museum, Taipei. — Public domain (Wikimedia Commons)</span></li><li><b>黃公望《富春山居圖·無用師卷》畫心中段一節</b>元至正七年至十一年（1347–1351）　紙本水墨　33 × 636.9 cm　臺北故宮博物院藏<span class="en">Huang Gongwang (1269–1354), Dwelling in the Fuchun Mountains (the Wuyong Scroll), a section from the middle of the painted portion. 1347–1351. Handscroll, ink on paper, 33 × 636.9 cm. National Palace Museum, Taipei. — Public domain (Wikimedia Commons)</span></li><li><b>（傳）趙伯駒《江山秋色圖》（畫心全段）</b>南宋　絹本青綠設色　55.6 × 323.2 cm　北京故宮博物院藏<span class="en">Attributed to Zhao Boju (c. 1120–c. 1170), Autumn Colours over Rivers and Mountains, painted portion entire. Southern Song. Handscroll, ink and colour on silk, 55.6 × 323.2 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li><li><b>文徵明《惠山茶會圖》卷（畫心全段；卷後有蔡羽楷書《惠山茶會序》）</b>明正德十三年（1518）　紙本設色　上海博物館藏（藏品檔案 CI00004961；館方未公布館藏編號）<span class="en">Wen Zhengming (1470–1559), The Tea Gathering at Mount Hui, the painted portion entire; the scroll continues with Cai Yu’s preface to the gathering in regular script. Ming, dated 1518. Handscroll, ink and colour on paper. Shanghai Museum (object record CI00004961; no accession number published). — Public domain (PD-Art / PD-old-auto-expired, Wikimedia Commons)</span></li><li><b>趙左《谿山無盡圖》卷</b>明（約 1610）　紙本水墨　美國大都會藝術博物館藏（1976.219）<span class="en">Zhao Zuo (c. 1570–after 1633), Streams and Mountains without End. Ming, c. 1610. Handscroll, ink on paper. The Metropolitan Museum of Art, New York, 1976.219. — CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></li><li><b>王翬等《康熙南巡圖》第三卷「濟南至泰山」泰山一段</b>清康熙三十七年（1698）　絹本設色　全卷 67.9 × 1393.8 cm　美國大都會藝術博物館藏（1979.5a–d）<span class="en">Wang Hui (1632–1717) and assistants, The Kangxi Emperor’s Southern Inspection Tour, Scroll Three: Ji’nan to Mount Tai — the Mount Tai section. Dated 1698. Handscroll, ink and colour on silk, 67.9 × 1393.8 cm. The Metropolitan Museum of Art, New York (1979.5a–d). — Public domain (Wikimedia Commons)</span></li><li><b>董源《瀟湘圖》（畫心全段）</b>五代南唐　絹本設色　50 × 141.4 cm　北京故宮博物院藏<span class="en">Dong Yuan (d. 962), The Xiao and Xiang Rivers, painted portion entire. Five Dynasties, Southern Tang. Handscroll, ink and colour on silk, 50 × 141.4 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li><li><b>（傳）屈鼎《夏山圖》卷（畫心全段）</b>北宋（約 1050）　絹本設色　45.4 × 115.3 cm　美國大都會藝術博物館藏（1973.120.1）<span class="en">Attributed to Qu Ding (act. mid-11th c.), Summer Mountains, the painted portion entire. Northern Song, c. 1050. Handscroll, ink and colour on silk, 45.4 × 115.3 cm. The Metropolitan Museum of Art, New York (1973.120.1). — CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></li><li><b>方從義《雲山圖》卷（畫心一段）</b>元（約 1360–70）　紙本水墨設色　全卷畫心 26.4 × 144.8 cm　美國大都會藝術博物館藏（1973.121.4）<span class="en">Fang Congyi (c. 1301–after 1378), Cloudy Mountains, a section of the painting. Yuan, c. 1360–70. Handscroll, ink and colour on paper, 26.4 × 144.8 cm. The Metropolitan Museum of Art, New York (1973.121.4). — CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></li><li><b>郭熙《樹色平遠圖》卷（畫心前段）</b>北宋（約 1080）　絹本設色　全卷畫心 35.6 × 104.4 cm　美國大都會藝術博物館藏（1981.276）<span class="en">Guo Xi (c. 1000–c. 1090), Old Trees, Level Distance, the opening section of the painting. Northern Song, c. 1080. Handscroll, ink and colour on silk, 35.6 × 104.4 cm. The Metropolitan Museum of Art, New York (1981.276). — CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></li><li><b>（傳）李公麟《山莊圖》卷（畫心一段）</b>北宋　紙本水墨　臺北國立故宮博物院藏<span class="en">Attributed to Li Gonglin (1049–1106), Mountain Villa, a section of the painting. Northern Song. Handscroll, ink on paper. National Palace Museum, Taipei. — Public domain (Wikimedia Commons)</span></li><li><b>許道寧《漁父圖》卷（前段一節）</b>北宋（約1049–1053）　絹本水墨　48.9 × 209.6 cm　美國納爾遜—阿特金斯藝術博物館藏（33-1559）<span class="en">Xu Daoning (c. 970–1052), Fishermen on a Mountain Stream, first section. Northern Song, c. 1049–53. Handscroll, ink on silk, 48.9 × 209.6 cm. The Nelson-Atkins Museum of Art, Kansas City (33-1559). — Public domain (Wikimedia Commons / Google Art Project)</span></li><li><b>沈士充《長江萬里圖》卷（中段一節）</b>明崇禎元年（1628）　紙本水墨　上海博物館藏<span class="en">Shen Shichong (act. c. 1607–1640), Ten Thousand Li of the Yangzi, a section from the middle of the scroll. Ming, 1628. Handscroll, ink on paper. Shanghai Museum. — Public domain (Wikimedia Commons)</span></li><li><b>唐棣《滕王閣圖》</b>元至正十二年（1352）　美國大都會藝術博物館藏（1989.363.36）<span class="en">Tang Di (1287–1355), The Pavilion of Prince Teng. Yuan, 1352. The Metropolitan Museum of Art, New York, 1989.363.36. — Public domain (Wikimedia Commons)</span></li><li><b>趙孟頫《鵲華秋色圖》（畫心全段）</b>元元貞元年（1295）　紙本設色　28.4 × 93.2 cm　臺北故宮博物院藏<span class="en">Zhao Mengfu (1254–1322), Autumn Colours on the Qiao and Hua Mountains, painted portion entire. 1295. Handscroll, ink and colour on paper, 28.4 × 93.2 cm. National Palace Museum, Taipei. — Public domain (Wikimedia Commons)</span></li><li><b>（傳）李嵩《西湖圖》卷</b>南宋　紙本水墨　26.7 × 85 cm　上海博物館藏<span class="en">Attributed to Li Song (act. 1190–1230), West Lake. Southern Song. Handscroll, ink on paper, 26.7 × 85 cm. Shanghai Museum. — Public domain (Wikimedia Commons)</span></li><li><b>趙孟頫《雙松平遠圖》卷（畫心與自題全段）</b>元（約 1310）　紙本水墨　26.8 × 107.5 cm　美國大都會藝術博物館藏（1973.120.5）<span class="en">Zhao Mengfu (1254–1322), Twin Pines, Level Distance, the painting with the artist’s inscription. Yuan, c. 1310. Handscroll, ink on paper, 26.8 × 107.5 cm. The Metropolitan Museum of Art, New York (1973.120.5). — CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></li><li><b>馬遠《水圖》十二段之《長江萬頃》</b>南宋　絹本設色　每段 26.8 × 41.6 cm　北京故宮博物院藏<span class="en">Ma Yuan (act. c. 1190–1225), “Ten Thousand Acres of the Yangzi,” one of the twelve leaves of the Water Album. Southern Song. Ink and colour on silk, 26.8 × 41.6 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li><li><b>馬遠《水圖》十二段之《雲生滄海》</b>南宋　絹本設色　每段 26.8 × 41.6 cm　北京故宮博物院藏<span class="en">Ma Yuan (act. c. 1190–1225), “Clouds Rising from the Green Sea,” one of the twelve leaves of the Water Album. Southern Song. Ink and colour on silk, 26.8 × 41.6 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li><li><b>米友仁《雲山圖》卷</b>南宋（約 1130）　紙本水墨　美國克利夫蘭藝術博物館藏（1933.220，Gift of the Hanna Fund）<span class="en">Mi Youren (1074–1151), Cloudy Mountains. Southern Song, c. 1130. Handscroll, ink on paper. The Cleveland Museum of Art, 1933.220. — CC0 (The Cleveland Museum of Art / Wikimedia Commons)</span></li><li><b>趙幹《江行初雪圖》卷（畫心中段一節）</b>五代南唐（約 960–975）　絹本設色　全卷畫心 25.9 × 376.5 cm　臺北國立故宮博物院藏<span class="en">Zhao Gan (act. c. 961–75), Travelling on the River in First Snow, a section from the middle of the painting. Five Dynasties, Southern Tang. Handscroll, ink and colour on silk, 25.9 × 376.5 cm. National Palace Museum, Taipei. — Public domain (Wikimedia Commons)</span></li><li><b>尤求《蘭亭修禊圖》卷首至曲水流觴一段</b>明（16 世紀）　紙本水墨　美國明尼阿波利斯藝術博物館藏（2002.4.2）<span class="en">You Qiu (act. c. 1540–90), The Gathering at the Orchid Pavilion, the opening section, with the winding-stream gathering. Ming, 16th century. Handscroll, ink on paper. Minneapolis Institute of Art (2002.4.2). — Public domain (artwork) / CC BY 4.0 (photograph), Wikimedia Commons</span></li><li><b>王希孟《千里江山圖》卷尾一段</b>北宋政和三年（1113）　絹本青綠設色　51.3 × 1191.5 cm　北京故宮博物院藏<span class="en">Wang Ximeng (1096–1119), A Thousand Li of Rivers and Mountains, closing section. 1113. Handscroll, ink and colour on silk, 51.3 × 1191.5 cm. The Palace Museum, Beijing. — Public domain (Wikimedia Commons)</span></li></ol></div>
-<div class="screen free"><div class="lbl"><span class="z">音源出處</span><span class="e">The Recordings</span><span class="ln"></span></div><ol class="notes" style="font-size:13.5px"><li><b>古琴《酒狂》</b>代《廣陵散》。演奏／打譜：Charlie Huang，據《神奇秘譜》（1425）打譜。原件 commons.wikimedia.org/wiki/File:Jiu_Kuang.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Drunken Ecstasy”</span></li><li><b>古琴《神人暢》</b>代《瀟湘水雲》。演奏／打譜：Charlie Huang，據《西麓堂琴統》（1549）打譜。原件 commons.wikimedia.org/wiki/File:Shenren_Chang.ogg。許可：CC BY-SA 2.5。<span class="en">Guqin: “Harmony Between Gods and Men”</span></li><li><b>古琴《流水》</b>《高山流水》之《流水》一段。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2006-04-15 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Flowing Water”</span></li><li><b>古琴《醉漁唱晚》</b>演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2013 年錄。原件 commons.wikimedia.org/wiki/File:Guqin-Zuiyu_Changwan.ogg。許可：CC BY-SA 3.0。<span class="en">Guqin: “The Evening Song of the Drunken Fisherman”</span></li><li><b>佛漢·威廉士《泰利斯主題幻想曲》</b>演奏：美國陸軍絃樂團（The U.S. Army Strings），約 2010 年錄音，取自 usarmyband.com 官方發布。美國聯邦政府作品，公有領域。原件 commons.wikimedia.org/wiki/File:Banda_dell%27esercito_degli_Stati_uniti,_Ralph_Vaughan_Williams,_Fantasia_on_a_Theme_by_Thomas_Tallis.ogg。<span class="en">Vaughan Williams: Fantasia on a Theme by Thomas Tallis</span></li><li><b>古琴《孔子讀易》</b>代《鹿鳴》。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜。原件 commons.wikimedia.org/wiki/File:Kongzi_Duyi.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Confucius Reads the Book of Changes”</span></li><li><b>埃爾加《謎語變奏曲·第九變奏「尼姆羅德」》</b>演奏：約翰·巴比羅利指揮哈雷管弦樂團，1947 年錄音。原件 commons.wikimedia.org/wiki/File:Elgar;_Enigma_variations,_Theme_IX._Nimrod.ogg，該頁標為公有領域（英國錄音鄰接權五十年期已屆滿）。<span class="en">Elgar: Enigma Variations, IX (Nimrod)</span></li><li><b>德彪西《月光》（《貝加馬斯克組曲》第三首）</b>演奏：Laurens Goedhart（鋼琴），2011 年錄音。原件 commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg。許可：CC BY 3.0。<span class="en">Debussy: Clair de lune (Suite bergamasque)</span></li><li><b>古琴《平沙落雁》</b>演奏／打譜：Charlie Huang，據《蕉庵琴譜》（1868）打譜，2006-04-23 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Wild Geese on the Sandbank”</span></li><li><b>英國古調《綠袖子》</b>代佛漢·威廉士《綠袖子幻想曲》（1934，尚在版權期內）。演奏：Emilio Villalba 與 Sara Marina（La Pequeña Juglaresa），2020。原件 commons.wikimedia.org/wiki/File:Greensleeves._La_Juglaresa.opus。許可：CC BY 3.0。<span class="en">Greensleeves (English traditional, 16th c.)</span></li><li><b>古琴《佩蘭》</b>代《碣石調·幽蘭》。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，絲絃。原件 commons.wikimedia.org/wiki/File:Pei_Lan.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Admiring the Orchid”</span></li><li><b>德彪西《水中倒影》（《意象集》第一集第一首）</b>演奏：Marcelle Meyer（鋼琴），1957 年錄音，Les Discophiles Français DF 98/99，巴黎馬勒音樂圖書館藏片。原件 commons.wikimedia.org/wiki/File:Claude_Debussy,_Images_-_01_Reflets_dans_l%27eau_(Marcelle_Meyer,_1957).flac，該頁標為公有領域（法國錄音鄰接權五十年期已屆滿）。<span class="en">Debussy: Reflets dans l’eau (Images, Book I)</span></li><li><b>作者朗誦 · 飲鵲山</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li><li><b>作者朗誦 · 衡山吟</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li><li><b>作者朗誦 · 藍山夜臥</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li></ol><p class="hand">注釋與鑒賞為編者所撰；詩、譯、小序、按語、詩評皆作者原文。<span class="en">The annotation and the appreciation are the editor’s; the poems, the translations, the prefaces, the head-notes and the collected comment are the poet’s own.</span></p></div>
+<div class="screen free"><div class="lbl"><span class="z">音源出處</span><span class="e">The Recordings</span><span class="ln"></span></div><ol class="notes" style="font-size:13.5px"><li><b>古琴《酒狂》</b>代《廣陵散》。演奏／打譜：Charlie Huang，據《神奇秘譜》（1425）打譜。原件 commons.wikimedia.org/wiki/File:Jiu_Kuang.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Drunken Ecstasy”</span></li><li><b>古琴《孔子讀易》</b>代《鹿鳴》。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜。原件 commons.wikimedia.org/wiki/File:Kongzi_Duyi.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Confucius Reads the Book of Changes”</span></li><li><b>古琴《平沙落雁》</b>演奏／打譜：Charlie Huang，據《蕉庵琴譜》（1868）打譜，2006-04-23 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Wild Geese on the Sandbank”</span></li><li><b>古琴《神人暢》</b>代《瀟湘水雲》。演奏／打譜：Charlie Huang，據《西麓堂琴統》（1549）打譜。原件 commons.wikimedia.org/wiki/File:Shenren_Chang.ogg。許可：CC BY-SA 2.5。<span class="en">Guqin: “Harmony Between Gods and Men”</span></li><li><b>古琴《醉漁唱晚》</b>演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2013 年錄。原件 commons.wikimedia.org/wiki/File:Guqin-Zuiyu_Changwan.ogg。許可：CC BY-SA 3.0。<span class="en">Guqin: “The Evening Song of the Drunken Fisherman”</span></li><li><b>古琴《流水》</b>《高山流水》之《流水》一段。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2006-04-15 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Flowing Water”</span></li><li><b>佛漢·威廉士《泰利斯主題幻想曲》</b>演奏：美國陸軍絃樂團（The U.S. Army Strings），約 2010 年錄音，取自 usarmyband.com 官方發布。美國聯邦政府作品，公有領域。原件 commons.wikimedia.org/wiki/File:Banda_dell%27esercito_degli_Stati_uniti,_Ralph_Vaughan_Williams,_Fantasia_on_a_Theme_by_Thomas_Tallis.ogg。<span class="en">Vaughan Williams: Fantasia on a Theme by Thomas Tallis</span></li><li><b>埃爾加《謎語變奏曲·第九變奏「尼姆羅德」》</b>演奏：約翰·巴比羅利指揮哈雷管弦樂團，1947 年錄音。原件 commons.wikimedia.org/wiki/File:Elgar;_Enigma_variations,_Theme_IX._Nimrod.ogg，該頁標為公有領域（英國錄音鄰接權五十年期已屆滿）。<span class="en">Elgar: Enigma Variations, IX (Nimrod)</span></li><li><b>德彪西《月光》（《貝加馬斯克組曲》第三首）</b>演奏：Laurens Goedhart（鋼琴），2011 年錄音。原件 commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg。許可：CC BY 3.0。<span class="en">Debussy: Clair de lune (Suite bergamasque)</span></li><li><b>德彪西《水中倒影》（《意象集》第一集第一首）</b>演奏：Marcelle Meyer（鋼琴），1957 年錄音，Les Discophiles Français DF 98/99，巴黎馬勒音樂圖書館藏片。原件 commons.wikimedia.org/wiki/File:Claude_Debussy,_Images_-_01_Reflets_dans_l%27eau_(Marcelle_Meyer,_1957).flac，該頁標為公有領域（法國錄音鄰接權五十年期已屆滿）。<span class="en">Debussy: Reflets dans l’eau (Images, Book I)</span></li><li><b>英國古調《綠袖子》</b>代佛漢·威廉士《綠袖子幻想曲》（1934，尚在版權期內）。演奏：Emilio Villalba 與 Sara Marina（La Pequeña Juglaresa），2020。原件 commons.wikimedia.org/wiki/File:Greensleeves._La_Juglaresa.opus。許可：CC BY 3.0。<span class="en">Greensleeves (English traditional, 16th c.)</span></li><li><b>古琴《佩蘭》</b>代《碣石調·幽蘭》。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，絲絃。原件 commons.wikimedia.org/wiki/File:Pei_Lan.ogg。許可：CC BY 2.5。<span class="en">Guqin: “Admiring the Orchid”</span></li><li><b>作者朗誦 · 飲鵲山</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li><li><b>作者朗誦 · 衡山吟</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li><li><b>作者朗誦 · 藍山夜臥</b>作者本人朗誦，網站圖片/音像/，原樣引用。<span class="en">Read by the poet</span></li></ol><p class="hand">注釋與鑒賞為編者所撰；詩、譯、小序、按語、詩評皆作者原文。<span class="en">The annotation and the appreciation are the editor’s; the poems, the translations, the prefaces, the head-notes and the collected comment are the poet’s own.</span></p></div>
 </div>
 </main>
 <footer class="foot"><div class="in">
@@ -1036,6 +1213,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>
