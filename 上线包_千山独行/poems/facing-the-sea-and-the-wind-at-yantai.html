@@ -8,7 +8,7 @@
 <meta content="己亥秋，赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，為防倭寇而設。詩以「煙水無涯夜有終」起興，自喻心海照長空；結句「也逐沙鷗向日紅」寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的「以海言志」。" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="憑海臨風詠煙臺 · Facing the Sea and the Wind at Yantai ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content="己亥秋，赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，為防倭寇而設。詩以「煙水無涯夜有終」起興，自喻心海照長空；結句「也逐沙鷗向日紅」寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的「以海言志」。" property="og:description"/>
 <meta content="../img/plate-wanqing.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-facing-the-sea-and-the-wind-at-yantai .sheet{--vfs:18.9px;--vlh:36.0px;--vh:468px}@media(max-width:760px){.vp-facing-the-sea-and-the-wind-at-yantai .sheet{--vfs:17.1px;--vlh:32.5px;--vh:422px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "In the autumn of the year Jihai, before journeying south to worship at Wang Yangming’s Cave, the poet beheld the sea at dawn on the golden sands of Yantai — Smoke Terrace Hill, named for the beacon tower that once guarded the coast. Wind, wave and heart become a single field of force; ambition is voiced through the sea.",
  "text": "煙水無涯夜有終，我心如海照長空。\n和光風浪連天起，也逐沙鷗向日紅。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 12 首 / 共 17　<span class="grp">己 · 臨海與遠行 · By the Sea, and Farther</span></div><h1>憑海臨風詠煙臺</h1><div class="h-en">Facing the Sea and the Wind at Yantai</div><div class="rule"></div></div><figure class="plate tall" data-kind="leaf">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 5 首 / 共 17</div><h1>憑海臨風詠煙臺</h1><div class="h-en">Facing the Sea and the Wind at Yantai</div><div class="rule"></div></div><figure class="plate tall" data-kind="leaf">
 <img alt="馬遠《水圖》十二段之《長江萬頃》　南宋　絹本設色　每段 26.8 × 41.6 " height="900" loading="lazy" src="../img/plate-wanqing.jpg" width="1405"/>
 <figcaption><span class="zh">馬遠《水圖》十二段之《長江萬頃》　南宋　絹本設色　每段 26.8 × 41.6 cm　北京故宮博物院藏</span>
 <span class="en">Ma Yuan (act. c. 1190–1225), “Ten Thousand Acres of the Yangzi,” one of the twelve leaves of the Water Album. Southern Song. Ink and colour on silk, 26.8 × 41.6 cm. The Palace Museum, Beijing.</span>
 <span class="en lic">Public domain (Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-facing-the-sea-and-the-wind-at-yantai"><div class="wrapv"><div class="sheet"><span class="l">煙水無涯夜有終，我心如海照長空。</span><span class="l">和光風浪連天起，也逐沙鷗向日紅。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">The misted waters know no bound, yet night must have its end;</span><span class="l">My heart, like the sea, reflects the boundless sky.</span><span class="l">Blending with light, the wind and waves rise to meet the heavens;</span><span class="l">And I, with the sand gulls, follow the crimson of the sun.</span></div></div><div class="screen"><div class="lbl"><span class="z">題解</span><span class="e">Head-note by the Poet</span><span class="ln"></span></div><div class="prose"><p>己亥秋，赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，為防倭寇而設。詩以「煙水無涯夜有終」起興，自喻心海照長空；結句「也逐沙鷗向日紅」寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的「以海言志」。（平水韻）</p><p class="en">In the autumn of the year Jihai, before journeying south to worship at Wang Yangming’s Cave, the poet beheld the sea at dawn on the golden sands of Yantai — Smoke Terrace Hill, named for the beacon tower that once guarded the coast. Wind, wave and heart become a single field of force; ambition is voiced through the sea.</p></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>憑海臨風</b>臨風而立，語勢自范仲淹《岳陽樓記》「把酒臨風，其喜洋洋者矣」來；而詠海之祖，則為曹操《觀滄海》「日月之行，若出其中；星漢燦爛，若出其裡」。</li><li><b>煙臺</b>在山東半島北岸。明代於此設墩臺燃狼煙以備倭寇，「煙臺」之名本此。作者自注觀海處為煙臺開發區金沙灘。</li><li><b>煙水無涯夜有終</b>「煙水」，水上霧氣，如崔顥「煙波江上使人愁」。「夜有終」三字，正與《藍山夜臥》「長夜漫漫何淒涼」相對為文，兩篇可並讀。</li><li><b>我心如海照長空</b>此行為赴貴州修文謁陽明洞而發。王守仁論良知，謂心如明鏡，物來則照。「照」字兼二義：心為鏡而受照，心為光而能照；本篇取後義，故下接「和光風浪連天起」。</li><li><b>和光</b>《老子》第四章：「和其光，同其塵。」老氏之「和光」為斂，此則借為日光與波光相和而起，反其義而用之。</li><li><b>沙鷗</b>杜甫《旅夜書懷》：「飄飄何所似，天地一沙鷗。」杜以沙鷗自況其孤微，此詩則曰「也逐沙鷗向日紅」——一「也」字，便把千年來沙鷗所載的孤零翻成了同行。</li><li><b>向日</b>曹植《求通親親表》：「若葵藿之傾葉太陽，雖不為之回光，然終向之者，誠也。」「向日」遂為忠誠不移之喻。</li><li><b>用韻</b>作者於題解末自標「（平水韻）」，其 Substack 篇題亦作 Ping Shui Rhyme。韻腳「終、空、紅」在平水韻同屬上平一東，在《中華新韻》同屬十一庚（eng、ing、ong、iong 一部），兩無不合，一韻到底，與七絕正體亦合。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>四句二十八字，起承轉合分明，而全詩的機關只在一個「也」字。<br/>「煙水無涯夜有終」，起得極大而極穩：上四字寫空間之無窮，下三字斷以時間之有盡，一句之內已完成一次翻轉。凡詠海之作，多以海之大壓人，此句卻先立一個「終」字，為後面的心留出位置。次句「我心如海照長空」承上而移主：海既有涯有終，則真正無涯者是心。「照」字兼二義——心如鏡而受照，心如日而能照——此詩取後義，故第三句「和光風浪連天起」才能把光與浪寫成同一件事。《老子》「和其光」本是收斂之辭，此處反用為激揚，是有意的錯位。<br/>末句「也逐沙鷗向日紅」，全篇之力盡在「也」字。沙鷗自杜甫《旅夜書懷》「飄飄何所似，天地一沙鷗」以來，千餘年間是孤零無依的定型意象；此處忽下一「也」字，我與沙鷗便由「相似」變成了「同行」——不是我像沙鷗那樣漂泊，是我和它一道朝著日出去。一個虛字，把一個古老意象的情緒整個翻了過來。且此行本為赴修文謁陽明洞而作，「我心如海照長空」與陽明之學正可參看，則這一「逐」，也不止是逐鳥。<br/>與曹操《觀滄海》相較，曹詩「日月之行，若出其中」，是以海涵日月，人退居於觀者；此詩則以心照長空、以身逐鷗，主客易位。二十八字而能與《觀滄海》分庭，靠的不是氣魄大，是位置換得準。</p><p class="en">Four lines, a clean turn at each, and the whole poem hinges on one particle. The opening is both vast and steady: boundless mist-water in four characters, then three that cut it off in time — “the night does have an end.” Most sea poems begin by letting the sea overwhelm the speaker; this one first establishes a limit, and so leaves room for a heart. The second line moves the subject: if the sea has an end, then the boundless thing is the heart, and 照 does double duty — a mirror that receives light, or a sun that gives it. The poem takes the second sense, which is why the third line can treat sunlight and breakers as a single rising motion (turning Laozi's 和其光, a phrase about dimming oneself, inside out). Then the last line, and the particle 也. Since Du Fu wrote “a lone gull between heaven and earth,” the sand-gull has been the fixed image of solitary drift. Here “also” converts resemblance into company: not <i>I drift as that gull drifts</i>, but <i>I too am going where it goes, toward the red of the sun</i>. One function word reverses a thousand years of an image's mood. Set beside Cao Cao's <i>Gazing at the Blue Sea</i>, where the ocean contains the sun and moon and the poet stands back to watch, this quatrain puts the heart in the reflecting position and the body in the gull's wake — it holds its own with the ancestor not by scale but by changing places.</p></div></div><div class="screen free"><details class="fold" id="afterword"><summary><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="tw">+</span></summary><div class="body"><div class="q prose"><p>己亥秋，詩人赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，防倭寇而設。詩人以"煙水無涯夜有終"起興，自喻心海照長空；結句"也逐沙鷗向日紅"寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的"以海言志"。</p><p class="en">In the autumn of Year Jihai, before journeying south to worship at Wang Yangming's Cave, I beheld the sea at dawn on the golden sands of Yantai — Smoke Terrace Hill, named for the beacon tower that once guarded the coast. The poem begins with "The misted waters know no bound, yet night must have its end," and ends by chasing the sand-gull into the sun. It turns wind, wave, and heart into a single field of force — voicing ambition through the sea.</p></div></div></details></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><p class="prose" style="font-size:15px">作者誦讀配樂 · 古琴《瀟湘水雲》。明快流動，映金沙、斜陽與晨光中海鷗的弧線。</p><div class="prose" style="font-size:14px"><p class="en">The post includes an audio recitation accompanied by ancient Chinese guqin music (瀟湘水雲) and features an accompanying landscape photograph captioned: "Golden sands at dawn, sand gull leaning into the sun, one bright line on water."</p></div><div class="tracks"><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱；2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="483" loading="lazy" src="../img/echo-aivazovsky.jpg" width="720"/><figcaption class="cap">Ivan Aivazovsky, <i>The Ninth Wave</i>, 1850. Oil on canvas, 221 × 332 cm. The State Russian Museum, St Petersburg. Public domain.</figcaption></figure><div class="txt">Aivazovsky paints sunrise seen <i>through</i> the largest wave, so that the thing which should destroy is also the thing that transmits the light. Byron supplies the sentence: “Thou glorious mirror, where the Almighty's form / Glasses itself in tempests” (<i>Childe Harold</i> IV. 183). Wen Ren then turns the mirror round — 我心如海照長空, it is the heart, not the sea, that does the reflecting.<span class="zh">按：艾瓦佐夫斯基使日光自巨浪中透出，毀滅者即傳光者。拜倫《恰爾德·哈羅爾德遊記》第四章稱海為「輝煌之鏡，全能者於風暴中自照」；此詩則倒轉其鏡——照長空者非海而是心。</span></div></div></div></details><div class="pager"><a href="mount-yangtian-moyun-crag.html"><span class="k">上一首 Previous</span><span class="z">詠仰天山摩雲崮</span></a><a class="r" href="lodging-by-the-south-sea-in-sanya.html"><span class="k">下一首 Next</span><span class="z">宿南海之濱三亞</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-facing-the-sea-and-the-wind-at-yantai"><div class="wrapv"><div class="sheet"><span class="l">煙水無涯夜有終，我心如海照長空。</span><span class="l">和光風浪連天起，也逐沙鷗向日紅。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">The misted waters know no bound, yet night must have its end;</span><span class="l">My heart, like the sea, reflects the boundless sky.</span><span class="l">Blending with light, the wind and waves rise to meet the heavens;</span><span class="l">And I, with the sand gulls, follow the crimson of the sun.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>憑海臨風</b>臨風而立，語勢自范仲淹《岳陽樓記》「把酒臨風，其喜洋洋者矣」來；而詠海之祖，則為曹操《觀滄海》「日月之行，若出其中；星漢燦爛，若出其裡」。</li><li><b>煙臺</b>在山東半島北岸。明代於此設墩臺燃狼煙以備倭寇，「煙臺」之名本此。作者自注觀海處為煙臺開發區金沙灘。</li><li><b>煙水無涯夜有終</b>「煙水」，水上霧氣，如崔顥「煙波江上使人愁」。「夜有終」三字，正與《藍山夜臥》「長夜漫漫何淒涼」相對為文，兩篇可並讀。</li><li><b>我心如海照長空</b>此行為赴貴州修文謁陽明洞而發。王守仁論良知，謂心如明鏡，物來則照。「照」字兼二義：心為鏡而受照，心為光而能照；本篇取後義，故下接「和光風浪連天起」。</li><li><b>和光</b>《老子》第四章：「和其光，同其塵。」老氏之「和光」為斂，此則借為日光與波光相和而起，反其義而用之。</li><li><b>沙鷗</b>杜甫《旅夜書懷》：「飄飄何所似，天地一沙鷗。」杜以沙鷗自況其孤微，此詩則曰「也逐沙鷗向日紅」——一「也」字，便把千年來沙鷗所載的孤零翻成了同行。</li><li><b>向日</b>曹植《求通親親表》：「若葵藿之傾葉太陽，雖不為之回光，然終向之者，誠也。」「向日」遂為忠誠不移之喻。</li><li><b>用韻</b>作者於題解末自標「（平水韻）」，其 Substack 篇題亦作 Ping Shui Rhyme。韻腳「終、空、紅」在平水韻同屬上平一東，在《中華新韻》同屬十一庚（eng、ing、ong、iong 一部），兩無不合，一韻到底，與七絕正體亦合。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p>己亥秋，赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，為防倭寇而設。詩以「煙水無涯夜有終」起興，自喻心海照長空；結句「也逐沙鷗向日紅」寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的「以海言志」。（平水韻）</p><p class="en">In the autumn of the year Jihai, before journeying south to worship at Wang Yangming’s Cave, the poet beheld the sea at dawn on the golden sands of Yantai — Smoke Terrace Hill, named for the beacon tower that once guarded the coast. Wind, wave and heart become a single field of force; ambition is voiced through the sea.</p><p>己亥秋，詩人赴貴州修文謁陽明洞前，清晨於煙臺開發區金沙灘觀海。煙臺山原名狼煙墩臺，防倭寇而設。詩人以"煙水無涯夜有終"起興，自喻心海照長空；結句"也逐沙鷗向日紅"寫出豪情。全詩氣象開闊，風浪與心志同構，是典型的"以海言志"。</p><p class="en">In the autumn of Year Jihai, before journeying south to worship at Wang Yangming's Cave, I beheld the sea at dawn on the golden sands of Yantai — Smoke Terrace Hill, named for the beacon tower that once guarded the coast. The poem begins with "The misted waters know no bound, yet night must have its end," and ends by chasing the sand-gull into the sun. It turns wind, wave, and heart into a single field of force — voicing ambition through the sea.</p><p>作者誦讀配樂 · 古琴《瀟湘水雲》。明快流動，映金沙、斜陽與晨光中海鷗的弧線。</p><p class="en">The post includes an audio recitation accompanied by ancient Chinese guqin music (瀟湘水雲) and features an accompanying landscape photograph captioned: "Golden sands at dawn, sand gull leaning into the sun, one bright line on water."</p></div><div class="byeditor prose"><div class="sep"></div><p>四句二十八字，起承轉合分明，而全詩的機關只在一個「也」字。<br/>「煙水無涯夜有終」，起得極大而極穩：上四字寫空間之無窮，下三字斷以時間之有盡，一句之內已完成一次翻轉。凡詠海之作，多以海之大壓人，此句卻先立一個「終」字，為後面的心留出位置。次句「我心如海照長空」承上而移主：海既有涯有終，則真正無涯者是心。「照」字兼二義——心如鏡而受照，心如日而能照——此詩取後義，故第三句「和光風浪連天起」才能把光與浪寫成同一件事。《老子》「和其光」本是收斂之辭，此處反用為激揚，是有意的錯位。<br/>末句「也逐沙鷗向日紅」，全篇之力盡在「也」字。沙鷗自杜甫《旅夜書懷》「飄飄何所似，天地一沙鷗」以來，千餘年間是孤零無依的定型意象；此處忽下一「也」字，我與沙鷗便由「相似」變成了「同行」——不是我像沙鷗那樣漂泊，是我和它一道朝著日出去。一個虛字，把一個古老意象的情緒整個翻了過來。且此行本為赴修文謁陽明洞而作，「我心如海照長空」與陽明之學正可參看，則這一「逐」，也不止是逐鳥。<br/>與曹操《觀滄海》相較，曹詩「日月之行，若出其中」，是以海涵日月，人退居於觀者；此詩則以心照長空、以身逐鷗，主客易位。二十八字而能與《觀滄海》分庭，靠的不是氣魄大，是位置換得準。</p><p class="en">Four lines, a clean turn at each, and the whole poem hinges on one particle. The opening is both vast and steady: boundless mist-water in four characters, then three that cut it off in time — “the night does have an end.” Most sea poems begin by letting the sea overwhelm the speaker; this one first establishes a limit, and so leaves room for a heart. The second line moves the subject: if the sea has an end, then the boundless thing is the heart, and 照 does double duty — a mirror that receives light, or a sun that gives it. The poem takes the second sense, which is why the third line can treat sunlight and breakers as a single rising motion (turning Laozi's 和其光, a phrase about dimming oneself, inside out). Then the last line, and the particle 也. Since Du Fu wrote “a lone gull between heaven and earth,” the sand-gull has been the fixed image of solitary drift. Here “also” converts resemblance into company: not <i>I drift as that gull drifts</i>, but <i>I too am going where it goes, toward the red of the sun</i>. One function word reverses a thousand years of an image's mood. Set beside Cao Cao's <i>Gazing at the Blue Sea</i>, where the ocean contains the sun and moon and the poet stands back to watch, this quatrain puts the heart in the reflecting position and the body in the gull's wake — it holds its own with the ancestor not by scale but by changing places.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">古琴《醉漁唱晚》<span class="en">Guqin: “The Evening Song of the Drunken Fisherman”</span></span><audio controls="" preload="none" src="../audio/guqin-zuiyu-changwan.ogg"></audio></div><div class="src">演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2013 年錄。原件 commons.wikimedia.org/wiki/File:Guqin-Zuiyu_Changwan.ogg。許可：CC BY-SA 3.0。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="483" loading="lazy" src="../img/echo-aivazovsky.jpg" width="720"/><figcaption class="cap">Ivan Aivazovsky, <i>The Ninth Wave</i>, 1850. Oil on canvas, 221 × 332 cm. The State Russian Museum, St Petersburg. Public domain.</figcaption></figure><div class="txt">Aivazovsky paints sunrise seen <i>through</i> the largest wave, so that the thing which should destroy is also the thing that transmits the light. Byron supplies the sentence: “Thou glorious mirror, where the Almighty's form / Glasses itself in tempests” (<i>Childe Harold</i> IV. 183). Wen Ren then turns the mirror round — 我心如海照長空, it is the heart, not the sea, that does the reflecting.<span class="zh">按：艾瓦佐夫斯基使日光自巨浪中透出，毀滅者即傳光者。拜倫《恰爾德·哈羅爾德遊記》第四章稱海為「輝煌之鏡，全能者於風暴中自照」；此詩則倒轉其鏡——照長空者非海而是心。</span></div></div><div class="pager"><a href="mount-yangtian-moyun-crag.html"><span class="k">上一首 Previous</span><span class="z">詠仰天山摩雲崮</span></a><a class="r" href="ballad-of-mount-lu.html"><span class="k">下一首 Next</span><span class="z">廬山謠</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

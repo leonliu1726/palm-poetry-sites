@@ -8,7 +8,7 @@
 <meta content="甲午深秋，夜宿藍山溫泉賓館，因日間登山所見與夜裡湖景交織而輾轉難眠。前半以太白酒神式的奇想展開——秋風、星河、飛瀑、深潭；後半轉入更幽深的追索：尋溪不見，悵然若失，終在月下與湖水和解，生出幻夢般的邀約，似欲隨秋水入銀河。" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="藍山夜臥 · Night at Blue Mountain ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content="甲午深秋，夜宿藍山溫泉賓館，因日間登山所見與夜裡湖景交織而輾轉難眠。前半以太白酒神式的奇想展開——秋風、星河、飛瀑、深潭；後半轉入更幽深的追索：尋溪不見，悵然若失，終在月下與湖水和解，生出幻夢般的邀約，似欲隨秋水入銀河。" property="og:description"/>
 <meta content="../img/plate-yunshan.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-night-at-blue-mountain .sheet{--vfs:16.8px;--vlh:32.0px;--vh:445px}@media(max-width:760px){.vp-night-at-blue-mountain .sheet{--vfs:11.0px;--vlh:20.9px;--vh:304px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "Composed in the deep autumn of the year Jiawu, sleepless at a hot-springs mountain inn by the lake. The poem moves from dazzling images of wind, waterfalls and stars into a quieter, searching mood — losing the way among the hills, puzzling over the vanished stream, and at last, reconnected by moonlight, letting wind and water carry the dreamer toward the Milky Way.",
  "text": "金絲帷，落地窗，銀漢迢迢湖中央。\n纖縷搖曳照不寐，秋風吹水下山崗。\n借問秋風來何方？\n\"星河煙波渺蒼茫。\n燭龍冷光鎖日月，長夜漫漫何淒涼。\n聞道藍山正當時，湖闊如海起朝日。\n道道碧草流飛瀑，山山彩錦人如織。\"\n\"碧流如瀑今仍在，山中高樹葉已稀。\n楓紅如畫雖難覓，遍地秋餘尚足奇。\n晝來徒步登高崗，遠眺重雲蔽湖光。\n蕭瑟一片落輝裡，樹樹深秋山山黃。\n山中黃葉滿山谷，幾度不辨身何處。\n賴有溪水淙淙下，聽流踏落尋歸途。\n路轉山回水聲急，砰然濺落深潭裡。\n潭邊久佇不忍離，仰面碎玉風飄絮。\n攀巖牽枝繞深潭，細尋水流再不見。\n飛瀑日夜長流水，深潭難滿水不添？\n返途溪流未再現，悵然有失不欲言。\n房中久坐垂頭睡，神思纏繞夢魂牽。\n夜半明君動碧波，粼粼波光星之河。\n猛醒潭水已入海，秋波頻顧態婀娜。\n我願秋風送秋水，隨夢伴我到銀河。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 14 首 / 共 17　<span class="grp">己 · 臨海與遠行 · By the Sea, and Farther</span></div><h1>藍山夜臥</h1><div class="h-en">Night at Blue Mountain</div><div class="rule"></div></div><figure class="plate" data-kind="scroll">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 16 首 / 共 17</div><h1>藍山夜臥</h1><div class="h-en">Night at Blue Mountain</div><div class="rule"></div></div><figure class="plate" data-kind="scroll">
 <img alt="米友仁《雲山圖》卷　南宋（約 1130）　紙本水墨　美國克利夫蘭藝術博物館藏（1" height="760" loading="lazy" src="../img/plate-yunshan.jpg" width="3212"/>
 <figcaption><span class="zh">米友仁《雲山圖》卷　南宋（約 1130）　紙本水墨　美國克利夫蘭藝術博物館藏（1933.220，Gift of the Hanna Fund）</span>
 <span class="en">Mi Youren (1074–1151), Cloudy Mountains. Southern Song, c. 1130. Handscroll, ink on paper. The Cleveland Museum of Art, 1933.220.</span>
 <span class="en lic">CC0 (The Cleveland Museum of Art / Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-night-at-blue-mountain"><div class="wrapv"><div class="sheet"><span class="l">金絲帷，落地窗，銀漢迢迢湖中央。</span><span class="l">纖縷搖曳照不寐，秋風吹水下山崗。</span><span class="l">借問秋風來何方？</span><span class="l">"星河煙波渺蒼茫。</span><span class="l">燭龍冷光鎖日月，長夜漫漫何淒涼。</span><span class="l">聞道藍山正當時，湖闊如海起朝日。</span><span class="l">道道碧草流飛瀑，山山彩錦人如織。"</span><span class="l">"碧流如瀑今仍在，山中高樹葉已稀。</span><span class="l">楓紅如畫雖難覓，遍地秋餘尚足奇。</span><span class="l">晝來徒步登高崗，遠眺重雲蔽湖光。</span><span class="l">蕭瑟一片落輝裡，樹樹深秋山山黃。</span><span class="l">山中黃葉滿山谷，幾度不辨身何處。</span><span class="l">賴有溪水淙淙下，聽流踏落尋歸途。</span><span class="l">路轉山回水聲急，砰然濺落深潭裡。</span><span class="l">潭邊久佇不忍離，仰面碎玉風飄絮。</span><span class="l">攀巖牽枝繞深潭，細尋水流再不見。</span><span class="l">飛瀑日夜長流水，深潭難滿水不添？</span><span class="l">返途溪流未再現，悵然有失不欲言。</span><span class="l">房中久坐垂頭睡，神思纏繞夢魂牽。</span><span class="l">夜半明君動碧波，粼粼波光星之河。</span><span class="l">猛醒潭水已入海，秋波頻顧態婀娜。</span><span class="l">我願秋風送秋水，隨夢伴我到銀河。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">Golden gauze curtains, floor-to-ceiling glass—</span><span class="l">beyond them the Milky Way drifts through the heart of the lake.</span><span class="l">The thin drapes quiver in the lamplight—</span><span class="l">sleepless, I hear the autumn wind drive the water down the hills.</span><span class="l">I asked the autumn wind: from where do you come?</span><span class="l">"From the Star River's mist and spray, fading into boundless blue.</span><span class="l">The Torch Dragon's cold light has sealed the sun and moon—</span><span class="l">how desolate the long night stretches on.</span><span class="l">Yet I have heard Blue Mountain stands now in its prime—</span><span class="l">its lake as wide as sea, where dawn is born anew.</span><span class="l">Green grasses grow on ski slopes, pour down from top, fall like falls—</span><span class="l">range upon range in brocade, thronged with folk like woven thread."</span><span class="l">"The emerald torrents still come down like falls—</span><span class="l">but on the high trees now the leaves are thin.</span><span class="l">Crimson maples, fair as in the paintings, are hard to find—</span><span class="l">yet autumn's scattered remnants are wonder enough.</span><span class="l">By day I climbed the ridges, gazed afar—</span><span class="l">heavy clouds had veiled the lake's bright face.</span><span class="l">All bleak beneath the dying light—</span><span class="l">each tree a deep-autumn sigh, each hill gone yellow.</span><span class="l">The yellow leaves had filled every hollow—</span><span class="l">time and again I lost all sense of where I stood.</span><span class="l">Only the brook's clear murmur led me on—</span><span class="l">I tracked its song across the fallen leaves and found my way.</span><span class="l">The path turned, the hills closed round—</span><span class="l">the water quickened, and crashed in thunder to a hidden pool.</span><span class="l">Long I lingered at its edge, loath to leave—</span><span class="l">shards of jade flew up, the wind scattering catkins on my face.</span><span class="l">I climbed the rocks, grasped branches, circled the deep pool—</span><span class="l">but searched in vain: the feeding stream was gone.</span><span class="l">Day and night the falls pours its water down—</span><span class="l">yet the pool never fills; where does its water go?</span><span class="l">Returning, I found the brook had vanished too—</span><span class="l">an unspoken loss lay heavy, and I would not name it.</span><span class="l">Back in my room I sat, and bowed my head to sleep—</span><span class="l">my thoughts coiled round themselves and drew me into dream.</span><span class="l">At midnight the bright lord—the moon—stirred the blue waves—</span><span class="l">and the lake shimmered, a very River of Stars.</span><span class="l">I woke with a start: the pool had flowed into the sea—</span><span class="l">its waters glancing back, graceful as autumn eyes.</span><span class="l">Would that the autumn wind might bear the autumn waters—</span><span class="l">and in my dream convey me to the Milky Way.</span></div></div><div class="screen"><div class="lbl"><span class="z">題解</span><span class="e">Head-note by the Poet</span><span class="ln"></span></div><div class="prose"><p>甲午深秋，夜宿藍山溫泉賓館，因日間登山所見與夜裡湖景交織而輾轉難眠。前半以太白酒神式的奇想展開——秋風、星河、飛瀑、深潭；後半轉入更幽深的追索：尋溪不見，悵然若失，終在月下與湖水和解，生出幻夢般的邀約，似欲隨秋水入銀河。全詩如一趟夜裡的身心登山，從感官奇遇到理性迷茫，再到詩意飛昇。</p><p class="en">Composed in the deep autumn of the year Jiawu, sleepless at a hot-springs mountain inn by the lake. The poem moves from dazzling images of wind, waterfalls and stars into a quieter, searching mood — losing the way among the hills, puzzling over the vanished stream, and at last, reconnected by moonlight, letting wind and water carry the dreamer toward the Milky Way.</p></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>藍山</b>加拿大安大略省的 Blue Mountain 滑雪勝地。<br/>編者按：其地在多倫多西北、科靈伍德（Collingwood）近旁，屬尼亞加拉斷崖（Niagara Escarpment）一脈，下臨休倫湖之喬治亞灣。詩中「湖闊如海起朝日」「銀漢迢迢湖中央」所指，當即此一大水；「楓紅如畫雖難覓」亦正合安大略深秋楓季已過之時令。按此則非中國之藍山，亦非澳大利亞之 Blue Mountains。</li><li><b>銀漢迢迢</b>《古詩十九首》：「迢迢牽牛星，皎皎河漢女。」秦觀《鵲橋仙》：「銀漢迢迢暗度。」</li><li><b>明君</b>指<b>月君</b>，是對月亮的稱讚，也是謙恭有禮、平等溝通的稱謂方式。<br/>編者按：以君相稱月，取其可與之對語。全詩自「借問秋風來何方」以下本是一場問答，至此夜半而月來動波，則對談之伴又添一位。稱之曰君，正是把它當作可以商量的人，而非仰望的物——下文「隨夢伴我到銀河」的邀約，語氣所以不唐突，全在這一個稱呼上。</li><li><b>借問秋風來何方</b>設為問答。自此句以下三十餘行，皆秋風與詩人之答語，為漢賦「主客問答」之法（枚乘《七發》、司馬相如《子虛》《上林》以逮蘇軾《赤壁賦》皆然）。全詩之骨在此一問。</li><li><b>燭龍</b>《山海經·大荒北經》：「有神，人面蛇身而赤……視為晝，瞑為夜……是燭九陰，是謂燭龍。」屈原《天問》：「日安不到？燭龍何照？」此處以燭龍鎖日月，寫長夜之無極。</li><li><b>道道碧草流飛瀑，山山彩錦人如織</b>此二句為秋風所述之「藍山正當時」，與下文詩人所見之「樹樹深秋山山黃」相對；一為傳聞之盛，一為目擊之衰，全詩之轉折在此。</li><li><b>深潭難滿水不添</b>《莊子·秋水》：「天下之水，莫大於海，萬川歸之，不知何時止而不盈。」此以設問出之，問而不答，遂成全詩最深一層的悵然。</li><li><b>碎玉風飄絮</b>狀飛瀑濺沫。「碎玉」寫其形與聲，「飄絮」寫其輕，二喻相接而質地相反，是寫水的老手法。</li><li><b>秋波頻顧態婀娜</b>「秋波」本謂秋日水光，此兼用其為目光之義，故下「頻顧」「婀娜」。一詞雙關，湖遂成人。</li><li><b>隨夢伴我到銀河</b>舊說天河與海通。張華《博物志》載海渚有人乘槎至天河，見牽牛織女。末二句之想，即由此一古說化出，而以「夢」字系之，故雖奇而不誣。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>此詩最要緊的一處，是第五行的「借問秋風來何方」。有此一問，全篇四十二行才立起了骨架：以下皆是答語——先是秋風之言（自「星河煙波渺蒼茫」至「山山彩錦人如織」），繼而是詩人之言（自「碧流如瀑今仍在」至篇末）。這是漢賦「主客問答」之法，枚乘《七發》、司馬相如《子虛》《上林》以至蘇軾《赤壁賦》，皆借客主往復以盡其變。以賦法入七言歌行，而兩段答語之間不著一字提示，只以引號相分，是極簡省的做法。<br/>兩段答語所以必須分開，因為它們說的是同一座山的兩種時態。秋風所述是傳聞中的盛時：湖闊起日、道道飛瀑、山山彩錦、人如織。詩人所答是目擊的衰時：高樹葉稀、楓紅難覓、重雲蔽湖、樹樹深秋。一盛一衰之間，並無議論，只把兩段並置——「碧流如瀑今仍在」的「今仍在」三字，是全詩唯一的接榫，也是全詩最不動聲色的一處傷感。<br/>「深潭難滿水不添」是全詩思致最深的一句。飛瀑日夜不息而深潭終不見漲，此本是眼前實景，而一經設問，便通於《莊子·秋水》「萬川歸之，不知何時止而不盈」的舊義。妙在問而不答：不答，則悵然者不止於尋水不見，而及於一切傾注而無所增益之事。<br/>末六行由悵然轉入夢境，而以「明君動碧波」一句為樞——作者自釋「明君」即月君，是對月亮的稱讚，也是謙恭有禮、平等溝通的稱謂；月既可以君稱，便可以與之商量。醒後「猛醒潭水已入海」，則前此尋潭之執著忽然放下——潭本非終點，水自有去處。於是「我願秋風送秋水，隨夢伴我到銀河」不是逃遁，而是承認：既然萬川歸海而海不盈，那就不如隨它去。以《博物志》乘槎至天河的舊說收束一場夜夢，奇而不誣。</p><p class="en">Everything in this poem hangs on its fifth line, “I ask the autumn wind: from where do you come?” With that question the remaining thirty-odd lines acquire a frame: first the wind's answer, then the poet's — the old rhapsodic device of guest and host, from Mei Sheng and Sima Xiangru down to Su Shi's <i>Red Cliff</i>. The two answers are kept apart by nothing but a pair of quotation marks, and they must be kept apart, because they describe the same mountain in two tenses. The wind reports the place at its height: lake wide as a sea, cascades on every path, brocade on every slope, crowds like weaving. The poet reports what he saw that day: thinned leaves, no red maple to be found, cloud over the water, yellow on every hill. No comment is offered; the join is three characters, 今仍在 — “still there, even now” — the poem's one quiet piece of grief. Its deepest line is the question about the pool: the falls run day and night and the pool never rises, an observation that opens straight onto <i>Zhuangzi</i>'s sea into which ten thousand rivers pour without filling it. The question is not answered, and so the disappointment extends past a lost stream to everything poured out without increase. The last movement turns to dream and ends by asking the wind to carry the poet, dreaming, to the Milky Way — which is not escape but consent: if the sea cannot be filled, one may as well go with the water. A note on the pivot of that last movement, 夜半明君動碧波: 明君, “my enlightened lord,” is the moon. The poet glosses the title himself — it is praise, and it is also the courteous form one uses to an equal one intends to speak with. The whole poem is a conversation (with the autumn wind, then with the mountain); at midnight a third interlocutor arrives, and is addressed as a person rather than admired as a thing. That is why the closing invitation — carry me, dreaming, to the Milky Way — does not sound presumptuous.</p></div></div><div class="screen free"><details class="fold" id="afterword"><summary><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="tw">+</span></summary><div class="body"><div class="q prose"><p class="subh en">Reader's Guide · 導讀</p><p class="en">This composition emerged during deep autumn of the Jiawu year, written at a mountain hot-springs hotel by a lake where sleeplessness mingled daytime hiking impressions with nighttime water vistas. The opening develops in visionary fashion—autumn wind, star river, cascades, deep pools—before shifting toward introspective searching. The speaker loses his bearings after climbing, puzzles over a vanishing stream, and ultimately reconciles with moonlit waters, imagining a dreamlike journey toward the Milky Way. The work progresses like a nighttime ascent of consciousness: from sensory encounter through rational confusion to poetic transcendence. Readers should approach slowly, allowing verse to substitute for footsteps.</p></div></div></details></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><p class="prose" style="font-size:15px">作者誦讀 · 古琴；水聲、月光與星河，正合此詩的夜行與飛昇。</p><div class="tracks"><button aria-pressed="false" data-note="作者本人朗诵，原样引用。" data-src="../网站图片/音像/录音44.m4a" type="button">作者朗誦 · 藍山夜臥<span class="e">Read by the poet</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱；2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="492" loading="lazy" src="../img/echo-cole.jpg" width="720"/><figcaption class="cap">Thomas Cole, <i>The Voyage of Life: Youth</i>, 1842. Oil on canvas, 134.3 × 194.9 cm. National Gallery of Art, Washington (Ailsa Mellon Bruce Fund). Public domain / open access.</figcaption></figure><div class="txt">Cole's youth stands in the prow of his boat and steers for a castle that is plainly built of cloud; the river he is on will not go there. The other half of the echo is Coleridge's <i>Kubla Khan</i> — a poem that arrives by way of a sacred river, a deep chasm and a sleeper who wakes wanting to rebuild what he saw. This poem ends by asking the autumn wind to carry it, dreaming, to the Milky Way. One further note, now that the poet has confirmed the place: Blue Mountain is in Ontario, and Cole founded the Hudson River School. The autumn hills in the picture and the autumn hills in the poem belong to the same continent and very nearly to the same week of the year.<span class="zh">按：柯爾畫少年立舟首，所向之樓臺實由雲氣結成，河不通彼處。柯爾律治《忽必烈汗》以聖河、深淵、夢醒欲追為骨，與本篇「隨夢伴我到銀河」同為「夢中之水通天」之想。又按：藍山既確為安大略之 Blue Mountain，則柯爾一幅尤為近親——哈德遜河畫派所寫的北美秋山與此詩所宿之山，本屬同一片大陸的同一種深秋。</span></div></div></div></details><div class="pager"><a href="lodging-by-the-south-sea-in-sanya.html"><span class="k">上一首 Previous</span><span class="z">宿南海之濱三亞</span></a><a class="r" href="the-inscribed-sword.html"><span class="k">下一首 Next</span><span class="z">題劍</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-night-at-blue-mountain"><div class="wrapv"><div class="sheet"><span class="l">金絲帷，落地窗，銀漢迢迢湖中央。</span><span class="l">纖縷搖曳照不寐，秋風吹水下山崗。</span><span class="l">借問秋風來何方？</span><span class="l">"星河煙波渺蒼茫。</span><span class="l">燭龍冷光鎖日月，長夜漫漫何淒涼。</span><span class="l">聞道藍山正當時，湖闊如海起朝日。</span><span class="l">道道碧草流飛瀑，山山彩錦人如織。"</span><span class="l">"碧流如瀑今仍在，山中高樹葉已稀。</span><span class="l">楓紅如畫雖難覓，遍地秋餘尚足奇。</span><span class="l">晝來徒步登高崗，遠眺重雲蔽湖光。</span><span class="l">蕭瑟一片落輝裡，樹樹深秋山山黃。</span><span class="l">山中黃葉滿山谷，幾度不辨身何處。</span><span class="l">賴有溪水淙淙下，聽流踏落尋歸途。</span><span class="l">路轉山回水聲急，砰然濺落深潭裡。</span><span class="l">潭邊久佇不忍離，仰面碎玉風飄絮。</span><span class="l">攀巖牽枝繞深潭，細尋水流再不見。</span><span class="l">飛瀑日夜長流水，深潭難滿水不添？</span><span class="l">返途溪流未再現，悵然有失不欲言。</span><span class="l">房中久坐垂頭睡，神思纏繞夢魂牽。</span><span class="l">夜半明君動碧波，粼粼波光星之河。</span><span class="l">猛醒潭水已入海，秋波頻顧態婀娜。</span><span class="l">我願秋風送秋水，隨夢伴我到銀河。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">Golden gauze curtains, floor-to-ceiling glass—</span><span class="l">beyond them the Milky Way drifts through the heart of the lake.</span><span class="l">The thin drapes quiver in the lamplight—</span><span class="l">sleepless, I hear the autumn wind drive the water down the hills.</span><span class="l">I asked the autumn wind: from where do you come?</span><span class="l">"From the Star River's mist and spray, fading into boundless blue.</span><span class="l">The Torch Dragon's cold light has sealed the sun and moon—</span><span class="l">how desolate the long night stretches on.</span><span class="l">Yet I have heard Blue Mountain stands now in its prime—</span><span class="l">its lake as wide as sea, where dawn is born anew.</span><span class="l">Green grasses grow on ski slopes, pour down from top, fall like falls—</span><span class="l">range upon range in brocade, thronged with folk like woven thread."</span><span class="l">"The emerald torrents still come down like falls—</span><span class="l">but on the high trees now the leaves are thin.</span><span class="l">Crimson maples, fair as in the paintings, are hard to find—</span><span class="l">yet autumn's scattered remnants are wonder enough.</span><span class="l">By day I climbed the ridges, gazed afar—</span><span class="l">heavy clouds had veiled the lake's bright face.</span><span class="l">All bleak beneath the dying light—</span><span class="l">each tree a deep-autumn sigh, each hill gone yellow.</span><span class="l">The yellow leaves had filled every hollow—</span><span class="l">time and again I lost all sense of where I stood.</span><span class="l">Only the brook's clear murmur led me on—</span><span class="l">I tracked its song across the fallen leaves and found my way.</span><span class="l">The path turned, the hills closed round—</span><span class="l">the water quickened, and crashed in thunder to a hidden pool.</span><span class="l">Long I lingered at its edge, loath to leave—</span><span class="l">shards of jade flew up, the wind scattering catkins on my face.</span><span class="l">I climbed the rocks, grasped branches, circled the deep pool—</span><span class="l">but searched in vain: the feeding stream was gone.</span><span class="l">Day and night the falls pours its water down—</span><span class="l">yet the pool never fills; where does its water go?</span><span class="l">Returning, I found the brook had vanished too—</span><span class="l">an unspoken loss lay heavy, and I would not name it.</span><span class="l">Back in my room I sat, and bowed my head to sleep—</span><span class="l">my thoughts coiled round themselves and drew me into dream.</span><span class="l">At midnight the bright lord—the moon—stirred the blue waves—</span><span class="l">and the lake shimmered, a very River of Stars.</span><span class="l">I woke with a start: the pool had flowed into the sea—</span><span class="l">its waters glancing back, graceful as autumn eyes.</span><span class="l">Would that the autumn wind might bear the autumn waters—</span><span class="l">and in my dream convey me to the Milky Way.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>藍山</b>加拿大安大略省的 Blue Mountain 滑雪勝地。<br/>編者按：其地在多倫多西北、科靈伍德（Collingwood）近旁，屬尼亞加拉斷崖（Niagara Escarpment）一脈，下臨休倫湖之喬治亞灣。詩中「湖闊如海起朝日」「銀漢迢迢湖中央」所指，當即此一大水；「楓紅如畫雖難覓」亦正合安大略深秋楓季已過之時令。按此則非中國之藍山，亦非澳大利亞之 Blue Mountains。</li><li><b>銀漢迢迢</b>《古詩十九首》：「迢迢牽牛星，皎皎河漢女。」秦觀《鵲橋仙》：「銀漢迢迢暗度。」</li><li><b>明君</b>指<b>月君</b>，是對月亮的稱讚，也是謙恭有禮、平等溝通的稱謂方式。<br/>編者按：以君相稱月，取其可與之對語。全詩自「借問秋風來何方」以下本是一場問答，至此夜半而月來動波，則對談之伴又添一位。稱之曰君，正是把它當作可以商量的人，而非仰望的物——下文「隨夢伴我到銀河」的邀約，語氣所以不唐突，全在這一個稱呼上。</li><li><b>借問秋風來何方</b>設為問答。自此句以下三十餘行，皆秋風與詩人之答語，為漢賦「主客問答」之法（枚乘《七發》、司馬相如《子虛》《上林》以逮蘇軾《赤壁賦》皆然）。全詩之骨在此一問。</li><li><b>燭龍</b>《山海經·大荒北經》：「有神，人面蛇身而赤……視為晝，瞑為夜……是燭九陰，是謂燭龍。」屈原《天問》：「日安不到？燭龍何照？」此處以燭龍鎖日月，寫長夜之無極。</li><li><b>道道碧草流飛瀑，山山彩錦人如織</b>此二句為秋風所述之「藍山正當時」，與下文詩人所見之「樹樹深秋山山黃」相對；一為傳聞之盛，一為目擊之衰，全詩之轉折在此。</li><li><b>深潭難滿水不添</b>《莊子·秋水》：「天下之水，莫大於海，萬川歸之，不知何時止而不盈。」此以設問出之，問而不答，遂成全詩最深一層的悵然。</li><li><b>碎玉風飄絮</b>狀飛瀑濺沫。「碎玉」寫其形與聲，「飄絮」寫其輕，二喻相接而質地相反，是寫水的老手法。</li><li><b>秋波頻顧態婀娜</b>「秋波」本謂秋日水光，此兼用其為目光之義，故下「頻顧」「婀娜」。一詞雙關，湖遂成人。</li><li><b>隨夢伴我到銀河</b>舊說天河與海通。張華《博物志》載海渚有人乘槎至天河，見牽牛織女。末二句之想，即由此一古說化出，而以「夢」字系之，故雖奇而不誣。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p>甲午深秋，夜宿藍山溫泉賓館，因日間登山所見與夜裡湖景交織而輾轉難眠。前半以太白酒神式的奇想展開——秋風、星河、飛瀑、深潭；後半轉入更幽深的追索：尋溪不見，悵然若失，終在月下與湖水和解，生出幻夢般的邀約，似欲隨秋水入銀河。全詩如一趟夜裡的身心登山，從感官奇遇到理性迷茫，再到詩意飛昇。</p><p class="en">Composed in the deep autumn of the year Jiawu, sleepless at a hot-springs mountain inn by the lake. The poem moves from dazzling images of wind, waterfalls and stars into a quieter, searching mood — losing the way among the hills, puzzling over the vanished stream, and at last, reconnected by moonlight, letting wind and water carry the dreamer toward the Milky Way.</p><p class="subh en">Reader's Guide · 導讀</p><p class="en">This composition emerged during deep autumn of the Jiawu year, written at a mountain hot-springs hotel by a lake where sleeplessness mingled daytime hiking impressions with nighttime water vistas. The opening develops in visionary fashion—autumn wind, star river, cascades, deep pools—before shifting toward introspective searching. The speaker loses his bearings after climbing, puzzles over a vanishing stream, and ultimately reconciles with moonlit waters, imagining a dreamlike journey toward the Milky Way. The work progresses like a nighttime ascent of consciousness: from sensory encounter through rational confusion to poetic transcendence. Readers should approach slowly, allowing verse to substitute for footsteps.</p><p>作者誦讀 · 古琴；水聲、月光與星河，正合此詩的夜行與飛昇。</p></div><div class="byeditor prose"><div class="sep"></div><p>此詩最要緊的一處，是第五行的「借問秋風來何方」。有此一問，全篇四十二行才立起了骨架：以下皆是答語——先是秋風之言（自「星河煙波渺蒼茫」至「山山彩錦人如織」），繼而是詩人之言（自「碧流如瀑今仍在」至篇末）。這是漢賦「主客問答」之法，枚乘《七發》、司馬相如《子虛》《上林》以至蘇軾《赤壁賦》，皆借客主往復以盡其變。以賦法入七言歌行，而兩段答語之間不著一字提示，只以引號相分，是極簡省的做法。<br/>兩段答語所以必須分開，因為它們說的是同一座山的兩種時態。秋風所述是傳聞中的盛時：湖闊起日、道道飛瀑、山山彩錦、人如織。詩人所答是目擊的衰時：高樹葉稀、楓紅難覓、重雲蔽湖、樹樹深秋。一盛一衰之間，並無議論，只把兩段並置——「碧流如瀑今仍在」的「今仍在」三字，是全詩唯一的接榫，也是全詩最不動聲色的一處傷感。<br/>「深潭難滿水不添」是全詩思致最深的一句。飛瀑日夜不息而深潭終不見漲，此本是眼前實景，而一經設問，便通於《莊子·秋水》「萬川歸之，不知何時止而不盈」的舊義。妙在問而不答：不答，則悵然者不止於尋水不見，而及於一切傾注而無所增益之事。<br/>末六行由悵然轉入夢境，而以「明君動碧波」一句為樞——作者自釋「明君」即月君，是對月亮的稱讚，也是謙恭有禮、平等溝通的稱謂；月既可以君稱，便可以與之商量。醒後「猛醒潭水已入海」，則前此尋潭之執著忽然放下——潭本非終點，水自有去處。於是「我願秋風送秋水，隨夢伴我到銀河」不是逃遁，而是承認：既然萬川歸海而海不盈，那就不如隨它去。以《博物志》乘槎至天河的舊說收束一場夜夢，奇而不誣。</p><p class="en">Everything in this poem hangs on its fifth line, “I ask the autumn wind: from where do you come?” With that question the remaining thirty-odd lines acquire a frame: first the wind's answer, then the poet's — the old rhapsodic device of guest and host, from Mei Sheng and Sima Xiangru down to Su Shi's <i>Red Cliff</i>. The two answers are kept apart by nothing but a pair of quotation marks, and they must be kept apart, because they describe the same mountain in two tenses. The wind reports the place at its height: lake wide as a sea, cascades on every path, brocade on every slope, crowds like weaving. The poet reports what he saw that day: thinned leaves, no red maple to be found, cloud over the water, yellow on every hill. No comment is offered; the join is three characters, 今仍在 — “still there, even now” — the poem's one quiet piece of grief. Its deepest line is the question about the pool: the falls run day and night and the pool never rises, an observation that opens straight onto <i>Zhuangzi</i>'s sea into which ten thousand rivers pour without filling it. The question is not answered, and so the disappointment extends past a lost stream to everything poured out without increase. The last movement turns to dream and ends by asking the wind to carry the poet, dreaming, to the Milky Way — which is not escape but consent: if the sea cannot be filled, one may as well go with the water. A note on the pivot of that last movement, 夜半明君動碧波: 明君, “my enlightened lord,” is the moon. The poet glosses the title himself — it is praise, and it is also the courteous form one uses to an equal one intends to speak with. The whole poem is a conversation (with the autumn wind, then with the mountain); at midnight a third interlocutor arrives, and is addressed as a person rather than admired as a thing. That is why the closing invitation — carry me, dreaming, to the Milky Way — does not sound presumptuous.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">作者朗誦 · 藍山夜臥<span class="en">Read by the poet</span></span><audio controls="" preload="none" src="../网站图片/音像/录音44.m4a"></audio></div><div class="src">作者本人朗誦，原樣引用。</div><div class="row"><span class="ttl">古琴《佩蘭》<span class="en">Guqin: “Admiring the Orchid”</span></span><audio controls="" preload="none" src="../audio/guqin-peilan.ogg"></audio></div><div class="src">代《碣石調·幽蘭》。演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，絲絃。原件 commons.wikimedia.org/wiki/File:Pei_Lan.ogg。許可：CC BY 2.5。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="492" loading="lazy" src="../img/echo-cole.jpg" width="720"/><figcaption class="cap">Thomas Cole, <i>The Voyage of Life: Youth</i>, 1842. Oil on canvas, 134.3 × 194.9 cm. National Gallery of Art, Washington (Ailsa Mellon Bruce Fund). Public domain / open access.</figcaption></figure><div class="txt">Cole's youth stands in the prow of his boat and steers for a castle that is plainly built of cloud; the river he is on will not go there. The other half of the echo is Coleridge's <i>Kubla Khan</i> — a poem that arrives by way of a sacred river, a deep chasm and a sleeper who wakes wanting to rebuild what he saw. This poem ends by asking the autumn wind to carry it, dreaming, to the Milky Way. One further note, now that the poet has confirmed the place: Blue Mountain is in Ontario, and Cole founded the Hudson River School. The autumn hills in the picture and the autumn hills in the poem belong to the same continent and very nearly to the same week of the year.<span class="zh">按：柯爾畫少年立舟首，所向之樓臺實由雲氣結成，河不通彼處。柯爾律治《忽必烈汗》以聖河、深淵、夢醒欲追為骨，與本篇「隨夢伴我到銀河」同為「夢中之水通天」之想。又按：藍山既確為安大略之 Blue Mountain，則柯爾一幅尤為近親——哈德遜河畫派所寫的北美秋山與此詩所宿之山，本屬同一片大陸的同一種深秋。</span></div></div><div class="pager"><a href="lodging-by-the-south-sea-in-sanya.html"><span class="k">上一首 Previous</span><span class="z">宿南海之濱三亞</span></a><a class="r" href="the-inscribed-sword.html"><span class="k">下一首 Next</span><span class="z">題劍</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

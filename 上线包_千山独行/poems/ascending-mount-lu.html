@@ -8,7 +8,7 @@
 <meta content="禹疏九江，周匡飛仙，司馬遷南登廬山，思之不免神往" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="登廬山 · Ascending Mount Lu ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content="禹疏九江，周匡飛仙，司馬遷南登廬山，思之不免神往" property="og:description"/>
 <meta content="../img/plate-fangyun.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-ascending-mount-lu .sheet{--vfs:18.9px;--vlh:36.0px;--vh:468px}@media(max-width:760px){.vp-ascending-mount-lu .sheet{--vfs:17.1px;--vlh:32.5px;--vh:422px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "Yu channeled the Nine Rivers; Zhou Kuang ascended to immortality; Sima Qian climbed Mount Lu from the south—thinking on these, my spirit cannot but rise in longing.",
  "text": "結廬高遠向層巔，雲繞東南自古傳。\n九水禹疏誰著史，一湖日照我登山。\n朝攀撥霧仰峰險，暮宿和衣滴露寒。\n修道方知非本願，人間浪跡勝飛仙。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 4 首 / 共 17　<span class="grp">乙 · 廬山 · Mount Lu</span></div><h1>登廬山</h1><div class="h-en">Ascending Mount Lu</div><div class="rule"></div><p class="lede" style="font-size:13px">體式：七言律詩<span class="en">Regulated verse in seven-syllable lines (qilü)</span></p></div><figure class="plate" data-kind="scroll">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 8 首 / 共 17</div><h1>登廬山</h1><div class="h-en">Ascending Mount Lu</div><div class="rule"></div><p class="lede" style="font-size:13px">體式：七言律詩<span class="en">Regulated verse in seven-syllable lines (qilü)</span></p></div><figure class="plate" data-kind="scroll">
 <img alt="方從義《雲山圖》卷（畫心一段）　元（約 1360–70）　紙本水墨設色　全卷畫心" height="760" loading="lazy" src="../img/plate-fangyun.jpg" width="1664"/>
 <figcaption><span class="zh">方從義《雲山圖》卷（畫心一段）　元（約 1360–70）　紙本水墨設色　全卷畫心 26.4 × 144.8 cm　美國大都會藝術博物館藏（1973.121.4）</span>
 <span class="en">Fang Congyi (c. 1301–after 1378), Cloudy Mountains, a section of the painting. Yuan, c. 1360–70. Handscroll, ink and colour on paper, 26.4 × 144.8 cm. The Metropolitan Museum of Art, New York (1973.121.4).</span>
 <span class="en lic">CC0 (The Metropolitan Museum of Art / Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">小序</span><span class="e">The Poet’s Preface</span><span class="ln"></span></div><div class="q prose"><p class="subh">禹疏九江，周匡飛仙，司馬遷南登廬山，思之不免神往</p><p class="en">Yu channeled the Nine Rivers; Zhou Kuang ascended to immortality; Sima Qian climbed Mount Lu from the south—thinking on these, my spirit cannot but rise in longing.</p></div></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-ascending-mount-lu"><div class="wrapv"><div class="sheet"><span class="l">結廬高遠向層巔，雲繞東南自古傳。</span><span class="l">九水禹疏誰著史，一湖日照我登山。</span><span class="l">朝攀撥霧仰峰險，暮宿和衣滴露寒。</span><span class="l">修道方知非本願，人間浪跡勝飛仙。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">I sought my dwelling high among the layered peaks; clouds encircle the southeast ridge, famed through the ages.</span><span class="l">Who now records Yu's clearing of the Nine Rivers? Only the lake, lit by the sun, reflects my climbing path.</span><span class="l">At dawn I climb, parting mist, gazing at perilous heights; at dusk I sleep in my clothes, chilled by the dripping dew.</span><span class="l">Seeking the Way, I learn it was never truly my desire; to wander among the living surpasses flight among immortals.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>結廬</b>陶潛《飲酒》其五：「結廬在人境，而無車馬喧。」按廬山得名，舊說即因周時匡俗兄弟結廬山中、受道成仙，廬存而人去，故曰廬山、匡廬；見《後漢書·郡國志》劉昭注引《豫章舊志》、慧遠《廬山記略》。起句用「結廬」二字，既是陶公的舊語，又暗合此山命名之由。</li><li><b>九水禹疏</b>小序「禹疏九江」所本。《尚書·禹貢》：「九江孔殷。」《史記·河渠書》太史公曰：「余南登廬山，觀禹疏九江。」九江所指，漢唐以來聚訟不決（一說洞庭諸水，一說潯陽九派），故此句下一「誰著史」。</li><li><b>司馬遷南登廬山</b>小序所舉第三事，即《河渠書》上引之語。太史公此行，是廬山見於正史之始；本篇頷聯的「著史」二字，正從這一句裡來。</li><li><b>周匡飛仙</b>小序所舉第二事。匡俗，一作匡續、匡裕，或系之周，或系之漢初，史無定說；其兄弟七人結廬受道而去，為廬山最早的傳說。</li><li><b>一湖</b>鄱陽湖，在廬山東南。「九水」與「一湖」、「誰著史」與「我登山」，一聯之內四處相校：四千年的疑案對這一日的實事，懸空的主語對落實的主語。</li><li><b>和衣滴露</b>《詩·召南·行露》：「厭浥行露，豈不夙夜？謂行多露。」古以「行露」寫夜行沾溼之苦。此寫宿于山中不解衣而臥，一夜為露所滴。</li><li><b>修道方知非本願</b>與小序「思之不免神往」正相反。神往在前，識非本願在後；「方知」二字尤要緊——不是本來不願，是登過、宿過、冷過之後才知道不願。</li><li><b>人間浪跡勝飛仙</b>反用李白《廬山謠寄盧侍御虛舟》之結：「早服還丹無世情，琴心三疊道初成……先期汗漫九垓上，願接盧敖遊太清。」李白結在飛昇，此篇結在不飛。小序中神往的匡俗，亦正是飛昇的那一位；一篇之中兩個飛昇的先例俱在，而俱被辭謝。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>七律的格局在此詩裡用得很老實：起聯點地，頷聯入史，頸聯寫身，尾聯翻案。老實之中，最見功夫的是頷聯的「誰」與「我」。「九水禹疏誰著史，一湖日照我登山」——上句問的是四千年，下句答的是這一天；上句的主語懸空，下句的主語落實。兩個字對峙，把一部治水的正史與一個人的一次登山擱在同一副天平上，而詩人並不宣布哪一邊更重。<br/>頸聯最不像詩，也最像登山：「朝攀撥霧仰峰險，暮宿和衣滴露寒。」攀、撥、仰、宿四個動作都不帶情緒；一個「和衣」，把仙山寫成了行旅。凡寫廬山者多寫其奇——李白寫「飛流直下三千尺」，蘇軾寫「不識廬山真面目」，此聯偏寫其累。有這一聯的鈍，尾聯的翻案才不顯得輕巧：說「人間勝過飛仙」的，是一個昨夜和衣捱過冷的人，不是一個在山下想象的人。<br/>末句是全詩的賭注。李白同遊此山，結在「先期汗漫九垓上，願接盧敖遊太清」；小序裡令他神往的匡俗，也正是飛昇的那一位。此詩把兩個飛昇的先例都擺出來，然後當面辭謝。妙在辭得不激烈——只用一個「勝」字作比較，不用一個「非」字下駁斥；「修道方知非本願」也只說「非本願」，不說「不可求」。全篇沒有和神仙爭辯，只是不去了。<br/>此意在中國詩裡其實是罕見的。謝靈運登山而求「理」，李白登山而求「仙」，蘇軾登山而求「悟」，都仍是有所求；此詩登了、宿了、冷了，最後所得是「不必求」。以七律之整齊承一個近乎散淡的結論，格律的框子與結論的松，恰好互相牽制，所以既不顯得潦草，也不顯得說教。</p><p class="en">The frame of this <i>lüshi</i> is used with deliberate plainness: the opening couplet places the poet, the second turns to history, the third to the body, the last overturns the whole expedition. Within that plainness the sharpest stroke is the pair of pronouns in the second couplet — “<i>who</i> now records Yu’s clearing of the Nine Rivers? Only the lake, lit by the sun, reflects <i>my</i> climbing path.” The first line asks about four thousand years and leaves its subject hanging; the second answers with a single day and names its subject. Two syllables set a dynasty-founding labour and one man’s morning walk on the same scales, and the poem declines to say which side goes down.<br/>The third couplet is the least poetic and the most like actual climbing: <i>climb, part, gaze, sleep</i> — four verbs, none of them coloured — and then the detail that gives the poem its weather, sleeping in one’s clothes and waking wet. Most poets of Mount Lu write its strangeness; Li Bai the cataract falling three thousand feet, Su Shi the face one cannot see for standing in it. This one writes the fatigue. Because of that dull couplet the reversal at the end carries: the man who says the human world is better than immortality is a man who was cold all night, not a man imagining the mountain from below.<br/>The last line is the wager. Li Bai’s poem on this same mountain ends by soaring off into the empyrean with Lu Ao; Zhou Kuang, the recluse whose longing sets the prose preface in motion, is himself one of the ascended. Both precedents are laid out, and both are politely declined. The refusal is not loud: one comparative — <i>surpasses</i> — does the whole work, and the line before it says only <i>this was never what I wanted</i>, not <i>this cannot be had</i>. Nobody argues with the immortals here. The poet simply does not go.<br/>That ending is rarer in Chinese poetry than it looks. Xie Lingyun climbs for a principle, Li Bai for transcendence, Su Shi for insight; all still climb toward something. This poem climbs, sleeps out, gets cold, and comes down with the conclusion that there was nothing up there it needed. Carrying so unstrenuous a conclusion inside so strict a form is what keeps it from sounding either careless or preachy: the tight frame holds the loose thought in place.</p></div></div><div class="screen free"><div class="lbl"><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="ln"></span></div><div class="q prose"><p class="subh en">Prefatory Note</p><p class="en">Mount Lu has long drawn seekers—emperors, historians, hermits, poets—some pursuing immortality, others seeking history or themselves. This poem begins as another ascent but concludes with an unexpected decision.</p><p class="subh en">Across the Centuries</p><p class="en">Sima Qian: "I climbed south to Mount Lu and saw where Yu had guided the Nine Rivers."</p><p class="en">Wen Ren: "Who now remembers Yu's labour? Only the lake remembers my ascent."</p><p class="subh en">Historical &amp; Philosophical Notes</p><p class="en">Sima Qian (司馬遷, c. 145–86 BCE): Han dynasty historian and author of the Records of the Grand Historian. In its "Treatise on Rivers and Waterways," he recorded climbing Mount Lu and viewing the region traditionally associated with Yu the Great's regulation of the Nine Rivers.</p><p class="en">Yu the Great (大禹): Legendary sage-king credited with controlling great floods by dredging and guiding China's waterways. Mount Lu associates with his regulation of the Nine Rivers.</p><p class="subh en">Afterword</p><p class="en">The poem answers with quiet reflection rather than proclamation. "Mist, height, wet clothes—the plain furniture of an ordinary climb—replace the immortals and historians." The final lines pivot unexpectedly: the speaker realizes spiritual seeking was never his true longing. Instead, he discovers that "simply to walk here, among the living" surpasses transcendent aspirations.</p></div></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><div class="prose" style="font-size:14px"><p class="en">Listening Companions:</p><p class="en">China: 醉漁唱晚 (Drunken Fisherman Sings at Dusk)—its swaying rhythm echoes the climb and the choice of mortal wandering.</p><p class="en">Britain: Vaughan Williams' The Lark Ascending—its solitary rising line mirrors the ascent, while its unresolved ending matches the poem's discovery found not at the summit but in continuing the journey.</p></div><div class="tracks"><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱，2013 年录。原件 commons.wikimedia.org/wiki/File:Guqin-Zuiyu_Changwan.ogg。许可：CC BY-SA 3.0。" data-src="../audio/guqin-zuiyu-changwan.ogg" type="button">古琴《醉漁唱晚》<span class="e">Guqin: “The Evening Song of the Drunken Fisherman”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱；2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="720" loading="lazy" src="../img/echo-petrarch.jpg" width="463"/><figcaption class="cap">Andrea del Castagno, <i>Francesco Petrarca</i>, from the cycle of Famous Men and Women, c. 1450. Detached fresco, Galleria degli Uffizi, Florence. Public domain.</figcaption></figure><div class="txt">On 26 April 1336 Petrarch climbed Mont Ventoux — by his own account for no reason but to see what was at the top, which was itself a novelty. He reached the summit, was overwhelmed by the view, opened the <i>Confessions</i> at random, and read Augustine on men who go to admire mountains and rivers and pass themselves by. He came down having decided the ascent had been about something other than the ascent. The letter (<i>Familiares</i> IV.1) is the standard Western instance of a climb that ends by turning away from its own summit — the same movement as this poem’s last couplet, and reached, in both cases, only on the way down. Where Petrarch turns inward, Wen Ren turns outward: not to the soul but to <i>renjian</i>, the world of the living. It is the identical structure with the opposite exit.<span class="zh">按：彼特拉克於一三三六年四月二十六日登法國旺圖山，自云無他故，只為看看山頂有什麼。既登絕頂，為大觀所奪，隨手翻開隨身的奧古斯丁《懺悔錄》，所遇正是「人往觀山川之高、海波之闊，而遺其自身」一節，遂廢然而返，以為此行所求本不在山頂。其書見《書信集》第四卷第一通，為西方「登而後辭其頂」之祖。與本篇尾聯同一機杼，且同樣是在下山路上才想明白的。所異者，彼特拉克轉而向內，歸於靈魂；文刃轉而向外，歸於人間。結構全同，出口正相反。</span></div></div></div></details><div class="pager"><a href="ballad-of-mount-lu.html"><span class="k">上一首 Previous</span><span class="z">廬山謠</span></a><a class="r" href="ruins-of-dalin-temple.html"><span class="k">下一首 Next</span><span class="z">廬山大林寺原址</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">小序</span><span class="e">The Poet’s Preface</span><span class="ln"></span></div><div class="q prose"><p class="subh">禹疏九江，周匡飛仙，司馬遷南登廬山，思之不免神往</p><p class="en">Yu channeled the Nine Rivers; Zhou Kuang ascended to immortality; Sima Qian climbed Mount Lu from the south—thinking on these, my spirit cannot but rise in longing.</p></div></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-ascending-mount-lu"><div class="wrapv"><div class="sheet"><span class="l">結廬高遠向層巔，雲繞東南自古傳。</span><span class="l">九水禹疏誰著史，一湖日照我登山。</span><span class="l">朝攀撥霧仰峰險，暮宿和衣滴露寒。</span><span class="l">修道方知非本願，人間浪跡勝飛仙。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">I sought my dwelling high among the layered peaks; clouds encircle the southeast ridge, famed through the ages.</span><span class="l">Who now records Yu's clearing of the Nine Rivers? Only the lake, lit by the sun, reflects my climbing path.</span><span class="l">At dawn I climb, parting mist, gazing at perilous heights; at dusk I sleep in my clothes, chilled by the dripping dew.</span><span class="l">Seeking the Way, I learn it was never truly my desire; to wander among the living surpasses flight among immortals.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>結廬</b>陶潛《飲酒》其五：「結廬在人境，而無車馬喧。」按廬山得名，舊說即因周時匡俗兄弟結廬山中、受道成仙，廬存而人去，故曰廬山、匡廬；見《後漢書·郡國志》劉昭注引《豫章舊志》、慧遠《廬山記略》。起句用「結廬」二字，既是陶公的舊語，又暗合此山命名之由。</li><li><b>九水禹疏</b>小序「禹疏九江」所本。《尚書·禹貢》：「九江孔殷。」《史記·河渠書》太史公曰：「余南登廬山，觀禹疏九江。」九江所指，漢唐以來聚訟不決（一說洞庭諸水，一說潯陽九派），故此句下一「誰著史」。</li><li><b>司馬遷南登廬山</b>小序所舉第三事，即《河渠書》上引之語。太史公此行，是廬山見於正史之始；本篇頷聯的「著史」二字，正從這一句裡來。</li><li><b>周匡飛仙</b>小序所舉第二事。匡俗，一作匡續、匡裕，或系之周，或系之漢初，史無定說；其兄弟七人結廬受道而去，為廬山最早的傳說。</li><li><b>一湖</b>鄱陽湖，在廬山東南。「九水」與「一湖」、「誰著史」與「我登山」，一聯之內四處相校：四千年的疑案對這一日的實事，懸空的主語對落實的主語。</li><li><b>和衣滴露</b>《詩·召南·行露》：「厭浥行露，豈不夙夜？謂行多露。」古以「行露」寫夜行沾溼之苦。此寫宿于山中不解衣而臥，一夜為露所滴。</li><li><b>修道方知非本願</b>與小序「思之不免神往」正相反。神往在前，識非本願在後；「方知」二字尤要緊——不是本來不願，是登過、宿過、冷過之後才知道不願。</li><li><b>人間浪跡勝飛仙</b>反用李白《廬山謠寄盧侍御虛舟》之結：「早服還丹無世情，琴心三疊道初成……先期汗漫九垓上，願接盧敖遊太清。」李白結在飛昇，此篇結在不飛。小序中神往的匡俗，亦正是飛昇的那一位；一篇之中兩個飛昇的先例俱在，而俱被辭謝。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p class="subh en">Prefatory Note</p><p class="en">Mount Lu has long drawn seekers—emperors, historians, hermits, poets—some pursuing immortality, others seeking history or themselves. This poem begins as another ascent but concludes with an unexpected decision.</p><p class="subh en">Across the Centuries</p><p class="en">Sima Qian: "I climbed south to Mount Lu and saw where Yu had guided the Nine Rivers."</p><p class="en">Wen Ren: "Who now remembers Yu's labour? Only the lake remembers my ascent."</p><p class="subh en">Historical &amp; Philosophical Notes</p><p class="en">Sima Qian (司馬遷, c. 145–86 BCE): Han dynasty historian and author of the Records of the Grand Historian. In its "Treatise on Rivers and Waterways," he recorded climbing Mount Lu and viewing the region traditionally associated with Yu the Great's regulation of the Nine Rivers.</p><p class="en">Yu the Great (大禹): Legendary sage-king credited with controlling great floods by dredging and guiding China's waterways. Mount Lu associates with his regulation of the Nine Rivers.</p><p class="subh en">Afterword</p><p class="en">The poem answers with quiet reflection rather than proclamation. "Mist, height, wet clothes—the plain furniture of an ordinary climb—replace the immortals and historians." The final lines pivot unexpectedly: the speaker realizes spiritual seeking was never his true longing. Instead, he discovers that "simply to walk here, among the living" surpasses transcendent aspirations.</p><p class="en">Listening Companions:</p><p class="en">China: 醉漁唱晚 (Drunken Fisherman Sings at Dusk)—its swaying rhythm echoes the climb and the choice of mortal wandering.</p><p class="en">Britain: Vaughan Williams' The Lark Ascending—its solitary rising line mirrors the ascent, while its unresolved ending matches the poem's discovery found not at the summit but in continuing the journey.</p></div><div class="byeditor prose"><div class="sep"></div><p>七律的格局在此詩裡用得很老實：起聯點地，頷聯入史，頸聯寫身，尾聯翻案。老實之中，最見功夫的是頷聯的「誰」與「我」。「九水禹疏誰著史，一湖日照我登山」——上句問的是四千年，下句答的是這一天；上句的主語懸空，下句的主語落實。兩個字對峙，把一部治水的正史與一個人的一次登山擱在同一副天平上，而詩人並不宣布哪一邊更重。<br/>頸聯最不像詩，也最像登山：「朝攀撥霧仰峰險，暮宿和衣滴露寒。」攀、撥、仰、宿四個動作都不帶情緒；一個「和衣」，把仙山寫成了行旅。凡寫廬山者多寫其奇——李白寫「飛流直下三千尺」，蘇軾寫「不識廬山真面目」，此聯偏寫其累。有這一聯的鈍，尾聯的翻案才不顯得輕巧：說「人間勝過飛仙」的，是一個昨夜和衣捱過冷的人，不是一個在山下想象的人。<br/>末句是全詩的賭注。李白同遊此山，結在「先期汗漫九垓上，願接盧敖遊太清」；小序裡令他神往的匡俗，也正是飛昇的那一位。此詩把兩個飛昇的先例都擺出來，然後當面辭謝。妙在辭得不激烈——只用一個「勝」字作比較，不用一個「非」字下駁斥；「修道方知非本願」也只說「非本願」，不說「不可求」。全篇沒有和神仙爭辯，只是不去了。<br/>此意在中國詩裡其實是罕見的。謝靈運登山而求「理」，李白登山而求「仙」，蘇軾登山而求「悟」，都仍是有所求；此詩登了、宿了、冷了，最後所得是「不必求」。以七律之整齊承一個近乎散淡的結論，格律的框子與結論的松，恰好互相牽制，所以既不顯得潦草，也不顯得說教。</p><p class="en">The frame of this <i>lüshi</i> is used with deliberate plainness: the opening couplet places the poet, the second turns to history, the third to the body, the last overturns the whole expedition. Within that plainness the sharpest stroke is the pair of pronouns in the second couplet — “<i>who</i> now records Yu’s clearing of the Nine Rivers? Only the lake, lit by the sun, reflects <i>my</i> climbing path.” The first line asks about four thousand years and leaves its subject hanging; the second answers with a single day and names its subject. Two syllables set a dynasty-founding labour and one man’s morning walk on the same scales, and the poem declines to say which side goes down.<br/>The third couplet is the least poetic and the most like actual climbing: <i>climb, part, gaze, sleep</i> — four verbs, none of them coloured — and then the detail that gives the poem its weather, sleeping in one’s clothes and waking wet. Most poets of Mount Lu write its strangeness; Li Bai the cataract falling three thousand feet, Su Shi the face one cannot see for standing in it. This one writes the fatigue. Because of that dull couplet the reversal at the end carries: the man who says the human world is better than immortality is a man who was cold all night, not a man imagining the mountain from below.<br/>The last line is the wager. Li Bai’s poem on this same mountain ends by soaring off into the empyrean with Lu Ao; Zhou Kuang, the recluse whose longing sets the prose preface in motion, is himself one of the ascended. Both precedents are laid out, and both are politely declined. The refusal is not loud: one comparative — <i>surpasses</i> — does the whole work, and the line before it says only <i>this was never what I wanted</i>, not <i>this cannot be had</i>. Nobody argues with the immortals here. The poet simply does not go.<br/>That ending is rarer in Chinese poetry than it looks. Xie Lingyun climbs for a principle, Li Bai for transcendence, Su Shi for insight; all still climb toward something. This poem climbs, sleeps out, gets cold, and comes down with the conclusion that there was nothing up there it needed. Carrying so unstrenuous a conclusion inside so strict a form is what keeps it from sounding either careless or preachy: the tight frame holds the loose thought in place.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">古琴《醉漁唱晚》<span class="en">Guqin: “The Evening Song of the Drunken Fisherman”</span></span><audio controls="" preload="none" src="../audio/guqin-zuiyu-changwan.ogg"></audio></div><div class="src">演奏／打譜：Charlie Huang，據《天聞閣琴譜》（1876）打譜，2013 年錄。原件 commons.wikimedia.org/wiki/File:Guqin-Zuiyu_Changwan.ogg。許可：CC BY-SA 3.0。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="720" loading="lazy" src="../img/echo-petrarch.jpg" width="463"/><figcaption class="cap">Andrea del Castagno, <i>Francesco Petrarca</i>, from the cycle of Famous Men and Women, c. 1450. Detached fresco, Galleria degli Uffizi, Florence. Public domain.</figcaption></figure><div class="txt">On 26 April 1336 Petrarch climbed Mont Ventoux — by his own account for no reason but to see what was at the top, which was itself a novelty. He reached the summit, was overwhelmed by the view, opened the <i>Confessions</i> at random, and read Augustine on men who go to admire mountains and rivers and pass themselves by. He came down having decided the ascent had been about something other than the ascent. The letter (<i>Familiares</i> IV.1) is the standard Western instance of a climb that ends by turning away from its own summit — the same movement as this poem’s last couplet, and reached, in both cases, only on the way down. Where Petrarch turns inward, Wen Ren turns outward: not to the soul but to <i>renjian</i>, the world of the living. It is the identical structure with the opposite exit.<span class="zh">按：彼特拉克於一三三六年四月二十六日登法國旺圖山，自云無他故，只為看看山頂有什麼。既登絕頂，為大觀所奪，隨手翻開隨身的奧古斯丁《懺悔錄》，所遇正是「人往觀山川之高、海波之闊，而遺其自身」一節，遂廢然而返，以為此行所求本不在山頂。其書見《書信集》第四卷第一通，為西方「登而後辭其頂」之祖。與本篇尾聯同一機杼，且同樣是在下山路上才想明白的。所異者，彼特拉克轉而向內，歸於靈魂；文刃轉而向外，歸於人間。結構全同，出口正相反。</span></div></div><div class="pager"><a href="ruins-of-dalin-temple.html"><span class="k">上一首 Previous</span><span class="z">廬山大林寺原址</span></a><a class="r" href="zhou-yu-mustering-terrace.html"><span class="k">下一首 Next</span><span class="z">詠九江周瑜點將臺</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

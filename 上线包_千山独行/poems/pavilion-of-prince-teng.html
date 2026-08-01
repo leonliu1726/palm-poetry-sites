@@ -8,7 +8,7 @@
 <meta content='滕王閣因唐太宗之弟――滕王李元嬰始建得名，又因王勃詩句"落霞與孤鶩齊飛，秋水共長天一色"而流傳後世。滕王閣屢毀屢建，承載頗多歷史。丁酉夜過，聞閣中有舞樂之聲' name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="詠滕王閣 · Ode to the Pavilion of Prince Teng ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content='滕王閣因唐太宗之弟――滕王李元嬰始建得名，又因王勃詩句"落霞與孤鶩齊飛，秋水共長天一色"而流傳後世。滕王閣屢毀屢建，承載頗多歷史。丁酉夜過，聞閣中有舞樂之聲' property="og:description"/>
 <meta content="../img/plate-tengwang.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-pavilion-of-prince-teng .sheet{--vfs:18.9px;--vlh:36.0px;--vh:468px}@media(max-width:760px){.vp-pavilion-of-prince-teng .sheet{--vfs:17.1px;--vlh:32.5px;--vh:422px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "The Pavilion of Prince Teng takes its name from Li Yuanying, Prince of Teng and younger brother of Emperor Taizong of the Tang, who first built it; it owes its enduring fame to Wang Bo's lines, \"A lone duck flies with the fading sunset clouds; autumn waters and the boundless sky share one hue.\" Destroyed and rebuilt time and again, the pavilion carries much history. Passing by on a night in the year Dingyou, I heard music and dancing within.",
  "text": "滕王宴樂賴閣傳，頻毀頻興始子安。\n未有神童作一序，豈容紈絝記千年。\n名因權重而今易，才以文稱自古難。\n夜舞樓中誰側目，此江山亦彼江山。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 8 首 / 共 17　<span class="grp">丁 · 大江與樓臺 · The River and Its Towers</span></div><h1>詠滕王閣</h1><div class="h-en">Ode to the Pavilion of Prince Teng</div><div class="rule"></div><p class="lede" style="font-size:13px">體式：七言律詩<span class="en">Regulated verse in seven-syllable lines (qilü)</span></p></div><figure class="plate" data-kind="scroll">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 10 首 / 共 17</div><h1>詠滕王閣</h1><div class="h-en">Ode to the Pavilion of Prince Teng</div><div class="rule"></div><p class="lede" style="font-size:13px">體式：七言律詩<span class="en">Regulated verse in seven-syllable lines (qilü)</span></p></div><figure class="plate" data-kind="scroll">
 <img alt="唐棣《滕王閣圖》　元至正十二年（1352）　美國大都會藝術博物館藏（1989.3" height="760" loading="lazy" src="../img/plate-tengwang.jpg" width="1378"/>
 <figcaption><span class="zh">唐棣《滕王閣圖》　元至正十二年（1352）　美國大都會藝術博物館藏（1989.363.36）</span>
 <span class="en">Tang Di (1287–1355), The Pavilion of Prince Teng. Yuan, 1352. The Metropolitan Museum of Art, New York, 1989.363.36.</span>
 <span class="en lic">Public domain (Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">小序</span><span class="e">The Poet’s Preface</span><span class="ln"></span></div><div class="q prose"><p>滕王閣因唐太宗之弟――滕王李元嬰始建得名，又因王勃詩句"落霞與孤鶩齊飛，秋水共長天一色"而流傳後世。滕王閣屢毀屢建，承載頗多歷史。丁酉夜過，聞閣中有舞樂之聲</p><p class="en">The Pavilion of Prince Teng takes its name from Li Yuanying, Prince of Teng and younger brother of Emperor Taizong of the Tang, who first built it; it owes its enduring fame to Wang Bo's lines, "A lone duck flies with the fading sunset clouds; autumn waters and the boundless sky share one hue." Destroyed and rebuilt time and again, the pavilion carries much history. Passing by on a night in the year Dingyou, I heard music and dancing within.</p></div></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-pavilion-of-prince-teng"><div class="wrapv"><div class="sheet"><span class="l">滕王宴樂賴閣傳，頻毀頻興始子安。</span><span class="l">未有神童作一序，豈容紈絝記千年。</span><span class="l">名因權重而今易，才以文稱自古難。</span><span class="l">夜舞樓中誰側目，此江山亦彼江山。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">The feasts of Prince Teng live on through his pavilion; Destroyed and raised again, only because Zian first described it.</span><span class="l">Had no prodigy written his Preface, How could a scion's vanity endure a thousand years?</span><span class="l">Power still reshapes renown with ease; Yet to be praised for art was ever hard.</span><span class="l">Who now turns to look at dancers in the tower? This river and mountain — are they still the same?</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>滕王</b>李元嬰（約六三〇—六八四），唐高祖第二十二子，太宗之弟。永徽四年（六五三）任洪州都督，建此閣。《新唐書》本傳載其「驕縱失度」「所至擾民」，屢為有司所劾。小序所謂「紈絝」，本傳可證。</li><li><b>賴閣傳</b>謂滕王之宴樂賴此閣而傳。「賴」字是全詩因果推演的第一環：宴樂賴閣，閣賴王勃；推到底，是一個過路的年輕人。</li><li><b>頻毀頻興</b>滕王閣自唐永徽以來毀而復建者凡二十餘次，今存者為一九八九年重建，據梁思成、莫宗江《重建滕王閣計劃草圖》為之。</li><li><b>子安</b>王勃（約六五〇—六七六），字子安，絳州龍門人，初唐四傑之首。上元二年（六七五）九月九日過洪州，與都督閻公之會，即席作《秋日登洪府滕王閣餞別序》。《唐摭言》載其事最詳，並稱其少有才名，故曰「神童」。</li><li><b>落霞與孤鶩齊飛（小序引）</b>《滕王閣序》名句。按庾信《馬射賦》有「落花與芝蓋齊飛，楊柳共春旗一色」，王勃化用而青出於藍——此亦「才以文稱自古難」之一證：同一副句法，傳世者獨歸後來居上的那一句。</li><li><b>紈絝</b>《漢書·敘傳》：「出與王、許子弟為群，在於綺襦紈絝之間。」謂貴家子弟。此指滕王。</li><li><b>名因權重而今易</b>「易」謂改易、更換。上句「未有神童作一序，豈容紈絝記千年」言古：無文則名不傳；此句言今：有權則名可致。一聯之中，古今相形。</li><li><b>夜舞樓中</b>小序：「丁酉夜過，聞閣中有舞樂之聲。」丁酉即二〇一七年。所聞是今夜閣中之歌舞，所憶是滕王當年之宴樂；兩重舞樂疊在一處，而中間隔著一千三百餘年。</li><li><b>此江山亦彼江山</b>王勃序末：「閣中帝子今何在？檻外長江空自流。」此句翻其意而更冷：不問帝子何在，只說江山無二。按「江山」一詞，唐以來兼有山川與社稷二義，此處兩義俱在，作者不點破。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>這是一首關於「誰使誰不朽」的詩，而它把問題問得極不客氣。<br/>起聯便是一筆翻案：滕王的宴樂所以流傳，靠的不是滕王，是閣；而閣之所以屢毀屢建，靠的又不是閣，是王勃。「賴」「始」二字把因果一層層往下推，推到一個二十來歲的過客身上。第二聯索性挑明：「未有神童作一序，豈容紈絝記千年。」「神童」與「紈絝」相對，一褒一貶；而對得最狠的其實是「作一序」與「記千年」——一篇文章換一千年，交換比例懸殊到近乎荒謬。凡詠樓閣者多頌其勝概，此詩卻把樓閣的存在權判給了一篇文章。<br/>頸聯從史轉論：「名因權重而今易，才以文稱自古難。」上句用「今」，下句用「自古」，把一千三百年折成一副對子。「易」與「難」直接對峙，是全詩唯一一處不加修飾的議論；有前四句的具體做底，這一聯的直白才不顯得空。<br/>末聯最見手段。「夜舞樓中誰側目」——今夜閣中歌舞如故，而無人回頭；此一問既問今人，也回頭問了永徽四年那一場宴。兩重歌舞在此重合，中間的一千三百年被「誰側目」三字一筆抹平。結句「此江山亦彼江山」七字，兩個「江山」，只換一個指示字。王勃的結是「檻外長江空自流」，尚有一個「空」字帶著情；此詩連「空」也不要，只用一個等號。江山不變，故一切變者皆不足論——這是比感慨更冷的收法。<br/>「江山」在唐以後兼指山川與社稷，末句因此可作兩讀：山河還是那片山河，或者天下還是那個天下。作者不點破，留一個二義在句尾——而一首詩最後一個字上留二義，是要讀者自己去承擔的。</p><p class="en">This is a poem about who confers immortality on whom, and it puts the question with no politeness at all.<br/>The first couplet is already a reversal: the prince’s banquets survive not because of the prince but because of the pavilion — and the pavilion has been rebuilt two dozen times not because of the pavilion but because of Wang Bo. Two verbs, <i>owing to</i> and <i>began with</i>, push the causation down a level at a time until it rests on a passing traveller in his twenties. The second couplet says it outright: had no prodigy written that Preface, how could a wastrel’s vanity have lasted a thousand years? Prodigy against wastrel is the obvious opposition; the sharper one is <i>one preface</i> against <i>a thousand years</i>, an exchange rate so lopsided it verges on the absurd. Poems about famous towers usually praise the view. This one awards the tower’s right to exist to a piece of prose.<br/>The third couplet turns from history to argument: power still reshapes renown with ease; to be praised for art was ever hard. <i>Now</i> in the upper line, <i>ever</i> in the lower, and thirteen centuries folded into one antithesis. <i>Easy</i> against <i>hard</i> is the only unadorned statement in the poem, and it can afford to be unadorned because four concrete lines have gone before it.<br/>The close is the finest thing here. <i>Who now turns to look at the dancers in the tower?</i> — tonight’s dancing goes on and nobody turns round; and the question, asked of the present, reaches back and asks the same of the banquet of 653. Two sets of dancers coincide, and the thirteen hundred years between them are erased by three syllables. Then the last line: <i>this</i> river and mountain, <i>that</i> river and mountain — the same two characters twice, with only the demonstrative changed. Wang Bo ended with the Yangzi flowing <i>in vain</i> beyond the railing, and that “in vain” still carries feeling. This poem will not even spend a word like that; it uses an equals sign. If the land is unchanged, everything that changes is beneath discussion — a colder ending than lament.<br/><i>Jiangshan</i>, “rivers and mountains,” has meant the realm as well as the terrain since Tang times, so the line can be read twice: the country is the same country, or the state is the same state. The poet does not choose. To leave an ambiguity in the final word of a poem is to hand it to the reader to carry.</p></div></div><div class="screen free"><div class="lbl"><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="ln"></span></div><div class="q prose"><p class="subh en">Prefatory Note</p><p class="en">A Tang prince built this pavilion for his own pleasure. It has been destroyed and rebuilt more times than anyone still counts.</p><p class="en">What survives is a single sentence, written by a young scholar passing through: a lone duck flies with the fading sunset clouds, autumn waters and the boundless sky sharing one same hue.</p><p class="en">The prince is remembered because of that sentence. Without it, no one would climb these stairs at all.</p><p class="subh en">Afterword</p><p class="en">Power commissions monuments. Sentences outlast them.</p><p class="en">The dancers in the final couplet are real, or imagined — it hardly matters. The poem's eye has already moved past them, to the river that was here before the pavilion and will be here after the next one falls.</p><p class="en">The pavilion belongs to the prince. The river belongs to no one.</p></div></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><div class="prose" style="font-size:14px"><p class="subh en">Listening Companion</p><p class="en">Clair de Lune, Claude Debussy — from Suite bergamasque. One of the most recognizable pieces in all of classical music: moonlight scattered and drifting across water, unhurried. Its shimmering stillness echoes the poem's own closing image — autumn waters merging with an endless sky.</p></div><div class="tracks"><button aria-pressed="false" data-note="演奏：Laurens Goedhart（钢琴），2011 年录音。原件 commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg。许可：CC BY 3.0。" data-src="../audio/west-debussy-clairdelune.ogg" type="button">德彪西《月光》（《貝加馬斯克組曲》第三首）<span class="e">Debussy: Clair de lune (Suite bergamasque)</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱；2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="578" loading="lazy" src="../img/echo-roberts-memnonium.jpg" width="720"/><figcaption class="cap">David Roberts, <i>Fragments of the Great Colossus at the Memnonium, Thebes</i>, from <i>Egypt and Nubia</i>, lithographed by Louis Haghe, 1846–49. Library of Congress, Washington. Public domain.</figcaption></figure><div class="txt">Horace closed the third book of his <i>Odes</i> with the boast that has outlived every building it was measured against: <i>Exegi monumentum aere perennius / regalique situ pyramidum altius</i> — I have finished a monument more lasting than bronze and higher than the royal pile of the pyramids, which no devouring rain, no raging north wind, no innumerable succession of years can pull down. The claim is not modesty and it was not wrong. David Roberts’s lithograph shows the other half of the argument: the seated colossus of Ramesses II at Thebes, head in the sand, a shoulder, and figures put in for scale. This ode arrives at Horace’s proposition from the opposite direction. It does not say a poem will outlast a building; it says a building has already been kept alive, twenty-odd times over, by fourteen syllables about a duck and a sunset — and that its patron would be unremembered without them. Power commissions the monument. The sentence pays its upkeep.<span class="zh">按：賀拉斯《歌集》第三卷之末，以一句誇口作結，而這句誇口活得比它所比的一切建築都長：<i>Exegi monumentum aere perennius, regalique situ pyramidum altius</i>——「我已築成一座紀念碑，比青銅更耐久，比金字塔的王家崇構更高；蝕骨之雨不能毀，狂暴的北風不能傾，歲月無窮的更迭亦不能撼。」此非謙辭，而事實證明他沒有說錯。羅伯茨的石印畫是這句話的另一半：底比斯拉美西斯二世的坐像，頭顱陷在沙裡，只餘一角肩背，旁立數人以見其大。本篇所走的是與賀拉斯相反的一條路：它不說文章能勝過樓閣，它說這座樓閣二十餘次毀而復建，全靠著一句寫野鴨與落霞的話吊著命，而建它的那位王爺若無此句便無人記得。權力立碑，文章替它付了千年的維修費。</span></div></div></div></details><div class="pager"><a href="zhou-yu-mustering-terrace.html"><span class="k">上一首 Previous</span><span class="z">詠九江周瑜點將臺</span></a><a class="r" href="drinking-at-magpie-mountain.html"><span class="k">下一首 Next</span><span class="z">飲鵲山</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">小序</span><span class="e">The Poet’s Preface</span><span class="ln"></span></div><div class="q prose"><p>滕王閣因唐太宗之弟――滕王李元嬰始建得名，又因王勃詩句"落霞與孤鶩齊飛，秋水共長天一色"而流傳後世。滕王閣屢毀屢建，承載頗多歷史。丁酉夜過，聞閣中有舞樂之聲</p><p class="en">The Pavilion of Prince Teng takes its name from Li Yuanying, Prince of Teng and younger brother of Emperor Taizong of the Tang, who first built it; it owes its enduring fame to Wang Bo's lines, "A lone duck flies with the fading sunset clouds; autumn waters and the boundless sky share one hue." Destroyed and rebuilt time and again, the pavilion carries much history. Passing by on a night in the year Dingyou, I heard music and dancing within.</p></div></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-pavilion-of-prince-teng"><div class="wrapv"><div class="sheet"><span class="l">滕王宴樂賴閣傳，頻毀頻興始子安。</span><span class="l">未有神童作一序，豈容紈絝記千年。</span><span class="l">名因權重而今易，才以文稱自古難。</span><span class="l">夜舞樓中誰側目，此江山亦彼江山。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">The feasts of Prince Teng live on through his pavilion; Destroyed and raised again, only because Zian first described it.</span><span class="l">Had no prodigy written his Preface, How could a scion's vanity endure a thousand years?</span><span class="l">Power still reshapes renown with ease; Yet to be praised for art was ever hard.</span><span class="l">Who now turns to look at dancers in the tower? This river and mountain — are they still the same?</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>滕王</b>李元嬰（約六三〇—六八四），唐高祖第二十二子，太宗之弟。永徽四年（六五三）任洪州都督，建此閣。《新唐書》本傳載其「驕縱失度」「所至擾民」，屢為有司所劾。小序所謂「紈絝」，本傳可證。</li><li><b>賴閣傳</b>謂滕王之宴樂賴此閣而傳。「賴」字是全詩因果推演的第一環：宴樂賴閣，閣賴王勃；推到底，是一個過路的年輕人。</li><li><b>頻毀頻興</b>滕王閣自唐永徽以來毀而復建者凡二十餘次，今存者為一九八九年重建，據梁思成、莫宗江《重建滕王閣計劃草圖》為之。</li><li><b>子安</b>王勃（約六五〇—六七六），字子安，絳州龍門人，初唐四傑之首。上元二年（六七五）九月九日過洪州，與都督閻公之會，即席作《秋日登洪府滕王閣餞別序》。《唐摭言》載其事最詳，並稱其少有才名，故曰「神童」。</li><li><b>落霞與孤鶩齊飛（小序引）</b>《滕王閣序》名句。按庾信《馬射賦》有「落花與芝蓋齊飛，楊柳共春旗一色」，王勃化用而青出於藍——此亦「才以文稱自古難」之一證：同一副句法，傳世者獨歸後來居上的那一句。</li><li><b>紈絝</b>《漢書·敘傳》：「出與王、許子弟為群，在於綺襦紈絝之間。」謂貴家子弟。此指滕王。</li><li><b>名因權重而今易</b>「易」謂改易、更換。上句「未有神童作一序，豈容紈絝記千年」言古：無文則名不傳；此句言今：有權則名可致。一聯之中，古今相形。</li><li><b>夜舞樓中</b>小序：「丁酉夜過，聞閣中有舞樂之聲。」丁酉即二〇一七年。所聞是今夜閣中之歌舞，所憶是滕王當年之宴樂；兩重舞樂疊在一處，而中間隔著一千三百餘年。</li><li><b>此江山亦彼江山</b>王勃序末：「閣中帝子今何在？檻外長江空自流。」此句翻其意而更冷：不問帝子何在，只說江山無二。按「江山」一詞，唐以來兼有山川與社稷二義，此處兩義俱在，作者不點破。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p class="subh en">Prefatory Note</p><p class="en">A Tang prince built this pavilion for his own pleasure. It has been destroyed and rebuilt more times than anyone still counts.</p><p class="en">What survives is a single sentence, written by a young scholar passing through: a lone duck flies with the fading sunset clouds, autumn waters and the boundless sky sharing one same hue.</p><p class="en">The prince is remembered because of that sentence. Without it, no one would climb these stairs at all.</p><p class="subh en">Afterword</p><p class="en">Power commissions monuments. Sentences outlast them.</p><p class="en">The dancers in the final couplet are real, or imagined — it hardly matters. The poem's eye has already moved past them, to the river that was here before the pavilion and will be here after the next one falls.</p><p class="en">The pavilion belongs to the prince. The river belongs to no one.</p><p class="subh en">Listening Companion</p><p class="en">Clair de Lune, Claude Debussy — from Suite bergamasque. One of the most recognizable pieces in all of classical music: moonlight scattered and drifting across water, unhurried. Its shimmering stillness echoes the poem's own closing image — autumn waters merging with an endless sky.</p></div><div class="byeditor prose"><div class="sep"></div><p>這是一首關於「誰使誰不朽」的詩，而它把問題問得極不客氣。<br/>起聯便是一筆翻案：滕王的宴樂所以流傳，靠的不是滕王，是閣；而閣之所以屢毀屢建，靠的又不是閣，是王勃。「賴」「始」二字把因果一層層往下推，推到一個二十來歲的過客身上。第二聯索性挑明：「未有神童作一序，豈容紈絝記千年。」「神童」與「紈絝」相對，一褒一貶；而對得最狠的其實是「作一序」與「記千年」——一篇文章換一千年，交換比例懸殊到近乎荒謬。凡詠樓閣者多頌其勝概，此詩卻把樓閣的存在權判給了一篇文章。<br/>頸聯從史轉論：「名因權重而今易，才以文稱自古難。」上句用「今」，下句用「自古」，把一千三百年折成一副對子。「易」與「難」直接對峙，是全詩唯一一處不加修飾的議論；有前四句的具體做底，這一聯的直白才不顯得空。<br/>末聯最見手段。「夜舞樓中誰側目」——今夜閣中歌舞如故，而無人回頭；此一問既問今人，也回頭問了永徽四年那一場宴。兩重歌舞在此重合，中間的一千三百年被「誰側目」三字一筆抹平。結句「此江山亦彼江山」七字，兩個「江山」，只換一個指示字。王勃的結是「檻外長江空自流」，尚有一個「空」字帶著情；此詩連「空」也不要，只用一個等號。江山不變，故一切變者皆不足論——這是比感慨更冷的收法。<br/>「江山」在唐以後兼指山川與社稷，末句因此可作兩讀：山河還是那片山河，或者天下還是那個天下。作者不點破，留一個二義在句尾——而一首詩最後一個字上留二義，是要讀者自己去承擔的。</p><p class="en">This is a poem about who confers immortality on whom, and it puts the question with no politeness at all.<br/>The first couplet is already a reversal: the prince’s banquets survive not because of the prince but because of the pavilion — and the pavilion has been rebuilt two dozen times not because of the pavilion but because of Wang Bo. Two verbs, <i>owing to</i> and <i>began with</i>, push the causation down a level at a time until it rests on a passing traveller in his twenties. The second couplet says it outright: had no prodigy written that Preface, how could a wastrel’s vanity have lasted a thousand years? Prodigy against wastrel is the obvious opposition; the sharper one is <i>one preface</i> against <i>a thousand years</i>, an exchange rate so lopsided it verges on the absurd. Poems about famous towers usually praise the view. This one awards the tower’s right to exist to a piece of prose.<br/>The third couplet turns from history to argument: power still reshapes renown with ease; to be praised for art was ever hard. <i>Now</i> in the upper line, <i>ever</i> in the lower, and thirteen centuries folded into one antithesis. <i>Easy</i> against <i>hard</i> is the only unadorned statement in the poem, and it can afford to be unadorned because four concrete lines have gone before it.<br/>The close is the finest thing here. <i>Who now turns to look at the dancers in the tower?</i> — tonight’s dancing goes on and nobody turns round; and the question, asked of the present, reaches back and asks the same of the banquet of 653. Two sets of dancers coincide, and the thirteen hundred years between them are erased by three syllables. Then the last line: <i>this</i> river and mountain, <i>that</i> river and mountain — the same two characters twice, with only the demonstrative changed. Wang Bo ended with the Yangzi flowing <i>in vain</i> beyond the railing, and that “in vain” still carries feeling. This poem will not even spend a word like that; it uses an equals sign. If the land is unchanged, everything that changes is beneath discussion — a colder ending than lament.<br/><i>Jiangshan</i>, “rivers and mountains,” has meant the realm as well as the terrain since Tang times, so the line can be read twice: the country is the same country, or the state is the same state. The poet does not choose. To leave an ambiguity in the final word of a poem is to hand it to the reader to carry.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">德彪西《月光》（《貝加馬斯克組曲》第三首）<span class="en">Debussy: Clair de lune (Suite bergamasque)</span></span><audio controls="" preload="none" src="../audio/west-debussy-clairdelune.ogg"></audio></div><div class="src">演奏：Laurens Goedhart（鋼琴），2011 年錄音。原件 commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg。許可：CC BY 3.0。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="578" loading="lazy" src="../img/echo-roberts-memnonium.jpg" width="720"/><figcaption class="cap">David Roberts, <i>Fragments of the Great Colossus at the Memnonium, Thebes</i>, from <i>Egypt and Nubia</i>, lithographed by Louis Haghe, 1846–49. Library of Congress, Washington. Public domain.</figcaption></figure><div class="txt">Horace closed the third book of his <i>Odes</i> with the boast that has outlived every building it was measured against: <i>Exegi monumentum aere perennius / regalique situ pyramidum altius</i> — I have finished a monument more lasting than bronze and higher than the royal pile of the pyramids, which no devouring rain, no raging north wind, no innumerable succession of years can pull down. The claim is not modesty and it was not wrong. David Roberts’s lithograph shows the other half of the argument: the seated colossus of Ramesses II at Thebes, head in the sand, a shoulder, and figures put in for scale. This ode arrives at Horace’s proposition from the opposite direction. It does not say a poem will outlast a building; it says a building has already been kept alive, twenty-odd times over, by fourteen syllables about a duck and a sunset — and that its patron would be unremembered without them. Power commissions the monument. The sentence pays its upkeep.<span class="zh">按：賀拉斯《歌集》第三卷之末，以一句誇口作結，而這句誇口活得比它所比的一切建築都長：<i>Exegi monumentum aere perennius, regalique situ pyramidum altius</i>——「我已築成一座紀念碑，比青銅更耐久，比金字塔的王家崇構更高；蝕骨之雨不能毀，狂暴的北風不能傾，歲月無窮的更迭亦不能撼。」此非謙辭，而事實證明他沒有說錯。羅伯茨的石印畫是這句話的另一半：底比斯拉美西斯二世的坐像，頭顱陷在沙裡，只餘一角肩背，旁立數人以見其大。本篇所走的是與賀拉斯相反的一條路：它不說文章能勝過樓閣，它說這座樓閣二十餘次毀而復建，全靠著一句寫野鴨與落霞的話吊著命，而建它的那位王爺若無此句便無人記得。權力立碑，文章替它付了千年的維修費。</span></div></div><div class="pager"><a href="zhou-yu-mustering-terrace.html"><span class="k">上一首 Previous</span><span class="z">詠九江周瑜點將臺</span></a><a class="r" href="orchid-pavilion-shaoxing.html"><span class="k">下一首 Next</span><span class="z">詠紹興蘭亭</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

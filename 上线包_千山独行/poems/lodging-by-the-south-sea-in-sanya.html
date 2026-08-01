@@ -8,7 +8,7 @@
 <meta content="二〇一五年春夜宿三亞下馬嶺，高樓臨南海，椰林映月。白日應酬，夜半獨坐，忽生無可名狀、無從排遣的憂思。四句五言，樸素如自語，卻內藏極稠密的孤獨——旱季裡夜半驟雨叩窗，殷殷風葉，只為傳來「春遲」二字。" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="宿南海之濱三亞 · Lodging by the South Sea in Sanya ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content="二〇一五年春夜宿三亞下馬嶺，高樓臨南海，椰林映月。白日應酬，夜半獨坐，忽生無可名狀、無從排遣的憂思。四句五言，樸素如自語，卻內藏極稠密的孤獨——旱季裡夜半驟雨叩窗，殷殷風葉，只為傳來「春遲」二字。" property="og:description"/>
 <meta content="../img/plate-yunsheng.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-lodging-by-the-south-sea-in-sanya .sheet{--vfs:18.9px;--vlh:36.0px;--vh:468px}@media(max-width:760px){.vp-lodging-by-the-south-sea-in-sanya .sheet{--vfs:17.1px;--vlh:32.5px;--vh:422px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "A spring night in 2015 at Xiama Ridge in Sanya, high above the South China Sea, palms under the moon. After a day of banquets and social rounds, the poet sits alone at midnight and is overtaken by a sorrow he can neither name nor dispel. Four plain five-character lines, like a man speaking to himself, yet holding a dense solitude: in the dry season a sudden midnight rain taps the pane, and the wind-stirred leaves bring only one message—spring has come too late.",
  "text": "話兒滿腹未逢時，椰樹垂頭久莫知。\n夜半敲窗喚何故？殷殷風葉報春遲。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 13 首 / 共 17　<span class="grp">己 · 臨海與遠行 · By the Sea, and Farther</span></div><h1>宿南海之濱三亞</h1><div class="h-en">Lodging by the South Sea in Sanya</div><div class="rule"></div></div><figure class="plate tall" data-kind="leaf">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 15 首 / 共 17</div><h1>宿南海之濱三亞</h1><div class="h-en">Lodging by the South Sea in Sanya</div><div class="rule"></div></div><figure class="plate tall" data-kind="leaf">
 <img alt="馬遠《水圖》十二段之《雲生滄海》　南宋　絹本設色　每段 26.8 × 41.6 " height="900" loading="lazy" src="../img/plate-yunsheng.jpg" width="1355"/>
 <figcaption><span class="zh">馬遠《水圖》十二段之《雲生滄海》　南宋　絹本設色　每段 26.8 × 41.6 cm　北京故宮博物院藏</span>
 <span class="en">Ma Yuan (act. c. 1190–1225), “Clouds Rising from the Green Sea,” one of the twelve leaves of the Water Album. Southern Song. Ink and colour on silk, 26.8 × 41.6 cm. The Palace Museum, Beijing.</span>
 <span class="en lic">Public domain (Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-lodging-by-the-south-sea-in-sanya"><div class="wrapv"><div class="sheet"><span class="l">話兒滿腹未逢時，椰樹垂頭久莫知。</span><span class="l">夜半敲窗喚何故？殷殷風葉報春遲。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">My heart is full of words that find no day; the palms, heads bowed, have long not known my state.</span><span class="l">What raps my pane at midnight, calls this way? The wind-stirred leaves declare: the spring is late.</span></div></div><div class="screen"><div class="lbl"><span class="z">題解</span><span class="e">Head-note by the Poet</span><span class="ln"></span></div><div class="prose"><p>二〇一五年春夜宿三亞下馬嶺，高樓臨南海，椰林映月。白日應酬，夜半獨坐，忽生無可名狀、無從排遣的憂思。四句五言，樸素如自語，卻內藏極稠密的孤獨——旱季裡夜半驟雨叩窗，殷殷風葉，只為傳來「春遲」二字。</p><p class="en">A spring night in 2015 at Xiama Ridge in Sanya, high above the South China Sea, palms under the moon. After a day of banquets and social rounds, the poet sits alone at midnight and is overtaken by a sorrow he can neither name nor dispel. Four plain five-character lines, like a man speaking to himself, yet holding a dense solitude: in the dry season a sudden midnight rain taps the pane, and the wind-stirred leaves bring only one message—spring has come too late.</p></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>南海之濱三亞</b>三亞在海南島南端，瀕南海。作者自注宿處為下馬嶺，其地臨海而多椰林。</li><li><b>話兒滿腹</b>「滿腹」舊多用於才學，如「滿腹經綸」；此易以「話兒」二字，以口語入詩，遂使一腔無處可說之言與「未逢時」相綰。</li><li><b>未逢時</b>謂時機未至。《孟子·公孫丑上》：「雖有智慧，不如乘勢；雖有鎡基，不如待時。」著「未」字，則非不遇，乃時尚未到，語氣較「不遇」為緩而為苦。</li><li><b>椰樹垂頭久莫知</b>擬人。「垂頭」既狀椰葉之形，又狀聽者之態；「久莫知」三字，寫盡獨語之無應。</li><li><b>夜半敲窗何故喚</b>夜雨敲窗為唐宋詩詞習見之境，如李商隱「巴山夜雨漲秋池」、陸游「夜闌臥聽風吹雨」。此篇獨下一問句，遂由寫景轉為對話，是二十八字中最要緊的一轉。</li><li><b>殷殷</b>《詩·召南·殷其雷》：「殷其雷，在南山之陽。」本狀雷聲，引申為懇切、頻頻。此處兼二義：雨聲之密，與傳語之切。</li><li><b>報春遲</b>「報春」本為喜語，此則所報者遲。三亞地處熱帶，本無所謂春遲；「春遲」非節候之實，乃心境之辭。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>二十八字而四轉，是絕句的極限用法。首句「話兒滿腹未逢時」寫內，次句「椰樹垂頭久莫知」寫外，一內一外已成對峙；第三句忽作問語——「夜半敲窗何故喚？」——把對峙打開；末句「殷殷風葉報春遲」以答作結，而答非所問。所謂「轉」，轉的不是景，是說話的方向：自語、旁觀、發問、代答，四句各據一個位置。<br/>最見功夫的是「久莫知」三字。椰樹垂頭，本是擬人，寫它像個聽者；而「久莫知」一轉，這個聽者原來並不懂——於是擬人立刻落空，孤獨反而因為有了一個不解的聽者而更深。若改作「無人知」，便只是尋常的寂寞；「莫知」的主語是那棵樹，這才是這首詩獨有的冷。<br/>「殷殷」是全詩唯一的疊字，用得極準。《詩經》「殷其雷」本狀雷聲，此處兼狀雨聲之密與傳語之切；下接一個「報」字，彷彿風葉是奉命而來的信使。然而它千里迢迢所報者，只是「春遲」二字——三亞地處熱帶，本無冬春之別，「春遲」於節候無據，只在人心。末字落在「遲」上，二十八字的分量全在這裡。<br/>李商隱《夜雨寄北》同是夜雨、同是問答，卻問的是「何當共剪西窗燭」，把眼下的孤獨寄託於將來的重逢；此詩則問在當下，答亦在當下，無人可寄，故更無退路。</p><p class="en">Twenty-eight characters and four turns — about the limit of the form. Line one speaks inward, line two outward, and the two stand off; line three breaks the deadlock with a question (“Who is knocking at midnight, and why?”); line four answers, but not the question asked. What turns is not the scene but the direction of speech: soliloquy, observation, question, proxy-reply. The finest stroke is 久莫知. The palm bowing its head is a personification — it is being made into a listener — and then “long since has not understood” cancels the personification, so that the loneliness is deepened rather than relieved by having an auditor. “No one knows” would have been ordinary; that the not-knowing belongs to the tree is what makes this poem cold in its own way. 殷殷, the single reduplicative, does double duty for the density of rain and the earnestness of a message; and the message, delivered by leaves in the wind, is only that spring is late — in tropical Sanya a meteorological impossibility, and therefore entirely a fact of the heart. Li Shangyin's famous night-rain quatrain asks its question of the future and consigns the loneliness to a reunion; this one asks in the present and answers in the present, with no one to send word to.</p></div></div><div class="screen free"><details class="fold" id="afterword"><summary><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="tw">+</span></summary><div class="body"><div class="q prose"><p class="subh en">Before the Poem</p><p class="en">This poem was composed on April 21, 2015, in Sanya on Hainan Island. The poet lodged at the Xiama Ridge Inn, high floors facing the South China Sea, windows opening onto moonlight-rinsed palms. After a day of banquets and social rounds, in the dead of night he sat reading—only to be overtaken by a quiet sorrow he could neither name nor dispel. It was the dry season; yet past midnight, wind rose and sparse rain began to tap upon the panes.</p></div></div></details></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><p class="prose" style="font-size:15px">建議配樂 · 古琴《良宵引》。清雅迴環，宛如月照開窗、葉動風生——驟雨將至前的一片靜謐。</p><div class="prose" style="font-size:14px"><p class="en">Listening Companion: The accompaniment features a guqin piece titled "Liangxiao Yin" (Guide to a Peaceful Night), offering "quiet elegance and circling phrases" suited to the poem's contemplative mood.</p></div><div class="tracks"><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱；2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="590" loading="lazy" src="../img/echo-whistler.jpg" width="720"/><figcaption class="cap">James McNeill Whistler, <i>Nocturne: Blue and Silver — Chelsea</i>, 1871. Oil on panel, 50.2 × 60.8 cm. Tate, London. Public domain.</figcaption></figure><div class="txt">Whistler took everything out of the night but two or three tones and one small incident of light — the same economy as twenty-eight characters. The verbal echo is Sappho, fragment 168B: “The moon has set, and the Pleiades; it is midnight; the hour goes by; and I lie alone.” Four lines there, four lines here, and in both the loneliness is carried not by statement but by the passing of an hour.<span class="zh">按：惠斯勒夜曲減色至二三，與七絕二十八字之儉同法。薩福殘篇一六八 B：「月落矣，昴星亦落；夜半矣，時光自去；而我獨眠。」四行之孤，與「殷殷風葉報春遲」可對看。</span></div></div></div></details><div class="pager"><a href="facing-the-sea-and-the-wind-at-yantai.html"><span class="k">上一首 Previous</span><span class="z">憑海臨風詠煙臺</span></a><a class="r" href="night-at-blue-mountain.html"><span class="k">下一首 Next</span><span class="z">藍山夜臥</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-lodging-by-the-south-sea-in-sanya"><div class="wrapv"><div class="sheet"><span class="l">話兒滿腹未逢時，椰樹垂頭久莫知。</span><span class="l">夜半敲窗喚何故？殷殷風葉報春遲。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">My heart is full of words that find no day; the palms, heads bowed, have long not known my state.</span><span class="l">What raps my pane at midnight, calls this way? The wind-stirred leaves declare: the spring is late.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>南海之濱三亞</b>三亞在海南島南端，瀕南海。作者自注宿處為下馬嶺，其地臨海而多椰林。</li><li><b>話兒滿腹</b>「滿腹」舊多用於才學，如「滿腹經綸」；此易以「話兒」二字，以口語入詩，遂使一腔無處可說之言與「未逢時」相綰。</li><li><b>未逢時</b>謂時機未至。《孟子·公孫丑上》：「雖有智慧，不如乘勢；雖有鎡基，不如待時。」著「未」字，則非不遇，乃時尚未到，語氣較「不遇」為緩而為苦。</li><li><b>椰樹垂頭久莫知</b>擬人。「垂頭」既狀椰葉之形，又狀聽者之態；「久莫知」三字，寫盡獨語之無應。</li><li><b>夜半敲窗何故喚</b>夜雨敲窗為唐宋詩詞習見之境，如李商隱「巴山夜雨漲秋池」、陸游「夜闌臥聽風吹雨」。此篇獨下一問句，遂由寫景轉為對話，是二十八字中最要緊的一轉。</li><li><b>殷殷</b>《詩·召南·殷其雷》：「殷其雷，在南山之陽。」本狀雷聲，引申為懇切、頻頻。此處兼二義：雨聲之密，與傳語之切。</li><li><b>報春遲</b>「報春」本為喜語，此則所報者遲。三亞地處熱帶，本無所謂春遲；「春遲」非節候之實，乃心境之辭。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p>二〇一五年春夜宿三亞下馬嶺，高樓臨南海，椰林映月。白日應酬，夜半獨坐，忽生無可名狀、無從排遣的憂思。四句五言，樸素如自語，卻內藏極稠密的孤獨——旱季裡夜半驟雨叩窗，殷殷風葉，只為傳來「春遲」二字。</p><p class="en">A spring night in 2015 at Xiama Ridge in Sanya, high above the South China Sea, palms under the moon. After a day of banquets and social rounds, the poet sits alone at midnight and is overtaken by a sorrow he can neither name nor dispel. Four plain five-character lines, like a man speaking to himself, yet holding a dense solitude: in the dry season a sudden midnight rain taps the pane, and the wind-stirred leaves bring only one message—spring has come too late.</p><p class="subh en">Before the Poem</p><p class="en">This poem was composed on April 21, 2015, in Sanya on Hainan Island. The poet lodged at the Xiama Ridge Inn, high floors facing the South China Sea, windows opening onto moonlight-rinsed palms. After a day of banquets and social rounds, in the dead of night he sat reading—only to be overtaken by a quiet sorrow he could neither name nor dispel. It was the dry season; yet past midnight, wind rose and sparse rain began to tap upon the panes.</p><p>建議配樂 · 古琴《良宵引》。清雅迴環，宛如月照開窗、葉動風生——驟雨將至前的一片靜謐。</p><p class="en">Listening Companion: The accompaniment features a guqin piece titled "Liangxiao Yin" (Guide to a Peaceful Night), offering "quiet elegance and circling phrases" suited to the poem's contemplative mood.</p></div><div class="byeditor prose"><div class="sep"></div><p>二十八字而四轉，是絕句的極限用法。首句「話兒滿腹未逢時」寫內，次句「椰樹垂頭久莫知」寫外，一內一外已成對峙；第三句忽作問語——「夜半敲窗何故喚？」——把對峙打開；末句「殷殷風葉報春遲」以答作結，而答非所問。所謂「轉」，轉的不是景，是說話的方向：自語、旁觀、發問、代答，四句各據一個位置。<br/>最見功夫的是「久莫知」三字。椰樹垂頭，本是擬人，寫它像個聽者；而「久莫知」一轉，這個聽者原來並不懂——於是擬人立刻落空，孤獨反而因為有了一個不解的聽者而更深。若改作「無人知」，便只是尋常的寂寞；「莫知」的主語是那棵樹，這才是這首詩獨有的冷。<br/>「殷殷」是全詩唯一的疊字，用得極準。《詩經》「殷其雷」本狀雷聲，此處兼狀雨聲之密與傳語之切；下接一個「報」字，彷彿風葉是奉命而來的信使。然而它千里迢迢所報者，只是「春遲」二字——三亞地處熱帶，本無冬春之別，「春遲」於節候無據，只在人心。末字落在「遲」上，二十八字的分量全在這裡。<br/>李商隱《夜雨寄北》同是夜雨、同是問答，卻問的是「何當共剪西窗燭」，把眼下的孤獨寄託於將來的重逢；此詩則問在當下，答亦在當下，無人可寄，故更無退路。</p><p class="en">Twenty-eight characters and four turns — about the limit of the form. Line one speaks inward, line two outward, and the two stand off; line three breaks the deadlock with a question (“Who is knocking at midnight, and why?”); line four answers, but not the question asked. What turns is not the scene but the direction of speech: soliloquy, observation, question, proxy-reply. The finest stroke is 久莫知. The palm bowing its head is a personification — it is being made into a listener — and then “long since has not understood” cancels the personification, so that the loneliness is deepened rather than relieved by having an auditor. “No one knows” would have been ordinary; that the not-knowing belongs to the tree is what makes this poem cold in its own way. 殷殷, the single reduplicative, does double duty for the density of rain and the earnestness of a message; and the message, delivered by leaves in the wind, is only that spring is late — in tropical Sanya a meteorological impossibility, and therefore entirely a fact of the heart. Li Shangyin's famous night-rain quatrain asks its question of the future and consigns the loneliness to a reunion; this one asks in the present and answers in the present, with no one to send word to.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">古琴《平沙落雁》<span class="en">Guqin: “Wild Geese on the Sandbank”</span></span><audio controls="" preload="none" src="../audio/guqin-pingsha-luoyan.ogg"></audio></div><div class="src">演奏／打譜：Charlie Huang，據《蕉庵琴譜》（1868）打譜，2006-04-23 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。許可：CC BY 2.5。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="590" loading="lazy" src="../img/echo-whistler.jpg" width="720"/><figcaption class="cap">James McNeill Whistler, <i>Nocturne: Blue and Silver — Chelsea</i>, 1871. Oil on panel, 50.2 × 60.8 cm. Tate, London. Public domain.</figcaption></figure><div class="txt">Whistler took everything out of the night but two or three tones and one small incident of light — the same economy as twenty-eight characters. The verbal echo is Sappho, fragment 168B: “The moon has set, and the Pleiades; it is midnight; the hour goes by; and I lie alone.” Four lines there, four lines here, and in both the loneliness is carried not by statement but by the passing of an hour.<span class="zh">按：惠斯勒夜曲減色至二三，與七絕二十八字之儉同法。薩福殘篇一六八 B：「月落矣，昴星亦落；夜半矣，時光自去；而我獨眠。」四行之孤，與「殷殷風葉報春遲」可對看。</span></div></div><div class="pager"><a href="shigu-academy.html"><span class="k">上一首 Previous</span><span class="z">贊石鼓書院</span></a><a class="r" href="night-at-blue-mountain.html"><span class="k">下一首 Next</span><span class="z">藍山夜臥</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>

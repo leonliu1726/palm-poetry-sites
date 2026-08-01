@@ -8,7 +8,7 @@
 <meta content="戊戌春變之後，詩人過濟南，與友把酒論世，日暮大醉成章。鵲山在黃河北岸，相傳古有烏鵲蔽日、秦名醫扁鵲煉丹葬此而得名。「停箸」「吞聲」「雙淚垂」，將政治悲慨與故人離情熔於一爐——不計個人得失，但求伐盡害民之慾；長揖落日，西窗" name="description"/>
 <meta content="文刃　Wen Ren" name="author"/>
 <meta content="article" property="og:type"/>
-<meta content="千山獨行 · Beyond a Thousand Mountains" property="og:site_name"/>
+<meta content="千山獨行 · Beyond a Thousand Mountains — The Poetic Journey of Wen Ren" property="og:site_name"/>
 <meta content="飲鵲山 · Drinking at Magpie Mountain ｜ 千山獨行 鑑賞" property="og:title"/>
 <meta content="戊戌春變之後，詩人過濟南，與友把酒論世，日暮大醉成章。鵲山在黃河北岸，相傳古有烏鵲蔽日、秦名醫扁鵲煉丹葬此而得名。「停箸」「吞聲」「雙淚垂」，將政治悲慨與故人離情熔於一爐——不計個人得失，但求伐盡害民之慾；長揖落日，西窗" property="og:description"/>
 <meta content="../img/plate-quehua.jpg" property="og:image"/>
@@ -437,12 +437,125 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
 
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}
+@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}
+}
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}
+@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important} }
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important} }
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}
+@media (max-width:760px){ .lg .yh-cover{max-width:126px} }
+
+/* ---- 一、作品一门通往鉴赏的唯一入口 ---- */
+.crossdoor{display:block;max-width:520px;margin:14px auto 6px;border:1px solid var(--line);
+  border-left:3px solid var(--seal);background:rgba(255,255,255,.5);padding:18px 22px;
+  border-radius:2px;transition:.2s}
+.crossdoor:hover{border-color:var(--seal);background:rgba(156,47,36,.05)}
+.crossdoor .z{font-family:var(--kai);font-size:24px;letter-spacing:.22em;display:block;
+  text-indent:.22em;color:var(--seal)}
+.crossdoor .e{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  text-transform:uppercase;display:block;margin-top:4px}
+.crossdoor .d{font-size:13px;color:var(--ink-2);display:block;margin-top:9px;line-height:1.6}
+.crossdoor .d .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:2px}
+
+/* ---- 一、诗目顶端的作者小引（原「精选诗篇」一块，整体迁来） ---- */
+.catlead{margin:6px 0 4px}
+.catlead .cat-note{font-size:15.5px;line-height:1.95;margin:0 0 .5em;color:var(--ink-2)}
+.catlead .cat-note .en{display:block;font-family:var(--en);font-size:13px;line-height:1.65;
+  color:var(--cyan);margin-top:.4em}
+.catlead a{color:var(--seal);border-bottom:1px solid rgba(156,47,36,.35)}
+.catlead a:hover{background:rgba(156,47,36,.07)}
+
+/* ---- 二、诗目直列（不分类，按原书次第） ---- */
+.toc-grid .pcard .s .pian{color:var(--seal);letter-spacing:.06em}
+
+/* ---- 三、条目里作者的字与编者的字 ---- */
+.byauthor{background:rgba(75,111,108,.05);border-left:3px solid rgba(75,111,108,.35);
+  padding:14px 20px;margin:4px 0 0}
+.byauthor>*:first-child{margin-top:0}
+.byauthor>*:last-child{margin-bottom:0}
+.byeditor{margin:0;padding:20px 0 0}
+.byeditor .sep{width:96px;height:0;border-top:1px solid var(--line-2);margin:0 0 18px}
+.byeditor .sig{font-family:var(--kai);font-size:13.5px;letter-spacing:.2em;color:var(--seal);
+  text-align:right;margin:.6em 0 0}
+/* 配乐条：一首曲、一行小字 */
+.oneplay{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px}
+.oneplay .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.oneplay .ttl{font-family:var(--kai);font-size:14.5px;letter-spacing:.1em;color:var(--seal);
+  white-space:nowrap}
+.oneplay .ttl .en{display:block;font-family:var(--en);font-size:10px;letter-spacing:.04em;
+  color:var(--ink-3);letter-spacing:.03em}
+.oneplay audio{flex:1 1 260px;min-width:0;max-width:420px;height:34px}
+.oneplay .src{font-size:10.5px;line-height:1.6;color:var(--ink-3);overflow-wrap:anywhere}
+
+/* ---- 西方回声：由折叠改为一节 ---- */
+.echo{margin-top:4px}
+
+/* ---- 五、联系表单 ---- */
+.cform{max-width:640px;margin:8px 0 0}
+.cform .fld{margin:0 0 16px}
+.cform label{display:block;font-family:var(--kai);font-size:14.5px;letter-spacing:.14em;
+  color:var(--seal);margin-bottom:6px}
+.cform label .en{display:inline-block;font-family:var(--en);font-size:10.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-left:10px;text-transform:uppercase}
+.cform input,.cform select,.cform textarea{width:100%;box-sizing:border-box;
+  font-family:var(--song);font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--line-2);border-radius:2px;
+  padding:9px 12px;line-height:1.7}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--seal);
+  box-shadow:0 0 0 2px rgba(156,47,36,.10)}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform .send{font-family:var(--kai);font-size:16px;letter-spacing:.24em;text-indent:.24em;
+  color:#f6f2e8;background:var(--seal);border:1px solid var(--seal);border-radius:2px;
+  padding:11px 30px;cursor:pointer;transition:.2s}
+.cform .send:hover{filter:brightness(1.1)}
+.cform .send .en{display:block;font-family:var(--en);font-size:9.5px;letter-spacing:.14em;
+  text-indent:0;text-transform:uppercase;opacity:.85;margin-top:2px}
+.cform .err{color:var(--seal);font-size:12.5px;margin-top:5px;min-height:0}
+.cform .done{margin-top:14px;font-size:13.5px;line-height:1.8;color:var(--ink-2);
+  border-left:3px solid var(--seal);background:rgba(156,47,36,.05);padding:10px 14px;display:none}
+.cform .done.on{display:block}
+.cform .done .en{display:block;font-family:var(--en);font-size:11.5px;color:var(--cyan);margin-top:3px}
+@media (max-width:640px){ .cform .row2{grid-template-columns:1fr} }
+/* 迁来的那一行标题较长，窄屏须许其换行 */
+.lbl.wide{flex-wrap:wrap}
+.lbl.wide .z{white-space:normal;line-height:1.5;font-size:17px;letter-spacing:.18em}
+@media (max-width:520px){ .lbl.wide .z{font-size:15px;letter-spacing:.1em} .lbl.wide .ln{display:none} }
+
 .sealsvg{display:block;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
 .bk .sealsvg.sm{width:27px;height:27px;flex:0 0 27px}
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}
 .bk .sub .brk{display:none}
 .bk .sub i{font-style:italic;letter-spacing:.02em;opacity:.9}
-.bk .sub i::before{content:" · "}
+.bk .sub i::before{content:" "}
 .gate .sub2{font-family:var(--en);font-size:clamp(11px,1.25vw,13.5px);letter-spacing:.14em;
   color:var(--ink-3);margin-top:5px}
 @media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
@@ -948,6 +1061,41 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 /* 书影与栏题同屏：紧一紧这一段前后的留白 */
 .lg .bookbrief{padding-top:4px}
 .lg .book-showcase + .book-blurb{margin-top:2px}
+
+/* ==================================================================
+   第八轮 · 作者定
+   ================================================================== */
+
+/* ---- 一、行者一门的照片适当缩小 ---- */
+.lg .journey-grid{grid-template-columns:repeat(8,1fr)!important;gap:8px}
+.lg .journey-grid img{height:112px}
+.lg .journey-grid figcaption{padding:6px 7px;font-size:10.5px;line-height:1.45}
+.lg .journey-lead{max-width:200px;margin-bottom:18px}@media (max-width:1100px){ .lg .journey-grid{grid-template-columns:repeat(6,1fr)!important}}
+@media (max-width:760px){
+  .lg .journey-grid{grid-template-columns:repeat(3,1fr)!important;gap:6px}
+  .lg .journey-grid img{height:84px}
+  .lg .journey-grid figcaption{padding:5px 5px;font-size:9.5px}
+  .lg .journey-lead{max-width:150px}}
+
+
+/* ---- 三、音像一门的图版缩到每行六个 ---- */
+.lg .media-grid{grid-template-columns:repeat(6,1fr)!important;gap:9px}
+.lg .media-grid .media-card{min-width:0}
+.lg .media-grid figcaption{padding:7px 8px;font-size:11px;line-height:1.45}
+.lg .media-grid figcaption b{font-size:12.5px}
+.lg .media-grid .en-echo{font-size:10px;margin:.2em 0 .5em}
+.lg .media-grid audio{width:100%;min-width:0;height:32px}
+.lg .media-grid video{width:100%;min-width:0}
+.lg .media-grid .audio-scene{min-height:74px}
+.lg .media-grid .yt-cap{font-size:11px;line-height:1.45}@media (max-width:1100px){ .lg .media-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:760px){ .lg .media-grid{grid-template-columns:repeat(2,1fr)!important}}
+
+
+/* ---- 四、《萤火》书影适当缩小 ---- */
+.lg .yh-cover{max-width:150px;margin:6px auto 4px}
+.lg .yh-cover figcaption{font-size:11.5px;margin-top:6px}
+.lg .palm-mini img{width:100%}@media (max-width:760px){ .lg .yh-cover{max-width:126px}}
+
 .gate .sealsvg.lg{width:72px;height:72px;margin:0 auto 18px}@media(max-width:640px){.gate .sealsvg.lg{width:58px;height:58px;margin-bottom:14px}}
 
 .vp-drinking-at-magpie-mountain .sheet{--vfs:18.9px;--vlh:36.0px;--vh:468px}@media(max-width:760px){.vp-drinking-at-magpie-mountain .sheet{--vfs:17.1px;--vlh:32.5px;--vh:422px}}
@@ -975,7 +1123,7 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
  "isPartOf": {
   "@type": "Book",
   "name": "千山獨行",
-  "alternateName": "Beyond a Thousand Mountains"
+  "alternateName": "Beyond a Thousand Mountains — The Poetic Journey of Wen Ren"
  },
  "abstract": "After the upheaval of the Wuxu spring, the poet passes through Jinan and drinks with friends, speaking of the age until, by dusk, sorrow and wine run together. Magpie Mountain, north of the Yellow River, is named both for the magpies that once darkened it and for the pre-Qin physician Bian Que, who refined his elixirs and was buried there. Setting down the chopsticks, swallowing words, twin silent tears: private grief and the sorrow of parting fused into one — no personal vengeance, only the will to cut the greed that bleeds the people. A rare instance, in this collection, of history written through wine.",
  "text": "太息停箸論時悲，借酒吞聲雙淚垂。\n豈慮己失私怨討，但伐民欲至公回。\n諸君逐鹿觀已久，歧路亡羊覺可追。\n日暮飲別長拱手，西窗半沒滿天暉。"
@@ -993,18 +1141,18 @@ html{scroll-snap-type:y proximity;scroll-padding-top:60px}
 </g>
 </g>
 </svg><span class="t">
-<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS<br class="brk"/>
+<span class="zh">千山獨行</span><span class="sub">BEYOND A THOUSAND MOUNTAINS —<br class="brk"/>
 <i>The Poetic Journey of Wen Ren</i></span></span></a>
 <button aria-controls="doors" aria-expanded="false" class="mtog" id="mtog">目錄 Menu</button>
 <ul class="doors" id="doors"><li><a href="../index.html"><span class="z">卷首</span><span class="e">Opening</span></a></li><li><a href="../poet.html"><span class="z">作者</span><span class="e">The Poet</span></a></li><li><a href="../book.html"><span class="z">作品</span><span class="e">The Book</span></a></li><li><a href="../reviews.html"><span class="z">詩評</span><span class="e">Reviews</span></a></li><li><a aria-current="page" href="../poems/index.html"><span class="z">鑑賞</span><span class="e">Appreciation</span></a></li><li><a href="../wayfarer.html"><span class="z">行者</span><span class="e">The Wayfarer</span></a></li><li><a href="../colophon.html"><span class="z">結卷</span><span class="e">Colophon</span></a></li></ul>
 </div></header>
 <main>
-<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 9 首 / 共 17　<span class="grp">戊 · 齊魯 · Qi and Lu</span></div><h1>飲鵲山</h1><div class="h-en">Drinking at Magpie Mountain</div><div class="rule"></div></div><figure class="plate" data-kind="scroll">
+<div class="wrap narrow"><div class="screen s-open"><div class="head"><div class="ord">鑑賞 · 第 3 首 / 共 17</div><h1>飲鵲山</h1><div class="h-en">Drinking at Magpie Mountain</div><div class="rule"></div></div><figure class="plate" data-kind="scroll">
 <img alt="趙孟頫《鵲華秋色圖》（畫心全段）　元元貞元年（1295）　紙本設色　28.4 ×" height="760" loading="lazy" src="../img/plate-quehua.jpg" width="2558"/>
 <figcaption><span class="zh">趙孟頫《鵲華秋色圖》（畫心全段）　元元貞元年（1295）　紙本設色　28.4 × 93.2 cm　臺北故宮博物院藏</span>
 <span class="en">Zhao Mengfu (1254–1322), Autumn Colours on the Qiao and Hua Mountains, painted portion entire. 1295. Handscroll, ink and colour on paper, 28.4 × 93.2 cm. National Palace Museum, Taipei.</span>
 <span class="en lic">Public domain (Wikimedia Commons)</span></figcaption>
-</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-drinking-at-magpie-mountain"><div class="wrapv"><div class="sheet"><span class="l">太息停箸論時悲，借酒吞聲雙淚垂。</span><span class="l">豈慮己失私怨討，但伐民欲至公回。</span><span class="l">諸君逐鹿觀已久，歧路亡羊覺可追。</span><span class="l">日暮飲別長拱手，西窗半沒滿天暉。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">I sigh, lay down my chopsticks, mourn the age; Wine chokes the words I swallow, twin tears run free.</span><span class="l">I do not weigh my losses, nurse no private wrong; I ask but to cut the greed that bleeds the folk, and bring the common good to be.</span><span class="l">You gentlemen have long watched the deer-chase for the throne; Yet the flock lost at the fork, I feel, we still may retrieve.</span><span class="l">At dusk we part from wine with a long, clasped-hand bow; The west window half goes down: the whole sky burns, a brimming sea.</span></div></div><div class="screen"><div class="lbl"><span class="z">題解</span><span class="e">Head-note by the Poet</span><span class="ln"></span></div><div class="prose"><p>戊戌春變之後，詩人過濟南，與友把酒論世，日暮大醉成章。鵲山在黃河北岸，相傳古有烏鵲蔽日、秦名醫扁鵲煉丹葬此而得名。「停箸」「吞聲」「雙淚垂」，將政治悲慨與故人離情熔於一爐——不計個人得失，但求伐盡害民之慾；長揖落日，西窗半沒滿天暉。是集中少有的「以酒寫史」之作。</p><p class="en">After the upheaval of the Wuxu spring, the poet passes through Jinan and drinks with friends, speaking of the age until, by dusk, sorrow and wine run together. Magpie Mountain, north of the Yellow River, is named both for the magpies that once darkened it and for the pre-Qin physician Bian Que, who refined his elixirs and was buried there. Setting down the chopsticks, swallowing words, twin silent tears: private grief and the sorrow of parting fused into one — no personal vengeance, only the will to cut the greed that bleeds the people. A rare instance, in this collection, of history written through wine.</p></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>鵲山</b>在濟南城北、黃河北岸。舊說每歲七八月烏鵲群集山巔，故名；又相傳戰國名醫扁鵲（秦越人，見《史記·扁鵲倉公列傳》）嘗居此煉藥。元趙孟頫《鵲華秋色圖》所寫，即此山與華不注山。</li><li><b>停箸</b>李白《行路難》其一：「停杯投箸不能食，拔劍四顧心茫然。」以食不下咽寫塊壘，此篇起句即用其勢。</li><li><b>吞聲</b>杜甫《哀江頭》：「少陵野老吞聲哭。」吞聲者，有哭而不敢出聲之意，與下「雙淚垂」相續。</li><li><b>豈慮己失私怨討</b>謂不計自身得失，無意於私怨之清算。「討」取聲討、追究義，《左傳》屢言「討貳」「討罪」。</li><li><b>但伐民欲至公回</b>「伐」，攻治、除去。「至公」，極公；《漢書》多以「至公」言無私之政。全句謂惟願除盡戕民之慾，使至公之道復還。</li><li><b>諸君逐鹿</b>《史記·淮陰侯列傳》蒯通說韓信：「秦失其鹿，天下共逐之。」後以「逐鹿」喻爭天下。</li><li><b>歧路亡羊</b>《列子·說符》：楊子鄰人亡羊，多歧而不得，楊子為之戚然，曰「大道以多歧亡羊，學者以多方喪生」。此以喻道術分裂、莫知所從。</li><li><b>覺可追</b>陶潛《歸去來兮辭》：「悟已往之不諫，知來者之可追。」著一「覺」字，則悔悟與希望並存，是全詩僅有的一線亮色。</li><li><b>長拱手</b>拱手為別，古之辭行禮。「長」字狀其久而不忍釋，與末句落日相映。</li><li><b>西窗</b>李商隱《夜雨寄北》：「何當共剪西窗燭，卻話巴山夜雨時。」西窗遂為懷友之地。此詩易「剪燭」為「半沒滿天暉」，則由夜話之約轉為日暮之別。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="prose"><p>七律而以議論行之，是宋人的路數，難在不使議論壓死聲律。此詩中二聯的辦法是以虛字領起：「豈慮」對「但伐」，「觀已久」對「覺可追」——虛字在前，實事在後，句子便有了轉折的餘地，不至於一聯兩句都是斷語。四句之中三用故實（逐鹿、亡羊、可追），而讀來不覺其滯，正因為這些典故都被安放在虛字的轉折之後，是議論的例證，不是議論本身。<br/>首聯「太息停箸論時悲，借酒吞聲雙淚垂」，十四字裡連下「太息」「停箸」「吞聲」「淚垂」四個動作，密到幾乎失禮；然而正是這種失禮，才寫得出席間那一種說不下去又不能不說的窘迫。李白的「停杯投箸」是拔劍四顧的前奏，此處的「停箸」卻只換來「吞聲」，一往一收，格調遂別。<br/>結句「西窗半沒滿天暉」最耐咀嚼，關鍵在「半沒」二字。不寫落日已盡，也不寫夕照滿窗，只寫那個正在沉下去的瞬間——日已半沒，而天猶滿暉；舊的一天尚未結束，新的一天尚未開始。這是把一整篇的政治憂憤和朋友情誼，一起交給了一個沒有結論的時刻。以景結情而不作收束，唐人謂之「含蓄」，此句得之。</p><p class="en">A regulated verse carried by argument — the Song manner — and the difficulty is to keep the argument from killing the metre. The two middle couplets solve it by putting a function word first: “far from fearing…” answered by “only to root out…”, “long have watched” answered by “now know may still be retrieved.” Three allusions are deployed in four lines, yet nothing clogs, because each arrives <i>after</i> the turn rather than as the turn. The opening packs four gestures into fourteen syllables — sighing, chopsticks laid down, voice swallowed, tears — an almost impolite density, which is precisely how it renders a table where something cannot be said and cannot be left unsaid. Li Bai's laid-down chopsticks precede a drawn sword; here they yield only a swallowed voice. The last line turns on two characters, 半沒: not the sun gone, not the sun blazing, but the instant of going — half drowned, the whole sky still bright. The day's argument is neither concluded nor abandoned, and the poem declines to conclude it for us.</p></div></div><div class="screen free"><details class="fold" id="afterword"><summary><span class="z">作者按語</span><span class="e">The Poet’s Own Note</span><span class="tw">+</span></summary><div class="body"><div class="q prose"><p class="subh en">Before the Poem</p><p class="en">This poem was composed after the tragic event in the second month of Wuxu spring, when the poet passed through Jinan and drank with friends, speaking of the times. By sunset they were drunk with sorrow. Magpie Mountain lies north of the Yellow River; legend holds that in the seventh and eighth moons, magpies once darkened its summit, and that the famous pre-Qin physician Bian Que cultivated elixirs here and was buried upon it—thus the mountain took its name. The poem's "setting down chopsticks," "swallowing words," and "two silent tears" fuse political grief with parting sorrow—a rare "writing history through wine" piece in this collection. From the cosmic epic of Mount Heng, through the inward solitude of Sanya, we arrive here at a kind of heroic abandon "where wine contains heaven and earth": no private vengeance, only a will to uproot greed; a solemn bow to the setting sun, the western window sinking in golden light. English readers may understand this as: under the weight of history, the intellectual makes wine and song his final moral ground.</p></div></div></details></div><div class="screen free"><details class="fold" id="audio"><summary><span class="z">誦 與 樂</span><span class="e">Recitation &amp; Music</span><span class="tw">+</span></summary><div class="body"><p class="prose" style="font-size:15px">建議配樂 · 古琴《平沙落雁》。其句法如黃河暮色中獨行送別、群雁落入退去的天光，恰合此詩的離別與未盡之望。</p><div class="prose" style="font-size:14px"><p class="en">Listening Companion: Read by author with China classic Guqin piece: "平沙落雁" (Wild Geese Descend on the Sandbank). Its phrasing suggests a solitary farewell by a riverbank at dusk, geese settling into receding light — a quiet match for the poem's farewell and unresolved hope.</p></div><div class="tracks"><button aria-pressed="false" data-note="作者本人朗诵，原样引用。" data-src="../网站图片/音像/录音42.m4a" type="button">作者朗誦 · 飲鵲山<span class="e">Read by the poet</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《蕉庵琴谱》（1868）打谱，2006-04-23 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-pingsha-luoyan.ogg" type="button">古琴《平沙落雁》<span class="e">Guqin: “Wild Geese on the Sandbank”</span></button><button aria-pressed="false" data-note="演奏／打谱：Charlie Huang，据《天闻阁琴谱》（1876）打谱；2006-04-15 录于英国伯明翰「韶韵轩」。原件 commons.wikimedia.org/wiki/File:Liu_Shui.ogg。许可：CC BY 2.5。" data-src="../audio/guqin-liushui-flowing-water.ogg" type="button">古琴《流水》<span class="e">Guqin: “Flowing Water”</span></button></div><div class="player"><audio controls="" preload="none"></audio><div class="src"></div></div></div></details><details class="fold" id="echo"><summary><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="tw">+</span></summary><div class="body"><div class="echo"><figure><img alt="" height="540" loading="lazy" src="../img/echo-claude.jpg" width="720"/><figcaption class="cap">Claude Lorrain, <i>Seaport at Sunset</i>, 1639. Oil on canvas, 103 × 137 cm. Musée du Louvre, Paris (INV 4715). Public domain.</figcaption></figure><div class="txt">Claude puts the sun on the horizon and every figure into shadow, so that a harbour full of business becomes a picture about departure. The last line here does the same work: the west window half drowned in a skyful of light. Behind both stands Virgil's first <i>Eclogue</i>, where two friends argue politics until the shadows fall from the high hills and one of them has to go.<span class="zh">按：克洛德以逆光取影，港中百事皆成剪影，畫遂只剩「別」之一義；「西窗半沒滿天暉」正是此法。維吉爾《牧歌》第一首以夕陽與去留作結，亦「論時悲」而終於日暮。</span></div></div></div></details><div class="pager"><a href="pavilion-of-prince-teng.html"><span class="k">上一首 Previous</span><span class="z">詠滕王閣</span></a><a class="r" href="ode-to-the-yan-temple-by-daming-lake.html"><span class="k">下一首 Next</span><span class="z">詠大明湖晏公廟</span></a></div></div></div>
+</figure></div><div class="screen"><div class="lbl"><span class="z">原詩</span><span class="e">The Poem</span><span class="ln"></span></div><div class="vpoem vp-drinking-at-magpie-mountain"><div class="wrapv"><div class="sheet"><span class="l">太息停箸論時悲，借酒吞聲雙淚垂。</span><span class="l">豈慮己失私怨討，但伐民欲至公回。</span><span class="l">諸君逐鹿觀已久，歧路亡羊覺可追。</span><span class="l">日暮飲別長拱手，西窗半沒滿天暉。</span></div></div></div></div><div class="screen"><div class="lbl"><span class="z">作者英譯</span><span class="e">The Poet’s Own Translation</span><span class="ln"></span></div><div class="trans"><span class="l">I sigh, lay down my chopsticks, mourn the age; Wine chokes the words I swallow, twin tears run free.</span><span class="l">I do not weigh my losses, nurse no private wrong; I ask but to cut the greed that bleeds the folk, and bring the common good to be.</span><span class="l">You gentlemen have long watched the deer-chase for the throne; Yet the flock lost at the fork, I feel, we still may retrieve.</span><span class="l">At dusk we part from wine with a long, clasped-hand bow; The west window half goes down: the whole sky burns, a brimming sea.</span></div></div><div class="screen free"><div class="lbl"><span class="z">註釋</span><span class="e">Annotation</span><span class="ln"></span></div><ol class="notes"><li><b>鵲山</b>在濟南城北、黃河北岸。舊說每歲七八月烏鵲群集山巔，故名；又相傳戰國名醫扁鵲（秦越人，見《史記·扁鵲倉公列傳》）嘗居此煉藥。元趙孟頫《鵲華秋色圖》所寫，即此山與華不注山。</li><li><b>停箸</b>李白《行路難》其一：「停杯投箸不能食，拔劍四顧心茫然。」以食不下咽寫塊壘，此篇起句即用其勢。</li><li><b>吞聲</b>杜甫《哀江頭》：「少陵野老吞聲哭。」吞聲者，有哭而不敢出聲之意，與下「雙淚垂」相續。</li><li><b>豈慮己失私怨討</b>謂不計自身得失，無意於私怨之清算。「討」取聲討、追究義，《左傳》屢言「討貳」「討罪」。</li><li><b>但伐民欲至公回</b>「伐」，攻治、除去。「至公」，極公；《漢書》多以「至公」言無私之政。全句謂惟願除盡戕民之慾，使至公之道復還。</li><li><b>諸君逐鹿</b>《史記·淮陰侯列傳》蒯通說韓信：「秦失其鹿，天下共逐之。」後以「逐鹿」喻爭天下。</li><li><b>歧路亡羊</b>《列子·說符》：楊子鄰人亡羊，多歧而不得，楊子為之戚然，曰「大道以多歧亡羊，學者以多方喪生」。此以喻道術分裂、莫知所從。</li><li><b>覺可追</b>陶潛《歸去來兮辭》：「悟已往之不諫，知來者之可追。」著一「覺」字，則悔悟與希望並存，是全詩僅有的一線亮色。</li><li><b>長拱手</b>拱手為別，古之辭行禮。「長」字狀其久而不忍釋，與末句落日相映。</li><li><b>西窗</b>李商隱《夜雨寄北》：「何當共剪西窗燭，卻話巴山夜雨時。」西窗遂為懷友之地。此詩易「剪燭」為「半沒滿天暉」，則由夜話之約轉為日暮之別。</li></ol></div><div class="screen free"><div class="lbl"><span class="z">鑑賞</span><span class="e">Appreciation</span><span class="ln"></span></div><div class="byauthor prose"><p>戊戌春變之後，詩人過濟南，與友把酒論世，日暮大醉成章。鵲山在黃河北岸，相傳古有烏鵲蔽日、秦名醫扁鵲煉丹葬此而得名。「停箸」「吞聲」「雙淚垂」，將政治悲慨與故人離情熔於一爐——不計個人得失，但求伐盡害民之慾；長揖落日，西窗半沒滿天暉。是集中少有的「以酒寫史」之作。</p><p class="en">After the upheaval of the Wuxu spring, the poet passes through Jinan and drinks with friends, speaking of the age until, by dusk, sorrow and wine run together. Magpie Mountain, north of the Yellow River, is named both for the magpies that once darkened it and for the pre-Qin physician Bian Que, who refined his elixirs and was buried there. Setting down the chopsticks, swallowing words, twin silent tears: private grief and the sorrow of parting fused into one — no personal vengeance, only the will to cut the greed that bleeds the people. A rare instance, in this collection, of history written through wine.</p><p class="subh en">Before the Poem</p><p class="en">This poem was composed after the tragic event in the second month of Wuxu spring, when the poet passed through Jinan and drank with friends, speaking of the times. By sunset they were drunk with sorrow. Magpie Mountain lies north of the Yellow River; legend holds that in the seventh and eighth moons, magpies once darkened its summit, and that the famous pre-Qin physician Bian Que cultivated elixirs here and was buried upon it—thus the mountain took its name. The poem's "setting down chopsticks," "swallowing words," and "two silent tears" fuse political grief with parting sorrow—a rare "writing history through wine" piece in this collection. From the cosmic epic of Mount Heng, through the inward solitude of Sanya, we arrive here at a kind of heroic abandon "where wine contains heaven and earth": no private vengeance, only a will to uproot greed; a solemn bow to the setting sun, the western window sinking in golden light. English readers may understand this as: under the weight of history, the intellectual makes wine and song his final moral ground.</p><p>建議配樂 · 古琴《平沙落雁》。其句法如黃河暮色中獨行送別、群雁落入退去的天光，恰合此詩的離別與未盡之望。</p><p class="en">Listening Companion: Read by author with China classic Guqin piece: "平沙落雁" (Wild Geese Descend on the Sandbank). Its phrasing suggests a solitary farewell by a riverbank at dusk, geese settling into receding light — a quiet match for the poem's farewell and unresolved hope.</p></div><div class="byeditor prose"><div class="sep"></div><p>七律而以議論行之，是宋人的路數，難在不使議論壓死聲律。此詩中二聯的辦法是以虛字領起：「豈慮」對「但伐」，「觀已久」對「覺可追」——虛字在前，實事在後，句子便有了轉折的餘地，不至於一聯兩句都是斷語。四句之中三用故實（逐鹿、亡羊、可追），而讀來不覺其滯，正因為這些典故都被安放在虛字的轉折之後，是議論的例證，不是議論本身。<br/>首聯「太息停箸論時悲，借酒吞聲雙淚垂」，十四字裡連下「太息」「停箸」「吞聲」「淚垂」四個動作，密到幾乎失禮；然而正是這種失禮，才寫得出席間那一種說不下去又不能不說的窘迫。李白的「停杯投箸」是拔劍四顧的前奏，此處的「停箸」卻只換來「吞聲」，一往一收，格調遂別。<br/>結句「西窗半沒滿天暉」最耐咀嚼，關鍵在「半沒」二字。不寫落日已盡，也不寫夕照滿窗，只寫那個正在沉下去的瞬間——日已半沒，而天猶滿暉；舊的一天尚未結束，新的一天尚未開始。這是把一整篇的政治憂憤和朋友情誼，一起交給了一個沒有結論的時刻。以景結情而不作收束，唐人謂之「含蓄」，此句得之。</p><p class="en">A regulated verse carried by argument — the Song manner — and the difficulty is to keep the argument from killing the metre. The two middle couplets solve it by putting a function word first: “far from fearing…” answered by “only to root out…”, “long have watched” answered by “now know may still be retrieved.” Three allusions are deployed in four lines, yet nothing clogs, because each arrives <i>after</i> the turn rather than as the turn. The opening packs four gestures into fourteen syllables — sighing, chopsticks laid down, voice swallowed, tears — an almost impolite density, which is precisely how it renders a table where something cannot be said and cannot be left unsaid. Li Bai's laid-down chopsticks precede a drawn sword; here they yield only a swallowed voice. The last line turns on two characters, 半沒: not the sun gone, not the sun blazing, but the instant of going — half drowned, the whole sky still bright. The day's argument is neither concluded nor abandoned, and the poem declines to conclude it for us.</p><p class="sig">（編者）</p></div><div class="oneplay"><div class="row"><span class="ttl">作者朗誦 · 飲鵲山<span class="en">Read by the poet</span></span><audio controls="" preload="none" src="../网站图片/音像/录音42.m4a"></audio></div><div class="src">作者本人朗誦，原樣引用。</div><div class="row"><span class="ttl">古琴《平沙落雁》<span class="en">Guqin: “Wild Geese on the Sandbank”</span></span><audio controls="" preload="none" src="../audio/guqin-pingsha-luoyan.ogg"></audio></div><div class="src">演奏／打譜：Charlie Huang，據《蕉庵琴譜》（1868）打譜，2006-04-23 錄於英國伯明翰「韶韻軒」。原件 commons.wikimedia.org/wiki/File:Pingsha_Luoyan.ogg。許可：CC BY 2.5。</div></div></div><div class="screen free"><div class="lbl"><span class="z">西方回聲</span><span class="e">A Western Echo</span><span class="ln"></span></div><div class="echo"><figure><img alt="" height="540" loading="lazy" src="../img/echo-claude.jpg" width="720"/><figcaption class="cap">Claude Lorrain, <i>Seaport at Sunset</i>, 1639. Oil on canvas, 103 × 137 cm. Musée du Louvre, Paris (INV 4715). Public domain.</figcaption></figure><div class="txt">Claude puts the sun on the horizon and every figure into shadow, so that a harbour full of business becomes a picture about departure. The last line here does the same work: the west window half drowned in a skyful of light. Behind both stands Virgil's first <i>Eclogue</i>, where two friends argue politics until the shadows fall from the high hills and one of them has to go.<span class="zh">按：克洛德以逆光取影，港中百事皆成剪影，畫遂只剩「別」之一義；「西窗半沒滿天暉」正是此法。維吉爾《牧歌》第一首以夕陽與去留作結，亦「論時悲」而終於日暮。</span></div></div><div class="pager"><a href="ode-to-the-yan-temple-by-daming-lake.html"><span class="k">上一首 Previous</span><span class="z">詠大明湖晏公廟</span></a><a class="r" href="mount-yangtian-moyun-crag.html"><span class="k">下一首 Next</span><span class="z">詠仰天山摩雲崮</span></a></div></div></div>
 </main>
 <footer class="foot"><div class="in">
 <span>文刃《千山獨行》· 臺灣中華書局出版<span class="en">Wen Ren, <i>Beyond a Thousand Mountains</i> — The Poetic Journey of Wen Ren. Chung Hwa Book Co. (Taiwan)</span></span>
@@ -1048,6 +1196,48 @@ document.querySelectorAll('.player').forEach(function(pl){
     if(!box.open) au.pause();
   });
 });
+
+/* ---- 一页只响一处：某一轨播起来时，别处的自动停 ---- */
+document.addEventListener('play',function(e){
+  document.querySelectorAll('audio,video').forEach(function(a){
+    if(a!==e.target && !a.paused) a.pause();
+  });
+},true);
+
+/* ---- 全书目次：从别处带 #toc-full 跳来时自动展开 ---- */
+function openToc(){
+  var d=document.getElementById('toc-full');
+  if(d && location.hash==='#toc-full'){ d.open=true;
+    setTimeout(function(){ d.scrollIntoView({block:'start'}); },30); }
+}
+openToc(); window.addEventListener('hashchange',openToc);
+
+/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
+       收件地址不明写在 HTML 里，运行时拼装。 ---- */
+var cf=document.getElementById('cform');
+if(cf){
+  var box=['leonliu1726','gmail','com'];
+  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
+  cf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
+    var ok=true;
+    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
+    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
+    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
+    if(!ok) return;
+    var subj='《千山獨行》· '+s+'　'+n;
+    var body=b+'\n\n——\n'+n+'　'+m;
+    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
+             +'&body='+encodeURIComponent(body);
+    document.getElementById('cf-ok').classList.add('on');
+    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
+    window.location.href=href;
+  });
+}
 })();
 </script>
 </body>
