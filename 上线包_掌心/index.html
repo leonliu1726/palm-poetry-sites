@@ -225,6 +225,7 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
   <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="诗社成员" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid" id="m-grid-2"></div>
+  <p class="m-note" style="margin:12px 0 0"><a href="#" id="sbEntry" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✦ 成员登录 · 维护我自己的版块 →</a></p>
   <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="学园知交" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
   <p class="m-note">＊ 点击任一姓名，即可查看其简介与照片；简介暂缺者，欢迎本人或知情诗友补充。互动版上线后，成员可自行注册、开辟专栏、维护个人页面。</p>
 </div></section>
@@ -826,6 +827,169 @@ var ROSTER=[
     if(e.target.id==="mfClose"||e.target===w) close();
   });
   document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
+})();
+</script>
+
+<!-- ===== 成员登录与个人版块 · Supabase ===== -->
+<div id="sbLogin" style="display:none;position:fixed;inset:0;z-index:130;background:rgba(30,26,20,.55);padding:24px;overflow:auto">
+  <div style="max-width:560px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 28px 30px;position:relative">
+    <span data-sbclose="sbLogin" style="position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1">×</span>
+    <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
+    <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
+    <div style="height:1px;background:var(--line);margin:16px 0"></div>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">填入你留给掌心的邮箱，我们会寄一封信给你，<b>点开信里的链接就进来了</b>——不用密码，也不必记住任何东西。</p>
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
+    <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
+    <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
+    <p id="sbMsg" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
+  </div>
+</div>
+<div id="sbMine" style="display:none;position:fixed;inset:0;z-index:130;background:rgba(30,26,20,.55);padding:24px;overflow:auto">
+  <div style="max-width:560px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 28px 30px;position:relative">
+    <span data-sbclose="sbMine" style="position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1">×</span>
+    <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">我的一方天地</div>
+    <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">My own corner</div>
+    <div style="height:1px;background:var(--line);margin:16px 0"></div>
+    <p id="sbWho" style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0"></p>
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">专长 · 标签</label>
+    <input type="text" id="sbRole" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="例：诗词、翻译、书法">
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">简介</label>
+    <textarea id="sbBio" rows="7" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical" placeholder="籍贯、经历、著作、与掌心的因缘……长短随意"></textarea>
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">照片 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（选一张，可略过）</span></label>
+    <input type="file" id="sbPhoto" accept="image/*" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+    <img id="sbPrev" style="display:none;margin-top:10px;max-width:140px;border-radius:8px;border:1px solid var(--line)">
+    <div style="display:flex;gap:10px;align-items:center;margin-top:20px">
+      <button id="sbSave" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;flex:1">保 存</button>
+      <button id="sbOut" style="padding:11px 16px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink-soft);font-family:var(--kai);font-size:14px;cursor:pointer">退出</button>
+    </div>
+    <p id="sbMsg2" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
+  </div>
+</div>
+<div id="sbCard" style="display:none;position:fixed;inset:0;z-index:130;background:rgba(30,26,20,.55);padding:24px;overflow:auto">
+  <div style="max-width:560px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 28px 30px;position:relative;max-width:520px">
+    <span data-sbclose="sbCard" style="position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1">×</span>
+    <div id="sbCardHead" style="display:flex;gap:14px;align-items:center"></div>
+    <div style="height:1px;background:var(--line);margin:16px 0"></div>
+    <p id="sbCardBio" style="font-size:14.5px;line-height:2;color:var(--ink);margin:0;white-space:pre-wrap"></p>
+    <p style="font-size:12px;color:var(--ink-soft);margin:16px 0 0">＊ 本人登录后可自行维护此页；如需代为补充，敬请来信。</p>
+  </div>
+</div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SB = createClient('https://ubzykpglausstbsvijoc.supabase.co','sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP');
+const $ = function(id){ return document.getElementById(id); };
+const show = function(id){ $(id).style.display='block'; document.body.style.overflow='hidden'; };
+const hide = function(id){ $(id).style.display='none'; document.body.style.overflow=''; };
+const COLS = 'name,grp,role,bio,photo_url,sort_order,updated_at';
+let ROWS = [], ME = null, MINE = null;
+function makeCard(m){
+  var d=document.createElement('div'); d.className='m-card'; d.setAttribute('data-m',m.name);
+  var s=document.createElement('span'); s.className='m-name'; s.textContent=m.name;
+  if(m.updated_at && Date.now()-Date.parse(m.updated_at) < 30*864e5){
+    var i=document.createElement('i'); i.textContent='\u2726'; i.title='最近更新';
+    i.style.cssText='margin-left:6px;font-size:10px;color:var(--seal);vertical-align:super;font-style:normal;opacity:.75';
+    s.appendChild(i);
+  }
+  d.appendChild(s); return d;
+}
+function paint(){
+  [1,2].forEach(function(g){
+    var el=$('m-grid-'+g); if(!el) return;
+    var list=ROWS.filter(function(m){return m.grp===g;}).sort(function(a,b){
+      var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
+      if(A!==B) return B-A;
+      return a.sort_order-b.sort_order;
+    });
+    el.innerHTML=''; list.forEach(function(m){ el.appendChild(makeCard(m)); });
+  });
+}
+function openCard(name){
+  var m=ROWS.filter(function(x){return x.name===name;})[0]; if(!m) return;
+  var h=$('sbCardHead'); h.innerHTML='';
+  var av=document.createElement('div');
+  if(m.photo_url){ var im=document.createElement('img'); im.src=m.photo_url; im.style.cssText='width:62px;height:62px;object-fit:cover;border-radius:50%;border:1px solid var(--line)'; av.appendChild(im); }
+  else { av.style.cssText='width:62px;height:62px;flex:0 0 62px;border-radius:50%;background:var(--seal);color:#fdf9f0;display:flex;align-items:center;justify-content:center;font-family:var(--kai);font-size:26px'; av.textContent=m.name.slice(0,1); }
+  var tx=document.createElement('div');
+  var n1=document.createElement('div'); n1.style.cssText='font-family:var(--kai);font-size:20px;color:var(--ink)'; n1.textContent=m.name;
+  var n2=document.createElement('div'); n2.style.cssText='font-size:13px;color:var(--ink-soft);margin-top:3px'; n2.textContent=m.role||'';
+  tx.appendChild(n1); tx.appendChild(n2);
+  h.appendChild(av); h.appendChild(tx);
+  $('sbCardBio').textContent = m.bio || '简介暂缺，欢迎本人或知情诗友补充。';
+  show('sbCard');
+}
+async function reload(){
+  var r = await SB.from('members').select(COLS);
+  if(r.error || !r.data || !r.data.length) return false;
+  ROWS = r.data; paint(); return true;
+}
+async function refreshMe(){
+  var s = await SB.auth.getSession();
+  ME = (s.data && s.data.session) ? s.data.session.user : null;
+  var link = $('sbEntry');
+  if(link) link.textContent = ME ? '✦ 我的一方天地 · 编辑我的简介与照片 →' : '✦ 成员登录 · 维护我自己的版块 →';
+}
+async function openMine(){
+  await refreshMe();
+  if(!ME){ $('sbMsg').textContent=''; show('sbLogin'); return; }
+  var r = await SB.rpc('my_member');
+  if(r.error || !r.data || !r.data.length){
+    $('sbMsg').textContent='这个邮箱（'+ME.email+'）还没有绑定到任何成员。请致信掌心为你开通。';
+    show('sbLogin'); return;
+  }
+  MINE = r.data[0];
+  var b=document.createElement('b'); b.textContent = MINE.name + '（' + ME.email + '）';
+  $('sbWho').textContent='正在编辑：'; $('sbWho').appendChild(b);
+  $('sbRole').value = MINE.role||''; $('sbBio').value = MINE.bio||'';
+  if(MINE.photo_url){ $('sbPrev').src=MINE.photo_url; $('sbPrev').style.display='block'; } else { $('sbPrev').style.display='none'; }
+  $('sbMsg2').textContent=''; show('sbMine');
+}
+document.addEventListener('click', async function(e){
+  var c = e.target.getAttribute && e.target.getAttribute('data-sbclose');
+  if(c){ hide(c); return; }
+  if(e.target.id==='sbLogin'||e.target.id==='sbMine'||e.target.id==='sbCard'){ hide(e.target.id); return; }
+  if(e.target.id==='sbEntry'){ e.preventDefault(); openMine(); return; }
+  if(e.target.id==='sbSend'){
+    var em=$('sbEmail').value.trim();
+    if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
+    e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
+    var r = await SB.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } });
+    e.target.disabled=false;
+    $('sbMsg').textContent = r.error ? ('寄送失败：'+r.error.message) : '已寄出。请到邮箱点开信里的链接，即可回到本页并自动登入。';
+    return;
+  }
+  if(e.target.id==='sbOut'){ await SB.auth.signOut(); ME=null; MINE=null; hide('sbMine'); refreshMe(); return; }
+  if(e.target.id==='sbSave'){
+    if(!MINE) return;
+    e.target.disabled=true; $('sbMsg2').textContent='正在保存……';
+    var patch={ role:$('sbRole').value.trim(), bio:$('sbBio').value.trim() };
+    var f=$('sbPhoto').files[0];
+    if(f){
+      var path = MINE.name + '/' + Date.now() + '-' + f.name.replace(/[^\w.\-]/g,'_');
+      var up = await SB.storage.from('member-photos').upload(path, f, { upsert:true });
+      if(up.error){ $('sbMsg2').textContent='照片上传失败：'+up.error.message; e.target.disabled=false; return; }
+      patch.photo_url = SB.storage.from('member-photos').getPublicUrl(path).data.publicUrl;
+    }
+    var w = await SB.from('members').update(patch).eq('name', MINE.name).select('name');
+    e.target.disabled=false;
+    if(w.error){ $('sbMsg2').textContent='保存失败：'+w.error.message; return; }
+    if(!w.data || !w.data.length){ $('sbMsg2').textContent='没有保存成功——这个邮箱没有编辑此版块的权限。'; return; }
+    $('sbMsg2').textContent='已保存。你已排到本组最前。';
+    if(patch.photo_url){ $('sbPrev').src=patch.photo_url; $('sbPrev').style.display='block'; }
+    MINE.role=patch.role; MINE.bio=patch.bio; if(patch.photo_url) MINE.photo_url=patch.photo_url;
+    reload();
+  }
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
+SB.auth.onAuthStateChange(function(){ refreshMe(); });
+(async function(){
+  var ok = await reload();
+  if(ok){
+    document.getElementById('members').addEventListener('click', function(e){
+      var c = e.target.closest('.m-card[data-m]');
+      if(c){ e.preventDefault(); e.stopPropagation(); openCard(c.getAttribute('data-m')); }
+    }, true);
+  }
+  await refreshMe();
 })();
 </script>
 </body></html>
