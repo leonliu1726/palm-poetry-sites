@@ -878,6 +878,18 @@ var ROSTER=[
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const SB = createClient('https://ubzykpglausstbsvijoc.supabase.co','sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP');
 const $ = function(id){ return document.getElementById(id); };
+const say = function(m){
+  m = (m||'').toString().toLowerCase();
+  if(m.indexOf('rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
+    return '发信额度已满 · Email limit exceeded —— 掌心每小时能寄出的信有限，眼下已经用完。请过一小时再来，或改日再试；你的资料不会有任何影响。';
+  if(m.indexOf('invalid')>-1 && m.indexOf('email')>-1)
+    return '这个邮箱地址似乎写错了，请再核对一下。';
+  if(m.indexOf('signups not allowed')>-1 || m.indexOf('not allowed')>-1)
+    return '这个邮箱还没有在掌心开通。请致信掌心为你开通。';
+  if(m.indexOf('failed to fetch')>-1 || m.indexOf('network')>-1)
+    return '网络似乎不通，请稍后再试。';
+  return '眼下寄不出去，请稍后再试。若一直不行，请致信掌心。';
+};
 const show = function(id){ $(id).style.display='block'; document.body.style.overflow='hidden'; };
 const hide = function(id){ $(id).style.display='none'; document.body.style.overflow=''; };
 const COLS = 'name,grp,role,bio,photo_url,sort_order,updated_at';
@@ -954,7 +966,7 @@ document.addEventListener('click', async function(e){
     e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
     var r = await SB.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } });
     e.target.disabled=false;
-    $('sbMsg').textContent = r.error ? ('寄送失败：'+r.error.message) : '已寄出。请到邮箱点开信里的链接，即可回到本页并自动登入。';
+    $('sbMsg').textContent = r.error ? say(r.error.message) : '已寄出。请到邮箱点开信里的链接，即可回到本页并自动登入。';
     return;
   }
   if(e.target.id==='sbOut'){ await SB.auth.signOut(); ME=null; MINE=null; hide('sbMine'); refreshMe(); return; }
@@ -966,12 +978,12 @@ document.addEventListener('click', async function(e){
     if(f){
       var path = MINE.name + '/' + Date.now() + '-' + f.name.replace(/[^\w.\-]/g,'_');
       var up = await SB.storage.from('member-photos').upload(path, f, { upsert:true });
-      if(up.error){ $('sbMsg2').textContent='照片上传失败：'+up.error.message; e.target.disabled=false; return; }
+      if(up.error){ $('sbMsg2').textContent='照片眼下没能传上去，请稍后再试，或先只保存文字。'; e.target.disabled=false; return; }
       patch.photo_url = SB.storage.from('member-photos').getPublicUrl(path).data.publicUrl;
     }
     var w = await SB.from('members').update(patch).eq('name', MINE.name).select('name');
     e.target.disabled=false;
-    if(w.error){ $('sbMsg2').textContent='保存失败：'+w.error.message; return; }
+    if(w.error){ $('sbMsg2').textContent='眼下没能保存下来，请稍后再试。'; return; }
     if(!w.data || !w.data.length){ $('sbMsg2').textContent='没有保存成功——这个邮箱没有编辑此版块的权限。'; return; }
     $('sbMsg2').textContent='已保存。你已排到本组最前。';
     if(patch.photo_url){ $('sbPrev').src=patch.photo_url; $('sbPrev').style.display='block'; }
