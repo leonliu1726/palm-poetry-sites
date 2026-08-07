@@ -222,8 +222,10 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">诗社成员 <span class="en">Members</span></div>
   <div class="m-grid" id="m-grid-1"></div>
+  <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="诗社成员" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid" id="m-grid-2"></div>
+  <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="学园知交" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
   <p class="m-note">＊ 点击任一姓名，即可查看其简介与照片；简介暂缺者，欢迎本人或知情诗友补充。互动版上线后，成员可自行注册、开辟专栏、维护个人页面。</p>
 </div></section>
 
@@ -786,6 +788,57 @@ var ROSTER=[
   });
   modal.addEventListener('click',function(e){if(e.target===modal)closeMember();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMember();});
+})();
+</script>
+
+<!-- ===== 成员资料表单 · FormSubmit ===== -->
+<div id="mfWrap" style="display:none;position:fixed;inset:0;z-index:120;background:rgba(30,26,20,.55);padding:24px;overflow:auto">
+  <div style="max-width:560px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 28px 30px;position:relative">
+    <span id="mfClose" style="position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1">×</span>
+    <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">补充 · 更新我的资料</div>
+    <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Update my entry</div>
+    <div style="height:1px;background:var(--line);margin:16px 0"></div>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0 0 4px">填好寄出即可，掌心会为你安顿在网站上。邮箱只用于本人日后登录维护自己的版块，<b>不公开、不外传</b>。</p>
+    <form action="https://formsubmit.co/leonliu1726@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="掌心 · 成员资料">
+      <input type="hidden" name="_cc" value="huangxiaoyu2001@gmail.com">
+      <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
+      <input type="hidden" name="组别" id="mfGroup" value="">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">姓名 <span style="color:var(--seal)">*</span> <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（请与网站上的名字一致）</span></label>
+      <input type="text" name="姓名" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">常用邮箱 <span style="color:var(--seal)">*</span></label>
+      <input type="email" name="email" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">专长 · 标签 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（例：诗词、翻译、书法、摄影）</span></label>
+      <input type="text" name="专长" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">简介</label>
+      <textarea name="简介" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical" placeholder="籍贯、经历、著作、与掌心的因缘……长短随意"></textarea>
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">照片 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（一张即可，可略过）</span></label>
+      <input type="file" name="照片" accept="image/*" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">作品一 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（诗文、书画、PDF 皆可）</span></label>
+      <input type="file" name="作品一" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">作品二</label>
+      <input type="file" name="作品二" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0">＊ 三个文件合计不超过 10MB。太大或不便上传，寄出后直接回信附上即可。</p>
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">还想说的话</label>
+      <textarea name="备注" rows="2" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical"></textarea>
+      <button type="submit" style="margin-top:20px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:16px;letter-spacing:.2em;cursor:pointer">寄 出</button>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var w=document.getElementById("mfWrap");
+  function open(g){document.getElementById("mfGroup").value=g;w.style.display="block";document.body.style.overflow="hidden";}
+  function close(){w.style.display="none";document.body.style.overflow="";}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-mform]");
+    if(a){e.preventDefault();open(a.getAttribute("data-mform"));return;}
+    if(e.target.id==="mfClose"||e.target===w) close();
+  });
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
 })();
 </script>
 </body></html>
