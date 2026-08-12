@@ -222,11 +222,12 @@ if(i)i.addEventListener('keydown',function(e){if(e.key==='Enter'){if(i.value===P
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">诗社成员 <span class="en">Members</span></div>
   <div class="m-grid" id="m-grid-1"></div>
-  <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="诗社成员" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
+  <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
+  <p class="m-note" style="margin:8px 0 0"><a href="#" data-mform="诗社成员" style="color:var(--ink-soft);border-bottom:1px dotted var(--line);text-decoration:none;font-size:12.5px">✎ 不便自己修改？填表寄给掌心，代为更新 →</a></p>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid" id="m-grid-2"></div>
-  <p class="m-note" style="margin:12px 0 0"><a href="#" id="sbEntry" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✦ 成员登录 · 维护我自己的版块 →</a></p>
-  <p class="m-note" style="margin:12px 0 0"><a href="#" data-mform="学园知交" style="color:var(--seal);border-bottom:1px dotted var(--line);text-decoration:none">✎ 补充或更新我的资料 →</a></p>
+  <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
+  <p class="m-note" style="margin:8px 0 0"><a href="#" data-mform="学园知交" style="color:var(--ink-soft);border-bottom:1px dotted var(--line);text-decoration:none;font-size:12.5px">✎ 不便自己修改？填表寄给掌心，代为更新 →</a></p>
   <p class="m-note">＊ 点击任一姓名，即可查看其简介与照片；简介暂缺者，欢迎本人或知情诗友补充。互动版上线后，成员可自行注册、开辟专栏、维护个人页面。</p>
 </div></section>
 
@@ -885,7 +886,7 @@ const $ = function(id){ return document.getElementById(id); };
 const say = function(m){
   m = (m||'').toString().toLowerCase();
   if(m.indexOf('rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
-    return '发信额度已满 · Email limit exceeded —— 掌心每小时能寄出的信有限，眼下已经用完。请过一小时再来，或改日再试；你的资料不会有任何影响。';
+    return '系统繁忙，请稍后再试。（掌心每小时能寄出的信有限，过一小时再来即可；你的资料不会有任何影响。）';
   if(m.indexOf('invalid')>-1 && m.indexOf('email')>-1)
     return '这个邮箱地址似乎写错了，请再核对一下。';
   if(m.indexOf('signups not allowed')>-1 || m.indexOf('not allowed')>-1)
@@ -941,8 +942,9 @@ async function reload(){
 async function refreshMe(){
   var s = await SB.auth.getSession();
   ME = (s.data && s.data.session) ? s.data.session.user : null;
-  var link = $('sbEntry');
-  if(link) link.textContent = ME ? '✦ 我的一方天地 · 编辑我的简介与照片 →' : '✦ 成员登录 · 维护我自己的版块 →';
+  document.querySelectorAll('.sbEntry').forEach(function(link){
+    link.textContent = ME ? '✦ 我的一方天地 · 编辑我的简介与照片 →' : '✦ 我自己修改 · 成员登录 →';
+  });
 }
 async function openMine(){
   await refreshMe();
@@ -963,7 +965,8 @@ document.addEventListener('click', async function(e){
   var c = e.target.getAttribute && e.target.getAttribute('data-sbclose');
   if(c){ hide(c); return; }
   if(e.target.id==='sbLogin'||e.target.id==='sbMine'||e.target.id==='sbCard'){ hide(e.target.id); return; }
-  if(e.target.id==='sbEntry'){ e.preventDefault(); openMine(); return; }
+  var en = e.target.closest && e.target.closest('.sbEntry');
+  if(en){ e.preventDefault(); openMine(); return; }
   if(e.target.id==='sbSend'){
     var em=$('sbEmail').value.trim();
     if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
