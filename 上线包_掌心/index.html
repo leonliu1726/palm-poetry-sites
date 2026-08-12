@@ -886,7 +886,7 @@ const $ = function(id){ return document.getElementById(id); };
 const say = function(m){
   m = (m||'').toString().toLowerCase();
   if(m.indexOf('rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
-    return '系统繁忙，请稍后再试。（掌心每小时能寄出的信有限，过一小时再来即可；你的资料不会有任何影响。）';
+    return '系统繁忙，请稍后再试。（掌心公益网站每小时能更新的信息有限，过一小时再来即可，你的资料安全不会受到任何影响。）';
   if(m.indexOf('invalid')>-1 && m.indexOf('email')>-1)
     return '这个邮箱地址似乎写错了，请再核对一下。';
   if(m.indexOf('signups not allowed')>-1 || m.indexOf('not allowed')>-1)
@@ -980,23 +980,30 @@ document.addEventListener('click', async function(e){
   if(e.target.id==='sbSave'){
     if(!MINE) return;
     e.target.disabled=true; $('sbMsg2').textContent='正在保存……';
-    var patch={ role:$('sbRole').value.trim(), bio:$('sbBio').value.trim() };
+    var notes=[];
+    var w = await SB.from('members').update({ role:$('sbRole').value.trim(), bio:$('sbBio').value.trim() }).eq('name', MINE.name).select('name');
+    if(w.error){ $('sbMsg2').textContent='眼下没能保存下来，请稍后再试。'; e.target.disabled=false; return; }
+    if(!w.data || !w.data.length){ $('sbMsg2').textContent='没有保存成功——这个邮箱没有编辑此版块的权限。'; e.target.disabled=false; return; }
+    MINE.role=$('sbRole').value.trim(); MINE.bio=$('sbBio').value.trim();
+    notes.push('文字已保存');
     var f=$('sbPhoto').files[0];
     if(f){
-      var path = MINE.name + '/' + Date.now() + '-' + f.name.replace(/[^\w.\-]/g,'_');
-      var up = await SB.storage.from('member-photos').upload(path, f, { upsert:true });
-      if(up.error){ $('sbMsg2').textContent='照片眼下没能传上去，请稍后再试，或先只保存文字。'; e.target.disabled=false; return; }
-      patch.photo_url = SB.storage.from('member-photos').getPublicUrl(path).data.publicUrl;
+      var ext=(f.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'');
+      if(!ext) ext='jpg';
+      var path='m/'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+      var up = await SB.storage.from('member-photos').upload(path, f, { upsert:true, contentType:f.type||'image/jpeg' });
+      if(up.error){
+        notes.push('照片没能传上去（'+(up.error.message||'原因不明')+'）。文字已经保存，照片可稍后再试。');
+      } else {
+        var url = SB.storage.from('member-photos').getPublicUrl(path).data.publicUrl;
+        var w2 = await SB.from('members').update({ photo_url:url }).eq('name', MINE.name).select('name');
+        if(w2.error || !w2.data || !w2.data.length){ notes.push('照片传上去了，但没能挂到你的版块上，请稍后再试。'); }
+        else { MINE.photo_url=url; $('sbPrev').src=url; $('sbPrev').style.display='block'; notes.push('照片已更新'); }
+      }
     }
-    var w = await SB.from('members').update(patch).eq('name', MINE.name).select('name');
-    e.target.disabled=false;
-    if(w.error){ $('sbMsg2').textContent='眼下没能保存下来，请稍后再试。'; return; }
-    if(!w.data || !w.data.length){ $('sbMsg2').textContent='没有保存成功——这个邮箱没有编辑此版块的权限。'; return; }
-    $('sbMsg2').textContent='已保存。你已排到本组最前。';
-    if(patch.photo_url){ $('sbPrev').src=patch.photo_url; $('sbPrev').style.display='block'; }
-    MINE.role=patch.role; MINE.bio=patch.bio; if(patch.photo_url) MINE.photo_url=patch.photo_url;
+    $('sbSave').disabled=false;
+    $('sbMsg2').textContent = notes.join('；') + '。你已排到本组最前。';
     reload();
-  }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
 SB.auth.onAuthStateChange(function(){ refreshMe(); });
