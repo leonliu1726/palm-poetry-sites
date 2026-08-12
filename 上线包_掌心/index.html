@@ -1004,6 +1004,7 @@ document.addEventListener('click', async function(e){
     $('sbSave').disabled=false;
     $('sbMsg2').textContent = notes.join('；') + '。你已排到本组最前。';
     reload();
+  }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
 SB.auth.onAuthStateChange(function(){ refreshMe(); });
