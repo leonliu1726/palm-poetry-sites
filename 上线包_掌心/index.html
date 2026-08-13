@@ -769,8 +769,7 @@ var ROSTER=[
     var bio=document.createElement('p');
     if(d.bio){bio.className='m-bio';bio.textContent=d.bio;}
     else{bio.className='m-bio todo';bio.textContent='简介待补充 —— 欢迎'+name+'本人或知情诗友提供简介与照片。';}
-    var sub=document.createElement('p');sub.className='m-sub';sub.textContent='＊ 本人登录后即可自行维护此页；如需代为补充，敬请来信 huangxiaoyu2001@gmail.com。';
-    box.appendChild(close);box.appendChild(head);box.appendChild(bio);box.appendChild(sub);
+    box.appendChild(close);box.appendChild(head);box.appendChild(bio);
     modal.classList.add('on');
   }
   window.closeMember=function(){modal.classList.remove('on');};
@@ -874,7 +873,6 @@ var ROSTER=[
     <div id="sbCardHead" style="display:flex;gap:14px;align-items:center"></div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
     <p id="sbCardBio" style="font-size:14.5px;line-height:2;color:var(--ink);margin:0;white-space:pre-wrap"></p>
-    <p style="font-size:12px;color:var(--ink-soft);margin:16px 0 0">＊ 本人登录后即可自行维护此页；如需代为补充，敬请来信 huangxiaoyu2001@gmail.com。</p>
   </div>
 </div>
 <script type="module">
