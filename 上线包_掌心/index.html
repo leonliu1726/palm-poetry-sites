@@ -183,7 +183,7 @@
   <div class="h-en">The Palm Poetry Club</div>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
   <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——以诗会友，以文相期，以天下英雄为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
-  <p class="h-ff"><a href="#fireflies">✦ 今日萤火 · 每日一首应景诗词，附中英对照与导读 →</a></p>
+  <p class="h-ff"><a href="#fireflies">✦ 本周萤火 · 每日一首应景诗词，附中英对照与导读 →</a></p>
 </div></header>
 
 <main>
@@ -222,11 +222,11 @@
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
 
   <div id="firefly-today" class="ff-today">
-    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date" id="ffDate"></span></div>
+    <div class="ff-tag">本周萤火 · Firefly of the Week <span class="ff-date" id="ffDate"></span></div>
     <div class="ff-title" id="ffTitle">正在取诗……</div>
     <div class="ff-author" id="ffAuthor"></div>
     <div class="ff-poem"><div class="ff-zh" id="ffLines"></div></div>
-    <div class="ff-by">＊「今日萤火」每日自动从《萤火》专辑中选出一首，与诗社同好共读。</div>
+    <div class="ff-by">＊「本周萤火」每周自动从《萤火》专辑中选出一首，一周之内不变，与诗社同好共读。</div>
   </div>
   <script>
   (function(){
@@ -246,12 +246,12 @@
         list.push({t:h.textContent.trim(), a:au, h:ln.innerHTML});
       });
       if(!list.length) throw new Error("empty");
-      var pick=list[day % list.length];
+      var pick=list[Math.floor(day/7) % list.length];
       document.getElementById("ffTitle").textContent=pick.t;
       document.getElementById("ffAuthor").textContent=pick.a;
       document.getElementById("ffLines").innerHTML=pick.h;
     }).catch(function(){
-      document.getElementById("ffTitle").textContent="今日萤火暂时取不到";
+      document.getElementById("ffTitle").textContent="本周萤火暂时取不到";
       document.getElementById("ffLines").textContent="请稍后再来，或到《萤火》专辑翻阅。";
     });
   })();
@@ -1123,5 +1123,20 @@ document.addEventListener('click', async function(e){
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWk(); });
 loadWorks();
+</script>
+<script>
+/* 历年诗文会集：加号只对编辑海边显示，其他人只看不点 */
+(function(){
+  var HB='huangxiaoyu2001'+String.fromCharCode(64)+'gmail.com';
+  function em(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||'null');
+      var tk=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token));
+      if(tk){var p=JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))));
+        return String(p.email||'').toLowerCase();}}}}catch(e){}return '';}
+  function sync(){var c=document.getElementById('wkCollAdd');
+    if(c) c.style.display=(em()===HB)?'':'none';}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync); else sync();
+  setInterval(sync,1500);
+})();
 </script>
 </body></html>
