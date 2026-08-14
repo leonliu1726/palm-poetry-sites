@@ -1125,7 +1125,7 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWk()
 loadWorks();
 </script>
 <script>
-/* 历年诗文会集：加号只对编辑海边显示，其他人只看不点 */
+/* 历年诗文会集：卡片人人可见；只有编辑海边点得开，其他人点无反应 */
 (function(){
   var HB='huangxiaoyu2001'+String.fromCharCode(64)+'gmail.com';
   function em(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
@@ -1133,10 +1133,14 @@ loadWorks();
       var tk=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token));
       if(tk){var p=JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))));
         return String(p.email||'').toLowerCase();}}}}catch(e){}return '';}
-  function sync(){var c=document.getElementById('wkCollAdd');
-    if(c) c.style.display=(em()===HB)?'':'none';}
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync); else sync();
-  setInterval(sync,1500);
+  function guard(){var c=document.getElementById('wkCollAdd'); if(!c) return;
+    c.style.display='';
+    if(c.__ppcGuard) return; c.__ppcGuard=1;
+    c.addEventListener('click',function(ev){
+      if(em()!==HB){ ev.stopPropagation(); ev.preventDefault(); }
+    },true);}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',guard); else guard();
+  setInterval(guard,1500);
 })();
 </script>
 </body></html>
