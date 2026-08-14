@@ -222,17 +222,40 @@
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
 
   <div id="firefly-today" class="ff-today">
-    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date">中秋 · 千江同月</span></div>
-    <h3 class="ff-title">【五律】乙未年多伦多中秋月<span>古典诗词</span></h3>
-    <div class="ff-author">风动<span class="en">Fēng Dòng</span>　·　录自《萤火》· 卷首第一首</div>
-    <div class="ff-poem">
-      <div class="ff-zh">月滿千江靜，銀輝萬戶眠。<br>暗風穿樹後，紅葉落窗前。<br>春去驚新夢，秋來恨舊年。<br>今宵頻望玉，愁緒又綿延。</div>
-      <div class="ff-en">The full moon stills a thousand rivers;<br>its silver light lulls ten thousand homes to sleep.<br>A hidden wind slips behind the trees;<br>red leaves fall before the window.<br>Spring's leaving startled a new dream;<br>autumn's coming resents the old year.<br>Tonight, again and again, I gaze at the jade orb —<br>and sorrow, once more, stretches on without end.</div>
-    </div>
-    <div class="ff-guide">导读 · 这是风动在《萤火》中的第一首，一阕五律，写乙未年（2015）多伦多的中秋月。月满江静、银辉万户，是团圆的静好；暗风穿树、红叶落窗，却已暗递秋意。颔联写景，颈联转情——「春去惊新梦，秋来恨旧年」，一年光景在异乡悄然流转，游子之思尽在其中。结句「今宵频望玉，愁绪又绵延」，望月而愁绪不断，正是海外华人「每逢佳节倍思亲」的共通心事。以此为今日萤火之始，愿明月所照，山海同心。
-      <span class="ff-guide-en">Reader's note · This is Fēng Dòng's opening piece in Fireflies — a five-character regulated verse (wǔlǜ) on the mid-autumn moon over Toronto in 2015. A full moon stilling the rivers, its silver light over ten thousand homes: the quiet fullness of reunion. Yet a hidden wind behind the trees and red leaves at the window already carry autumn's turn. The poem moves from scene to feeling — "spring's leaving startled a new dream; autumn's coming resents the old year" — a whole year slipping by in a distant land. It closes on a gaze that will not end: the shared heart of every wanderer far from home. A fitting first light for our daily Firefly — may one moon join mountains and seas as one.</span></div>
-    <div class="ff-by">＊「今日萤火」从《萤火》中甄选应景、与世界相通之作，附中英对照与导读；本期特选风动卷中首篇。</div>
+    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date" id="ffDate"></span></div>
+    <div class="ff-title" id="ffTitle">正在取诗……</div>
+    <div class="ff-author" id="ffAuthor"></div>
+    <div class="ff-poem"><div class="ff-zh" id="ffLines"></div></div>
+    <div class="ff-by">＊「今日萤火」每日自动从《萤火》专辑中选出一首，与诗社同好共读。</div>
   </div>
+  <script>
+  (function(){
+    var d=new Date();
+    var day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
+    var dt=document.getElementById("ffDate");
+    if(dt) dt.textContent=d.getFullYear()+" 年 "+(d.getMonth()+1)+" 月 "+d.getDate()+" 日";
+    fetch("fireflies.html").then(function(r){return r.text();}).then(function(html){
+      var doc=new DOMParser().parseFromString(html,"text/html");
+      var nodes=doc.querySelectorAll(".yh-poem");
+      var list=[];
+      nodes.forEach(function(p){
+        var h=p.querySelector("h4"); var ln=p.querySelector(".yh-lines");
+        if(!h||!ln) return;
+        var au=""; var n=p;
+        while(n && n!==doc.body){ if(n.tagName==="DETAILS"){ var sm=n.querySelector("summary"); if(sm) au=sm.textContent.replace(/\s*\d+\s*首.*$/,"").trim(); break; } n=n.parentElement; }
+        list.push({t:h.textContent.trim(), a:au, h:ln.innerHTML});
+      });
+      if(!list.length) throw new Error("empty");
+      var pick=list[day % list.length];
+      document.getElementById("ffTitle").textContent=pick.t;
+      document.getElementById("ffAuthor").textContent=pick.a;
+      document.getElementById("ffLines").innerHTML=pick.h;
+    }).catch(function(){
+      document.getElementById("ffTitle").textContent="今日萤火暂时取不到";
+      document.getElementById("ffLines").textContent="请稍后再来，或到《萤火》专辑翻阅。";
+    });
+  })();
+  </script>
 
   <div class="yh">
     <img src="网站图片/萤火封面.jpg" alt="《萤火》— 掌心诗社诗词专辑">
