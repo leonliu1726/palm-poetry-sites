@@ -271,12 +271,12 @@
   </div>
 
   <div class="works-sub-h">历年诗文会集 · 成员专著与个人作品</div>
-  <div class="wk-grid">
-    <div class="wk-card wk-todo"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><b>历年诗文会集</b><span>多年雅集编成的诗文合集 · 框架待补全（海边）</span></div></div>
+  <div class="wk-grid" id="wkGrid">
+    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
     <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><b>《千山独行》</b><span>文刃 · 台湾中华书局</span></div></a>
-    <div class="wk-card wk-todo"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>各位成员的诗文、评论与书画专集 · 陆续上传</span></div></div>
+    <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
   </div>
-  <p class="m-note">＊ 每位诗社成员都可在此开辟专属版块，上传并维护个人作品；「历年诗文会集」与各成员专集的具体内容将陆续补全。</p>
+  <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
 </div></section>
 
 <section id="writings" class="panel"><div class="wrap">
@@ -1022,5 +1022,106 @@ SB.auth.onAuthStateChange(function(){ refreshMe(); });
   }
   await refreshMe();
 })();
+</script>
+
+<!-- ===== 作品上传 ===== -->
+<div id="wkModal" style="display:none;position:fixed;inset:0;z-index:140;background:rgba(30,26,20,.55);padding:24px;overflow:auto">
+  <div style="max-width:560px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 28px 30px;position:relative">
+    <span id="wkClose" style="position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1">×</span>
+    <div id="wkHead" style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">上传作品</div>
+    <div style="height:1px;background:var(--line);margin:16px 0"></div>
+    <p id="wkWho" style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0"></p>
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">书名 · 标题 <span style="color:var(--seal)">*</span></label>
+    <input type="text" id="wkTitle" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="例：《千山独行》">
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">个人网站 · 外部链接 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（有就填，没有可空）</span></label>
+    <input type="url" id="wkUrl" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="https://...">
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">上传文件 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（PDF、图片、文档皆可；与上面的链接二选一即可）</span></label>
+    <input type="file" id="wkFile" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">一句话说明</label>
+    <input type="text" id="wkNote" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="例：文刃 · 台湾中华书局">
+    <button id="wkSave" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:20px">保 存</button>
+    <p id="wkMsg" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
+  </div>
+</div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const WB = createClient('https://ubzykpglausstbsvijoc.supabase.co','sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP');
+const HB = 'huangxiaoyu2001@gmail.com';
+const $ = function(id){ return document.getElementById(id); };
+let KIND='member', ME=null, MINE=null, MYNAME='';
+function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function mkCard(w){
+  var hasUrl = !!(w.url && w.url.length);
+  var el = document.createElement(hasUrl ? 'a' : 'div');
+  el.className='wk-card'; el.setAttribute('data-wk','1');
+  if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
+  var cover=document.createElement('div'); cover.className='wk-cover ph';
+  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,2);
+  var meta=document.createElement('div'); meta.className='wk-meta';
+  var b=document.createElement('b'); b.textContent=w.title||'';
+  var sp=document.createElement('span'); sp.textContent=[w.author_name,w.note].filter(Boolean).join(' · ');
+  meta.appendChild(b); meta.appendChild(sp);
+  el.appendChild(cover); el.appendChild(meta);
+  return el;
+}
+async function loadWorks(){
+  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').order('created_at',{ascending:true});
+  if(r.error || !r.data) return;
+  var grid=$('wkGrid'); if(!grid) return;
+  grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
+  r.data.forEach(function(w){ grid.appendChild(mkCard(w)); });
+}
+async function who(){
+  var s = await WB.auth.getSession();
+  ME = (s.data && s.data.session) ? s.data.session.user : null;
+  MYNAME='';
+  if(ME){ var m = await WB.rpc('my_member'); if(!m.error && m.data && m.data.length) MYNAME = m.data[0].name; }
+}
+async function openWk(kind){
+  await who();
+  if(!ME){ alert('请先用名录下方的「✦ 我自己修改 · 成员登录」登录，再来上传作品。'); return; }
+  if(kind==='collection' && ME.email.toLowerCase()!==HB){ alert('「历年诗文会集」由编辑海边维护。若有会集要收录，请致信 '+HB+'。'); return; }
+  if(kind==='member' && !MYNAME){ alert('这个邮箱还没有绑定到名录中的成员，暂时不能上传作品。'); return; }
+  KIND=kind;
+  $('wkHead').textContent = kind==='collection' ? '上传历年诗文会集' : '我的作品';
+  $('wkWho').textContent = kind==='collection' ? ('编辑：'+ME.email+'　可上传多本会集') : ('作者：'+MYNAME+'　每人一件，可随时替换');
+  MINE=null; $('wkTitle').value=''; $('wkUrl').value=''; $('wkNote').value=''; $('wkMsg').textContent='';
+  if(kind==='member'){
+    var w = await WB.rpc('my_work');
+    if(!w.error && w.data && w.data.length){ MINE=w.data[0]; $('wkTitle').value=MINE.title||''; $('wkUrl').value=MINE.url||''; $('wkNote').value=MINE.note||''; }
+  }
+  $('wkModal').style.display='block'; document.body.style.overflow='hidden';
+}
+function closeWk(){ $('wkModal').style.display='none'; document.body.style.overflow=''; }
+document.addEventListener('click', async function(e){
+  if(e.target.id==='wkMemberAdd' || (e.target.closest && e.target.closest('#wkMemberAdd'))){ e.preventDefault(); openWk('member'); return; }
+  if(e.target.id==='wkCollAdd' || (e.target.closest && e.target.closest('#wkCollAdd'))){ e.preventDefault(); openWk('collection'); return; }
+  if(e.target.id==='wkClose' || e.target.id==='wkModal'){ closeWk(); return; }
+  if(e.target.id==='wkSave'){
+    var title=$('wkTitle').value.trim();
+    if(!title){ $('wkMsg').textContent='请先填写书名或标题。'; return; }
+    e.target.disabled=true; $('wkMsg').textContent='正在保存……';
+    var url=$('wkUrl').value.trim();
+    var f=$('wkFile').files[0];
+    if(f){
+      var ext=(f.name.split('.').pop()||'bin').toLowerCase().replace(/[^a-z0-9]/g,'')||'bin';
+      var path='w/'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+      var up = await WB.storage.from('works').upload(path, f, { upsert:true, contentType:f.type||'application/octet-stream' });
+      if(up.error){ $('wkMsg').textContent='文件没能传上去（'+(up.error.message||'原因不明')+'），可改用链接。'; e.target.disabled=false; return; }
+      url = WB.storage.from('works').getPublicUrl(path).data.publicUrl;
+    }
+    var payload={ title:title, url:url, note:$('wkNote').value.trim(), author_name: (KIND==='collection' ? '掌心' : MYNAME) };
+    var res;
+    if(KIND==='member' && MINE){ res = await WB.from('works').update(payload).eq('id', MINE.id).select('id'); }
+    else { payload.kind=KIND; payload.owner_email=ME.email; res = await WB.from('works').insert(payload).select('id'); }
+    e.target.disabled=false;
+    if(res.error){ $('wkMsg').textContent='眼下没能保存，请稍后再试。'; return; }
+    $('wkMsg').textContent='已保存，作品已显示在下方。';
+    await loadWorks();
+    setTimeout(closeWk, 900);
+  }
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWk(); });
+loadWorks();
 </script>
 </body></html>
