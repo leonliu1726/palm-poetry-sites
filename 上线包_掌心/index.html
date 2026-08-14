@@ -246,7 +246,7 @@
         list.push({t:h.textContent.trim(), a:au, h:ln.innerHTML});
       });
       if(!list.length) throw new Error("empty");
-      var pick=list[Math.floor(day/7) % list.length];
+      var pick=list[(Math.floor(day/7)+194) % list.length];
       document.getElementById("ffTitle").textContent=pick.t;
       document.getElementById("ffAuthor").textContent=pick.a;
       document.getElementById("ffLines").innerHTML=pick.h;
@@ -1065,7 +1065,7 @@ function mkCard(w){
   return el;
 }
 async function loadWorks(){
-  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').order('created_at',{ascending:true});
+  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').order('updated_at',{ascending:false});
   if(r.error || !r.data) return;
   var grid=$('wkGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
@@ -1141,6 +1141,27 @@ loadWorks();
     },true);}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',guard); else guard();
   setInterval(guard,1500);
+})();
+</script>
+<script>
+/* 作品区排序：历年诗文会集 → 最近更新的成员作品 → 千山独行 → 加号 → 待补 */
+(function(){
+  function reorder(){
+    var g=document.getElementById('wkGrid'); if(!g) return;
+    var coll=document.getElementById('wkCollAdd');
+    var plus=document.getElementById('wkMemberAdd');
+    var qs=g.querySelector('a[href*="beyondathousandmountains"]');
+    var kids=[].slice.call(g.children);
+    var dyn=kids.filter(function(el){return el!==coll&&el!==plus&&el!==qs;});
+    var done=dyn.filter(function(el){return el.textContent.indexOf('（待补）')<0;});
+    var todo=dyn.filter(function(el){return el.textContent.indexOf('（待补）')>=0;});
+    var want=[coll].concat(done,[qs,plus],todo).filter(Boolean);
+    var same = want.length===kids.length && want.every(function(el,i){return kids[i]===el;});
+    if(same) return;
+    want.forEach(function(el){g.appendChild(el);});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',reorder); else reorder();
+  setInterval(reorder,1200);
 })();
 </script>
 </body></html>
