@@ -57,7 +57,7 @@
   .wk-card:hover{transform:translateY(-3px);border-color:var(--seal);box-shadow:0 10px 26px rgba(28,26,23,.14)}
   .wk-cover{aspect-ratio:3/4;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#ece4d4}
   .wk-cover img{width:100%;height:100%;object-fit:cover}
-  .wk-cover.ph{font-family:var(--li);font-size:30px;color:var(--ink-faint);letter-spacing:.12em;line-height:1.35;text-align:center}
+  .wk-cover.ph{font-family:var(--li);font-size:clamp(15px,2.1vw,28px);color:var(--ink-faint);letter-spacing:.06em;line-height:1.35;text-align:center;padding:0 .4em;word-break:keep-all}
   .wk-meta{padding:12px 14px}
   .wk-meta b{font-family:var(--kai);font-size:16px;display:block;margin-bottom:4px}
   .wk-meta span{font-size:12.5px;color:var(--ink-faint);line-height:1.6}
@@ -1059,7 +1059,7 @@ function mkCard(w){
   el.className='wk-card'; el.setAttribute('data-wk','1');
   if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
   var cover=document.createElement('div'); cover.className='wk-cover ph';
-  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,2);
+  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,6);
   var meta=document.createElement('div'); meta.className='wk-meta';
   var b=document.createElement('b'); b.textContent=w.title||'';
   var sp=document.createElement('span'); sp.textContent=[w.author_name,w.note].filter(Boolean).join(' · ');
