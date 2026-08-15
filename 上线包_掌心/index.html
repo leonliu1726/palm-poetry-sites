@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>掌心 · The Palm Poetry Club</title>
-<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、每日一诗与文化论坛，以诗会友，薪火相传。">
+<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、本周萤火与诗友论坛，以诗会友，薪火相传。">
 <style>
   :root{--paper:#f4f0e7;--ink:#2f2c26;--ink-soft:#5f5a4f;--ink-faint:#8d8676;--seal:#9c3a2f;--seal-deep:#7e2c23;--line:#d9d2c4;--gold:#a98b4f;
     --li:"STLiti","LiSu","隶书",serif;--kai:"Kaiti","STKaiti","楷体",serif;--serif-en:"Georgia","Times New Roman",serif;}
@@ -183,7 +183,7 @@
   <div class="h-en">The Palm Poetry Club</div>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
   <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——以诗会友，以文相期，以天下英雄为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
-  <p class="h-ff"><a href="#fireflies">✦ 本周萤火 · 每日一首应景诗词，附中英对照与导读 →</a></p>
+  <p class="h-ff"><a href="#fireflies">✦ 本周萤火 · 每周一首，选自掌心诗刊《萤火》 →</a></p>
 </div></header>
 
 <main>
@@ -226,7 +226,7 @@
     <div class="ff-title" id="ffTitle">正在取诗……</div>
     <div class="ff-author" id="ffAuthor"></div>
     <div class="ff-poem"><div class="ff-zh" id="ffLines"></div></div>
-    <div class="ff-by">＊「本周萤火」每周自动从《萤火》专辑中选出一首，一周之内不变，与诗社同好共读。</div>
+    <div class="ff-by">＊「本周萤火」每周一首，选自掌心诗刊《萤火》。</div>
   </div>
   <script>
   (function(){
@@ -1167,4 +1167,75 @@ loadWorks();
   setInterval(reorder,1200);
 })();
 </script>
+<script>
+/* 点自己的名字就能修改：隐藏红按钮，把入口放进名片里 */
+(function(){
+  var CACHE={tok:'',name:null}, LAST='';
+  var st=document.createElement('style');
+  st.textContent='.sbEntry{display:none!important}'+
+    '#sbSelf{margin-top:15px;padding-top:12px;border-top:1px solid var(--line);font-size:14px;line-height:1.7}'+
+    '#sbSelf a{color:var(--seal);text-decoration:none;border-bottom:1px solid rgba(156,58,47,.35)}'+
+    '#sbSelf span{color:var(--ink-faint);font-size:13px}';
+  document.head.appendChild(st);
+  function token(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||'null');
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token));
+      if(x) return x;}}}catch(e){}return '';}
+  async function who(){
+    var tk=token();
+    if(tk===CACHE.tok) return CACHE.name;
+    CACHE.tok=tk; CACHE.name=null;
+    if(!tk) return null;
+    try{
+      var html=await (await fetch(location.pathname,{cache:'no-store'})).text();
+      var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+      var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
+      if(!host||!key) return null;
+      var r=await fetch(host+'/rest/v1/rpc/my_member',{method:'POST',
+        headers:{'Content-Type':'application/json',apikey:key,Authorization:'Bearer '+tk},body:'{}'});
+      var j=await r.json();
+      CACHE.name=(Array.isArray(j)&&j.length)?j[0].name:null;
+    }catch(e){}
+    return CACHE.name;
+  }
+  document.addEventListener('click',function(e){
+    var c=e.target.closest&&e.target.closest('.m-card[data-m]');
+    if(c) LAST=c.getAttribute('data-m');
+  },true);
+  function go(){
+    var x=document.querySelector('[data-sbclose="sbCard"]'); if(x) x.click();
+    var s=document.querySelector('.sbEntry'); if(s) s.click();
+  }
+  async function deco(){
+    var box=document.getElementById('sbCard');
+    if(!box||getComputedStyle(box).display==='none') return;
+    var bio=document.getElementById('sbCardBio'); if(!bio) return;
+    var el=document.getElementById('sbSelf');
+    if(!el){el=document.createElement('div'); el.id='sbSelf'; bio.parentNode.appendChild(el);}
+    var sig=LAST+'|'+CACHE.tok;
+    if(el.getAttribute('data-for')===sig) return;
+    el.setAttribute('data-for',sig);
+    var mine=await who();
+    el.setAttribute('data-for',LAST+'|'+CACHE.tok);
+    el.innerHTML='';
+    if(mine&&mine===LAST){
+      var a=document.createElement('a'); a.href='#'; a.textContent='✎ 这是我，我要修改 →';
+      a.addEventListener('click',function(ev){ev.preventDefault();go();});
+      el.appendChild(a);
+    }else if(!mine){
+      var b=document.createElement('a'); b.href='#'; b.textContent='✎ 这是我，我要修改 →';
+      b.addEventListener('click',function(ev){ev.preventDefault();go();});
+      el.appendChild(b);
+      var sp=document.createElement('span');
+      sp.innerHTML='<br>会先寄一封登录信到你留给掌心的邮箱。点开信里的链接，回来再点自己的名字，就能改了。';
+      el.appendChild(sp);
+    }else{
+      var sp2=document.createElement('span');
+      sp2.textContent='你现在登录的是「'+mine+'」，只能修改自己那一栏。';
+      el.appendChild(sp2);
+    }
+  }
+  setInterval(deco,500);
+})();
+<\/script>
 </body></html>
