@@ -7,7 +7,10 @@
 <style>
   :root{--paper:#f4f0e7;--ink:#2f2c26;--ink-soft:#5f5a4f;--ink-faint:#8d8676;--seal:#9c3a2f;--seal-deep:#7e2c23;--line:#d9d2c4;--gold:#a98b4f;
     --li:"STLiti","LiSu","隶书",serif;--kai:"Kaiti","STKaiti","楷体",serif;--serif-en:"Georgia","Times New Roman",serif;}
-  .h-seal{display:block;margin:0 auto 16px;width:104px;height:104px;border-radius:50%;box-shadow:0 8px 22px rgba(47,44,38,.14)}
+  .h-seal{display:block;margin:0 auto 18px;width:118px;height:118px;border-radius:50%;box-shadow:0 5px 16px rgba(47,44,38,.10)}
+  .brand{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .nav-seal{width:36px;height:36px;border-radius:50%;flex:0 0 36px}
+  @media(max-width:640px){.nav-seal{width:28px;height:28px;flex:0 0 28px}}
   @media(max-width:640px){.h-seal{width:84px;height:84px;margin-bottom:12px}}
   *{box-sizing:border-box} html{scroll-snap-type:y proximity;scroll-padding-top:60px;scroll-behavior:smooth}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong",var(--serif-en),serif;line-height:1.85;-webkit-font-smoothing:antialiased}
@@ -162,7 +165,7 @@
 </style></head>
 <body>
 <nav><div class="wrap">
-  <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></div>
+  <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="网站图片/palm-icon.png" alt=""><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></div>
   <button class="langbtn" id="langBtn" onclick="toggleLang()">EN</button>
   <ul>
     <li><a href="#origin">缘起<span class="e">Origin</span></a></li>
