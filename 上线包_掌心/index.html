@@ -173,6 +173,28 @@
 
   header .h-title{margin:0 0 6px;line-height:1;font-size:0}
 
+
+  .m-gap{height:26px}
+  .m-grid .m-name{font-size:19px;color:var(--ink);letter-spacing:.04em;font-weight:600}
+  .m-card{padding:15px 16px}
+  .doors{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .door{display:flex;flex-direction:column;gap:5px;padding:22px 22px 18px;border:1px solid var(--line);border-radius:12px;
+        background:rgba(255,252,246,.62);text-decoration:none;color:var(--ink);transition:.22s}
+  .door:hover{border-color:var(--seal);transform:translateY(-3px);box-shadow:0 12px 28px rgba(169,139,79,.16)}
+  .door b{font-family:var(--li);font-size:27px;letter-spacing:.14em;color:var(--seal);font-weight:400;line-height:1.2}
+  .door .en{font-family:var(--serif-en);font-size:12px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+  .door em{font-style:normal;font-size:14px;color:var(--ink-soft);line-height:1.85;margin-top:6px}
+  .door i{font-style:normal;margin-top:10px;font-size:14px;color:var(--seal);font-family:var(--kai)}
+  @media(max-width:820px){.doors{grid-template-columns:1fr}}
+  .f-by{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--ink-faint);letter-spacing:.04em}
+
+  .ph-fold{margin-top:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ph-fold>summary{list-style:none;cursor:pointer;padding:14px 2px;display:flex;align-items:center;gap:10px;color:var(--seal)}
+  .ph-fold>summary::-webkit-details-marker{display:none}
+  .ph-fold>summary::before{content:"＋";font-size:15px;color:var(--seal)}
+  .ph-fold[open]>summary::before{content:"－"}
+  .ph-fold>summary:hover{background:rgba(169,139,79,.06)}
+  .ph-fold .gallery,.ph-fold .wgrid{margin-bottom:20px}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -206,6 +228,14 @@
 </div></header>
 
 <main>
+<section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
+  <div class="doors">
+    <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em>三十五位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
+    <a class="door" href="#works"><b>作 品</b><span class="en">Works</span><em>《萤火》《千山独行》、历年诗文会集，以及每位成员自己的一本书、一个网站。</em><i>进入 →</i></a>
+    <a class="door" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论 坛</b><span class="en">Forum</span><em>贴诗，读诗，说诗。注册后即可发帖，人人可读，向全世界敞开。</em><i>进入 →</i></a>
+  </div>
+</div></section>
+
 <section id="origin" class="panel"><div class="wrap">
   <div class="sec-head"><h2>缘起</h2><span class="en">Origin</span><div class="rule"></div></div>
   <figure class="origin-poster"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-banner.jpg" alt="掌心诗社 · 掌上有温，心中有诚" loading="lazy"></figure>
@@ -226,10 +256,9 @@
 <section id="members"><div class="wrap">
   <div class="sec-head"><h2>成员</h2><span class="en">Members</span><div class="rule"></div></div>
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
-  <div class="m-group-t">诗社成员 <span class="en">Members</span></div>
+  <div class="m-group-t">掌心社区 <span class="en">The Palm Community · Club &amp; Academy</span></div>
   <div class="m-grid" id="m-grid-1"></div>
-  <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
-  <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
+  <div class="m-gap"></div>
   <div class="m-grid" id="m-grid-2"></div>
   <p class="m-note" style="margin:18px 0 0">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
@@ -360,7 +389,8 @@
   <div class="sec-head"><h2>活动相册</h2><span class="en">Gatherings</span><div class="rule"></div></div>
   <p>历年雅集、早茶清谈、湖畔聚会、原创作品展，以及与世界各地艺术家的往来——点击照片可放大。</p>
   <p style="color:var(--seal);font-family:var(--kai)">欢迎大家提供各自参与掌心活动的图片、文字、音频资料，在掌心一同展示、共享这份记忆。</p>
-  <div class="gallery">
+  <details class="ph-fold"><summary><span class="acc-t">展开相册 · 共 119 张</span></summary>
+<div class="gallery">
     <img src="网站图片/掌心/连接世界/cx_69.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_03.jpg" alt="掌心诗社 · The Palm" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_07.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -481,6 +511,7 @@
     <img src="网站图片/掌心/活动/179.JPG" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/att.w2tHX6BcjSFggNIxeDQ60x_6BEOVgINqb6-E3F4XEQo.JPG" alt="掌心活动与文化交流" loading="lazy">
   </div>
+  </details>
 </div></section>
 
 <section id="forum"><div class="wrap">
@@ -551,7 +582,8 @@
   <p data-en="The Palm opens its doors to poets the world over. Over the years, making friends through poetry, our steps have crossed five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — exchanging verse with poets, writers, scholars and artists everywhere. Wherever you are from, in whatever language you write, you are welcome here to share, to talk, and to answer song with song.">掌心向全世界的诗人敞开。多年来，我们以诗会友，足迹遍及五洲——登华沙古城、泛尼罗碧波、入大漠驼乡、访京都鸟居、立印度门前，与各国诗人、作家、学者与艺术家往来切磋。无论你来自何方、以何种语言写作，都欢迎在此发表、交流、唱和。</p>
   <p style="color:var(--seal);font-family:var(--kai);margin:2px 0 6px;font-size:16px">诚邀掌心同仁与天下诗友，提供你在世界各地的亲身经历图片——旅次风物、异国街巷、与各地友人的相逢，连同一句注脚或一首小诗，一同汇入这面「连接世界」的画卷。</p>
   <p style="color:var(--ink-soft);font-size:14px;margin:0 0 4px">来信投稿：<a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a>　·　我们会择要陆续上墙，署名致谢。</p>
-  <div class="wgrid">
+  <details class="ph-fold"><summary><span class="acc-t">展开图集 · 共 12 张</span></summary>
+<div class="wgrid">
     <figure><img src="网站图片/掌心/连接世界/cx_80.jpg" alt="华沙王宫广场" loading="lazy"><figcaption>华沙王宫广场</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_85.jpg" alt="日本古城" loading="lazy"><figcaption>日本古城</figcaption></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_86.jpg" alt="千本鸟居·京都" loading="lazy"><figcaption>千本鸟居 · 京都</figcaption></figure>
@@ -565,6 +597,7 @@
     <figure><img src="网站图片/掌心/连接世界/cx_264.jpg" alt="连接世界" loading="lazy"></figure>
     <figure><img src="网站图片/掌心/连接世界/cx_274.jpg" alt="连接世界" loading="lazy"></figure>
   </div>
+  </details>
   <div class="langs">
     <div class="l"><b>中文</b> 诗，是人类共同的语言。愿与你以诗相期。</div>
     <div class="l"><b>English</b> Poetry is the common tongue of humankind. You are welcome here.</div>
@@ -614,7 +647,7 @@
   </form>
   </div></section>
 </main>
-<footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.</footer>
+<footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.<br><span class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</span></footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
 <div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
 <script>
