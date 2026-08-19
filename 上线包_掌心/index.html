@@ -201,7 +201,7 @@
   .sub-head{display:flex;align-items:baseline;gap:12px;margin:44px 0 18px;padding-top:16px;border-top:1px solid var(--line)}
   .sub-head b{font-family:var(--kai);font-size:21px;font-weight:400;color:var(--seal);letter-spacing:.1em}
   .sub-head .en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint)}
-  .tk{border-bottom:1px solid var(--line);background:rgba(255,252,246,.75)}
+  .tk{position:sticky;top:56px;z-index:55;border-bottom:1px solid var(--line);background:rgba(248,244,236,.96);backdrop-filter:blur(6px)}
   .tk-in{display:flex;align-items:center;gap:14px;padding-top:11px;padding-bottom:11px;min-height:44px}
   .tk-tag{flex:0 0 auto;font-family:var(--kai);font-size:13px;color:var(--paper);background:var(--seal);
           border-radius:20px;padding:3px 12px;letter-spacing:.08em}
@@ -227,6 +227,11 @@
     <li><a href="#world">连接世界<span class="e">The World</span></a></li>
   </ul>
 </div></nav>
+<div class="tk" id="tk" hidden><div class="wrap tk-in">
+  <span class="tk-tag">今日掌心</span>
+  <a class="tk-item" id="tkItem" href="#members"></a>
+  <span class="tk-nav" id="tkDots"></span>
+</div></div>
 
 <header class="hero" id="home"><div class="hero-panel">
   <span class="hc tl"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5,40 C5,19 19,5 40,5"/><path d="M5,40 C5,27 13,20 22,20 C31,20 37,27 37,35 C37,40 33,44 28,44 C24,44 21,41 21,37 C21,34 23,32 26,32"/><path d="M45,7 C52,7 56,12 56,18"/></svg></span>
@@ -241,12 +246,6 @@
 </div></header>
 
 <main>
-<div class="tk" id="tk" hidden><div class="wrap tk-in">
-  <span class="tk-tag">今日掌心</span>
-  <a class="tk-item" id="tkItem" href="#members"></a>
-  <span class="tk-nav" id="tkDots"></span>
-</div></div>
-
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
     <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em>三十五位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
