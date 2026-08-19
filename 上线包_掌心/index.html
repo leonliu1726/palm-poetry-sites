@@ -172,6 +172,9 @@
   @media(max-width:760px){.origin-poster{float:none;margin:0 auto 20px;width:154px}}
 
   header .h-title{margin:0 0 6px;line-height:1;font-size:0}
+
+  .m-newt{margin:26px 0 10px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--kai);font-size:16px;color:var(--ink-faint);letter-spacing:.08em}
+  .m-newt .en{font-family:var(--serif-en);font-size:12px;color:var(--ink-faint);margin-left:8px;letter-spacing:.06em}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -230,6 +233,8 @@
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid" id="m-grid-2"></div>
+  <div class="m-newt" id="m-newt" style="display:none">新友 · 由学园知交引荐 <span class="en">New Friends</span></div>
+  <div class="m-grid" id="m-grid-3" style="display:none"></div>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
 </div></section>
 
@@ -575,11 +580,11 @@
   <div class="sec-head"><h2>加入我们</h2><span class="en">Join Us</span><div class="rule"></div></div>
   <div class="join">
     <h3>每一位诗人，都可拥有自己的一方天地</h3>
-    <p>掌心欢迎海内外诗人、作家、书画家与一切热爱诗的人加入。我们正建设可互动的社群平台：成员将拥有专属版块，上传并维护诗、文、书画与文件；开放论坛供自由发帖、讨论、唱和；并逐步向全世界诗友敞开。</p>
+    <p>掌心欢迎海内外诗人、作家、书画家与一切热爱诗的人加入。互动平台已经启用：成员登录后各有一方天地，可随时修改简介、更换照片、上传自己的作品或关联个人网站；开放讨论区同步开张，贴诗、读诗、唱和皆在其中。学园由知交引荐新友，向全世界爱诗的人敞开。</p>
     <div class="road">
-      <div class="r"><b>第一步 · 已就绪</b><span>展示型站点：缘起、使命、成员、作品、《萤火》、相册、论坛题录、连接世界。</span></div>
-      <div class="r"><b>第二步 · 互动平台</b><span>成员登录、个人版块上传、开放论坛讨论。</span></div>
-      <div class="r"><b>第三步 · 向世界敞开</b><span>面向全球诗人开放注册，多语交流，作品长期留存。</span></div>
+      <div class="r"><b>第一步 · 已完成</b><span>展示型站点落成：缘起、使命、成员、作品、《萤火》、相册、连接世界，皆已就位。</span></div>
+      <div class="r"><b>第二步 · 已启动</b><span>诗文互动平台开张：三十五位诗人与好友已登录，各自维护一方天地；开放讨论区同步启用，贴诗、读诗、说诗。</span></div>
+      <div class="r"><b>第三步 · 正在进行</b><span>向世界敞开：学园不再只是旧友的名录——凡经学园知交引荐者，皆可注册掌心、开办自己的空间。多语交流，作品长期留存。</span></div>
     </div>
     <p style="font-family:var(--kai);color:var(--ink);margin:6px 0 2px">掌心公约</p>
     <ul class="rules">
@@ -931,15 +936,21 @@ function makeCard(m){
   d.appendChild(s); return d;
 }
 function paint(){
-  [1,2].forEach(function(g){
-    var el=$('m-grid-'+g); if(!el) return;
-    var list=ROWS.filter(function(m){return m.grp===g;}).sort(function(a,b){
-      var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
-      if(A!==B) return B-A;
-      return a.sort_order-b.sort_order;
-    });
-    el.innerHTML=''; list.forEach(function(m){ el.appendChild(makeCard(m)); });
+  function seen(a,b){
+    var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
+    if(A!==B) return B-A;
+    return a.sort_order-b.sort_order;
+  }
+  var g1=ROWS.filter(function(m){return m.grp===1;}).sort(seen);
+  var g2=ROWS.filter(function(m){return m.grp===2||(m.grp===3&&m.updated_at);}).sort(seen);
+  var g3=ROWS.filter(function(m){return m.grp===3&&!m.updated_at;}).sort(function(a,b){return a.sort_order-b.sort_order;});
+  [['m-grid-1',g1],['m-grid-2',g2],['m-grid-3',g3]].forEach(function(p){
+    var el=$(p[0]); if(!el) return;
+    el.innerHTML=''; p[1].forEach(function(m){ el.appendChild(makeCard(m)); });
   });
+  var t3=$('m-newt'), e3=$('m-grid-3');
+  if(t3) t3.style.display = g3.length ? '' : 'none';
+  if(e3) e3.style.display = g3.length ? '' : 'none';
 }
 function openCard(name){
   var m=ROWS.filter(function(x){return x.name===name;})[0]; if(!m) return;
