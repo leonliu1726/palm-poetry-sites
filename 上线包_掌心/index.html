@@ -270,6 +270,20 @@
   .zhbtn{margin-left:14px;border:1px solid var(--seal);background:transparent;color:var(--seal);
     border-radius:18px;padding:4px 13px;font-family:var(--kai);font-size:14px;cursor:pointer;letter-spacing:.1em}
   .zhbtn:hover{background:var(--seal);color:var(--paper)}
+
+  .sub-form{max-width:720px;margin-top:6px}
+  .sf-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .sf-row>*{flex:1;min-width:220px}
+  .sub-form input[type=text],.sub-form input[type=email],.sub-form textarea{
+    width:100%;padding:10px 13px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.7);
+    font-family:inherit;font-size:14.5px;color:var(--ink);outline:none}
+  .sub-form input:focus,.sub-form textarea:focus{border-color:var(--seal)}
+  .sub-form textarea{margin-bottom:12px;line-height:1.9;resize:vertical}
+  .sub-form input[type=file]{font-size:13px;color:var(--ink-faint);padding:9px 0}
+  .sf-go{border:1px solid var(--seal);background:var(--seal);color:var(--paper);border-radius:22px;
+    padding:9px 30px;font-family:var(--kai);font-size:15px;letter-spacing:.1em;cursor:pointer}
+  .sf-go:hover{background:var(--seal-deep)}
+  .sf-note{font-size:12.5px;color:var(--ink-faint);margin:12px 0 0}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -716,6 +730,30 @@
   </div>
 
 
+  <div class="sub-head" id="submit"><b>投稿掌心</b><span class="en">Submit Your Work</span></div>
+  <p data-en="You do not need to be a member. If you write poems or prose, send us a piece — the editors read everything, and good work will be published on The Palm, with credit to you.">不必是掌心成员。写诗、作文的朋友，都可以把作品投给我们——编辑会认真读，好作品将在掌心刊出，并署你的名。</p>
+  <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form">
+    <input type="hidden" name="_subject" value="掌心 · 投稿">
+    <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none">
+    <div class="sf-row">
+      <input type="text" name="姓名或笔名" required placeholder="姓名 / 笔名　Name or pen name">
+      <input type="email" name="邮箱" required placeholder="邮箱　Email">
+    </div>
+    <div class="sf-row">
+      <input type="text" name="作品题目" required placeholder="作品题目　Title">
+      <input type="text" name="所在城市" placeholder="现居城市（可留空）　City">
+    </div>
+    <textarea name="作品正文" rows="7" placeholder="正文——诗、散文、评论皆可。也可只写几句说明，把作品作为附件上传。&#10;Your poem or prose. You may also attach a file below."></textarea>
+    <div class="sf-row">
+      <input type="text" name="推荐人" placeholder="推荐人（如有）　Introduced by">
+      <input type="file" name="附件" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
+    </div>
+    <button type="submit" class="sf-go">投　稿　·　Send</button>
+    <p class="sf-note">＊ 投稿直接送达掌心编辑组，无需注册。我们尊重版权，刊出前会与你确认。</p>
+  </form>
   <div class="sub-head" id="guestbook"><b>留言交流</b><span class="en">Leave a Note</span></div>
 
   <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录——掌心向所有爱诗的人敞开。</p>
