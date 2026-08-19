@@ -1658,10 +1658,15 @@ loadWorks();
     c.classList.add("pk-hit"); setTimeout(function(){c.classList.remove("pk-hit");},2400);
     setTimeout(function(){ c.click(); }, 500);
     return true; }
+  function shown(){ var b=document.getElementById("sbCard");
+    return !!(b&&getComputedStyle(b).display!=="none"); }
   function fromHash(){
     var h=decodeURIComponent((location.hash||"").slice(1));
     if(!h||/^[a-z-]+$/i.test(h)) return;   /* 普通锚点不处理 */
-    var n=0, t=setInterval(function(){ if(open(h)||++n>25) clearInterval(t); },400); }
+    var n=0, t=setInterval(function(){
+      if(shown()||++n>40){ clearInterval(t); return; }
+      open(h);
+    },600); }
   addEventListener("hashchange",fromHash);
   setTimeout(fromHash,1600);
   /* 名片里加一个「复制我的链接」 */
