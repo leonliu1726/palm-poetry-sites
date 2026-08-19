@@ -258,6 +258,10 @@
   .wk-more{margin:16px 0 0;padding:11px 16px;border:1px dashed var(--line);border-radius:10px;cursor:pointer;
     font-family:var(--kai);font-size:14.5px;color:var(--ink-faint);text-align:center;transition:.2s;user-select:none}
   .wk-more:hover{border-color:var(--seal);color:var(--seal);background:rgba(169,139,79,.06)}
+
+  .vw{display:block;margin-top:5px;font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em}
+  .m-card .vw{position:absolute;right:12px;bottom:9px;margin:0}
+  .m-card{position:relative}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1537,6 +1541,102 @@ loadWorks();
     todo.forEach(function(c){ g.appendChild(c); });
   }
   setInterval(tidy,700); tidy();
+})();
+</script>
+<script>
+/* 作品封面（本人自定义）＋ 阅览量 */
+(function(){
+  var HOST="",KEY="",TOK="";
+  function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  async function conf(){ if(HOST) return;
+    var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  /* 一、封面输入框 */
+  function addCover(){
+    var note=document.getElementById("wkNote"); if(!note||document.getElementById("wkCover")) return;
+    var wrap=document.createElement("div"); wrap.style.cssText="margin-top:10px";
+    wrap.innerHTML='<div style="font-size:13px;color:var(--ink-faint);margin-bottom:5px">封面（可留空）· 填一个图片网址，或从电脑选一张</div>';
+    var url=document.createElement("input"); url.id="wkCover"; url.type="url"; url.placeholder="https://…  封面图片网址";
+    url.style.cssText=note.getAttribute("style")||"";
+    url.className=note.className;
+    var file=document.createElement("input"); file.id="wkCoverFile"; file.type="file"; file.accept="image/*";
+    file.style.cssText="margin-top:7px;font-size:13px";
+    wrap.appendChild(url); wrap.appendChild(file);
+    note.parentNode.insertBefore(wrap, note.nextSibling);
+    conf().then(async function(){ var T=tok(); if(!T) return;
+      try{ var r=await fetch(HOST+"/rest/v1/rpc/my_cover",{method:"POST",
+        headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
+        var v=await r.json(); if(typeof v==="string") url.value=v; }catch(e){} });
+  }
+  /* 二、保存时一并写封面 */
+  document.addEventListener("click", async function(e){
+    if(!e.target||e.target.id!=="wkSave") return;
+    var u=document.getElementById("wkCover"), f=document.getElementById("wkCoverFile");
+    if(!u) return;
+    await conf(); var T=tok(); if(!T) return;
+    var val=u.value.trim();
+    try{
+      if(f&&f.files&&f.files[0]){
+        var b=f.files[0], ext=(b.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+        var p="c/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+        var up=await fetch(HOST+"/storage/v1/object/works/"+p,{method:"POST",
+          headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":b.type||"image/jpeg","x-upsert":"true"},body:b});
+        if(up.ok) val=HOST+"/storage/v1/object/public/works/"+p;
+      }
+      await fetch(HOST+"/rest/v1/rpc/set_cover",{method:"POST",
+        headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},
+        body:JSON.stringify({p_url:val})});
+    }catch(err){}
+  }, true);
+  setInterval(addCover,700);
+})();
+</script>
+<script>
+/* 封面显示 ＋ 阅览量 */
+(function(){
+  var HOST="",KEY="",WORKS=[],MEM=[],VC={},done=false;
+  async function conf(){ if(HOST) return;
+    var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  function H(){ return {apikey:KEY,Authorization:"Bearer "+KEY}; }
+  async function load(){ await conf(); if(!HOST) return;
+    try{ WORKS=await (await fetch(HOST+"/rest/v1/works?select=id,author_name,title,cover_url",{headers:H()})).json(); }catch(e){}
+    try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name",{headers:H()})).json(); }catch(e){}
+    try{ (await (await fetch(HOST+"/rest/v1/view_counts?select=kind,ref_id,n",{headers:H()})).json())
+          .forEach(function(v){ VC[v.kind+":"+v.ref_id]=v.n; }); }catch(e){}
+    done=true; paint(); }
+  function badge(el,n){ if(!n) return; if(el.querySelector(".vw")) return;
+    var s=document.createElement("span"); s.className="vw"; s.textContent="阅 "+n; el.appendChild(s); }
+  function bump(kind,id){ if(!id) return;
+    var k="pv:"+kind+":"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){}
+    fetch(HOST+"/rest/v1/rpc/bump_view",{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY},
+      body:JSON.stringify({p_kind:kind,p_id:id})}).catch(function(){}); }
+  function paint(){ if(!done) return;
+    document.querySelectorAll("#wkGrid .wk-card").forEach(function(c){
+      var b=c.querySelector(".wk-meta b"); if(!b) return;
+      var title=b.textContent.trim().replace(/[《》]/g,"");
+      var w=WORKS.filter(function(x){return x.title&&x.title.replace(/[《》]/g,"")===title;})[0];
+      if(!w) return;
+      var cov=c.querySelector(".wk-cover");
+      if(w.cover_url&&cov&&!cov.querySelector("img")){
+        cov.classList.remove("ph"); cov.innerHTML="";
+        var im=document.createElement("img"); im.src=w.cover_url; im.alt=title;
+        im.style.cssText="width:100%;height:100%;object-fit:cover"; cov.appendChild(im); }
+      badge(c.querySelector(".wk-meta"), VC["work:"+w.id]);
+      if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("work",w.id); }); }
+    });
+    document.querySelectorAll(".m-card[data-m]").forEach(function(c){
+      var nm=c.getAttribute("data-m");
+      var m=MEM.filter(function(x){return x.name===nm;})[0]; if(!m) return;
+      badge(c, VC["member:"+m.id]);
+      if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("member",m.id); }); }
+    }); }
+  load(); setInterval(paint,1200);
 })();
 </script>
 </body></html>
