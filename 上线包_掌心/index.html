@@ -173,8 +173,6 @@
 
   header .h-title{margin:0 0 6px;line-height:1;font-size:0}
 
-  .m-newt{margin:26px 0 10px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--kai);font-size:16px;color:var(--ink-faint);letter-spacing:.08em}
-  .m-newt .en{font-family:var(--serif-en);font-size:12px;color:var(--ink-faint);margin-left:8px;letter-spacing:.06em}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -233,8 +231,7 @@
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
   <div class="m-group-t">学园知交 <span class="en">Academy Friends</span></div>
   <div class="m-grid" id="m-grid-2"></div>
-  <div class="m-newt" id="m-newt" style="display:none">新友 · 由学园知交引荐 <span class="en">New Friends</span></div>
-  <div class="m-grid" id="m-grid-3" style="display:none"></div>
+  <p class="m-note" style="margin:18px 0 0">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
 </div></section>
 
@@ -941,16 +938,18 @@ function paint(){
     if(A!==B) return B-A;
     return a.sort_order-b.sort_order;
   }
+  function seen2(a,b){
+    var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
+    if(A!==B) return B-A;
+    if(a.grp!==b.grp) return a.grp-b.grp;
+    return a.sort_order-b.sort_order;
+  }
   var g1=ROWS.filter(function(m){return m.grp===1;}).sort(seen);
-  var g2=ROWS.filter(function(m){return m.grp===2||(m.grp===3&&m.updated_at);}).sort(seen);
-  var g3=ROWS.filter(function(m){return m.grp===3&&!m.updated_at;}).sort(function(a,b){return a.sort_order-b.sort_order;});
-  [['m-grid-1',g1],['m-grid-2',g2],['m-grid-3',g3]].forEach(function(p){
+  var g2=ROWS.filter(function(m){return m.grp===2||m.grp===3;}).sort(seen2);
+  [['m-grid-1',g1],['m-grid-2',g2]].forEach(function(p){
     var el=$(p[0]); if(!el) return;
     el.innerHTML=''; p[1].forEach(function(m){ el.appendChild(makeCard(m)); });
   });
-  var t3=$('m-newt'), e3=$('m-grid-3');
-  if(t3) t3.style.display = g3.length ? '' : 'none';
-  if(e3) e3.style.display = g3.length ? '' : 'none';
 }
 function openCard(name){
   var m=ROWS.filter(function(x){return x.name===name;})[0]; if(!m) return;
