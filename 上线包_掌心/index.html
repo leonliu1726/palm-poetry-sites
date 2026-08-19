@@ -195,6 +195,24 @@
   .ph-fold[open]>summary::before{content:"－"}
   .ph-fold>summary:hover{background:rgba(169,139,79,.06)}
   .ph-fold .gallery,.ph-fold .wgrid{margin-bottom:20px}
+
+  .sec-no{font-family:var(--li);font-size:19px;color:var(--seal);opacity:.85;border:1px solid var(--seal);border-radius:50%;
+          width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex:0 0 36px}
+  .sub-head{display:flex;align-items:baseline;gap:12px;margin:44px 0 18px;padding-top:16px;border-top:1px solid var(--line)}
+  .sub-head b{font-family:var(--kai);font-size:21px;font-weight:400;color:var(--seal);letter-spacing:.1em}
+  .sub-head .en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint)}
+  .tk{border-bottom:1px solid var(--line);background:rgba(255,252,246,.75)}
+  .tk-in{display:flex;align-items:center;gap:14px;padding-top:11px;padding-bottom:11px;min-height:44px}
+  .tk-tag{flex:0 0 auto;font-family:var(--kai);font-size:13px;color:var(--paper);background:var(--seal);
+          border-radius:20px;padding:3px 12px;letter-spacing:.08em}
+  .tk-item{flex:1;min-width:0;color:var(--ink);text-decoration:none;font-size:14.5px;line-height:1.6;
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .45s}
+  .tk-item:hover{color:var(--seal)}
+  .tk-item.fade{opacity:0}
+  .tk-nav{flex:0 0 auto;display:flex;gap:5px}
+  .tk-nav i{width:5px;height:5px;border-radius:50%;background:var(--line);display:block}
+  .tk-nav i.on{background:var(--seal)}
+  @media(max-width:640px){.tk-tag{display:none}.tk-item{font-size:13.5px}}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -202,16 +220,11 @@
   <button class="langbtn" id="langBtn" onclick="toggleLang()">EN</button>
   <ul>
     <li><a href="#origin">缘起<span class="e">Origin</span></a></li>
-    <li><a href="#mission">使命<span class="e">Mission</span></a></li>
+    <li><a href="#reading">诗文<span class="e">Poetry</span></a></li>
     <li><a href="#members">成员<span class="e">Members</span></a></li>
     <li><a href="#works">作品<span class="e">Works</span></a></li>
-    <li><a href="#fireflies">萤火<span class="e">Fireflies</span></a></li>
-    <li><a href="#writings">文存<span class="e">Writings</span></a></li>
-    <li><a href="#album">活动<span class="e">Gatherings</span></a></li>
     <li><a href="#forum">论坛<span class="e">Forum</span></a></li>
     <li><a href="#world">连接世界<span class="e">The World</span></a></li>
-    <li><a href="#join">加入<span class="e">Join</span></a></li>
-    <li><a href="#guestbook">留言<span class="e">Notes</span></a></li>
   </ul>
 </div></nav>
 
@@ -228,6 +241,12 @@
 </div></header>
 
 <main>
+<div class="tk" id="tk" hidden><div class="wrap tk-in">
+  <span class="tk-tag">今日掌心</span>
+  <a class="tk-item" id="tkItem" href="#members"></a>
+  <span class="tk-nav" id="tkDots"></span>
+</div></div>
+
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
     <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em>三十五位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
@@ -237,37 +256,26 @@
 </div></section>
 
 <section id="origin" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>缘起</h2><span class="en">Origin</span><div class="rule"></div></div>
+  <div class="sec-head"><span class="sec-no">一</span><h2>缘起 · 使命</h2><span class="en">Origin &amp; Mission</span><div class="rule"></div></div>
   <figure class="origin-poster"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-banner.jpg" alt="掌心诗社 · 掌上有温，心中有诚" loading="lazy"></figure>
   <p class="lead" data-en="“Schooled hard in China, living in the West, awake to the allure of free thought and an independent spirit — who, then, are we?”">「苦读于华夏，生活在西方，感受自由思想与独立人格之魅力——吾辈何许人也。」</p>
   <p data-en="The Palm Poetry Club grew out of a small poetry, literature and arts group formed in Toronto, Canada in 2017 — invitation-only, devoted to deep exchange and to fostering creation, holding many gatherings of verse and wine over the years. To broaden the reach of Chinese culture and the high art of poetry, on 17 July 2022, at a gathering at Jinyuan, its twelve earliest members formally founded The Palm Poetry Club, with Wén Rèn as its head.">掌心诗社缘起于二〇一七年加拿大多伦多的一个诗词文学艺术创作群，采小群邀请制度，以深度交流和促进创作为目的；多年来以自由随缘的方式举办多次诗词酒会，共同提高诗艺。为扩大中华文化与高雅诗词艺术的影响力，二〇二二年七月十七日矜园聚会时，先期入会的十二位会员以共同发起人的名义正式成立「掌心诗社」，由文刃担任社长。</p>
-</div></section>
 
-<section id="mission" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>使命</h2><span class="en">Our Mission</span><div class="rule"></div></div>
+
+  <div class="sub-head" id="mission"><b>使命</b><span class="en">Our Mission</span></div>
+
   <p data-en="To hold fast to a refined life of the spirit in a world that worships fame and gain; to keep the grace of a courteous people amid the coarse clamor of the international scene; and to let the finest of classical Chinese culture be carried on and renewed in an open, embracing spirit, drawing on the achievements of all civilizations.">在崇尚名利的现实世界中坚守高雅的精神追求，在粗鄙喧嚣的国际语境中保持礼仪之邦的风范，让中华优秀经典文化以开放兼容的心态、在吸收全世界文明成果的基础上传承与发展。</p>
   <div class="mission-grid">
     <div class="mi"><b>真诚 · 友善</b><span>以真和善为根，守护这一方净土。</span></div>
     <div class="mi"><b>独立 · 自由</b><span>独立之精神，自由之思想，不慕当世名利。</span></div>
     <div class="mi"><b>面向世界 · 面向未来</b><span>海纳百川，与世界各地诗人、作家、艺术家切磋；为大众创作，划破语言边界，开拓诗意的栖居。</span></div>
   </div>
+
 </div></section>
 
-<section id="members"><div class="wrap">
-  <div class="sec-head"><h2>成员</h2><span class="en">Members</span><div class="rule"></div></div>
-  <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
-  <div class="m-group-t">掌心社区 <span class="en">The Palm Community · Club &amp; Academy</span></div>
-  <div class="m-grid" id="m-grid-1"></div>
-  <div class="m-gap"></div>
-  <div class="m-grid" id="m-grid-2"></div>
-  <p class="m-note" style="margin:18px 0 0">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
-  <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
-</div></section>
-
-<section id="works" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>作品</h2><span class="en">Works</span><div class="rule"></div></div>
-  <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into several collections of verse and prose. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦汇成多种诗文会集。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
-  <div id="fireflies" class="ff-flagship">
+<section id="reading"><div class="wrap">
+  <div class="sec-head"><span class="sec-no">二</span><h2>诗文与雅集</h2><span class="en">Poetry, Prose &amp; Gatherings</span><div class="rule"></div></div>
+<div id="fireflies" class="ff-flagship">
     <div class="flag-label">众人合力 · 掌心最重要的集体结晶</div>
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
 
@@ -320,17 +328,8 @@
   </details>
   </div>
 
-  <div class="works-sub-h">历年诗文会集 · 成员专著与个人作品</div>
-  <div class="wk-grid" id="wkGrid">
-    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
-    <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><b>《千山独行》</b><span>文刃 · 台湾中华书局</span></div></a>
-    <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
-  </div>
-  <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
-</div></section>
+  <div class="sub-head" id="writings"><b>诗社文存</b><span class="en">Writings</span></div>
 
-<section id="writings" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>诗社文存</h2><span class="en">Writings</span><div class="rule"></div></div>
   <p style="text-align:center;max-width:680px;margin:0 auto 26px">《萤火》卷中序跋数篇，记掌心结社之缘、立社之志，文辞清隽。今特录于此，以见诗社之风骨。</p>
 
   <details class="wen" open>
@@ -383,10 +382,10 @@
       <p class="wen-by">—— 古土</p>
     </div>
   </details>
-</div></section>
 
-<section id="album"><div class="wrap">
-  <div class="sec-head"><h2>活动相册</h2><span class="en">Gatherings</span><div class="rule"></div></div>
+
+  <div class="sub-head" id="album"><b>活动相册</b><span class="en">Gatherings</span></div>
+
   <p>历年雅集、早茶清谈、湖畔聚会、原创作品展，以及与世界各地艺术家的往来——点击照片可放大。</p>
   <p style="color:var(--seal);font-family:var(--kai)">欢迎大家提供各自参与掌心活动的图片、文字、音频资料，在掌心一同展示、共享这份记忆。</p>
   <details class="ph-fold"><summary><span class="acc-t">展开相册 · 共 119 张</span></summary>
@@ -512,10 +511,38 @@
     <img src="网站图片/掌心/活动/att.w2tHX6BcjSFggNIxeDQ60x_6BEOVgINqb6-E3F4XEQo.JPG" alt="掌心活动与文化交流" loading="lazy">
   </div>
   </details>
+
+</div></section>
+
+<section id="members"><div class="wrap">
+  <div class="sec-head"><span class="sec-no">三</span><h2>成员</h2><span class="en">Members</span><div class="rule"></div></div>
+  <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
+  <div class="m-group-t">掌心社区 <span class="en">The Palm Community · Club &amp; Academy</span></div>
+  <div class="m-grid" id="m-grid-1"></div>
+  <div class="m-gap"></div>
+  <div class="m-grid" id="m-grid-2"></div>
+  <p class="m-note" style="margin:18px 0 0">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
+  <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 我自己修改 · 成员登录 →</a></p>
+
+</div></section>
+
+<section id="works"><div class="wrap">
+  <div class="sec-head"><span class="sec-no">四</span><h2>作品</h2><span class="en">Works</span><div class="rule"></div></div>
+  <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into several collections of verse and prose. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦汇成多种诗文会集。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
+  
+
+  <div class="works-sub-h">历年诗文会集 · 成员专著与个人作品</div>
+  <div class="wk-grid" id="wkGrid">
+    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
+    <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><b>《千山独行》</b><span>文刃 · 台湾中华书局</span></div></a>
+    <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
+  </div>
+  <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
+
 </div></section>
 
 <section id="forum"><div class="wrap">
-  <div class="sec-head"><h2>论坛</h2><span class="en">The Open Forum</span><div class="rule"></div></div>
+  <div class="sec-head"><span class="sec-no">五</span><h2>论坛</h2><span class="en">The Open Forum</span><div class="rule"></div></div>
   <p>掌心论坛是同道研习与思辨之地——为促进诗词艺术创作在文史、哲学、宗教比较与科学诸学科基础上的纵深发展，常年举办公益讲座、研讨与辩论。历年题录（点开查看）：</p>
         <details class="g-acc"><summary><span class="acc-t">二〇二六 · 掌心比较宗教学论坛 第二期</span></summary>
         <div class="g-body"><ul class="f-list">
@@ -575,10 +602,11 @@
     <a href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener" style="display:inline-block;padding:.5em 1.1em;border:1px solid var(--seal);border-radius:2px;color:var(--seal);text-decoration:none">✦ 进入掌心论坛 · 贴诗读诗的地方 →</a><br>
     <span style="display:inline-block;margin-top:.7em">＊ 贴诗，读诗，说诗。注册后即可发帖，人人可读。</span>
   </p>
+
 </div></section>
 
-<section id="world" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>连接世界</h2><span class="en">Connecting the World</span><div class="rule"></div></div>
+<section id="world" style="border-bottom:0"><div class="wrap">
+  <div class="sec-head"><span class="sec-no">六</span><h2>连接世界 · 加入 · 留言</h2><span class="en">Connect · Join · Notes</span><div class="rule"></div></div>
   <p data-en="The Palm opens its doors to poets the world over. Over the years, making friends through poetry, our steps have crossed five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — exchanging verse with poets, writers, scholars and artists everywhere. Wherever you are from, in whatever language you write, you are welcome here to share, to talk, and to answer song with song.">掌心向全世界的诗人敞开。多年来，我们以诗会友，足迹遍及五洲——登华沙古城、泛尼罗碧波、入大漠驼乡、访京都鸟居、立印度门前，与各国诗人、作家、学者与艺术家往来切磋。无论你来自何方、以何种语言写作，都欢迎在此发表、交流、唱和。</p>
   <p style="color:var(--seal);font-family:var(--kai);margin:2px 0 6px;font-size:16px">诚邀掌心同仁与天下诗友，提供你在世界各地的亲身经历图片——旅次风物、异国街巷、与各地友人的相逢，连同一句注脚或一首小诗，一同汇入这面「连接世界」的画卷。</p>
   <p style="color:var(--ink-soft);font-size:14px;margin:0 0 4px">来信投稿：<a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a>　·　我们会择要陆续上墙，署名致谢。</p>
@@ -604,10 +632,10 @@
     <div class="l"><b>日本語</b> 言語を問わず、作品を分かち合いましょう。</div>
     <div class="l"><b>Français</b> Quelle que soit votre langue, partagez ici vos vers.</div>
   </div>
-</div></section>
 
-<section id="join" class="panel" style="border-bottom:0"><div class="wrap">
-  <div class="sec-head"><h2>加入我们</h2><span class="en">Join Us</span><div class="rule"></div></div>
+
+  <div class="sub-head" id="join"><b>加入我们</b><span class="en">Join Us</span></div>
+
   <div class="join">
     <h3>每一位诗人，都可拥有自己的一方天地</h3>
     <p>掌心欢迎海内外诗人、作家、书画家与一切热爱诗的人加入。互动平台已经启用：成员登录后各有一方天地，可随时修改简介、更换照片、上传自己的作品或关联个人网站；开放讨论区同步开张，贴诗、读诗、唱和皆在其中。学园由知交引荐新友，向全世界爱诗的人敞开。</p>
@@ -626,10 +654,10 @@
     </ul>
     <p style="margin-top:16px" data-en="To join The Palm, please write to Tao Ran at taoran2000@hotmail.com or Feng Dong at xin2k@yahoo.com. To submit work, please write to Hai Bian at huangxiaoyu2001@gmail.com.">加入掌心，请致信：陶然 <a href="mailto:taoran2000@hotmail.com" style="color:var(--seal)">taoran2000@hotmail.com</a>；风动 <a href="mailto:xin2k@yahoo.com" style="color:var(--seal)">xin2k@yahoo.com</a><br>供稿掌心，请致信：海边 <a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a></p>
   </div>
-</div></section>
 
-<section id="guestbook" class="panel"><div class="wrap">
-  <div class="sec-head"><h2>留言交流</h2><span class="en">Guestbook · Leave a Note</span><div class="rule"></div></div>
+
+  <div class="sub-head" id="guestbook"><b>留言交流</b><span class="en">Leave a Note</span></div>
+
   <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录——掌心向所有爱诗的人敞开。</p>
   <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" id="gbForm" style="max-width:680px;margin:0 auto">
     <input type="hidden" name="_subject" value="掌心 · 留言">
@@ -645,7 +673,8 @@
     <button type="submit" style="margin-top:14px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:16px;letter-spacing:.2em;cursor:pointer">寄 出</button>
     <p style="text-align:center;font-size:12.5px;color:var(--ink-soft);margin:10px 0 0">＊ 留言直接送达掌心，无需注册，也不必自备邮件程序。</p>
   </form>
-  </div></section>
+  
+</div></section>
 </main>
 <footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.<br><span class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</span></footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
@@ -1343,6 +1372,59 @@ loadWorks();
     }
   }, true);
   document.addEventListener('click', function(){ setTimeout(who,1500); });
+})();
+</script>
+<script>
+/* 今日掌心 · 滚动栏 */
+(function(){
+  var FORUM='https://palmpoetry.discourse.group';
+  var box=document.getElementById("tk"), el=document.getElementById("tkItem"), dots=document.getElementById("tkDots");
+  if(!box) return;
+  var items=[], idx=0, timer=null;
+  function ago(ts){ var d=(Date.now()-Date.parse(ts))/864e5;
+    if(d<1) return "今天"; if(d<2) return "昨天"; if(d<30) return Math.floor(d)+" 天前"; return ""; }
+  function show(){ if(!items.length) return;
+    var it=items[idx%items.length];
+    el.classList.add("fade");
+    setTimeout(function(){ el.textContent=it.text; el.href=it.href;
+      el.target=/^https?:/.test(it.href)?"_blank":"_self";
+      el.classList.remove("fade");
+      dots.innerHTML=""; var m=Math.min(items.length,8);
+      for(var i=0;i<m;i++){ var d=document.createElement("i"); if(i===idx%items.length) d.className="on"; dots.appendChild(d); }
+    },260);
+    idx++; }
+  function run(){ box.hidden=false; show(); if(timer) clearInterval(timer); timer=setInterval(show,5000); }
+  function cache(v){ try{ localStorage.setItem("palm_tk", JSON.stringify(v)); }catch(e){} }
+  function cached(){ try{ return JSON.parse(localStorage.getItem("palm_tk")||"[]"); }catch(e){ return []; } }
+  async function load(){
+    var out=[];
+    try{
+      var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
+      var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+      var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
+      if(host&&key){ var H={apikey:key,Authorization:"Bearer "+key};
+        var mr=await fetch(host+"/rest/v1/members?select=name,updated_at&updated_at=not.is.null&order=updated_at.desc&limit=6",{headers:H});
+        (await mr.json()).forEach(function(m){ out.push({t:Date.parse(m.updated_at),
+          text:"「"+m.name+"」更新了自己的一方天地 · "+ago(m.updated_at), href:"#members"}); });
+        var wr=await fetch(host+"/rest/v1/works?select=author_name,title,url,created_at&kind=eq.member&order=created_at.desc&limit=20",{headers:H});
+        (await wr.json()).forEach(function(w){ if(!w.title||w.title.indexOf("待补")>=0) return;
+          out.push({t:Date.parse(w.created_at), text:"新作品 · "+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
+            href:(w.url&&/^https?:/.test(w.url))?w.url:"#works"}); });
+      }
+    }catch(e){}
+    try{
+      var f=await (await fetch(FORUM+"/latest.json?order=created")).json();
+      (f.topic_list.topics||[]).slice(0,6).forEach(function(x){
+        out.push({t:Date.parse(x.created_at), text:"论坛新帖 · "+x.title,
+          href:FORUM+"/t/topic/"+x.id}); });
+    }catch(e){}
+    out.sort(function(a,b){return (b.t||0)-(a.t||0);});
+    out=out.slice(0,8);
+    if(out.length){ items=out; cache(out); } else { items=cached(); }
+    if(items.length) run();
+  }
+  items=cached(); if(items.length) run();
+  load();
 })();
 </script>
 </body></html>
