@@ -262,6 +262,10 @@
   .vw{display:block;margin-top:5px;font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em}
   .m-card .vw{position:absolute;right:12px;bottom:9px;margin:0}
   .m-card{position:relative}
+
+  .sb-link{display:inline-block;margin-top:14px;font-size:13px;color:var(--seal);text-decoration:none;
+    border:1px solid var(--line);border-radius:16px;padding:5px 12px;cursor:pointer}
+  .sb-link:hover{border-color:var(--seal);background:rgba(169,139,79,.08)}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1641,6 +1645,44 @@ loadWorks();
     if(m) bump("member", m.id);
   }, true);
   load(); setInterval(paint,1200);
+})();
+</script>
+<script>
+/* 每人一个可分享的固定链接：palmpoetry.org/#海边 */
+(function(){
+  function open(name){
+    var c=[].slice.call(document.querySelectorAll(".m-card[data-m]"))
+      .filter(function(x){return x.getAttribute("data-m")===name;})[0];
+    if(!c) return false;
+    c.scrollIntoView({block:"center"});
+    c.classList.add("pk-hit"); setTimeout(function(){c.classList.remove("pk-hit");},2400);
+    setTimeout(function(){ c.click(); }, 500);
+    return true; }
+  function fromHash(){
+    var h=decodeURIComponent((location.hash||"").slice(1));
+    if(!h||/^[a-z-]+$/i.test(h)) return;   /* 普通锚点不处理 */
+    var n=0, t=setInterval(function(){ if(open(h)||++n>25) clearInterval(t); },400); }
+  addEventListener("hashchange",fromHash);
+  setTimeout(fromHash,1600);
+  /* 名片里加一个「复制我的链接」 */
+  setInterval(function(){
+    var box=document.getElementById("sbCard");
+    if(!box||getComputedStyle(box).display==="none") return;
+    var head=document.getElementById("sbCardHead"); if(!head) return;
+    var nm=head.querySelector("div>div"); if(!nm) return;
+    var name=nm.textContent.trim(); if(!name) return;
+    var el=document.getElementById("sbLink");
+    if(!el){ el=document.createElement("a"); el.id="sbLink"; el.href="#"; el.className="sb-link";
+      document.getElementById("sbCardBio").parentNode.appendChild(el); }
+    if(el.getAttribute("data-n")===name) return;
+    el.setAttribute("data-n",name);
+    el.textContent="⧉ 复制这一页的链接 · Copy link to this page";
+    el.onclick=function(ev){ ev.preventDefault();
+      var u=location.origin+location.pathname+"#"+encodeURIComponent(name);
+      if(navigator.clipboard) navigator.clipboard.writeText(u);
+      el.textContent="已复制 · Copied　"+u;
+      setTimeout(function(){ el.textContent="⧉ 复制这一页的链接 · Copy link to this page"; },3000); };
+  },600);
 })();
 </script>
 </body></html>
