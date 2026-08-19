@@ -1674,7 +1674,7 @@ loadWorks();
     var box=document.getElementById("sbCard");
     if(!box||getComputedStyle(box).display==="none") return;
     var head=document.getElementById("sbCardHead"); if(!head) return;
-    var nm=head.querySelector("div>div"); if(!nm) return;
+    var tx=head.children[1], nm=tx&&tx.children[0]; if(!nm) return;
     var name=nm.textContent.trim(); if(!name) return;
     var el=document.getElementById("sbLink");
     if(!el){ el=document.createElement("a"); el.id="sbLink"; el.href="#"; el.className="sb-link";
