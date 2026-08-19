@@ -23,7 +23,7 @@
     .nav-seal{width:36px;height:36px;border-radius:50%;flex:0 0 36px}
   @media(max-width:640px){.nav-seal{width:28px;height:28px;flex:0 0 28px}}
   @media(max-width:640px){.h-seal{width:84px;height:84px;margin-bottom:12px}}
-  *{box-sizing:border-box} html{scroll-snap-type:y proximity;scroll-padding-top:60px;scroll-behavior:smooth}
+  *{box-sizing:border-box} html{scroll-padding-top:calc(var(--navh,57px) + 10px);scroll-behavior:smooth}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong",var(--serif-en),serif;line-height:1.85;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
   nav{position:sticky;top:0;z-index:60;background:rgba(244,240,231,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -35,7 +35,7 @@
   nav a{text-decoration:none;color:var(--ink-soft);font-size:13.5px;letter-spacing:.1em;font-weight:600;transition:color .2s;display:flex;flex-direction:column;align-items:center;line-height:1.1}
   nav a .e{font-size:8.5px;color:var(--ink-faint);font-weight:400;letter-spacing:.03em}
   nav a:hover{color:var(--seal)}
-  section{padding:70px 0;border-bottom:1px solid var(--line);scroll-snap-align:start;scroll-margin-top:60px}
+  section{padding:70px 0;border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--navh,57px) + 10px)}
   .panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
   .sec-head{display:flex;align-items:center;gap:16px;margin-bottom:26px}
   .sec-head h2{font-family:var(--li);font-size:30px;letter-spacing:.14em;margin:0;white-space:nowrap;flex-shrink:0}
