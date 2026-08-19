@@ -266,6 +266,10 @@
   .sb-link{display:inline-block;margin-top:14px;font-size:13px;color:var(--seal);text-decoration:none;
     border:1px solid var(--line);border-radius:16px;padding:5px 12px;cursor:pointer}
   .sb-link:hover{border-color:var(--seal);background:rgba(169,139,79,.08)}
+
+  .zhbtn{margin-left:14px;border:1px solid var(--seal);background:transparent;color:var(--seal);
+    border-radius:18px;padding:4px 13px;font-family:var(--kai);font-size:14px;cursor:pointer;letter-spacing:.1em}
+  .zhbtn:hover{background:var(--seal);color:var(--paper)}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1691,4 +1695,57 @@ loadWorks();
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "05fc85d2a1b5407c9d41f31cb49f83f6"}'></script>
+<script>
+/* 简繁转换：台港澳自动繁体，右上角可随时翻转，记住选择 */
+(function(){
+  var KEY="palm_hant", conv=null, applied=false;
+  function want(){
+    var s=null; try{ s=localStorage.getItem(KEY); }catch(e){}
+    if(s==="1") return true; if(s==="0") return false;
+    var L=(navigator.languages||[navigator.language||""]).join(",").toLowerCase();
+    return /zh-(tw|hk|mo)|zh-hant/.test(L);
+  }
+  function walk(fn){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode; if(!p) return NodeFilter.FILTER_REJECT;
+      var tag=p.nodeName; if(tag==="SCRIPT"||tag==="STYLE"||tag==="TEXTAREA") return NodeFilter.FILTER_REJECT;
+      if(p.closest&&p.closest(".en-line,.w-en,.h-en,.en")) return NodeFilter.FILTER_REJECT;
+      return /[\u4e00-\u9fff]/.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT; }});
+    var n,list=[]; while(n=w.nextNode()) list.push(n);
+    list.forEach(fn);
+  }
+  function toHant(){
+    if(!conv) return;
+    walk(function(n){ if(n.__zh===undefined) n.__zh=n.nodeValue;
+      var v=conv(n.__zh); if(v!==n.nodeValue) n.nodeValue=v; });
+    applied=true; mark();
+  }
+  function toHans(){
+    walk(function(n){ if(n.__zh!==undefined && n.nodeValue!==n.__zh) n.nodeValue=n.__zh; });
+    applied=false; mark();
+  }
+  function mark(){ var b=document.getElementById("zhBtn"); if(b) b.textContent=applied?"简":"繁"; }
+  function load(cb){
+    if(conv) return cb();
+    var s=document.createElement("script");
+    s.src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js";
+    s.onload=function(){ try{ conv=OpenCC.Converter({from:"cn",to:"tw"}); }catch(e){ conv=null; } cb(); };
+    s.onerror=function(){ cb(); };
+    document.head.appendChild(s);
+  }
+  function btn(){
+    var nav=document.querySelector("nav .wrap"); if(!nav||document.getElementById("zhBtn")) return;
+    var b=document.createElement("button"); b.id="zhBtn"; b.className="zhbtn"; b.textContent="繁";
+    b.title="简体／繁體";
+    b.onclick=function(){
+      if(applied){ toHans(); try{localStorage.setItem(KEY,"0");}catch(e){} }
+      else { load(function(){ toHant(); try{localStorage.setItem(KEY,"1");}catch(e){} }); }
+    };
+    var brand=nav.querySelector(".brand");
+    if(brand&&brand.nextSibling) nav.insertBefore(b, brand.nextSibling); else nav.appendChild(b);
+  }
+  btn(); setInterval(btn,1500);
+  if(want()) load(function(){ toHant(); setTimeout(toHant,2500); setTimeout(toHant,6000); });
+})();
+</script>
 </body></html>
