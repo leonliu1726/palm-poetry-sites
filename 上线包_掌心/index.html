@@ -213,11 +213,18 @@
   .tk-nav i{width:5px;height:5px;border-radius:50%;background:var(--line);display:block}
   .tk-nav i.on{background:var(--seal)}
   @media(max-width:640px){.tk-tag{display:none}.tk-item{font-size:13.5px}}
+
+  .w-hi{font-family:var(--serif-en);font-size:clamp(22px,3.1vw,34px);font-weight:400;font-style:italic;
+        color:var(--seal);letter-spacing:.02em;margin:18px 0 4px;line-height:1.35}
+  .w-hi-zh{font-family:var(--kai);font-size:clamp(17px,2.1vw,21px);color:var(--ink);letter-spacing:.22em;margin-bottom:14px}
+  .w-note{max-width:760px;margin:0 auto 18px;font-size:15px;line-height:2.05;color:var(--ink-soft)}
+  .w-en{display:inline-block;margin-top:8px;font-family:var(--serif-en);font-size:14px;font-style:italic;color:var(--ink-faint);line-height:1.85}
+  .en-line{display:inline-block;margin-top:7px;font-family:var(--serif-en);font-size:13.5px;font-style:italic;
+           color:var(--ink-faint);line-height:1.85}
 </style></head>
 <body>
 <nav><div class="wrap">
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt=""><span class="brand-tx"><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></span></div>
-  <button class="langbtn" id="langBtn" onclick="toggleLang()">EN</button>
   <ul>
     <li><a href="#origin">缘起<span class="e">Origin</span></a></li>
     <li><a href="#reading">诗文<span class="e">Poetry</span></a></li>
@@ -240,6 +247,10 @@
   <span class="hc br"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5,40 C5,19 19,5 40,5"/><path d="M5,40 C5,27 13,20 22,20 C31,20 37,27 37,35 C37,40 33,44 28,44 C24,44 21,41 21,37 C21,34 23,32 26,32"/><path d="M45,7 C52,7 56,12 56,18"/></svg></span>
   <h1 class="h-title"><img class="h-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心" width="280" height="280"></h1>
   <div class="h-en">The Palm Poetry Club</div>
+  <h2 class="w-hi">Welcome, Friends from all over the world!</h2>
+  <div class="w-hi-zh">欢迎五湖四海的朋友</div>
+  <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛——你写，我们就读；你来，就有一方属于自己的天地。<br>
+  <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy — if you write, we will read; if you come, a space of your own is waiting.</span></p>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
   <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——以诗会友，以文相期，以天下英雄为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
   <p class="h-ff"><a href="#fireflies">✦ 本周萤火 · 每周一首，选自掌心诗刊《萤火》 →</a></p>
@@ -1392,7 +1403,10 @@ loadWorks();
       for(var i=0;i<m;i++){ var d=document.createElement("i"); if(i===idx%items.length) d.className="on"; dots.appendChild(d); }
     },260);
     idx++; }
-  function run(){ box.hidden=false; show(); if(timer) clearInterval(timer); timer=setInterval(show,5000); }
+  function run(){ box.hidden=false; step(); }
+  function step(){ if(timer) clearTimeout(timer);
+    var it=items[idx%items.length]; show();
+    timer=setTimeout(step, (it&&it.hold)||5000); }
   function cache(v){ try{ localStorage.setItem("palm_tk", JSON.stringify(v)); }catch(e){} }
   function cached(){ try{ return JSON.parse(localStorage.getItem("palm_tk")||"[]"); }catch(e){ return []; } }
   async function load(){
@@ -1403,18 +1417,20 @@ loadWorks();
       var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
       if(host&&key){ var H={apikey:key,Authorization:"Bearer "+key};
         var mr=await fetch(host+"/rest/v1/members?select=name,updated_at&updated_at=not.is.null&order=updated_at.desc&limit=6",{headers:H});
-        (await mr.json()).forEach(function(m){ out.push({t:Date.parse(m.updated_at),
+        (await mr.json()).forEach(function(m){ out.push({t:Date.parse(m.updated_at), hold:5000,
           text:"「"+m.name+"」更新了自己的一方天地 · "+ago(m.updated_at), href:"#members"}); });
         var wr=await fetch(host+"/rest/v1/works?select=author_name,title,url,created_at&kind=eq.member&order=created_at.desc&limit=20",{headers:H});
         (await wr.json()).forEach(function(w){ if(!w.title||w.title.indexOf("待补")>=0) return;
-          out.push({t:Date.parse(w.created_at), text:"新作品 · "+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
+          out.push({t:Date.parse(w.created_at), hold:10000, text:"新作品 · "+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
             href:(w.url&&/^https?:/.test(w.url))?w.url:"#works"}); });
       }
     }catch(e){}
     try{
       var f=await (await fetch(FORUM+"/latest.json?order=created")).json();
       (f.topic_list.topics||[]).slice(0,6).forEach(function(x){
-        out.push({t:Date.parse(x.created_at), text:"论坛新帖 · "+x.title,
+        var pin=!!(x.pinned||x.pinned_globally);
+        out.push({t:Date.parse(x.created_at), hold: pin?15000:5000,
+          text:(pin?"掌心公告 · ":"论坛新帖 · ")+x.title,
           href:FORUM+"/t/topic/"+x.id}); });
     }catch(e){}
     out.sort(function(a,b){return (b.t||0)-(a.t||0);});
@@ -1425,5 +1441,12 @@ loadWorks();
   items=cached(); if(items.length) run();
   load();
 })();
+</script>
+<script>
+(function(){ document.querySelectorAll("[data-en]").forEach(function(el){
+  var en=el.getAttribute("data-en"); if(!en) return;
+  var s=document.createElement("span"); s.className="en-line"; s.textContent=en;
+  el.appendChild(document.createElement("br")); el.appendChild(s);
+}); })();
 </script>
 </body></html>
