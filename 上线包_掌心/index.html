@@ -1634,8 +1634,12 @@ loadWorks();
       var nm=c.getAttribute("data-m");
       var m=MEM.filter(function(x){return x.name===nm;})[0]; if(!m) return;
       badge(c, VC["member:"+m.id]);
-      if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("member",m.id); }); }
     }); }
+  document.addEventListener("click", function(e){
+    var c=e.target.closest&&e.target.closest(".m-card[data-m]"); if(!c) return;
+    var m=MEM.filter(function(x){return x.name===c.getAttribute("data-m");})[0];
+    if(m) bump("member", m.id);
+  }, true);
   load(); setInterval(paint,1200);
 })();
 </script>
