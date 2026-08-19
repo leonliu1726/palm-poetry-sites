@@ -254,6 +254,10 @@
   /* 避免一两个字单独掉到下一行 */
   p,li,figcaption,.creed,.h-sub,.w-note,.lead,.en-line,.door em,.m-bio,.tk-item{text-wrap:pretty}
   .creed,.h-sub,.w-hi,.w-hi-zh,.lead,.door em,.sec-head h2,.sub-head b,.flag-label{text-wrap:balance}
+
+  .wk-more{margin:16px 0 0;padding:11px 16px;border:1px dashed var(--line);border-radius:10px;cursor:pointer;
+    font-family:var(--kai);font-size:14.5px;color:var(--ink-faint);text-align:center;transition:.2s;user-select:none}
+  .wk-more:hover{border-color:var(--seal);color:var(--seal);background:rgba(169,139,79,.06)}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1511,6 +1515,28 @@ loadWorks();
       res.appendChild(a); });
     res.hidden=false; });
   document.addEventListener("click",function(e){ if(!e.target.closest(".pk-search")) res.hidden=true; });
+})();
+</script>
+<script>
+/* 尚未上传作品的成员：折叠，点开才看 */
+(function(){
+  var OPEN=false;
+  function tidy(){
+    var g=document.getElementById("wkGrid"); if(!g) return;
+    var todo=[].slice.call(g.children).filter(function(c){
+      return c.id!=="wkCollAdd"&&c.id!=="wkMemberAdd"&&c.textContent.indexOf("（待补）")>=0;});
+    var btn=document.getElementById("wkMore");
+    if(!todo.length){ if(btn) btn.remove(); return; }
+    todo.forEach(function(c){ c.style.display=OPEN?"":"none"; });
+    if(!btn){
+      btn=document.createElement("div"); btn.id="wkMore"; btn.className="wk-more";
+      btn.addEventListener("click",function(){ OPEN=!OPEN; tidy(); });
+      g.parentNode.insertBefore(btn, g.nextSibling);
+    }
+    btn.textContent=(OPEN?"－ 收起":"＋ 尚未上传作品的同道 · 共 "+todo.length+" 位")+(OPEN?"":"（点开查看）");
+    todo.forEach(function(c){ g.appendChild(c); });
+  }
+  setInterval(tidy,700); tidy();
 })();
 </script>
 </body></html>
