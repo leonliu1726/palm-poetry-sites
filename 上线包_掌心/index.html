@@ -356,6 +356,16 @@
   }
   .film-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}
   .film-grid:empty{display:none}
+
+  .film-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:9px;overflow:hidden;background:rgba(255,255,255,.55);transition:.28s}
+  .film-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 30px rgba(169,139,79,.2)}
+  .film-cov{position:relative;aspect-ratio:16/9;background:#e9e1d0;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:26px;overflow:hidden}
+  .film-cov img{width:100%;height:100%;object-fit:cover}
+  .film-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;
+    background:rgba(156,58,47,.86);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
+  .film-meta{padding:11px 13px}
+  .film-meta b{display:block;font-size:15px;line-height:1.5}
+  .film-meta span{display:block;font-size:12.5px;color:var(--ink-faint);margin-top:3px}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -371,7 +381,7 @@
 </div></nav>
 <div class="tk" id="tk" hidden><div class="wrap tk-in">
   <a class="tk-seg" id="tkFF" href="#fireflies"><b>今日萤火</b><span>——</span></a>
-  <a class="tk-seg" id="tkFO" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>今日荐帖</b><span>——</span></a>
+  <a class="tk-seg" id="tkFO" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论坛荐帖</b><span>——</span></a>
   <a class="tk-seg tk-live" id="tkUP" href="#members"><b>掌心动态</b><span>——</span></a>
 </div></div>
 
@@ -866,8 +876,8 @@
 </main>
 <div class="coda"><div class="wrap">
   <div class="coda-line"></div>
-  <p class="coda-zh">掌心不大。<br>不过是一群人把诗捧在手心里，递给下一个人。</p>
-  <p class="coda-en">The Palm is a small thing — a few people holding poems in the palm of the hand, and passing them on.</p>
+  <p class="coda-zh">掌心不大，<br>但可以把自己捧着的诗交到另一个人手中。</p>
+  <p class="coda-en">The Palm is small — small enough to hold a poem in the palm of your hand, and pass it into someone else’s.</p>
   <p class="coda-zh2">你若真诚书写，这里有你与同道共同展示自己才华的一方天地；<br>你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。</p>
   <p class="coda-en2">If you write in earnest, here is a place to show your work beside your peers.<br>If you read serious writing, The Palm is where you will want to be.</p>
   <div class="coda-line"></div>
@@ -2174,6 +2184,105 @@ loadWorks();
       sp.textContent = line + (m.d? "　"+m.d.slice(0,26) : "");
     }); }
   load().then(function(){ paint(); setInterval(paint,1500); });
+})();
+</script>
+<script>
+/* 掌心影音：展示 ＋ 挑灯看剑的四格录入 */
+(function(){
+  var TD="kzhoud88"+String.fromCharCode(64)+"gmail.com";
+  var HOST="",KEY="";
+  function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  function isTD(){ var t=tok(); if(!t) return false;
+    try{ var p=JSON.parse(decodeURIComponent(escape(atob(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/")))));
+      return String(p.email||"").toLowerCase()===TD; }catch(e){ return false; } }
+  async function conf(){ if(HOST) return;
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  async function render(){
+    await conf(); var g=document.getElementById("filmGrid"); if(!g||!HOST) return;
+    var rows=[];
+    try{ rows=await (await fetch(HOST+"/rest/v1/works?select=title,url,note,cover_url&kind=eq.video&order=created_at.desc",
+      {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json(); }catch(e){ return; }
+    var note=document.getElementById("filmNote");
+    if(!rows.length){ if(note) note.style.display=""; return; }
+    if(note) note.style.display="none";
+    g.innerHTML="";
+    rows.forEach(function(v){
+      var a=document.createElement("a"); a.className="film-card"; a.href=v.url||"#";
+      if(/^https?:/.test(v.url||"")) { a.target="_blank"; a.rel="noopener"; }
+      var cov=document.createElement("div"); cov.className="film-cov";
+      if(v.cover_url){ var im=document.createElement("img"); im.src=v.cover_url; im.alt=v.title||""; cov.appendChild(im); }
+      else cov.textContent="▶";
+      var play=document.createElement("span"); play.className="film-play"; play.textContent="▶"; cov.appendChild(play);
+      var m=document.createElement("div"); m.className="film-meta";
+      var b=document.createElement("b"); b.textContent=v.title||"";
+      var s=document.createElement("span"); s.textContent=(v.note||"").split("｜")[0]||"";
+      m.appendChild(b); m.appendChild(s);
+      a.appendChild(cov); a.appendChild(m); g.appendChild(a);
+    });
+  }
+  var box=null,F={};
+  function ui(){ if(box) return;
+    box=document.createElement("div");
+    box.style.cssText="position:fixed;inset:0;background:rgba(22,19,15,.55);display:none;align-items:center;justify-content:center;z-index:210;padding:18px";
+    var p=document.createElement("div");
+    p.style.cssText="background:var(--paper);max-width:520px;width:100%;border-radius:12px;padding:26px;max-height:88vh;overflow:auto";
+    p.innerHTML='<div style="font-family:var(--kai);font-size:20px;color:var(--seal);margin-bottom:4px">新增一段掌心影音</div>'+
+      '<div style="font-size:12.5px;color:var(--ink-faint);margin-bottom:16px">视频先传到 YouTube 或 B 站，再把链接填在这里。</div>';
+    function row(lab,type,ph){ var w=document.createElement("div"); w.style.cssText="margin-bottom:12px";
+      var l=document.createElement("div"); l.style.cssText="font-size:13px;color:var(--ink-soft);margin-bottom:4px"; l.textContent=lab; w.appendChild(l);
+      var i=document.createElement("input"); i.type=type||"text"; if(ph) i.placeholder=ph;
+      i.style.cssText="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.85);font-family:inherit;font-size:14.5px;color:var(--ink);outline:none";
+      w.appendChild(i); p.appendChild(w); return i; }
+    F.t=row("片名","text","例：《归》· 朗诵");
+    F.d=row("说明　例：朗诵 海边　摄制 挑灯看剑","text","");
+    F.u=row("视频链接","url","https://www.youtube.com/… 或 https://www.bilibili.com/…");
+    F.c=row("封面图网址（可留空）","url","https://…");
+    var wf=document.createElement("div"); wf.style.cssText="margin-bottom:14px";
+    wf.innerHTML='<div style="font-size:13px;color:var(--ink-soft);margin-bottom:4px">或从电脑选一张封面</div>';
+    F.f=document.createElement("input"); F.f.type="file"; F.f.accept="image/*"; F.f.style.cssText="font-size:13px";
+    wf.appendChild(F.f); p.appendChild(wf);
+    F.msg=document.createElement("div"); F.msg.style.cssText="font-size:13px;color:var(--seal);min-height:20px;margin-bottom:8px"; p.appendChild(F.msg);
+    var bar=document.createElement("div"); bar.style.cssText="display:flex;gap:10px;justify-content:flex-end";
+    var c=document.createElement("button"); c.className="cj-b2"; c.textContent="取消";
+    var s=document.createElement("button"); s.className="cj-b1"; s.textContent="保存";
+    bar.appendChild(c); bar.appendChild(s); p.appendChild(bar);
+    box.appendChild(p); document.body.appendChild(box);
+    c.onclick=function(){ box.style.display="none"; };
+    box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
+    s.onclick=async function(){
+      var T=tok(); if(!T){ F.msg.textContent="请先登录。"; return; }
+      if(!F.t.value.trim()||!F.u.value.trim()){ F.msg.textContent="片名和链接是必填的。"; return; }
+      F.msg.textContent="保存中……";
+      try{ var cov=F.c.value.trim();
+        if(F.f.files&&F.f.files[0]){ var bl=F.f.files[0];
+          var ext=(bl.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+          var path="v/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+          var up=await fetch(HOST+"/storage/v1/object/works/"+path,{method:"POST",
+            headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":bl.type||"image/jpeg","x-upsert":"true"},body:bl});
+          if(up.ok) cov=HOST+"/storage/v1/object/public/works/"+path; }
+        var r=await fetch(HOST+"/rest/v1/works",{method:"POST",
+          headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},
+          body:JSON.stringify({kind:"video",owner_email:TD,author_name:"掌心影音",
+            title:F.t.value.trim(),url:F.u.value.trim(),note:F.d.value.trim(),cover_url:cov||null})});
+        if(r.ok){ F.msg.textContent="已保存。"; setTimeout(function(){ location.reload(); },1200); }
+        else F.msg.textContent="没能保存（"+r.status+"）。";
+      }catch(e){ F.msg.textContent="网络不太顺，请稍后再试。"; }
+    };
+  }
+  function place(){
+    var g=document.getElementById("filmGrid"); if(!g) return;
+    var b=document.getElementById("vdAdd");
+    if(!isTD()){ if(b) b.remove(); return; }
+    if(b) return;
+    b=document.createElement("div"); b.id="vdAdd"; b.className="cj-add"; b.textContent="＋ 新增一段掌心影音";
+    b.onclick=function(){ ui(); box.style.display="flex"; };
+    g.parentNode.insertBefore(b,g);
+  }
+  render(); setInterval(place,1200);
 })();
 </script>
 </body></html>
