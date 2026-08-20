@@ -366,6 +366,18 @@
   .film-meta{padding:11px 13px}
   .film-meta b{display:block;font-size:15px;line-height:1.5}
   .film-meta span{display:block;font-size:12.5px;color:var(--ink-faint);margin-top:3px}
+
+  .space-note{margin:0 0 30px;padding:24px 28px;border:1px solid var(--gold);border-radius:12px;
+    background:radial-gradient(120% 90% at 90% 4%,rgba(169,139,79,.14),transparent),rgba(255,255,255,.5)}
+  .sn-h{font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.06em}
+  .sn-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint);margin:3px 0 14px}
+  .sn-p{margin:0 0 8px;font-size:15px;color:var(--ink)}
+  .sn-l{margin:0 0 12px;padding-left:20px;color:var(--ink-soft);font-size:14.5px;line-height:2}
+  .sn-l b{color:var(--ink);font-weight:600}
+  .sn-f{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.9;padding-top:12px;border-top:1px solid var(--line)}
+  .sn-f a{color:var(--seal)}
+  @media(max-width:640px){.space-note{padding:20px 18px}.sn-h{font-size:18px}}
+  .tk-tip b{background:var(--gold)!important}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -694,6 +706,24 @@
 
 <section id="works"><div class="wrap">
   <div class="sec-head"><span class="sec-no">四</span><h2>作品</h2><span class="en">Works</span><div class="rule"></div></div>
+
+  <div class="space-note">
+    <div class="sn-h">你的一方天地，已经可以好好装修了</div>
+    <div class="sn-en">Your own space — now ready to be furnished</div>
+    <p class="sn-p">登录之后，<b>点你自己的作品卡</b>，就能填这些：</p>
+    <ul class="sn-l">
+      <li><b>题目</b>　你的书、你的集子、你的一组画</li>
+      <li><b>类别</b>　诗集 · 散文集 · 小说 · 评论 · 书画 · 摄影 · 音频 · 视频 · 个人网站</li>
+      <li><b>年份</b>　与一两句<b>说明</b></li>
+      <li><b>封面</b>　填图片网址，或直接从电脑选一张</li>
+      <li><b>内页图</b>　<b>最多六张</b>——书影、插画、手稿、演出照都行</li>
+      <li><b>附件</b>　PDF、Word 或音频</li>
+      <li><b>链接</b>　你的个人网站、购书页、论坛帖</li>
+    </ul>
+    <p class="sn-f">还没登录？到<a href="#members">成员</a>那一栏，<b>点你自己的名字</b>，会寄一封登录信到你留给掌心的邮箱。<br>
+    <span class="en-line">Sign in from the Members section by clicking your own name — a link will be sent to your email.</span></p>
+  </div>
+
   <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into several collections of verse and prose. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦汇成多种诗文会集。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
   
 
@@ -1646,9 +1676,14 @@ loadWorks();
   function show(){ if(!items.length) return;
     var it=items[idx%items.length]; var s=eUP.querySelector("span");
     s.classList.add("fade");
-    setTimeout(function(){ s.textContent=it.text; eUP.href=it.href; s.classList.remove("fade"); },240);
+    setTimeout(function(){ s.textContent=it.text; eUP.href=it.href;
+      eUP.classList.toggle("tk-tip", !!it.tip);
+      eUP.querySelector("b").textContent = it.tip ? "掌心提示" : "掌心动态";
+      s.classList.remove("fade"); },240);
     idx++; }
-  function step(){ if(timer) clearTimeout(timer); show(); timer=setTimeout(step,5000); }
+  function step(){ if(timer) clearTimeout(timer);
+    var it=items[idx%items.length]; show();
+    timer=setTimeout(step, (it&&it.tip)?8000:5000); }
   async function live(){
     var out=[];
     try{
@@ -1667,8 +1702,19 @@ loadWorks();
       }
     }catch(e){}
     out.sort(function(a,b){return (b.t||0)-(a.t||0);});
-    items = out.length? out.slice(0,8) : (cached("up")||[]);
-    if(out.length) cache("up",items);
+    var real = out.length? out.slice(0,8) : (cached("up")||[]);
+    if(out.length) cache("up",real);
+    var TIPS=[
+      {tip:1,href:"#works",text:"✎ 你的一方天地已扩容——封面、内页图六张、附件、类别与年份，点自己的作品卡就能布置"},
+      {tip:1,href:"#members",text:"✎ 点自己的名字即可登录，修改简介、更换照片，全凭自己做主"},
+      {tip:1,href:"https://palmpoetry.discourse.group/",text:"✎ 论坛已开：贴一首诗，读一首诗，说几句真话——注册即可发帖"},
+      {tip:1,href:"#works",text:"✎ 把自己的网址发给朋友：palmpoetry.org 加井号加你的名字，直接打开你的名片"}
+    ];
+    var mixed=[], k=0;
+    for(var i=0;i<real.length;i++){ mixed.push(real[i]);
+      if((i+1)%2===0) mixed.push(TIPS[k++%TIPS.length]); }
+    if(!real.length) mixed=TIPS.slice();
+    items=mixed;
     if(items.length){ box.hidden=false; step(); }
   }
   box.hidden=false;
