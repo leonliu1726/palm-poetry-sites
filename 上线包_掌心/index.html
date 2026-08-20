@@ -378,6 +378,20 @@
   .sn-f a{color:var(--seal)}
   @media(max-width:640px){.space-note{padding:20px 18px}.sn-h{font-size:18px}}
   .tk-tip b{background:var(--gold)!important}
+
+  .stamp{display:flex;justify-content:flex-end;margin:14px 0 2px}
+  .stamp img{width:46px;height:46px;border-radius:50%;opacity:.62;transition:.3s}
+  .stamp img:hover{opacity:.95}
+  footer{padding:40px 0 46px;text-align:center;color:var(--ink-faint);font-size:13px;line-height:1.9}
+  .f-main{color:var(--ink-soft)}
+  .f-by{display:block;margin-top:8px;font-size:12.5px;letter-spacing:.04em}
+  .f-cr{max-width:760px;margin:18px auto 0;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.95}
+  .f-cr b{color:var(--ink-soft)}
+  .f-en{display:inline-block;margin-top:5px;font-family:var(--serif-en);font-style:italic;font-size:12px;color:var(--ink-faint)}
+  .f-seal{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px;font-size:12.5px;line-height:1.8}
+  .f-seal img{width:38px;height:38px;border-radius:50%;opacity:.8;flex:0 0 38px}
+  .f-seal span{text-align:left}
+  @media(max-width:640px){.f-seal{flex-direction:column;gap:8px}.f-seal span{text-align:center}}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -442,6 +456,7 @@
     <div class="mi"><b>面向世界 · 面向未来</b><span data-en="To the World, to the Future — we learn from poets, writers and artists everywhere; we write for ordinary readers, cross the borders of language, and make room for a poetic way of living.">海纳百川，与世界各地诗人、作家、艺术家切磋；为大众创作，划破语言边界，开拓诗意的栖居。</span></div>
   </div>
 
+  <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 </div></section>
 
 <section id="reading"><div class="wrap">
@@ -556,10 +571,16 @@
   </details>
 
 
+  
+  <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
+
   <div class="sub-head" id="films"><b>掌心影音</b><span class="en">Poem Films</span></div>
   <p data-en="Poems set to image and sound — recitations, poem-films and clips from our gatherings, made and curated by our member Tiaodeng Kanjian.">诗与影像、声音的相遇——朗诵、诗歌短片、雅集片段，由掌心成员挑灯看剑制作与整理。</p>
   <div class="film-grid" id="filmGrid"></div>
   <p class="m-note" id="filmNote">影音陆续上线。<span class="en-line">Films are being added.</span></p>
+
+  
+  <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
   <div class="sub-head" id="album"><b>活动相册</b><span class="en">Gatherings</span></div>
 
@@ -689,6 +710,7 @@
   </div>
   </details>
 
+  <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 </div></section>
 
 <section id="members"><div class="wrap">
@@ -912,7 +934,20 @@
   <p class="coda-en2">If you write in earnest, here is a place to show your work beside your peers.<br>If you read serious writing, The Palm is where you will want to be.</p>
   <div class="coda-line"></div>
 </div></div>
-<footer>掌心 · The Palm Poetry Club　|　诗文会友，薪火相传　·　Poetry, friendship, and a flame passed on.<br><span class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</span></footer>
+<footer>
+  <div class="f-main">掌心 · The Palm Poetry Club　|　诗文会友，薪火相传　·　Poetry, friendship, and a flame passed on.</div>
+  <div class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</div>
+  <div class="f-cr">
+    © 2026 掌心诗社 The Palm Poetry Club　保留所有权利。<br>
+    网站文字、编排与图片版权归掌心诗社所有；<b>成员作品版权归作者本人所有</b>。转载请注明出处并链回本站。<br>
+    <span class="f-en">© 2026 The Palm Poetry Club. All rights reserved. Copyright in members’ own works remains with their authors. Please credit the source and link back when quoting or reposting.</span>
+  </div>
+  <div class="f-seal">
+    <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
+    <span>掌心印章 · 草书由许之远先生提供，印章设计 掌心诗社<br>
+      <span class="f-en">The Palm seal: cursive calligraphy by Mr. Hsu Chih-yuan; seal design by The Palm Poetry Club.</span></span>
+  </div>
+</footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
 <div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
 <script>
