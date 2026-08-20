@@ -2020,4 +2020,160 @@ loadWorks();
   setInterval(place,1200);
 })();
 </script>
+<script>
+/* 我的一方天地 · 作品：更丰富的内部空间 */
+(function(){
+  var HOST="",KEY="",MINE=null,NAME="";
+  var CATS=["诗集","散文集","小说","评论","书画","摄影","音频","视频","个人网站","其他"];
+  function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  async function conf(){ if(HOST) return;
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  function meta(note){ try{ var o=JSON.parse(note||"{}"); return (o&&typeof o==="object")?o:{d:note||""}; }
+    catch(e){ return {d:note||""}; } }
+  async function upload(file,pre){
+    var T=tok(); if(!T) return "";
+    var ext=(file.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"");
+    var p=pre+"/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+    var r=await fetch(HOST+"/storage/v1/object/works/"+p,{method:"POST",
+      headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":file.type||"application/octet-stream","x-upsert":"true"},body:file});
+    return r.ok ? HOST+"/storage/v1/object/public/works/"+p : "";
+  }
+  var box=null,F={};
+  function build(){
+    if(box) return;
+    box=document.createElement("div");
+    box.style.cssText="position:fixed;inset:0;background:rgba(22,19,15,.55);display:none;align-items:center;justify-content:center;z-index:210;padding:18px";
+    var p=document.createElement("div");
+    p.style.cssText="background:var(--paper);max-width:560px;width:100%;border-radius:12px;padding:26px;max-height:90vh;overflow:auto";
+    p.innerHTML='<div style="font-family:var(--kai);font-size:21px;color:var(--seal)">我的作品</div>'+
+      '<div id="myWho" style="font-size:12.5px;color:var(--ink-faint);margin:4px 0 16px"></div>';
+    function fld(lab,tip){ var w=document.createElement("div"); w.style.cssText="margin-bottom:12px";
+      var l=document.createElement("div"); l.style.cssText="font-size:13px;color:var(--ink-soft);margin-bottom:4px";
+      l.textContent=lab; if(tip){ var s=document.createElement("span"); s.style.cssText="color:var(--ink-faint);font-size:12px;margin-left:6px"; s.textContent=tip; l.appendChild(s); }
+      w.appendChild(l); p.appendChild(w); return w; }
+    function inp(w,type,ph){ var i=document.createElement(type==="area"?"textarea":"input");
+      if(type!=="area") i.type=type; if(ph) i.placeholder=ph;
+      i.style.cssText="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.85);font-family:inherit;font-size:14.5px;color:var(--ink);outline:none";
+      if(type==="area"){ i.rows=4; i.style.lineHeight="1.9"; i.style.resize="vertical"; }
+      w.appendChild(i); return i; }
+    var w1=fld("题目"); F.title=inp(w1,"text","例：《归》");
+    var w2=fld("类别"); F.cat=document.createElement("select");
+    F.cat.style.cssText="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.85);font-family:inherit;font-size:14.5px;color:var(--ink)";
+    CATS.forEach(function(c){ var o=document.createElement("option"); o.value=c; o.textContent=c; F.cat.appendChild(o); });
+    w2.appendChild(F.cat);
+    var w3=fld("年份","可留空"); F.year=inp(w3,"text","例：2024");
+    var w4=fld("链接","书的介绍页、个人网站、论坛帖都可以"); F.url=inp(w4,"url","https://…");
+    var w5=fld("说明","一两句话，介绍这件作品"); F.desc=inp(w5,"area","");
+    var w6=fld("封面","填图片网址，或从电脑选一张"); F.cover=inp(w6,"url","https://…");
+    F.coverF=document.createElement("input"); F.coverF.type="file"; F.coverF.accept="image/*";
+    F.coverF.style.cssText="margin-top:7px;font-size:13px"; w6.appendChild(F.coverF);
+    var w7=fld("内页图","可多选，最多 6 张——书影、插画、手稿、演出照都行");
+    F.gal=document.createElement("input"); F.gal.type="file"; F.gal.accept="image/*"; F.gal.multiple=true;
+    F.gal.style.cssText="font-size:13px"; w7.appendChild(F.gal);
+    F.galBox=document.createElement("div"); F.galBox.style.cssText="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px";
+    w7.appendChild(F.galBox);
+    var w8=fld("附件","PDF、Word 或音频"); F.file=document.createElement("input"); F.file.type="file";
+    F.file.accept=".pdf,.doc,.docx,.txt,.mp3,.m4a"; F.file.style.cssText="font-size:13px"; w8.appendChild(F.file);
+    F.msg=document.createElement("div"); F.msg.style.cssText="font-size:13px;color:var(--seal);min-height:20px;margin:6px 0 10px";
+    p.appendChild(F.msg);
+    var bar=document.createElement("div"); bar.style.cssText="display:flex;gap:10px;justify-content:flex-end";
+    var c=document.createElement("button"); c.className="cj-b2"; c.textContent="关闭";
+    var s=document.createElement("button"); s.className="cj-b1"; s.textContent="保存";
+    bar.appendChild(c); bar.appendChild(s); p.appendChild(bar);
+    box.appendChild(p); document.body.appendChild(box);
+    c.onclick=function(){ box.style.display="none"; };
+    box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
+    s.onclick=save;
+  }
+  var GAL=[];
+  function drawGal(){ F.galBox.innerHTML="";
+    GAL.forEach(function(u,i){ var d=document.createElement("div");
+      d.style.cssText="position:relative;width:56px;height:56px;border-radius:6px;overflow:hidden;border:1px solid var(--line)";
+      d.innerHTML='<img src="'+u+'" style="width:100%;height:100%;object-fit:cover">';
+      var x=document.createElement("span"); x.textContent="×";
+      x.style.cssText="position:absolute;top:0;right:2px;color:#fff;text-shadow:0 0 3px #000;cursor:pointer;font-size:15px";
+      x.onclick=function(){ GAL.splice(i,1); drawGal(); };
+      d.appendChild(x); F.galBox.appendChild(d); }); }
+  async function open(){
+    await conf(); build();
+    var T=tok(); if(!T){ alert("请先在成员名录里点自己的名字登录。"); return; }
+    var r=await fetch(HOST+"/rest/v1/rpc/my_work",{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
+    var j=await r.json().catch(function(){return null;});
+    MINE=(Array.isArray(j)&&j.length)?j[0]:null;
+    var m=meta(MINE&&MINE.note);
+    F.title.value=(MINE&&MINE.title&&MINE.title.indexOf("待补")<0)?MINE.title:"";
+    F.cat.value=m.c||"诗集"; F.year.value=m.y||"";
+    F.url.value=(MINE&&MINE.url)||""; F.desc.value=m.d||"";
+    F.cover.value=""; GAL=(m.g||[]).slice(0,6); drawGal();
+    F.msg.textContent="";
+    document.getElementById("myWho").textContent="每一位成员都有这一方天地。填得越用心，别人越愿意读。";
+    box.style.display="flex";
+  }
+  async function save(){
+    var T=tok(); if(!T) return;
+    if(!F.title.value.trim()){ F.msg.textContent="请先给作品起个题目。"; return; }
+    F.msg.textContent="保存中……";
+    try{
+      var cover=F.cover.value.trim();
+      if(F.coverF.files&&F.coverF.files[0]) cover=(await upload(F.coverF.files[0],"c"))||cover;
+      if(F.gal.files&&F.gal.files.length){
+        for(var i=0;i<F.gal.files.length && GAL.length<6;i++){
+          var u=await upload(F.gal.files[i],"g"); if(u) GAL.push(u); }
+        drawGal(); }
+      var fileUrl="";
+      if(F.file.files&&F.file.files[0]) fileUrl=await upload(F.file.files[0],"f");
+      var note=JSON.stringify({c:F.cat.value, y:F.year.value.trim(), d:F.desc.value.trim(), g:GAL, f:fileUrl||(meta(MINE&&MINE.note).f||"")});
+      var url=F.url.value.trim()||fileUrl||"";
+      var body={title:F.title.value.trim(), url:url, note:note};
+      var r;
+      if(MINE){ r=await fetch(HOST+"/rest/v1/works?kind=eq.member&title=eq."+encodeURIComponent(MINE.title),
+          {method:"PATCH",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},body:JSON.stringify(body)});
+      } else { r={ok:false}; }
+      if(cover){ await fetch(HOST+"/rest/v1/rpc/set_cover",{method:"POST",
+        headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:JSON.stringify({p_url:cover})}); }
+      if(r.ok||cover){ F.msg.textContent="已保存。页面稍后自动刷新。"; setTimeout(function(){location.reload();},1400); }
+      else F.msg.textContent="没能保存，请稍后再试。";
+    }catch(e){ F.msg.textContent="网络不太顺，请稍后再试。"; }
+  }
+  /* 接管作品区的编辑入口 */
+  document.addEventListener("click",function(e){
+    var c=e.target.closest&&e.target.closest(".wk-card"); if(!c) return;
+    if(c.id==="wkCollAdd") return;
+    if(c.id==="wkMemberAdd"){ e.preventDefault(); e.stopPropagation(); open(); return; }
+  },true);
+  window.__palmMyWork=open;
+})();
+</script>
+<script>
+/* 作品卡：把 JSON 说明还原成好看的文字，并显示内页图数量 */
+(function(){
+  function meta(n){ try{ var o=JSON.parse(n||"{}"); return (o&&typeof o==="object")?o:null; }catch(e){ return null; } }
+  var HOST="",KEY="",MAP={},ok=false;
+  async function load(){
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||"";
+    if(!HOST) return;
+    try{ (await (await fetch(HOST+"/rest/v1/works?select=title,note,kind",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json())
+      .forEach(function(w){ MAP[(w.title||"").replace(/[《》\s]/g,"")]=w; }); ok=true; }catch(e){}
+  }
+  function paint(){ if(!ok) return;
+    document.querySelectorAll("#wkGrid .wk-card").forEach(function(c){
+      var b=c.querySelector(".wk-meta b"); if(!b) return;
+      var w=MAP[b.textContent.replace(/[《》\s]/g,"")]; if(!w||w.kind!=="member") return;
+      var m=meta(w.note); if(!m) return;
+      var sp=c.querySelector(".wk-meta span"); if(!sp||sp.__done) return; sp.__done=1;
+      var bits=[]; if(m.c) bits.push(m.c); if(m.y) bits.push(m.y);
+      if(m.g&&m.g.length) bits.push("图 "+m.g.length);
+      var line=bits.join(" · ");
+      sp.textContent = line + (m.d? "　"+m.d.slice(0,26) : "");
+    }); }
+  load().then(function(){ paint(); setInterval(paint,1500); });
+})();
+</script>
 </body></html>
