@@ -322,6 +322,15 @@
   .coda-en{font-family:var(--serif-en);font-style:italic;font-size:14px;color:var(--ink-faint);margin:0 0 22px}
   .coda-zh2{font-family:var(--kai);font-size:17px;color:var(--seal);line-height:2;margin:0 0 4px;letter-spacing:.06em}
   .coda-en2{font-family:var(--serif-en);font-style:italic;font-size:13.5px;color:var(--ink-faint);margin:0 0 30px}
+
+  .wk-div{grid-column:1/-1;height:1px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent);margin:16px 0 6px}
+  .wk-date{display:block;font-size:11.5px;color:var(--seal);letter-spacing:.06em;margin-bottom:3px}
+
+  .cj-add{margin:0 0 14px;padding:11px 16px;border:1px dashed var(--seal);border-radius:10px;cursor:pointer;
+    font-family:var(--kai);font-size:15px;color:var(--seal);text-align:center;user-select:none}
+  .cj-add:hover{background:rgba(156,58,47,.07)}
+  .cj-b1{border:1px solid var(--seal);background:var(--seal);color:var(--paper);border-radius:20px;padding:8px 24px;font-family:var(--kai);font-size:15px;cursor:pointer}
+  .cj-b2{border:1px solid var(--line);background:transparent;color:var(--ink-soft);border-radius:20px;padding:8px 20px;font-family:var(--kai);font-size:15px;cursor:pointer}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1390,24 +1399,49 @@ loadWorks();
 })();
 </script>
 <script>
-/* 作品区排序：历年诗文会集 → 最近更新的成员作品 → 千山独行 → 加号 → 待补 */
+/* 作品区：历年诗文会集（按日期倒序）→ 分隔线 → 成员作品 → 待补 */
 (function(){
-  function reorder(){
-    var g=document.getElementById('wkGrid'); if(!g) return;
-    var coll=document.getElementById('wkCollAdd');
-    var plus=document.getElementById('wkMemberAdd');
+  var HOST="",KEY="",MAP={},ready=false;
+  async function conf(){ if(HOST) return;
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  function key(s){ return (s||"").replace(/[《》\s]/g,""); }
+  async function load(){ await conf(); if(!HOST) return;
+    try{ var rows=await (await fetch(HOST+"/rest/v1/works?select=id,kind,title,note,url,cover_url,author_name",
+      {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json();
+      rows.forEach(function(w){ MAP[key(w.title)]=w; });
+      ready=true; }catch(e){} }
+  function dateOf(w){ var m=(w&&w.note||"").match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:""; }
+  function human(d){ if(!d) return ""; var p=d.split("-");
+    return p[0]+" 年 "+(+p[1])+" 月 "+(+p[2])+" 日"; }
+  function tidy(){
+    if(!ready) return;
+    var g=document.getElementById("wkGrid"); if(!g) return;
+    var coll=document.getElementById("wkCollAdd"), plus=document.getElementById("wkMemberAdd");
     var qs=g.querySelector('a[href*="beyondathousandmountains"]');
     var kids=[].slice.call(g.children);
-    var dyn=kids.filter(function(el){return el!==coll&&el!==plus&&el!==qs;});
-    var done=dyn.filter(function(el){return el.textContent.indexOf('（待补）')<0;});
-    var todo=dyn.filter(function(el){return el.textContent.indexOf('（待补）')>=0;});
-    var want=[coll].concat(done,[qs,plus],todo).filter(Boolean);
-    var same = want.length===kids.length && want.every(function(el,i){return kids[i]===el;});
-    if(same) return;
-    want.forEach(function(el){g.appendChild(el);});
+    var C=[],D=[],T=[];
+    kids.forEach(function(c){
+      if(c===coll||c===plus||c===qs||c.id==="wkDiv") return;
+      var b=c.querySelector(".wk-meta b"); var w=b?MAP[key(b.textContent)]:null;
+      if(w&&w.kind==="collection"){ c.setAttribute("data-d",dateOf(w));
+        var m=c.querySelector(".wk-meta");
+        if(m&&!m.querySelector(".wk-date")&&dateOf(w)){ var s=document.createElement("span");
+          s.className="wk-date"; s.textContent=human(dateOf(w)); m.insertBefore(s,m.firstChild); }
+        C.push(c); return; }
+      if(c.textContent.indexOf("（待补）")>=0){ T.push(c); return; }
+      D.push(c);
+    });
+    C.sort(function(x,y){ return (y.getAttribute("data-d")||"").localeCompare(x.getAttribute("data-d")||""); });
+    var div=document.getElementById("wkDiv");
+    if(!div){ div=document.createElement("div"); div.id="wkDiv"; div.className="wk-div"; }
+    var want=[].concat(coll?[coll]:[], C, [div], D, qs?[qs]:[], plus?[plus]:[], T).filter(Boolean);
+    var same = want.length===g.children.length && want.every(function(el,i){return g.children[i]===el;});
+    if(!same) want.forEach(function(el){ g.appendChild(el); });
+    div.style.display = C.length ? "" : "none";
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',reorder); else reorder();
-  setInterval(reorder,1200);
+  load(); setInterval(tidy,800);
 })();
 </script>
 <script>
@@ -1860,6 +1894,88 @@ loadWorks();
   if(!location.hash){
     [0,120,400,900,1500].forEach(function(d){ setTimeout(function(){ if(scrollY<260) scrollTo(0,0); }, d); });
   }
+})();
+</script>
+<script>
+/* 历年诗文会集 · 海边的四格录入（新增／修改） */
+(function(){
+  var HB="huangxiaoyu2001"+String.fromCharCode(64)+"gmail.com";
+  var HOST="",KEY="";
+  function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  function meIsHB(){ var t=tok(); if(!t) return false;
+    try{ var p=JSON.parse(decodeURIComponent(escape(atob(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/")))));
+      return String(p.email||"").toLowerCase()===HB; }catch(e){ return false; } }
+  async function conf(){ if(HOST) return;
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  function el(tag,css,txt){ var e=document.createElement(tag); if(css) e.style.cssText=css; if(txt!=null) e.textContent=txt; return e; }
+  var box=null;
+  function ui(){
+    if(box) return box;
+    box=el("div","position:fixed;inset:0;background:rgba(22,19,15,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:18px");
+    var p=el("div","background:var(--paper);max-width:520px;width:100%;border-radius:12px;padding:26px 26px 22px;max-height:88vh;overflow:auto");
+    p.innerHTML='<div style="font-family:var(--kai);font-size:20px;color:var(--seal);margin-bottom:4px">新增 / 修改 一次诗文会集</div>'+
+      '<div style="font-size:12.5px;color:var(--ink-faint);margin-bottom:16px">四格填完即可。会集的照片与诗作请先发在掌心论坛，再把帖子链接填在这里。</div>';
+    function row(lab,id,type,ph){
+      var w=el("div","margin-bottom:12px");
+      w.appendChild(el("div","font-size:13px;color:var(--ink-soft);margin-bottom:4px",lab));
+      var i=document.createElement("input"); i.id=id; i.type=type||"text"; if(ph) i.placeholder=ph;
+      i.style.cssText="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.8);font-family:inherit;font-size:14.5px;color:var(--ink);outline:none";
+      w.appendChild(i); p.appendChild(w); return i; }
+    var fD=row("日期","cjD","date");
+    var fT=row("名称　例：矜园雅集 · 掌心成立","cjT","text","名称");
+    var fU=row("链接　论坛帖或 PDF 的网址","cjU","url","https://palmpoetry.discourse.group/t/…");
+    var fC=row("封面图网址（可留空）","cjC","url","https://…");
+    var fF=el("div","margin-bottom:14px");
+    fF.appendChild(el("div","font-size:13px;color:var(--ink-soft);margin-bottom:4px","或从电脑选一张封面"));
+    var file=document.createElement("input"); file.type="file"; file.accept="image/*"; file.id="cjF"; file.style.cssText="font-size:13px";
+    fF.appendChild(file); p.appendChild(fF);
+    var msg=el("div","font-size:13px;color:var(--seal);min-height:20px;margin-bottom:8px"); msg.id="cjMsg"; p.appendChild(msg);
+    var bar=el("div","display:flex;gap:10px;justify-content:flex-end");
+    var cancel=el("button",null,"取消"); cancel.className="cj-b2";
+    var save=el("button",null,"保存"); save.className="cj-b1";
+    bar.appendChild(cancel); bar.appendChild(save); p.appendChild(bar);
+    box.appendChild(p); document.body.appendChild(box);
+    cancel.onclick=function(){ box.style.display="none"; };
+    box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
+    save.onclick=async function(){
+      await conf(); var T=tok(); if(!T){ msg.textContent="请先登录。"; return; }
+      var d=fD.value, ti=fT.value.trim(), u=fU.value.trim(), c=fC.value.trim();
+      if(!d||!ti){ msg.textContent="日期和名称是必填的。"; return; }
+      msg.textContent="保存中……";
+      try{
+        if(file.files&&file.files[0]){ var bl=file.files[0];
+          var ext=(bl.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+          var path="j/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+          var up=await fetch(HOST+"/storage/v1/object/works/"+path,{method:"POST",
+            headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":bl.type||"image/jpeg","x-upsert":"true"},body:bl});
+          if(up.ok) c=HOST+"/storage/v1/object/public/works/"+path; }
+        var body={kind:"collection",owner_email:HB,author_name:"掌心",title:ti,url:u,note:d+"｜历年诗文会集",cover_url:c||null};
+        var r=await fetch(HOST+"/rest/v1/works",{method:"POST",
+          headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},
+          body:JSON.stringify(body)});
+        if(r.ok){ msg.textContent="已保存。稍候片刻，页面会自动出现这一条。";
+          setTimeout(function(){ location.reload(); },1400); }
+        else { msg.textContent="没能保存（"+r.status+"）。请稍后再试。"; }
+      }catch(e){ msg.textContent="网络不太顺，请稍后再试。"; }
+    };
+    return box; }
+  function open(){ var b=ui(); b.style.display="flex";
+    var m=document.getElementById("cjMsg"); if(m) m.textContent=""; }
+  /* 只给海边一个「＋ 新增会集」按钮，挂在会集分隔线上方 */
+  function place(){
+    if(!meIsHB()) { var old=document.getElementById("cjAdd"); if(old) old.remove(); return; }
+    if(document.getElementById("cjAdd")) return;
+    var g=document.getElementById("wkGrid"); if(!g) return;
+    var a=document.createElement("div"); a.id="cjAdd"; a.className="cj-add";
+    a.textContent="＋ 新增一次诗文会集";
+    a.onclick=open;
+    g.parentNode.insertBefore(a,g);
+  }
+  setInterval(place,1200);
 })();
 </script>
 </body></html>
