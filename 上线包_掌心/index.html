@@ -15,7 +15,7 @@
 <meta name="keywords" content="掌心诗社,掌心,The Palm Poetry Club,多伦多诗社,华人诗社,萤火,千山独行,文刃,现代诗,古典诗词,海外华文文学">
 <link rel="canonical" href="https://palmpoetry.org/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"掌心诗社","alternateName":"The Palm Poetry Club","url":"https://palmpoetry.org/","logo":"https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png","foundingDate":"2017","location":{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressCountry":"CA"}},"description":"海内外华人诗人、作家的诗词艺术社群。"}</script>
-<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、本周萤火与诗友论坛，以诗会友，薪火相传。">
+<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、本周萤火与诗友论坛，诗文会友，薪火相传。">
 <style>
   :root{--paper:#f4f0e7;--ink:#2f2c26;--ink-soft:#5f5a4f;--ink-faint:#8d8676;--seal:#9c3a2f;--seal-deep:#7e2c23;--line:#d9d2c4;--gold:#a98b4f;
     --li:"STLiti","LiSu","隶书",serif;--kai:"Kaiti","STKaiti","楷体",serif;--serif-en:"Georgia","Times New Roman",serif;}
@@ -72,7 +72,13 @@
   .yh-enter{display:inline-block;margin-top:10px;padding:9px 20px;border:1px solid var(--seal);border-radius:2px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.04em;transition:all .25s}
   .yh-enter:hover{background:var(--seal);color:var(--paper)}
   .wk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px;margin-top:20px}
-  .wk-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:4px;overflow:hidden;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.4);transition:.25s}
+  .wk-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:9px;overflow:hidden;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.55);transition:.28s;position:relative}
+  .wk-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 30px rgba(169,139,79,.22)}
+  .wk-card::after{content:"";position:absolute;inset:0;border-radius:9px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+  .wk-card .wk-cover{position:relative}
+  .wk-card .wk-cover.ph::after{content:"";position:absolute;inset:8px;border:1px solid rgba(169,139,79,.35);border-radius:4px;pointer-events:none}
+  .wk-card:hover .wk-cover img{transform:scale(1.04)}
+  .wk-card .wk-cover img{transition:transform .5s}
   .wk-card:hover{transform:translateY(-3px);border-color:var(--seal);box-shadow:0 10px 26px rgba(28,26,23,.14)}
   .wk-cover{aspect-ratio:3/4;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#ece4d4}
   .wk-cover img{width:100%;height:100%;object-fit:cover}
@@ -331,6 +337,25 @@
   .cj-add:hover{background:rgba(156,58,47,.07)}
   .cj-b1{border:1px solid var(--seal);background:var(--seal);color:var(--paper);border-radius:20px;padding:8px 24px;font-family:var(--kai);font-size:15px;cursor:pointer}
   .cj-b2{border:1px solid var(--line);background:transparent;color:var(--ink-soft);border-radius:20px;padding:8px 20px;font-family:var(--kai);font-size:15px;cursor:pointer}
+
+  .tk-in{display:flex;align-items:center;gap:0;padding-top:9px;padding-bottom:9px}
+  .tk-seg{flex:1;min-width:0;display:flex;align-items:baseline;gap:9px;padding:0 16px;
+    text-decoration:none;color:var(--ink);border-left:1px solid var(--line);overflow:hidden}
+  .tk-seg:first-child{border-left:0;padding-left:0}
+  .tk-seg b{flex:0 0 auto;font-family:var(--kai);font-weight:400;font-size:12.5px;color:var(--paper);
+    background:var(--seal);border-radius:20px;padding:3px 11px;letter-spacing:.06em}
+  .tk-seg span{flex:1;min-width:0;font-size:14px;line-height:1.6;color:var(--ink-soft);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .4s}
+  .tk-seg span.fade{opacity:0}
+  .tk-seg:hover span{color:var(--seal)}
+  @media(max-width:860px){
+    .tk-in{flex-direction:column;align-items:stretch;gap:7px}
+    .tk-seg{border-left:0;padding:0}
+    .tk-seg b{font-size:11.5px;padding:2px 9px}
+    .tk-seg span{font-size:13px}
+  }
+  .film-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}
+  .film-grid:empty{display:none}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -341,13 +366,13 @@
     <li><a href="#members">成员<span class="e">Members</span></a></li>
     <li><a href="#works">作品<span class="e">Works</span></a></li>
     <li><a href="#forum">论坛<span class="e">Forum</span></a></li>
-    <li><a href="#world">连接世界<span class="e">The World</span></a></li>
+    <li><a href="#world">面向世界<span class="e">To the World</span></a></li>
   </ul>
 </div></nav>
 <div class="tk" id="tk" hidden><div class="wrap tk-in">
-  <span class="tk-tag">今日掌心</span>
-  <a class="tk-item" id="tkItem" href="#members"></a>
-  <span class="tk-nav" id="tkDots"></span>
+  <a class="tk-seg" id="tkFF" href="#fireflies"><b>今日萤火</b><span>——</span></a>
+  <a class="tk-seg" id="tkFO" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>今日荐帖</b><span>——</span></a>
+  <a class="tk-seg tk-live" id="tkUP" href="#members"><b>掌心动态</b><span>——</span></a>
 </div></div>
 
 <header class="hero" id="home"><div class="hero-panel">
@@ -362,7 +387,7 @@
   <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛——你写，我们就读；你来，就有一方属于自己的天地。<br>
   <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy — if you write, we will read; if you come, a space of your own is waiting.</span></p>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
-  <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——以诗会友，以文相期，以天下英才为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
+  <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——诗文会友，以文相期，以天下英才为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
 </div></header>
 
 <main>
@@ -508,6 +533,11 @@
     </div>
   </details>
 
+
+  <div class="sub-head" id="films"><b>掌心影音</b><span class="en">Poem Films</span></div>
+  <p data-en="Poems set to image and sound — recitations, poem-films and clips from our gatherings, made and curated by our member Tiaodeng Kanjian.">诗与影像、声音的相遇——朗诵、诗歌短片、雅集片段，由掌心成员挑灯看剑制作与整理。</p>
+  <div class="film-grid" id="filmGrid"></div>
+  <p class="m-note" id="filmNote">影音陆续上线。<span class="en-line">Films are being added.</span></p>
 
   <div class="sub-head" id="album"><b>活动相册</b><span class="en">Gatherings</span></div>
 
@@ -740,8 +770,8 @@
 </div></section>
 
 <section id="world" style="border-bottom:0"><div class="wrap">
-  <div class="sec-head"><span class="sec-no">六</span><h2>连接世界 · 加入 · 留言</h2><span class="en">Connect · Join · Notes</span><div class="rule"></div></div>
-  <p data-en="Poetry has taken us across five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — and into the company of poets, writers, scholars and artists in each place. Wherever you are from, in whatever language you write, there is room for you here.">以诗会友，足迹遍及五洲——华沙古城、尼罗碧波、大漠驼乡、京都鸟居、印度门前，一路与各国诗人、作家、学者、艺术家往来切磋。无论你来自何方、以何种语言写作，这里都有你的位置。</p>
+  <div class="sec-head"><span class="sec-no">六</span><h2>面向世界 · 加入 · 留言</h2><span class="en">To the world.</span><div class="rule"></div></div>
+  <p data-en="Poetry has taken us across five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — and into the company of poets, writers, scholars and artists in each place. Wherever you are from, in whatever language you write, there is room for you here.">诗文会友，足迹遍及五洲——华沙古城、尼罗碧波、大漠驼乡、京都鸟居、印度门前，一路与各国诗人、作家、学者、艺术家往来切磋。无论你来自何方、以何种语言写作，这里都有你的位置。</p>
   <p style="color:var(--seal);font-family:var(--kai);margin:2px 0 6px;font-size:16px" data-en="Send us a photograph from your own travels — a street, a landscape, a meeting with a friend — with a line of caption or a short poem. We will add it to this wall, with your name.">这面墙由大家一同填满：把你在世界各地拍下的一张照片，连同一句注脚或一首小诗寄来，我们陆续上墙，署名致谢。</p>
   <p style="color:var(--ink-soft);font-size:14px;margin:0 0 4px">来信 <a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a></p>
   <details class="ph-fold"><summary><span class="acc-t">展开图集 · 共 12 张</span></summary>
@@ -838,11 +868,11 @@
   <div class="coda-line"></div>
   <p class="coda-zh">掌心不大。<br>不过是一群人把诗捧在手心里，递给下一个人。</p>
   <p class="coda-en">The Palm is a small thing — a few people holding poems in the palm of the hand, and passing them on.</p>
-  <p class="coda-zh2">你若写，这里有你的一方天地；你若只读，也请常来。</p>
-  <p class="coda-en2">If you write, a space here is yours. If you only read, come often.</p>
+  <p class="coda-zh2">你若真诚书写，这里有你与同道共同展示自己才华的一方天地；<br>你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。</p>
+  <p class="coda-en2">If you write in earnest, here is a place to show your work beside your peers.<br>If you read serious writing, The Palm is where you will want to be.</p>
   <div class="coda-line"></div>
 </div></div>
-<footer>掌心 · The Palm Poetry Club　|　以诗会友，薪火相传　·　Poetry, friendship, and a flame passed on.<br><span class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</span></footer>
+<footer>掌心 · The Palm Poetry Club　|　诗文会友，薪火相传　·　Poetry, friendship, and a flame passed on.<br><span class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</span></footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
 <div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
 <script>
@@ -1566,61 +1596,73 @@ loadWorks();
 })();
 </script>
 <script>
-/* 今日掌心 · 滚动栏 */
+/* 今日掌心：萤火（每周）· 荐帖（每日）· 动态（滚动） */
 (function(){
-  var FORUM='https://palmpoetry.discourse.group';
-  var box=document.getElementById("tk"), el=document.getElementById("tkItem"), dots=document.getElementById("tkDots");
+  var FORUM="https://palmpoetry.discourse.group";
+  var box=document.getElementById("tk");
+  var eFF=document.getElementById("tkFF"), eFO=document.getElementById("tkFO"), eUP=document.getElementById("tkUP");
   if(!box) return;
+  function put(el,txt,href){ if(!el) return; var s=el.querySelector("span");
+    if(s&&txt){ s.textContent=txt; } if(href) el.href=href; }
+  function cache(k,v){ try{ localStorage.setItem("palm_"+k, JSON.stringify(v)); }catch(e){} }
+  function cached(k){ try{ return JSON.parse(localStorage.getItem("palm_"+k)||"null"); }catch(e){ return null; } }
+  /* 一、今日萤火：直接读页面上已经取好的诗 */
+  function ff(){
+    var t=(document.getElementById("ffTitle")||{}).textContent||"";
+    var a=(document.getElementById("ffAuthor")||{}).textContent||"";
+    if(!t||/正在取诗|取不到/.test(t)) return false;
+    var s="《"+t.replace(/[《》]/g,"")+"》"+(a?"　"+a.trim():"");
+    put(eFF,s,"#fireflies"); cache("ff",s); return true; }
+  var c=cached("ff"); if(c) put(eFF,c,"#fireflies");
+  var n1=0, t1=setInterval(function(){ if(ff()||++n1>40) clearInterval(t1); },600);
+  /* 二、今日荐帖：从论坛里按日期定选一条，当天不变 */
+  async function forum(){
+    var c=cached("fo"); if(c) put(eFO,c.t,c.h);
+    try{
+      var j=await (await fetch(FORUM+"/latest.json")).json();
+      var list=(j.topic_list.topics||[]).filter(function(x){return !x.pinned_globally;});
+      if(!list.length) return;
+      var d=new Date(); var day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
+      var pick=list[day % list.length];
+      var o={t:pick.title, h:FORUM+"/t/topic/"+pick.id};
+      put(eFO,o.t,o.h); cache("fo",o);
+    }catch(e){}
+  }
+  forum();
+  /* 三、掌心动态：成员更新与新作品，轮流播 */
   var items=[], idx=0, timer=null;
   function ago(ts){ var d=(Date.now()-Date.parse(ts))/864e5;
     if(d<1) return "今天"; if(d<2) return "昨天"; if(d<30) return Math.floor(d)+" 天前"; return ""; }
   function show(){ if(!items.length) return;
-    var it=items[idx%items.length];
-    el.classList.add("fade");
-    setTimeout(function(){ el.textContent=it.text; el.href=it.href;
-      el.target=/^https?:/.test(it.href)?"_blank":"_self";
-      el.classList.remove("fade");
-      dots.innerHTML=""; var m=Math.min(items.length,8);
-      for(var i=0;i<m;i++){ var d=document.createElement("i"); if(i===idx%items.length) d.className="on"; dots.appendChild(d); }
-    },260);
+    var it=items[idx%items.length]; var s=eUP.querySelector("span");
+    s.classList.add("fade");
+    setTimeout(function(){ s.textContent=it.text; eUP.href=it.href; s.classList.remove("fade"); },240);
     idx++; }
-  function run(){ box.hidden=false; step(); }
-  function step(){ if(timer) clearTimeout(timer);
-    var it=items[idx%items.length]; show();
-    timer=setTimeout(step, (it&&it.hold)||5000); }
-  function cache(v){ try{ localStorage.setItem("palm_tk", JSON.stringify(v)); }catch(e){} }
-  function cached(){ try{ return JSON.parse(localStorage.getItem("palm_tk")||"[]"); }catch(e){ return []; } }
-  async function load(){
+  function step(){ if(timer) clearTimeout(timer); show(); timer=setTimeout(step,5000); }
+  async function live(){
     var out=[];
     try{
       var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
       var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
       var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
       if(host&&key){ var H={apikey:key,Authorization:"Bearer "+key};
-        var mr=await fetch(host+"/rest/v1/members?select=name,updated_at&updated_at=not.is.null&order=updated_at.desc&limit=6",{headers:H});
-        (await mr.json()).forEach(function(m){ out.push({t:Date.parse(m.updated_at), hold:5000,
-          text:"「"+m.name+"」更新了自己的一方天地 · "+ago(m.updated_at), href:"#members"}); });
-        var wr=await fetch(host+"/rest/v1/works?select=author_name,title,url,created_at&kind=eq.member&order=created_at.desc&limit=20",{headers:H});
-        (await wr.json()).forEach(function(w){ if(!w.title||w.title.indexOf("待补")>=0) return;
-          out.push({t:Date.parse(w.created_at), hold:10000, text:"新作品 · "+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
-            href:(w.url&&/^https?:/.test(w.url))?w.url:"#works"}); });
+        (await (await fetch(host+"/rest/v1/members?select=name,updated_at&updated_at=not.is.null&order=updated_at.desc&limit=6",{headers:H})).json())
+          .forEach(function(m){ out.push({t:Date.parse(m.updated_at),
+            text:"「"+m.name+"」更新了自己的一方天地 · "+ago(m.updated_at), href:"#members"}); });
+        (await (await fetch(host+"/rest/v1/works?select=author_name,title,url,created_at,kind&order=created_at.desc&limit=20",{headers:H})).json())
+          .forEach(function(w){ if(!w.title||w.title.indexOf("待补")>=0) return;
+            out.push({t:Date.parse(w.created_at),
+              text:(w.kind==="collection"?"诗文会集 · ":"新作品 · ")+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
+              href:(w.url&&/^https?:/.test(w.url))?w.url:"#works"}); });
       }
     }catch(e){}
-    try{
-      var f=await (await fetch(FORUM+"/latest.json?order=created")).json();
-      (f.topic_list.topics||[]).slice(0,6).forEach(function(x){
-        var pin=!!(x.pinned||x.pinned_globally);
-        out.push({t:Date.parse(x.created_at), hold: pin?15000:5000,
-          text:(pin?"掌心公告 · ":"论坛新帖 · ")+x.title,
-          href:FORUM+"/t/topic/"+x.id}); });
-    }catch(e){}
     out.sort(function(a,b){return (b.t||0)-(a.t||0);});
-    out=out.slice(0,8);
-    if(out.length){ items=out; cache(out); } else { items=cached(); }
-    if(items.length) run();
+    items = out.length? out.slice(0,8) : (cached("up")||[]);
+    if(out.length) cache("up",items);
+    if(items.length){ box.hidden=false; step(); }
   }
-  items=cached(); if(items.length) run();
-  load();
+  box.hidden=false;
+  live();
 })();
 </script>
 <script>
