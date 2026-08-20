@@ -429,7 +429,7 @@
 <main>
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
-    <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em>三十五位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
+    <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em><span class="mcount">四十四</span>位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
     <a class="door" href="#works"><b>作 品</b><span class="en">Works</span><em>《萤火》《千山独行》、历年诗文会集，以及每位成员自己的一本书、一个网站。</em><i>进入 →</i></a>
     <a class="door" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论 坛</b><span class="en">Forum</span><em>贴诗，读诗，说诗。注册后即可发帖，人人可读，向全世界敞开。</em><i>进入 →</i></a>
   </div>
@@ -867,7 +867,7 @@
     <p data-en="The Palm welcomes poets, writers, calligraphers and painters, and everyone who loves poetry. The interactive platform is now live: once signed in, each member keeps a space of their own — editing a bio, changing a portrait, uploading work or linking a personal site. The open forum is running alongside it. The Academy grows by introduction: friends bring friends, and the door stands open to lovers of poetry everywhere.">掌心欢迎海内外诗人、作家、书画家与一切热爱诗的人加入。互动平台已经启用：成员登录后各有一方天地，可随时修改简介、更换照片、上传自己的作品或关联个人网站；开放讨论区同步开张，贴诗、读诗、唱和皆在其中。学园由知交引荐新友，向全世界爱诗的人敞开。</p>
     <div class="road">
       <div class="r"><b>第一步 · 已完成</b><span data-en="Step One · Done — the site is built: Origin, Mission, Members, Works, Fireflies, the album, and Connecting the World are all in place.">展示型站点落成：缘起、使命、成员、作品、《萤火》、相册、连接世界，皆已就位。</span></div>
-      <div class="r"><b>第二步 · 已启动</b><span data-en="Step Two · Live — thirty-five poets and friends have signed in, each keeping a space of their own; the open forum is running: post a poem, read a poem, talk about poems.">诗文互动平台开张：三十五位诗人与好友已登录，各自维护一方天地；开放讨论区同步启用，贴诗、读诗、说诗。</span></div>
+      <div class="r"><b>第二步 · 已启动</b><span data-en="Step Two · Live — Forty-four poets and friends have signed in, each keeping a space of their own; the open forum is running: post a poem, read a poem, talk about poems.">诗文互动平台开张：<span class="mcount">四十四</span>位诗人与好友已登录，各自维护一方天地；开放讨论区同步启用，贴诗、读诗、说诗。</span></div>
       <div class="r"><b>第三步 · 正在进行</b><span data-en="Step Three · Under way — opening to the world. The Academy is no longer a list of old friends: anyone introduced by a member may register and open a space here. Many languages, and work that is kept for the long run.">向世界敞开：学园不再只是旧友的名录——凡经学园知交引荐者，皆可注册掌心、开办自己的空间。多语交流，作品长期留存。</span></div>
     </div>
     <p style="font-family:var(--kai);color:var(--ink);margin:6px 0 2px">掌心公约<span class="en-line" style="margin-left:10px">The Palm Covenant</span></p>
@@ -2364,6 +2364,43 @@ loadWorks();
     g.parentNode.insertBefore(b,g);
   }
   render(); setInterval(place,1200);
+})();
+</script>
+<script>
+/* 成员人数：自动跟着名录走 */
+(function(){
+  function cn(x){ var d="零一二三四五六七八九";
+    if(x<10) return d[x];
+    if(x<20) return "十"+(x%10?d[x%10]:"");
+    if(x<100) return d[Math.floor(x/10)]+"十"+(x%10?d[x%10]:"");
+    return String(x); }
+  function en(x){ var o=["zero","one","two","three","four","five","six","seven","eight","nine","ten",
+    "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+    var t=["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+    if(x<20) return o[x];
+    return t[Math.floor(x/10)]+(x%10?"-"+o[x%10]:""); }
+  (async function(){
+    try{
+      var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+      var host=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+      var key=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
+      if(!host) return;
+      var rows=await (await fetch(host+"/rest/v1/works?select=author_name&kind=eq.member",
+        {headers:{apikey:key,Authorization:"Bearer "+key}})).json();
+      var names={}; rows.forEach(function(r){ if(r.author_name) names[r.author_name]=1; });
+      var num=Object.keys(names).length+1;   /* ＋文刃（静态卡） */
+      if(num<2) return;
+      document.querySelectorAll(".mcount").forEach(function(e){ e.textContent=cn(num); });
+      document.querySelectorAll("[data-en]").forEach(function(e){
+        var v=e.getAttribute("data-en");
+        if(v&&/(Forty-four|Thirty-five)\s+poets/i.test(v)){
+          var w=en(num); w=w.charAt(0).toUpperCase()+w.slice(1);
+          e.setAttribute("data-en", v.replace(/(Forty-four|Thirty-five)/i, w));
+          var s=e.querySelector(".en-line");
+          if(s) s.textContent=s.textContent.replace(/(Forty-four|Thirty-five)/i, w);
+        }});
+    }catch(e){}
+  })();
 })();
 </script>
 </body></html>
