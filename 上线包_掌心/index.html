@@ -437,6 +437,8 @@
     .sec-head .en{font-size:13.5px}
     .sec-head .rule{flex:1 0 100%;order:9}
   }
+
+  @media(max-width:640px){ html,body{overflow-x:hidden} .hero{overflow:hidden} }
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1968,12 +1970,16 @@ loadWorks();
   function H(){ return {apikey:KEY,Authorization:"Bearer "+KEY}; }
   async function load(){ await conf(); if(!HOST) return;
     try{ WORKS=await (await fetch(HOST+"/rest/v1/works?select=id,author_name,title,cover_url",{headers:H()})).json(); }catch(e){}
-    try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name",{headers:H()})).json(); }catch(e){}
+    try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name,bound",{headers:H()})).json();
+          if(MEM&&MEM.message) throw 0; }catch(e){
+      try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name",{headers:H()})).json(); }catch(e2){} }
     try{ (await (await fetch(HOST+"/rest/v1/view_counts?select=kind,ref_id,n",{headers:H()})).json())
           .forEach(function(v){ VC[v.kind+":"+v.ref_id]=v.n; }); }catch(e){}
     done=true; paint(); }
-  function badge(el,n){ if(!n) return; if(el.querySelector(".vw")) return;
-    var s=document.createElement("span"); s.className="vw"; s.textContent="阅 "+n; el.appendChild(s); }
+  function badge(el,n,force){ if(!n&&!force) return; if(el.querySelector(".vw")) return;
+    var s=document.createElement("span"); s.className="vw"; s.textContent="阅 "+(n||0); el.appendChild(s); }
+  function unbound(name){ var m=MEM.filter(function(x){return x.name===name;})[0];
+    return !!(m && m.bound===false); }
   function bump(kind,id){ if(!id) return;
     var k="pv:"+kind+":"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){}
     fetch(HOST+"/rest/v1/rpc/bump_view",{method:"POST",
@@ -1990,18 +1996,21 @@ loadWorks();
         cov.classList.remove("ph"); cov.innerHTML="";
         var im=document.createElement("img"); im.src=w.cover_url; im.alt=title;
         im.style.cssText="width:100%;height:100%;object-fit:cover"; cov.appendChild(im); }
-      badge(c.querySelector(".wk-meta"), VC["work:"+w.id]);
-      if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("work",w.id); }); }
+      var au=w.author_name||"";
+      if(unbound(au)){ badge(c.querySelector(".wk-meta"), 0, true); }
+      else { badge(c.querySelector(".wk-meta"), VC["work:"+w.id]);
+        if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("work",w.id); }); } }
     });
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       var nm=c.getAttribute("data-m");
       var m=MEM.filter(function(x){return x.name===nm;})[0]; if(!m) return;
+      if(m.bound===false){ badge(c, 0, true); return; }
       badge(c, VC["member:"+m.id]);
     }); }
   document.addEventListener("click", function(e){
     var c=e.target.closest&&e.target.closest(".m-card[data-m]"); if(!c) return;
     var m=MEM.filter(function(x){return x.name===c.getAttribute("data-m");})[0];
-    if(m) bump("member", m.id);
+    if(m && m.bound!==false) bump("member", m.id);
   }, true);
   load(); setInterval(paint,1200);
 })();
