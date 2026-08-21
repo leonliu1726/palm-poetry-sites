@@ -430,6 +430,13 @@
   {word-break:keep-all;overflow-wrap:break-word}
 
   .f-last{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);opacity:.9}
+
+  @media(max-width:640px){
+    .sec-head{flex-wrap:wrap;gap:8px 12px}
+    .sec-head h2{white-space:normal;font-size:24px;letter-spacing:.08em}
+    .sec-head .en{font-size:13.5px}
+    .sec-head .rule{flex:1 0 100%;order:9}
+  }
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1509,11 +1516,11 @@ function mkCard(w){
   return el;
 }
 async function loadWorks(){
-  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').order('updated_at',{ascending:false});
+  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
   if(r.error || !r.data) return;
   var grid=$('wkGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
-  r.data.forEach(function(w){ grid.appendChild(mkCard(w)); });
+  r.data.filter(function(w){ return w.kind!=='video'; }).forEach(function(w){ grid.appendChild(mkCard(w)); });
 }
 async function who(){
   var s = await WB.auth.getSession();
