@@ -421,6 +421,15 @@
   #tkFF,#tkFO{flex:0 0 25%;max-width:25%}
   #tkUP{flex:0 0 50%;max-width:50%}
   @media(max-width:820px){ #tkFF,#tkFO,#tkUP{flex:1 1 auto;max-width:none} }
+
+  /* 短词、姓名、标题不在中途折行 */
+  .w-hi-zh,.creed,.sub-head b,.sub-head .en,.flag-label,.ff-fly-h,.ff-title,.ff-author,.ff-by,
+  .door h4,.door em,.m-name,.m-role,.wk-t,.wk-meta,.film-meta b,.film-meta span,.acc-t,.wcnt,
+  .yh-enter,.sw-h,.sw-tx b,.f-main,.f-by,.tk-seg b,.tk-seg span,.mcount,.works-sub-h,
+  nav a,.brand-tx,summary,button,.sf-go,.coda-line,figcaption,.m-note,.wen-roster,.wen-by
+  {word-break:keep-all;overflow-wrap:break-word}
+
+  .f-last{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);opacity:.9}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -449,8 +458,8 @@
   <div class="w-hi-zh">欢迎五湖四海的诗词艺术文化界朋友</div>
   <h1 class="h-title"><img class="h-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心" width="280" height="280"></h1>
   <div class="h-en">The Palm Poetry Club</div>
-  <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛——你写，我们就读；你来，就有一方属于自己的天地。<br>
-  <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy — if you write, we will read; if you come, a space of your own is waiting.</span></p>
+  <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛<br>——你写，我们就读；你来，就有一方属于自己的天地。<br>
+  <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy<br>— if you write, we will read; if you come, a space of your own is waiting.</span></p>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
   <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——诗文会友，以文相期，以天下英才为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
 </div></header>
@@ -473,7 +482,7 @@
     </div>
     <figure class="origin-poster"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-banner.jpg" alt="掌心诗社 · 掌上有温，心中有诚" loading="lazy"></figure>
   </div>
-  <p data-en="The Palm Poetry Club grew out of a small poetry, literature and arts group formed in Toronto, Canada in 2017 — invitation-only, devoted to deep exchange and to fostering creation, holding many gatherings of verse and wine over the years. To broaden the reach of Chinese culture and the high art of poetry, on 17 July 2022, at a gathering at Jinyuan, its twelve earliest members formally founded The Palm Poetry Club, with Wén Rèn as its founding President.">掌心诗社缘起于二〇一七年加拿大多伦多的一个诗词文学艺术创作群，采小群邀请制度，以深度交流和促进创作为目的；多年来以自由随缘的方式举办多次诗词酒会，共同提高诗艺。为扩大中华文化与高雅诗词艺术的影响力，二〇二二年七月十七日矜园聚会时，先期入会的十二位会员以共同发起人的名义正式成立「掌心诗社」，由文刃担任社长。</p>
+  <p data-en="The Palm Poetry Club grew out of a small poetry, literature and arts group formed in Toronto, Canada in 2017 — invitation-only, devoted to deep exchange and to fostering creation, holding many gatherings of verse and wine over the years. To broaden the reach of Chinese culture and the high art of poetry, on 17 July 2022, at a gathering at Jinyuan, its twelve earliest members formally founded The Palm Poetry Club, with Wén Rèn serving as its founding President.">掌心诗社缘起于二〇一七年加拿大多伦多的一个诗词文学艺术创作群，采小群邀请制度，以深度交流和促进创作为目的；多年来以自由随缘的方式举办多次诗词酒会，共同提高诗艺。为扩大中华文化与高雅诗词艺术的影响力，二〇二二年七月十七日矜园聚会时，先期入会的十二位会员以共同发起人的名义正式成立「掌心诗社」，由文刃担任社长。</p>
 
 
   <div class="sub-head" id="mission"><b>使命</b><span class="en">Our Mission</span></div>
@@ -493,13 +502,14 @@
 <div id="fireflies" class="ff-flagship">
     <div class="flag-label" data-en="Made together — the most important collective work of The Palm.">众人合力 · 掌心最重要的集体结晶</div>
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
+    <p data-en="The anthology of The Palm Poetry Club — three parts, more than thirty poets, some two hundred and fifty poems.">掌心诗社的诗词专辑——三辑，三十余位诗人，二百五十余首作品。</p>
 
   <div id="firefly-today" class="ff-today">
     <div class="ff-tag">本周萤火 · Firefly of the Week <span class="ff-date" id="ffDate"></span></div>
     <div class="ff-title" id="ffTitle">正在取诗……</div>
     <div class="ff-author" id="ffAuthor"></div>
     <div class="ff-poem"><div class="ff-zh" id="ffLines"></div></div>
-    <div class="ff-by">＊「本周萤火」每周一首，选自掌心诗刊《萤火》。</div>
+    <div class="ff-by">＊「本周萤火」每周一首，选自掌心诗刊《萤火》。<span class="en-line">A poem a week, drawn from the anthology Fireflies.</span></div>
   </div>
   <script>
   (function(){
@@ -533,9 +543,9 @@
 
   <div class="yh">
     <img src="网站图片/萤火封面.jpg" alt="《萤火》— 掌心诗社诗词专辑">
-    <div><p>《萤火》是掌心诗社的诗词专辑，结集社员与世界各地诗人的诗作，由加拿大曼美印刷出版社印行。</p>
-    <p>萤火虽微，愿以一灯传一灯——星散于五洲四海的诗心，借此聚成一片银河。欢迎社内外诗友投稿。</p>
-    <p>专辑收古典诗词、现代诗、英文诗歌及翻译三辑，凡三十余位诗人、二百五十余首作品。</p>
+    <div><p data-en="Fireflies is the poetry anthology of The Palm Poetry Club, gathering work by members and by poet friends around the world. Printed in Canada by Manmei Press.">《萤火》是掌心诗社的诗词专辑，结集社员与世界各地诗人的诗作，由加拿大曼美印刷出版社印行。</p>
+    <p data-en="A firefly gives very little light — but one lamp may light another, and poets’ hearts scattered across five continents are gathered here into something like a galaxy. Submissions are welcome from members and from anyone else who writes.">萤火虽微，愿以一灯传一灯——星散于五洲四海的诗心，借此聚成一片银河。欢迎社内外诗友投稿。</p>
+    <p data-en="The book runs to three parts — classical verse, modern poetry, and poems in English with translations — some two hundred and fifty poems by more than thirty poets.">专辑收古典诗词、现代诗、英文诗歌及翻译三辑，凡三十余位诗人、二百五十余首作品。</p>
     <p><a class="yh-enter" href="fireflies.html">翻阅全本《萤火》 →　Read the full anthology</a></p></div>
   </div>
   
@@ -965,7 +975,7 @@
   </form>
   <div class="sub-head" id="guestbook"><b>留言交流</b><span class="en">Leave a Note</span></div>
 
-  <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录——掌心向所有爱诗的人敞开。</p>
+  <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.<br>— The Palm is open to everyone who loves poetry.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录<br>——掌心向所有爱诗的人敞开。</p>
   <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" id="gbForm" style="max-width:680px;margin:0 auto">
     <input type="hidden" name="_subject" value="掌心 · 留言">
     <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
@@ -994,15 +1004,18 @@
 <footer>
   <div class="f-main">掌心 · The Palm Poetry Club　|　诗文会友，薪火相传　·　Poetry, friendship, and a flame passed on.</div>
   <div class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</div>
-  <div class="f-cr">
-    © 2026 掌心诗社 The Palm Poetry Club　保留所有权利。<br>
-    网站文字、编排与图片版权归掌心诗社所有；<b>成员作品版权归作者本人所有</b>。转载请注明出处并链回本站。<br>
-    <span class="f-en">© 2026 The Palm Poetry Club. All rights reserved. Copyright in members’ own works remains with their authors. Please credit the source and link back when quoting or reposting.</span>
-  </div>
   <div class="f-seal">
     <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
-    <span>掌心印章 · 草书由许之远先生提供，印章设计 掌心诗社<br>
-      <span class="f-en">The Palm seal: cursive calligraphy by Mr. Hsu Chih-yuan; seal design by The Palm Poetry Club.</span></span>
+    <span>掌心印章 · 草书由许之远先生（David Hsu）提供，印章设计 掌心诗社<br>
+      <span class="f-en">The Palm seal: cursive calligraphy by Mr. David Hsu; seal design by The Palm Poetry Club.</span></span>
+  </div>
+  <div class="f-cr">
+    网站文字、编排与图片版权归掌心诗社所有；<b>成员作品版权归作者本人所有</b>。转载请注明出处并链回本站。<br>
+    <span class="f-en">Copyright in members’ own works remains with their authors. Please credit the source and link back when quoting or reposting.</span>
+  </div>
+  <div class="f-cr f-last">
+    © 2026 掌心诗社 The Palm Poetry Club　保留所有权利。<br>
+    <span class="f-en">© 2026 The Palm Poetry Club. All rights reserved.</span>
   </div>
 </footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
