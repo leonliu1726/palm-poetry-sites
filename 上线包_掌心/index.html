@@ -439,6 +439,11 @@
   }
 
   @media(max-width:640px){ html,body{overflow-x:hidden} .hero{overflow:hidden} }
+
+  .wk-au{display:block;font-family:var(--kai);font-style:normal;font-size:13px;color:var(--seal);
+    letter-spacing:.08em;margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid var(--line);
+    word-break:keep-all}
+  .wk-meta b{display:block;margin-top:1px}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -827,8 +832,8 @@
 
   <div class="works-sub-h">历年诗文会集 · 成员专著与个人作品</div>
   <div class="wk-grid" id="wkGrid">
-    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
-    <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><b>《千山独行》</b><span>文刃 · 台湾中华书局</span></div></a>
+    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
+    <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><em class="wk-au">文刃</em><b>《千山独行》</b><span>台湾中华书局</span></div></a>
     <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
   </div>
   <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
@@ -1511,9 +1516,11 @@ function mkCard(w){
   var cover=document.createElement('div'); cover.className='wk-cover ph';
   cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,6);
   var meta=document.createElement('div'); meta.className='wk-meta';
+  var au=document.createElement('em'); au.className='wk-au'; au.textContent=w.author_name||'';
   var b=document.createElement('b'); b.textContent=w.title||'';
-  var sp=document.createElement('span'); sp.textContent=[w.author_name,w.note].filter(Boolean).join(' · ');
-  meta.appendChild(b); meta.appendChild(sp);
+  var sp=document.createElement('span'); sp.textContent=w.note||'';
+  el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||'');
+  meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
   el.appendChild(cover); el.appendChild(meta);
   return el;
 }
