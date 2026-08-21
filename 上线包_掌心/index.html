@@ -655,6 +655,15 @@
   
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
+  <div class="sub-head" id="collections"><b>历年诗文会集</b><span class="en">Collected Gatherings</span></div>
+  <p data-en="Poems and prose from our gatherings over the years, collected and dated, newest first — compiled and posted by our editor Hai Bian.">历年雅集所成的诗文合集，按时间倒序排列，由掌心编辑海边整理上传。</p>
+  <div class="wk-grid" id="cjGrid">
+    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
+  </div>
+  <p class="m-note" id="cjNote">＊ 会集内容以论坛帖的形式保存，点开即可通读。<span class="en-line">Each collection opens as a forum thread you can read in full.</span></p>
+
+  <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
+
   <div class="sub-head" id="films"><b>掌心影音</b><span class="en">Poem Films</span></div>
   <p data-en="Poems set to image and sound — recitations, poem-films and clips from our gatherings, made and curated by our member Tiaodeng Kanjian.">诗与影像、声音的相遇——朗诵、诗歌短片、雅集片段，由掌心成员挑灯看剑制作与整理。</p>
   <div class="film-grid" id="filmGrid"></div>
@@ -830,9 +839,8 @@
   <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into several collections of verse and prose. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦汇成多种诗文会集。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
   
 
-  <div class="works-sub-h">历年诗文会集 · 成员专著与个人作品</div>
+  <div class="works-sub-h">成员专著与个人作品　<span style="font-family:var(--serif-en);font-style:italic;font-size:13.5px;color:var(--ink-faint);letter-spacing:0">Members’ own books and works</span></div>
   <div class="wk-grid" id="wkGrid">
-    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
     <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><em class="wk-au">文刃</em><b>《千山独行》</b><span>台湾中华书局</span></div></a>
     <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
   </div>
@@ -1529,9 +1537,13 @@ function mkCard(w){
 async function loadWorks(){
   var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
   if(r.error || !r.data) return;
-  var grid=$('wkGrid'); if(!grid) return;
+  var grid=$('wkGrid'), cg=$('cjGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
-  r.data.filter(function(w){ return w.kind!=='video'; }).forEach(function(w){ grid.appendChild(mkCard(w)); });
+  if(cg) cg.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
+  r.data.forEach(function(w){
+    if(w.kind==='collection'){ if(cg) cg.appendChild(mkCard(w)); }
+    else if(w.kind==='member'){ grid.appendChild(mkCard(w)); }
+  });
 }
 async function who(){
   var s = await WB.auth.getSession();
@@ -1624,29 +1636,36 @@ loadWorks();
     return p[0]+" 年 "+(+p[1])+" 月 "+(+p[2])+" 日"; }
   function tidy(){
     if(!ready) return;
-    var g=document.getElementById("wkGrid"); if(!g) return;
+    var old=document.getElementById("wkDiv"); if(old) old.remove();
     var coll=document.getElementById("wkCollAdd"), plus=document.getElementById("wkMemberAdd");
-    var qs=g.querySelector('a[href*="beyondathousandmountains"]');
-    var kids=[].slice.call(g.children);
-    var C=[],D=[],T=[];
-    kids.forEach(function(c){
-      if(c===coll||c===plus||c===qs||c.id==="wkDiv") return;
-      var b=c.querySelector(".wk-meta b"); var w=b?MAP[key(b.textContent)]:null;
-      if(w&&w.kind==="collection"){ c.setAttribute("data-d",dateOf(w));
+    /* 会集区：日期倒序，＋按钮殿后 */
+    var cg=document.getElementById("cjGrid");
+    if(cg){
+      var CC=[].slice.call(cg.children).filter(function(c){ return c!==coll; });
+      CC.forEach(function(c){
+        var b=c.querySelector(".wk-meta b"); var w=b?MAP[key(b.textContent)]:null;
+        c.setAttribute("data-d",dateOf(w));
         var m=c.querySelector(".wk-meta");
         if(m&&!m.querySelector(".wk-date")&&dateOf(w)){ var s=document.createElement("span");
           s.className="wk-date"; s.textContent=human(dateOf(w)); m.insertBefore(s,m.firstChild); }
-        C.push(c); return; }
+      });
+      CC.sort(function(x,y){ return (y.getAttribute("data-d")||"").localeCompare(x.getAttribute("data-d")||""); });
+      var wantC=[].concat(CC, coll?[coll]:[]).filter(Boolean);
+      var sameC = wantC.length===cg.children.length && wantC.every(function(el,i){return cg.children[i]===el;});
+      if(!sameC) wantC.forEach(function(el){ cg.appendChild(el); });
+    }
+    /* 作品区：每人一张，待补者排在最后 */
+    var g=document.getElementById("wkGrid"); if(!g) return;
+    var qs=g.querySelector('a[href*="beyondathousandmountains"]');
+    var D=[],T=[];
+    [].slice.call(g.children).forEach(function(c){
+      if(c===plus||c===qs) return;
       if(c.textContent.indexOf("（待补）")>=0){ T.push(c); return; }
       D.push(c);
     });
-    C.sort(function(x,y){ return (y.getAttribute("data-d")||"").localeCompare(x.getAttribute("data-d")||""); });
-    var div=document.getElementById("wkDiv");
-    if(!div){ div=document.createElement("div"); div.id="wkDiv"; div.className="wk-div"; }
-    var want=[].concat(coll?[coll]:[], C, [div], D, qs?[qs]:[], plus?[plus]:[], T).filter(Boolean);
+    var want=[].concat(D, qs?[qs]:[], plus?[plus]:[], T).filter(Boolean);
     var same = want.length===g.children.length && want.every(function(el,i){return g.children[i]===el;});
     if(!same) want.forEach(function(el){ g.appendChild(el); });
-    div.style.display = C.length ? "" : "none";
   }
   load(); setInterval(tidy,800);
 })();
@@ -1873,7 +1892,7 @@ loadWorks();
   function idx(){ var out=[];
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       out.push({t:c.getAttribute("data-m"), k:"成员", el:c}); });
-    document.querySelectorAll("#wkGrid .wk-card").forEach(function(c){
+    document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
       var b=c.querySelector(".wk-meta b"), a=c.querySelector(".wk-cover.ph");
       var title=b?b.textContent.trim():""; if(!title||title.indexOf("待补")>=0) return;
       out.push({t:title+(a?" · "+a.textContent.trim():""), k:"作品", el:c}); });
@@ -1995,7 +2014,7 @@ loadWorks();
       headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY},
       body:JSON.stringify({p_kind:kind,p_id:id})}).catch(function(){}); }
   function paint(){ if(!done) return;
-    document.querySelectorAll("#wkGrid .wk-card").forEach(function(c){
+    document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
       var b=c.querySelector(".wk-meta b"); if(!b) return;
       var title=b.textContent.trim().replace(/[《》]/g,"");
       var w=WORKS.filter(function(x){return x.title&&x.title.replace(/[《》]/g,"")===title;})[0];
@@ -2216,7 +2235,7 @@ loadWorks();
   function place(){
     if(!meIsHB()) { var old=document.getElementById("cjAdd"); if(old) old.remove(); return; }
     if(document.getElementById("cjAdd")) return;
-    var g=document.getElementById("wkGrid"); if(!g) return;
+    var g=document.getElementById("cjGrid"); if(!g) return;
     var a=document.createElement("div"); a.id="cjAdd"; a.className="cj-add";
     a.textContent="＋ 新增一次诗文会集";
     a.onclick=open;
@@ -2368,7 +2387,7 @@ loadWorks();
       .forEach(function(w){ MAP[(w.title||"").replace(/[《》\s]/g,"")]=w; }); ok=true; }catch(e){}
   }
   function paint(){ if(!ok) return;
-    document.querySelectorAll("#wkGrid .wk-card").forEach(function(c){
+    document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
       var b=c.querySelector(".wk-meta b"); if(!b) return;
       var w=MAP[b.textContent.replace(/[《》\s]/g,"")]; if(!w||w.kind!=="member") return;
       var m=meta(w.note); if(!m) return;
