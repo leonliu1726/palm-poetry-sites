@@ -392,6 +392,23 @@
   .f-seal img{width:38px;height:38px;border-radius:50%;opacity:.8;flex:0 0 38px}
   .f-seal span{text-align:left}
   @media(max-width:640px){.f-seal{flex-direction:column;gap:8px}.f-seal span{text-align:center}}
+
+  #sbWorks{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+  .sw-h{font-family:var(--kai);font-size:14px;color:var(--seal);letter-spacing:.1em;margin-bottom:10px}
+  .sw-item{display:flex;gap:11px;align-items:center;padding:9px 10px;margin-bottom:8px;border:1px solid var(--line);
+    border-radius:9px;text-decoration:none;color:var(--ink);background:rgba(255,252,246,.6);transition:.22s}
+  .sw-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .sw-item img{width:42px;height:56px;object-fit:cover;border-radius:4px;flex:0 0 42px}
+  .sw-tx b{display:block;font-size:14.5px;line-height:1.5}
+  .sw-tx span{display:block;font-size:12.5px;color:var(--ink-faint);margin-top:2px}
+  .sw-qs{display:block;margin-top:12px;padding:16px 18px;border:1px solid var(--gold);border-radius:10px;
+    text-decoration:none;color:var(--ink);
+    background:radial-gradient(120% 90% at 88% 8%,rgba(169,139,79,.16),transparent),rgba(255,255,255,.5);transition:.24s}
+  .sw-qs:hover{border-color:var(--seal);transform:translateY(-3px);box-shadow:0 12px 26px rgba(169,139,79,.2)}
+  .sw-qs b{display:block;font-family:var(--kai);font-size:17px;color:var(--ink);letter-spacing:.04em}
+  .sw-qs span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.9;margin-top:6px}
+  .sw-qs i{font-style:italic;color:var(--ink-faint);font-family:var(--serif-en);font-size:12.5px}
+  .sw-qs em{display:inline-block;margin-top:10px;font-style:normal;font-family:var(--kai);font-size:14.5px;color:var(--seal)}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -1928,9 +1945,14 @@ loadWorks();
     return true; }
   function shown(){ var b=document.getElementById("sbCard");
     return !!(b&&getComputedStyle(b).display!=="none"); }
+  var ALIAS={"fengdong":"风动","gutu":"古土","dandan":"丹丹","mowangshan":"墨望山","fengyezhenghong":"枫叶正红","tangmang":"唐芒","xinxinxiangrong":"欣欣向荣","wenren":"文刃","tim":"Tim","yangqing":"杨青","feihong":"飞鸿","wangxuejun":"王雪君","xiaoming":"晓鸣","hubian":"湖边","shifu":"石甫","wuyuehua":"五月花","luoyitong":"骆奕同","guqian":"古谦","huyang":"胡杨","wanghui":"王慧","xierongfeng":"谢蓉枫","chenhe":"陈河","qingfeng":"青枫","zhudaihong":"诸黛红","lichang":"李昶","tanxinxiong":"谭新雄","weixiaoqing":"韦小青","mingjie":"明洁","clairef":"Claire F","moranhuishou":"蓦然回首","chenning":"陈宁","zhangdi":"张迪","chenlong":"陈龙","ruoran":"若然","wangxiaoming":"王晓鸣","liningyuan":"李宁远","dongdongsheng":"东冬生","johnson":"Johnson","michaelzhang":"Michael Zhang","gracejiang":"Grace Jiang","yuqinliu":"Yu Qin Liu","taoran":"陶然","jiuwei":"久炜","junying":"俊英","baishui":"白水","zhangxiying":"张喜英","jiangni":"姜尼","wenyan":"闻雁","moquan":"墨泉","beijiang":"北江","nilrhoads":"Nil Rhoads","kenneth":"Kenneth","fuyuhua":"傅毓华","haibian":"海边","yanzhonghu":"颜钟祜","suyixin":"苏奕歆","tracygao":"Tracy Gao","shendayong":"沈大勇","peterlin":"Peter Lin","kristen":"Kristen","chenrong":"陈蓉","xiaqian":"夏倩","yimu":"以牧","churen":"楚人","nongxian":"弄弦","tiaodengkanjian":"挑灯看剑","huangzhong":"黄忠","georgeliang":"George Liang","zhangwenyao":"张文尧","zhangsu":"张苏"};
+  var SEC={origin:1,reading:1,members:1,works:1,forum:1,world:1,mission:1,writings:1,album:1,join:1,guestbook:1,fireflies:1,films:1,home:1,doors:1,submit:1};
   function fromHash(){
     var h=decodeURIComponent((location.hash||"").slice(1));
-    if(!h||/^[a-z-]+$/i.test(h)) return;   /* 普通锚点不处理 */
+    if(!h) return;
+    if(SEC[h]) return;                       /* 页面锚点，交给浏览器 */
+    var k=h.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]/g,"");
+    if(ALIAS[k]) h=ALIAS[k];                 /* 拼音 → 姓名 */
     var n=0, t=setInterval(function(){
       if(shown()||++n>40){ clearInterval(t); return; }
       open(h);
@@ -2401,6 +2423,64 @@ loadWorks();
         }});
     }catch(e){}
   })();
+})();
+</script>
+<script>
+/* 名片里接上本人的作品；文刃另附《千山独行》入口 */
+(function(){
+  var HOST="",KEY="",W=[],ok=false,LAST="";
+  var QS="https://leonliu1726.github.io/beyondathousandmountains/";
+  async function load(){
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||"";
+    if(!HOST) return;
+    try{ W=await (await fetch(HOST+"/rest/v1/works?select=author_name,title,url,note,cover_url,kind&kind=eq.member",
+      {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json(); ok=true; }catch(e){}
+  }
+  document.addEventListener("click",function(e){
+    var c=e.target.closest&&e.target.closest(".m-card[data-m]");
+    if(c) LAST=c.getAttribute("data-m");
+  },true);
+  function meta(n){ try{ var o=JSON.parse(n||"{}"); return (o&&typeof o==="object")?o:null; }catch(e){ return null; } }
+  function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+  function paint(){
+    var box=document.getElementById("sbCard");
+    if(!box||getComputedStyle(box).display==="none") return;
+    var bio=document.getElementById("sbCardBio"); if(!bio) return;
+    var host=bio.parentNode;
+    var wrap=document.getElementById("sbWorks");
+    if(!wrap){ wrap=el("div",null); wrap.id="sbWorks"; host.insertBefore(wrap, document.getElementById("sbLink")||null); }
+    if(wrap.getAttribute("data-n")===LAST) return;
+    wrap.setAttribute("data-n",LAST);
+    wrap.innerHTML="";
+    var mine=W.filter(function(w){ return w.author_name===LAST && w.title && w.title.indexOf("待补")<0; });
+    var isWR = (LAST==="文刃");
+    if(!mine.length && !isWR) return;
+    wrap.appendChild(el("div","sw-h","作品　Works"));
+    mine.forEach(function(w){
+      var a=document.createElement("a"); a.className="sw-item";
+      a.href=(w.url&&/^https?:/.test(w.url))?w.url:"#works";
+      if(/^https?:/.test(a.getAttribute("href"))){ a.target="_blank"; a.rel="noopener"; }
+      if(w.cover_url){ var im=document.createElement("img"); im.src=w.cover_url; im.alt=""; a.appendChild(im); }
+      var tx=el("div","sw-tx");
+      tx.appendChild(el("b",null,w.title));
+      var m=meta(w.note)||{};
+      var bits=[]; if(m.c) bits.push(m.c); if(m.y) bits.push(m.y);
+      if(m.d) bits.push(m.d.slice(0,40));
+      if(bits.length) tx.appendChild(el("span",null,bits.join(" · ")));
+      a.appendChild(tx); wrap.appendChild(a);
+    });
+    if(isWR){
+      var q=document.createElement("a"); q.className="sw-qs"; q.href=QS; q.target="_blank"; q.rel="noopener";
+      q.innerHTML='<b>《千山独行》Beyond a Thousand Mountains</b>'+
+        '<span>文刃诗文专集 · 台湾中华书局出版。此处备有全书、评论、行者影像与朗诵。<br>'+
+        '<i>A poet’s solitary journey — the full book, reviews, images and recitations. One click to enter.</i></span>'+
+        '<em>进入千山独行 · Enter →</em>';
+      wrap.appendChild(q);
+    }
+  }
+  load().then(function(){ setInterval(paint,600); });
 })();
 </script>
 </body></html>
