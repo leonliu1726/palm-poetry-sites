@@ -1522,7 +1522,9 @@ function mkCard(w){
   el.className='wk-card'; el.setAttribute('data-wk','1');
   if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
   var cover=document.createElement('div'); cover.className='wk-cover ph';
-  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,6);
+  var tt=(w.title||'').replace(/[《》（）()]/g,'').trim();
+  if(tt==='待补'||!tt) tt='';
+  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (tt||w.author_name||'作品').slice(0,6);
   var meta=document.createElement('div'); meta.className='wk-meta';
   var au=document.createElement('em'); au.className='wk-au'; au.textContent=w.author_name||'';
   var ti=(w.title||'').trim(), an=(w.author_name||'').trim();
@@ -1770,7 +1772,9 @@ loadWorks();
     return C.name;
   }
   who();
-  function coverName(card){var c=card.querySelector('.wk-cover.ph'); return c?c.textContent.trim():'';}
+  function coverName(card){ var a=card.getAttribute('data-au'); if(a) return a.trim();
+    var e=card.querySelector('.wk-au'); if(e) return e.textContent.trim();
+    var c=card.querySelector('.wk-cover.ph'); return c?c.textContent.trim():''; }
   document.addEventListener('click', function(e){
     var g=document.getElementById('wkGrid'); if(!g) return;
     var card=e.target.closest && e.target.closest('.wk-card'); if(!card||!g.contains(card)) return;
@@ -1893,9 +1897,9 @@ loadWorks();
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       out.push({t:c.getAttribute("data-m"), k:"成员", el:c}); });
     document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
-      var b=c.querySelector(".wk-meta b"), a=c.querySelector(".wk-cover.ph");
+      var b=c.querySelector(".wk-meta b"), a=c.getAttribute("data-au")||"";
       var title=b?b.textContent.trim():""; if(!title||title.indexOf("待补")>=0) return;
-      out.push({t:title+(a?" · "+a.textContent.trim():""), k:"作品", el:c}); });
+      out.push({t:title+(a?" · "+a:""), k:"作品", el:c}); });
     return out; }
   function hit(el){ el.scrollIntoView({behavior:"smooth",block:"center"});
     el.classList.add("pk-hit"); setTimeout(function(){el.classList.remove("pk-hit");},2200);
