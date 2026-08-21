@@ -1517,7 +1517,9 @@ function mkCard(w){
   cover.textContent = w.kind==='collection' ? '诗文\n会集' : (w.author_name||'作品').slice(0,6);
   var meta=document.createElement('div'); meta.className='wk-meta';
   var au=document.createElement('em'); au.className='wk-au'; au.textContent=w.author_name||'';
-  var b=document.createElement('b'); b.textContent=w.title||'';
+  var ti=(w.title||'').trim(), an=(w.author_name||'').trim();
+  if(an && ti.indexOf(an)===0 && ti.length>an.length) ti=ti.slice(an.length).replace(/^[\s·、，,：:－—-]+/,'');
+  var b=document.createElement('b'); b.textContent=ti;
   var sp=document.createElement('span'); sp.textContent=w.note||'';
   el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||'');
   meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
