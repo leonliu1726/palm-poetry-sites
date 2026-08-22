@@ -465,6 +465,13 @@
   .coda-sig .f-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint)}
   .coda #covenant{max-width:640px;margin:22px auto 4px;text-align:left}
   .coda #covenant>summary{text-align:center}
+
+  .doors3{margin-bottom:22px}
+  .d3{display:block;cursor:pointer;position:relative;transition:.22s}
+  .d3 input{position:absolute;opacity:0;width:0;height:0}
+  .d3:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .d3:has(input:checked){border-color:var(--seal);background:rgba(156,58,47,.07);box-shadow:0 8px 22px rgba(156,58,47,.12)}
+  .d3:has(input:checked) b::after{content:"　✓";color:var(--seal);font-size:13px}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -968,12 +975,14 @@
   </details>
   <div class="sub-head" id="join"><b>留言 · 投稿 · 加入</b><span class="en">Say Hello · Submit · Join</span></div>
 
-  <p class="join-lead" data-en="Every poet may have a space of their own; forty-four already keep one here. One note is enough — whichever door you come through.">每一位诗人都可拥有自己的一方天地，<span class="mcount">四十四</span>位已在此安家。一封信就够了，不论你从哪扇门进来。</p>
 
-  <div class="doors3">
-    <div class="d3"><b>留言问候</b><span data-en="A line, a greeting, a verse in reply. A nickname is all you need — no sign-up.">一句话，一首和诗。填个昵称就好，无需注册。</span></div>
-    <div class="d3"><b>投稿掌心</b><span data-en="You need not be a member. Poems, prose and criticism are read by the editors; good work is published here under your name.">不必是成员。诗、文、评论，编辑都会读；刊出署你的名。</span></div>
-    <div class="d3"><b>加入掌心</b><span data-en="A page of your own — biography, portrait, works, your own site — and the open forum. Introduced by any friend of The Palm.">拥有自己的页面：简介、照片、作品、个人网站，以及开放论坛。经掌心知交引荐。</span></div>
+  <div class="doors3" id="doors3">
+    <label class="d3"><input type="radio" form="oneForm" name="来意" value="留言问候" checked>
+      <b>留言问候</b><span data-en="A line, a greeting, a verse in reply. A nickname is all you need — no sign-up.">一句话，一首和诗。填个昵称就好，无需注册。</span></label>
+    <label class="d3"><input type="radio" form="oneForm" name="来意" value="投稿作品">
+      <b>投稿掌心</b><span data-en="You need not be a member. Poems, prose and criticism are read by the editors; good work is published here under your name.">不必是成员。诗、文、评论，编辑都会读；刊出署你的名。</span></label>
+    <label class="d3"><input type="radio" form="oneForm" name="来意" value="加入掌心">
+      <b>加入掌心</b><span data-en="A page of your own — biography, portrait, works, your own site — and the open forum. Introduced by any friend of The Palm.">拥有自己的页面：简介、照片、作品、个人网站，以及开放论坛。经掌心知交引荐。</span></label>
   </div>
 
   <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form" id="oneForm">
@@ -982,11 +991,6 @@
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
     <input type="text" name="_honey" style="display:none">
-    <div class="pick" id="ofPick">
-      <label><input type="radio" name="来意" value="留言问候" checked><span>留言问候</span></label>
-      <label><input type="radio" name="来意" value="投稿作品"><span>投稿作品</span></label>
-      <label><input type="radio" name="来意" value="加入掌心"><span>加入掌心</span></label>
-    </div>
     <div class="sf-row">
       <input type="text" name="姓名或笔名" required placeholder="昵称　Nickname">
       <input type="email" name="邮箱" id="ofMail" placeholder="邮箱（选填，便于回复）　Email (optional)">
@@ -1011,8 +1015,9 @@
 <div class="coda"><div class="wrap">
   <div class="coda-line"></div>
   <p class="coda-zh">掌心不大，但可以把自己捧着的诗交到另一个人手中。<br>
-  你若真诚书写，这里有你与同道共同展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。</p>
-  <p class="coda-en">The Palm is small — small enough to hold a poem in the palm of your hand, and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be.</p>
+  你若真诚书写，这里有你与同道共同展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。<br>
+  掌心 · The Palm Poetry Club　|　诗文会友，薪火相传</p>
+  <p class="coda-en">The Palm is small — small enough to hold a poem in the palm of your hand, and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be. Poetry, friendship, and a flame passed on.</p>
   <details class="wen" id="covenant">
     <summary>掌心公约<span class="wcnt">The Palm Covenant</span></summary>
     <div class="wen-body">
@@ -1026,21 +1031,14 @@
     </div>
   </details>
 
-  <p class="coda-sig">掌心 · The Palm Poetry Club　|　诗文会友，薪火相传<br>
-    <span class="f-en">Poetry, friendship, and a flame passed on.</span></p>
   <div class="coda-line"></div>
 </div></div>
 <footer>
   <div class="f-seal">
     <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
-    <span>掌心诗社编辑组制作 · 2026　|　管理员：陶然　海边　风动　文刃<br>
-      印章草书 许之远（David Hsu）　·　印章设计 掌心诗社<br>
-      <span class="f-en">Seal calligraphy by Mr. David Hsu; seal design by The Palm Poetry Club.</span></span>
-  </div>
-  <div class="f-cr">
-    站内文字与图片版权归掌心诗社，<b>成员作品版权归作者本人</b>；转载请注明出处并链回本站。<br>
-    内容如有异议，请与管理员联系：<a href="mailto:taoran2000@hotmail.com">陶然</a>　<a href="mailto:xin2k@yahoo.com">风动</a><br>
-    <span class="f-en">Site content © The Palm Poetry Club; members’ works remain their authors’. Please credit and link back. For any concern about content, write to the administrators.</span>
+    <span>掌心诗社编辑组制作 · 2026　|　管理员：陶然　海边　风动　文刃　|　印章草书 许之远（David Hsu）· 印章设计 掌心诗社<br>
+      站内文字与图片版权归掌心诗社，<b>成员作品版权归作者本人</b>；转载请注明出处并链回本站。内容如有异议，请与管理员联系：<a href="mailto:taoran2000@hotmail.com">陶然</a>　<a href="mailto:xin2k@yahoo.com">风动</a><br>
+      <span class="f-en">Made by the editors of The Palm Poetry Club, 2026. Seal calligraphy by Mr. David Hsu; seal design by The Palm. Site content © The Palm Poetry Club; members’ works remain their authors’. Please credit and link back; for any concern about content, write to the administrators.</span></span>
   </div>
   <div class="f-cr f-last">© 2026 掌心诗社 The Palm Poetry Club　·　All rights reserved.</div>
 </footer>
@@ -2615,7 +2613,7 @@ loadWorks();
   };
   function apply(){
     var f=document.getElementById("oneForm"); if(!f) return;
-    var r=f.querySelector('input[name="来意"]:checked'); if(!r) return;
+    var r=document.querySelector('input[name="来意"]:checked'); if(!r) return;
     var c=CFG[r.value]; if(!c) return;
     var s=document.getElementById("ofSubject"); if(s) s.value=c.s;
     var w=document.getElementById("ofWork"); if(w) w.style.display=c.work?"":"none";
