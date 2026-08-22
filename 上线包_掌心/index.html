@@ -444,6 +444,22 @@
     letter-spacing:.08em;margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid var(--line);
     word-break:keep-all}
   .wk-meta b{display:block;margin-top:1px}
+
+  .join-lead{max-width:720px;margin:0 auto 22px;text-align:center;font-size:15.5px;line-height:2;color:var(--ink-soft)}
+  .doors3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:860px;margin:0 auto 26px}
+  .d3{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:rgba(255,252,246,.55)}
+  .d3 b{display:block;font-family:var(--kai);font-size:17px;color:var(--seal);letter-spacing:.08em;margin-bottom:6px;word-break:keep-all}
+  .d3 span{display:block;font-size:13.5px;line-height:1.95;color:var(--ink-soft)}
+  @media(max-width:760px){.doors3{grid-template-columns:1fr}}
+  .pick{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;justify-content:center}
+  .pick label{cursor:pointer}
+  .pick input{position:absolute;opacity:0;width:0;height:0}
+  .pick span{display:inline-block;padding:7px 16px;border:1px solid var(--line);border-radius:20px;
+    font-family:var(--kai);font-size:14.5px;color:var(--ink-soft);transition:.2s;word-break:keep-all}
+  .pick input:checked+span{background:var(--seal);border-color:var(--seal);color:#fdf9f0}
+  .join-mail{max-width:720px;margin:16px auto 8px;text-align:center;font-size:13.5px;color:var(--ink-soft);line-height:2}
+  .join-mail a{color:var(--seal);text-decoration:none;border-bottom:1px solid rgba(156,58,47,.3)}
+  #covenant{max-width:720px;margin:18px auto 0}
 </style></head>
 <body>
 <nav><div class="wrap">
@@ -949,96 +965,82 @@
   </div>
 
 
-  <div class="sub-head" id="join"><b>加入我们</b><span class="en">Join Us</span></div>
+  <div class="sub-head" id="join"><b>加入 · 投稿 · 留言</b><span class="en">Join · Submit · Say Hello</span></div>
 
-  <div class="join">
-    <h3>每一位诗人，都可拥有自己的一方天地<span class="en-line" style="display:block;margin-top:6px">Every poet may have a space of their own.</span></h3>
-    <p data-en="The Palm welcomes poets, writers, calligraphers and painters, and everyone who loves poetry. The interactive platform is now live: once signed in, each member keeps a space of their own — editing a bio, changing a portrait, uploading work or linking a personal site. The open forum is running alongside it. The Academy grows by introduction: friends bring friends, and the door stands open to lovers of poetry everywhere.">掌心欢迎海内外诗人、作家、书画家与一切热爱诗的人加入。互动平台已经启用：成员登录后各有一方天地，可随时修改简介、更换照片、上传自己的作品或关联个人网站；开放讨论区同步开张，贴诗、读诗、唱和皆在其中。学园由知交引荐新友，向全世界爱诗的人敞开。</p>
-    <div class="road">
-      <div class="r"><b>第一步 · 已完成</b><span data-en="Step One · Done — the site is built: Origin, Mission, Members, Works, Fireflies, the album, and Connecting the World are all in place.">展示型站点落成：缘起、使命、成员、作品、《萤火》、相册、连接世界，皆已就位。</span></div>
-      <div class="r"><b>第二步 · 已启动</b><span data-en="Step Two · Live — Forty-four poets and friends have signed in, each keeping a space of their own; the open forum is running: post a poem, read a poem, talk about poems.">诗文互动平台开张：<span class="mcount">四十四</span>位诗人与好友已登录，各自维护一方天地；开放讨论区同步启用，贴诗、读诗、说诗。</span></div>
-      <div class="r"><b>第三步 · 正在进行</b><span data-en="Step Three · Under way — opening to the world. The Academy is no longer a list of old friends: anyone introduced by a member may register and open a space here. Many languages, and work that is kept for the long run.">向世界敞开：学园不再只是旧友的名录——凡经学园知交引荐者，皆可注册掌心、开办自己的空间。多语交流，作品长期留存。</span></div>
-    </div>
-    <p style="font-family:var(--kai);color:var(--ink);margin:6px 0 2px">掌心公约<span class="en-line" style="margin-left:10px">The Palm Covenant</span></p>
-    <ul class="rules">
-      <li data-en="Meet others with sincerity and goodwill; argue with the work, never with the person.">以真诚与善意待人，对事不对人。</li>
-      <li data-en="Independent and free, respectful of difference — all views, languages and poetic forms are welcome.">独立自由，尊重多元——不同观点、语言、诗体皆受欢迎。</li>
-      <li data-en="Original work first; credit your sources when you repost; respect copyright.">原创为重，转贴注明出处，尊重版权。</li>
-      <li data-en="Keep to the poem, keep out the rancour. Your own work goes in your own space; discussion goes to the open forum.">就诗论诗，远离戾气；个人作品发于自己专栏，讨论发于开放论坛。</li>
-      <li data-en="Be gentle with newcomers; pass the flame on.">温和护持新人，薪火相传。</li>
-    </ul>
-    <p style="margin-top:16px" data-en="To join The Palm, please write to Tao Ran at taoran2000@hotmail.com or Feng Dong at xin2k@yahoo.com. To submit work, please write to Hai Bian at huangxiaoyu2001@gmail.com.">加入掌心，请致信：陶然 <a href="mailto:taoran2000@hotmail.com" style="color:var(--seal)">taoran2000@hotmail.com</a>；风动 <a href="mailto:xin2k@yahoo.com" style="color:var(--seal)">xin2k@yahoo.com</a><br>供稿掌心，请致信：海边 <a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a></p>
+  <p class="join-lead" data-en="Every poet may have a space of their own — forty-four poets and friends already keep one here. Whichever door you come through, one note is enough.">每一位诗人，都可拥有自己的一方天地——<span class="mcount">四十四</span>位诗人与好友已在此安家。无论你从哪一扇门进来，一封信就够了。</p>
+
+  <div class="doors3">
+    <div class="d3"><b>加入掌心</b><span data-en="Become a member: a page of your own — biography, portrait, works, a link to your own site — and the open forum. Introduced by any friend of The Palm.">成为成员，拥有自己的页面：简介、照片、作品、个人网站，以及开放论坛。经掌心知交引荐即可。</span></div>
+    <div class="d3"><b>投稿掌心</b><span data-en="You need not be a member. Poems, prose and criticism are all read by the editors; good work is published here under your name.">不必是成员。诗、文、评论，编辑都会认真读；刊出署你的名。</span></div>
+    <div class="d3"><b>留言问候</b><span data-en="Just a line, or a verse in reply. A nickname is all you need — no sign-up, no login.">只想说一句话，或和一首诗？填个昵称就好，无需注册登录。</span></div>
   </div>
 
-
-  <div class="sub-head" id="submit"><b>投稿掌心</b><span class="en">Submit Your Work</span></div>
-  <p data-en="You do not need to be a member. If you write poems or prose, send us a piece — the editors read everything, and good work will be published on The Palm, with credit to you.">不必是掌心成员。写诗、作文的朋友，都可以把作品投给我们——编辑会认真读，好作品将在掌心刊出，并署你的名。</p>
-  <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form">
-    <input type="hidden" name="_subject" value="掌心 · 投稿">
+  <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form" id="oneForm">
+    <input type="hidden" name="_subject" id="ofSubject" value="掌心 · 加入">
     <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
     <input type="text" name="_honey" style="display:none">
+    <div class="pick" id="ofPick">
+      <label><input type="radio" name="来意" value="加入掌心" checked><span>加入掌心</span></label>
+      <label><input type="radio" name="来意" value="投稿作品"><span>投稿作品</span></label>
+      <label><input type="radio" name="来意" value="留言问候"><span>留言问候</span></label>
+    </div>
     <div class="sf-row">
       <input type="text" name="姓名或笔名" required placeholder="姓名 / 笔名　Name or pen name">
-      <input type="email" name="邮箱" required placeholder="邮箱　Email">
+      <input type="email" name="邮箱" id="ofMail" required placeholder="邮箱　Email">
     </div>
-    <div class="sf-row">
-      <input type="text" name="作品题目" required placeholder="作品题目　Title">
+    <div class="sf-row" id="ofWork">
+      <input type="text" name="作品题目" placeholder="作品题目　Title">
       <input type="text" name="所在城市" placeholder="现居城市（可留空）　City">
     </div>
-    <textarea name="作品正文" rows="7" placeholder="正文——诗、散文、评论皆可。也可只写几句说明，把作品作为附件上传。&#10;Your poem or prose. You may also attach a file below."></textarea>
-    <div class="sf-row">
-      <input type="text" name="推荐人" placeholder="推荐人（如有）　Introduced by">
+    <textarea name="正文" id="ofBody" rows="6" required placeholder="说说你自己，以及你写些什么。&#10;A few words about yourself and what you write."></textarea>
+    <div class="sf-row" id="ofExtra">
+      <input type="text" name="引荐人" placeholder="引荐人 / 推荐人（如有）　Introduced by">
       <input type="file" name="附件" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
     </div>
-    <button type="submit" class="sf-go">投　稿　·　Send</button>
-    <p class="sf-note">＊ 投稿直接送达掌心编辑组，无需注册。我们尊重版权，刊出前会与你确认。</p>
+    <button type="submit" class="sf-go">寄　出　·　Send</button>
+    <p class="sf-note">＊ 直接送达掌心编辑组，无需注册，也不必自备邮件程序。我们尊重版权，刊出前会与你确认。<span class="en-line">Sent straight to the editors. No account needed; copyright stays with you.</span></p>
   </form>
-  <div class="sub-head" id="guestbook"><b>留言交流</b><span class="en">Leave a Note</span></div>
 
-  <p style="max-width:680px;margin:0 auto 26px;text-align:center;color:var(--ink-soft);font-size:15px;line-height:1.9" data-en="Poets and readers are warmly invited to leave a note here — to share, to harmonize a verse, to converse. Just enter a nickname; no sign-up or login required.<br>— The Palm is open to everyone who loves poetry.">欢迎天下诗友与读者在此留言、唱和、交流。只需填写昵称即可发言，无需注册登录<br>——掌心向所有爱诗的人敞开。</p>
-  <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" id="gbForm" style="max-width:680px;margin:0 auto">
-    <input type="hidden" name="_subject" value="掌心 · 留言">
-    <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="text" name="_honey" style="display:none">
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
-      <input type="text" name="昵称" required placeholder="昵称（必填）" style="flex:1;min-width:160px;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink)">
-      <input type="email" name="email" placeholder="邮箱（选填，便于回复）" style="flex:1;min-width:160px;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink)">
+  <p class="join-mail" data-en="Or write to us directly — to join: Tao Ran or Feng Dong; to submit: Hai Bian.">也可直接来信：加入 — 陶然 <a href="mailto:taoran2000@hotmail.com">taoran2000@hotmail.com</a>、风动 <a href="mailto:xin2k@yahoo.com">xin2k@yahoo.com</a>；投稿 — 海边 <a href="mailto:huangxiaoyu2001@gmail.com">huangxiaoyu2001@gmail.com</a></p>
+
+  <details class="wen" id="covenant">
+    <summary>掌心公约<span class="wcnt">The Palm Covenant</span></summary>
+    <div class="wen-body">
+      <ul class="rules">
+        <li data-en="Meet others with sincerity and goodwill; argue with the work, never with the person.">以真诚与善意待人，对事不对人。</li>
+        <li data-en="Independent and free, respectful of difference — all views, languages and poetic forms are welcome.">独立自由，尊重多元——不同观点、语言、诗体皆受欢迎。</li>
+        <li data-en="Original work first; credit your sources when you repost; respect copyright.">原创为重，转贴注明出处，尊重版权。</li>
+        <li data-en="Keep to the poem, keep out the rancour. Your own work goes in your own space; discussion goes to the open forum.">就诗论诗，远离戾气；个人作品发于自己专栏，讨论发于开放论坛。</li>
+        <li data-en="Be gentle with newcomers; pass the flame on.">温和护持新人，薪火相传。</li>
+      </ul>
     </div>
-    <textarea name="留言" rows="4" required placeholder="欢迎留言、唱和、交流……（昵称必填，留言会送达掌心）" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);resize:vertical;box-sizing:border-box"></textarea>
-    <button type="submit" style="margin-top:14px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:16px;letter-spacing:.2em;cursor:pointer">寄 出</button>
-    <p style="text-align:center;font-size:12.5px;color:var(--ink-soft);margin:10px 0 0">＊ 留言直接送达掌心，无需注册，也不必自备邮件程序。</p>
-  </form>
-  
+  </details>
+
 </div></section>
 </main>
 <div class="coda"><div class="wrap">
   <div class="coda-line"></div>
-  <p class="coda-zh">掌心不大，<br>但可以把自己捧着的诗交到另一个人手中。</p>
-  <p class="coda-en">The Palm is small — small enough to hold a poem in the palm of your hand, and pass it into someone else’s.</p>
-  <p class="coda-zh2">你若真诚书写，这里有你与同道共同展示自己才华的一方天地；<br>你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。</p>
-  <p class="coda-en2">If you write in earnest, here is a place to show your work beside your peers.<br>If you read serious writing, The Palm is where you will want to be.</p>
+  <p class="coda-zh">掌心不大，但可以把自己捧着的诗交到另一个人手中。<br>
+  你若真诚书写，这里有你与同道共同展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。</p>
+  <p class="coda-en">The Palm is small — small enough to hold a poem in the palm of your hand, and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be.</p>
   <div class="coda-line"></div>
 </div></div>
 <footer>
-  <div class="f-main">掌心 · The Palm Poetry Club　|　诗文会友，薪火相传　·　Poetry, friendship, and a flame passed on.</div>
-  <div class="f-by">掌心诗社编辑组制作 · 2026 年　|　管理员：陶然　海边　风动　文刃</div>
+  <div class="f-main">掌心 · The Palm Poetry Club　|　诗文会友，薪火相传<br>
+    <span class="f-en">Poetry, friendship, and a flame passed on.</span></div>
   <div class="f-seal">
     <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
-    <span>掌心印章 · 草书由许之远先生（David Hsu）提供，印章设计 掌心诗社<br>
-      <span class="f-en">The Palm seal: cursive calligraphy by Mr. David Hsu; seal design by The Palm Poetry Club.</span></span>
+    <span>掌心诗社编辑组制作 · 2026　|　管理员：陶然　海边　风动　文刃<br>
+      印章草书 许之远（David Hsu）　|　印章设计 掌心诗社<br>
+      <span class="f-en">Seal calligraphy by Mr. David Hsu; seal design by The Palm Poetry Club.</span></span>
   </div>
   <div class="f-cr">
-    网站文字、编排与图片版权归掌心诗社所有；<b>成员作品版权归作者本人所有</b>。转载请注明出处并链回本站。<br>
-    <span class="f-en">Copyright in members’ own works remains with their authors. Please credit the source and link back when quoting or reposting.</span>
+    站内文字、编排与图片版权归掌心诗社；<b>成员作品版权归作者本人</b>。转载请注明出处并链回本站。<br>
+    <span class="f-en">Site content © The Palm Poetry Club. Members’ works remain their authors’. Please credit the source and link back.</span>
   </div>
-  <div class="f-cr f-last">
-    © 2026 掌心诗社 The Palm Poetry Club　保留所有权利。<br>
-    <span class="f-en">© 2026 The Palm Poetry Club. All rights reserved.</span>
-  </div>
+  <div class="f-cr f-last">© 2026 掌心诗社 The Palm Poetry Club　·　All rights reserved.</div>
 </footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
 <div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
@@ -2596,6 +2598,34 @@ loadWorks();
     }
   }
   load().then(function(){ setInterval(paint,600); });
+})();
+</script>
+<script>
+/* 加入 · 投稿 · 留言：一份表单，随来意变脸 */
+(function(){
+  var CFG={
+    "加入掌心":{s:"掌心 · 加入",work:0,extra:1,mail:1,
+      ph:"说说你自己，以及你写些什么。\nA few words about yourself and what you write."},
+    "投稿作品":{s:"掌心 · 投稿",work:1,extra:1,mail:1,
+      ph:"正文——诗、散文、评论皆可。也可只写几句说明，把作品作为附件上传。\nYour poem or prose. You may also attach a file below."},
+    "留言问候":{s:"掌心 · 留言",work:0,extra:0,mail:0,
+      ph:"欢迎留言、唱和、交流……\nLeave a note, a greeting, or a verse in reply."}
+  };
+  function apply(){
+    var f=document.getElementById("oneForm"); if(!f) return;
+    var r=f.querySelector('input[name="来意"]:checked'); if(!r) return;
+    var c=CFG[r.value]; if(!c) return;
+    var s=document.getElementById("ofSubject"); if(s) s.value=c.s;
+    var w=document.getElementById("ofWork"); if(w) w.style.display=c.work?"":"none";
+    var x=document.getElementById("ofExtra"); if(x) x.style.display=c.extra?"":"none";
+    var m=document.getElementById("ofMail");
+    if(m){ m.required=!!c.mail; m.placeholder=c.mail?"邮箱　Email":"邮箱（选填，便于回复）　Email (optional)"; }
+    var n=f.querySelector('input[name="姓名或笔名"]');
+    if(n) n.placeholder=(r.value==="留言问候")?"昵称　Nickname":"姓名 / 笔名　Name or pen name";
+    var b=document.getElementById("ofBody"); if(b) b.placeholder=c.ph;
+  }
+  document.addEventListener("change",function(e){ if(e.target&&e.target.name==="来意") apply(); });
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",apply); else apply();
 })();
 </script>
 </body></html>
