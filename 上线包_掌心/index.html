@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>掌心 · The Palm Poetry Club</title>
 <link rel="icon" type="image/png" href="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png">
 <link rel="apple-touch-icon" href="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png">
@@ -472,11 +472,39 @@
   .d3:hover{border-color:var(--gold);transform:translateY(-2px)}
   .d3:has(input:checked){border-color:var(--seal);background:rgba(156,58,47,.07);box-shadow:0 8px 22px rgba(156,58,47,.12)}
   .d3:has(input:checked) b::after{content:"　✓";color:var(--seal);font-size:13px}
+</style>
+<style>
+  html,body{overflow-x:clip}
+  .skip-link{position:fixed;left:12px;top:10px;z-index:9999;transform:translateY(-160%);padding:10px 14px;background:#fff;color:var(--seal);border:2px solid var(--seal);border-radius:5px;font:600 14px/1.2 system-ui,sans-serif}
+  .skip-link:focus{transform:none}
+  .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .nav-toggle{display:none;border:1px solid var(--seal);background:transparent;color:var(--seal);border-radius:6px;min-width:44px;min-height:44px;padding:7px 10px;font-family:var(--kai);font-size:15px;cursor:pointer}
+  .form-label{display:block;font-family:var(--kai);font-size:13px;color:var(--ink-soft);margin:0 0 5px}
+  .consent{display:flex;align-items:flex-start;gap:9px;margin:10px 0 14px;font-size:12.5px;line-height:1.75;color:var(--ink-soft)}
+  .consent input{width:18px;height:18px;margin-top:3px;flex:0 0 18px}
+  .consent a{color:var(--seal)}
+  @media(max-width:760px){
+    nav .wrap{display:flex;justify-content:flex-start;gap:8px 10px;padding:6px 14px}
+    nav .brand{order:1;flex:1 1 auto;min-width:0}
+    nav .zhbtn{order:2;margin-left:0;min-width:44px;min-height:44px;padding:6px 10px}
+    .nav-toggle{display:inline-flex;order:3;align-items:center;justify-content:center}
+    nav ul{display:none;order:4;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8px;padding:8px 0 5px;border-top:1px solid var(--line)}
+    nav ul.open{display:grid}
+    nav li{min-width:0}
+    nav a{min-height:48px;justify-content:center;align-items:flex-start;padding:7px 10px;font-size:15px;border-radius:5px}
+    nav a:hover,nav a:focus-visible{background:rgba(156,58,47,.07)}
+    nav a .e{font-size:11px}
+    .tk-seg{min-height:44px;align-items:center}
+    .tk-seg b{font-size:12px}
+    .pk-search input,.sub-form input,.sub-form textarea,.sf-go{min-height:44px}
+  }
 </style></head>
 <body>
+<a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
 <nav><div class="wrap">
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt=""><span class="brand-tx"><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></span></div>
-  <ul>
+  <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNav" aria-expanded="false">菜单 · Menu</button>
+  <ul id="primaryNav">
     <li><a href="#origin">缘起<span class="e">Origin</span></a></li>
     <li><a href="#reading">文存<span class="e">Writings</span></a></li>
     <li><a href="#members">成员<span class="e">Members</span></a></li>
@@ -496,9 +524,9 @@
   <span class="hc tr"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5,40 C5,19 19,5 40,5"/><path d="M5,40 C5,27 13,20 22,20 C31,20 37,27 37,35 C37,40 33,44 28,44 C24,44 21,41 21,37 C21,34 23,32 26,32"/><path d="M45,7 C52,7 56,12 56,18"/></svg></span>
   <span class="hc bl"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5,40 C5,19 19,5 40,5"/><path d="M5,40 C5,27 13,20 22,20 C31,20 37,27 37,35 C37,40 33,44 28,44 C24,44 21,41 21,37 C21,34 23,32 26,32"/><path d="M45,7 C52,7 56,12 56,18"/></svg></span>
   <span class="hc br"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5,40 C5,19 19,5 40,5"/><path d="M5,40 C5,27 13,20 22,20 C31,20 37,27 37,35 C37,40 33,44 28,44 C24,44 21,41 21,37 C21,34 23,32 26,32"/><path d="M45,7 C52,7 56,12 56,18"/></svg></span>
-  <h2 class="w-hi">Welcome, Friends from all over the world!</h2>
+  <p class="w-hi">Welcome, friends from around the world.</p>
   <div class="w-hi-zh">欢迎五湖四海的诗词艺术文化界朋友</div>
-  <h1 class="h-title"><img class="h-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心" width="280" height="280"></h1>
+  <h1 class="h-title"><span class="sr-only">掌心 · The Palm Poetry Club</span><img class="h-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心" width="280" height="280"></h1>
   <div class="h-en">The Palm Poetry Club</div>
   <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛<br>——你写，我们就读；你来，就有一方属于自己的天地。<br>
   <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy<br>— if you write, we will read; if you come, a space of your own is waiting.</span></p>
@@ -506,7 +534,7 @@
   <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——诗文会友，以文相期，以天下英才为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
 </div></header>
 
-<main>
+<main id="main-content">
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
     <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em><span class="mcount">四十四</span>位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
@@ -833,7 +861,7 @@
 
 <section id="members"><div class="wrap">
   <div class="sec-head"><span class="sec-no">三</span><h2>成员</h2><span class="en">Members</span><div class="rule"></div></div>
-  <div class="pk-search"><input id="pkQ" type="search" placeholder="搜索 · 人名、作品名　　Search names &amp; works" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
+  <div class="pk-search"><label class="sr-only" for="pkQ">搜索人名或作品名 · Search names and works</label><input id="pkQ" type="search" aria-label="搜索人名或作品名 · Search names and works" placeholder="搜索 · 人名、作品名　　Search names &amp; works" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">掌心 <span class="en">The Palm Poetry Club &amp; The Palm Academy</span></div>
   <div class="m-grid" id="m-grid-1"></div>
@@ -987,25 +1015,26 @@
 
   <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form" id="oneForm">
     <input type="hidden" name="_subject" id="ofSubject" value="掌心 · 留言">
-    <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
-    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://palmpoetry.org/thanks.html">
+    <input type="hidden" name="_captcha" value="true">
     <input type="hidden" name="_template" value="table">
-    <input type="text" name="_honey" style="display:none">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="sf-row">
-      <input type="text" name="姓名或笔名" required placeholder="昵称　Nickname">
-      <input type="email" name="邮箱" id="ofMail" placeholder="邮箱（选填，便于回复）　Email (optional)">
+      <input type="text" name="姓名或笔名" required aria-label="姓名或笔名 · Name or pen name" placeholder="昵称　Nickname">
+      <input type="email" name="邮箱" id="ofMail" aria-label="邮箱 · Email" placeholder="邮箱（选填，便于回复）　Email (optional)">
     </div>
     <div class="sf-row" id="ofWork" style="display:none">
-      <input type="text" name="作品题目" placeholder="作品题目　Title">
-      <input type="text" name="所在城市" placeholder="现居城市（可留空）　City">
+      <input type="text" name="作品题目" aria-label="作品题目 · Title" placeholder="作品题目　Title">
+      <input type="text" name="所在城市" aria-label="所在城市 · City" placeholder="现居城市（可留空）　City">
     </div>
-    <textarea name="正文" id="ofBody" rows="6" required placeholder="欢迎留言、唱和、交流……&#10;Leave a note, a greeting, or a verse in reply."></textarea>
+    <textarea name="正文" id="ofBody" rows="6" required aria-label="正文 · Message or submission" placeholder="欢迎留言、唱和、交流……&#10;Leave a note, a greeting, or a verse in reply."></textarea>
     <div class="sf-row" id="ofExtra" style="display:none">
-      <input type="text" name="引荐人" placeholder="引荐人 / 推荐人（如有）　Introduced by">
-      <input type="file" name="附件" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
+      <input type="text" name="引荐人" aria-label="引荐人或推荐人 · Introduced by" placeholder="引荐人 / 推荐人（如有）　Introduced by">
+      <input type="file" name="附件" aria-label="附件 · Attachment" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
     </div>
+    <label class="consent"><input type="checkbox" name="资料使用同意" value="同意" required><span>我同意掌心编辑组仅为回复、审稿或会员联络处理本表所提交的资料；未经本人许可，不公开邮箱与附件。详见<a href="privacy.html">资料与隐私说明</a>。<br><span class="en-line">I consent to the use of this submission for editorial review and correspondence. Email addresses and attachments will not be published without permission.</span></span></label>
     <button type="submit" class="sf-go">寄　出　·　Send</button>
-    <p class="sf-note">＊ 直接送达掌心编辑组，无需注册，也不必自备邮件程序。我们尊重版权，刊出前会与你确认。<span class="en-line">Sent straight to the editors. No account needed; copyright stays with you.</span></p>
+    <p class="sf-note">＊ 直接送达掌心编辑组，无需注册，也不必自备邮件程序。附件限 PDF、Word、文本或常用图片格式；建议单个文件不超过 10 MB。我们尊重版权，刊出前会与你确认。<span class="en-line">Sent straight to the editors. No account is required; copyright stays with you. Please keep each attachment under 10 MB.</span></p>
   </form>
 
 
@@ -1016,7 +1045,7 @@
   <div class="coda-line"></div>
   <p class="coda-zh">掌心不大，但可以把自己捧着的诗交到另一个人手中。<br>
   你若真诚书写，这里有你与同道展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。诗文会友，薪火相传</p>
-  <p class="coda-en">The Palm is small world — small enough to hold a poem in the palm of your hand, and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writings, The Palm is where you will want to be. Poetry, friendship, and a flame passed on.</p>
+  <p class="coda-en">The Palm is a small world — small enough to hold a poem in the palm of your hand and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be. Poetry, friendship, and a flame passed on.</p>
   <details class="wen" id="covenant">
     <summary>掌心公约<span class="wcnt">The Palm Covenant</span></summary>
     <div class="wen-body">
@@ -1037,9 +1066,9 @@
     <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
     <span>掌心诗社编辑组制作 · 2026　|　管理员：陶然　海边　风动　文刃　|　印章草书 许之远（David Hsu）· 印章设计 掌心诗社<br>
       站内文字与图片音视频版权归掌心诗社，成员作品版权归作者本人；转载请注明出处并链回本站；内容如有异议，请与管理员联系。<br>
-      <span class="f-en">Made by the editors of The Palm Poetry Club, 2026. Seal calligraphy by Mr. David Hsu; seal design by The Palm Club. Site content © The Palm Poetry Club; members’ works remain their authors’. Please credit and link back; for any concern about content, please contact with the administrators.</span></span>
+      <span class="f-en">Made by the editors of The Palm Poetry Club, 2026. Seal calligraphy by Mr. David Hsu; seal design by The Palm Club. Site content © The Palm Poetry Club; members’ works remain their authors’. Please credit and link back; for any concern about content, please contact the administrators.</span></span>
   </div>
-  <div class="f-cr f-last">© 2026 掌心诗社 The Palm Poetry Club　·　All rights reserved.</div>
+  <div class="f-cr f-last">© 2026 掌心诗社 The Palm Poetry Club　·　All rights reserved.　·　<a href="privacy.html">资料与隐私 · Privacy</a></div>
 </footer>
 <div class="lightbox" id="lightbox"><img id="lbimg" alt=""></div>
 <div class="m-modal" id="mModal"><div class="m-box" id="mBox"></div></div>
@@ -1244,29 +1273,29 @@ var ROSTER=[
     <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0 0 4px">填好寄出即可，掌心会为你安顿在网站上。邮箱只用于本人日后登录维护自己的版块，<b>不公开、不外传</b>。</p>
     <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="掌心 · 成员资料">
-      <input type="hidden" name="_cc" value="huangxiaoyu2001@gmail.com">
-      <input type="hidden" name="_next" value="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E6%8E%8C%E5%BF%83/thanks.html">
-      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://palmpoetry.org/thanks.html">
+      <input type="hidden" name="_captcha" value="true">
       <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" style="display:none">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="组别" id="mfGroup" value="">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">姓名 <span style="color:var(--seal)">*</span> <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（请与网站上的名字一致）</span></label>
-      <input type="text" name="姓名" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <input type="text" name="姓名" required aria-label="姓名 · Name" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">常用邮箱 <span style="color:var(--seal)">*</span></label>
-      <input type="email" name="email" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <input type="email" name="email" required aria-label="常用邮箱 · Email" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">专长 · 标签 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（例：诗词、翻译、书法、摄影）</span></label>
-      <input type="text" name="专长" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
+      <input type="text" name="专长" aria-label="专长与标签 · Specialties" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">简介</label>
-      <textarea name="简介" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical" placeholder="籍贯、经历、著作、与掌心的因缘……长短随意"></textarea>
+      <textarea name="简介" rows="4" aria-label="简介 · Biography" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical" placeholder="籍贯、经历、著作、与掌心的因缘……长短随意"></textarea>
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">照片 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（一张即可，可略过）</span></label>
-      <input type="file" name="照片" accept="image/*" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <input type="file" name="照片" aria-label="照片 · Portrait" accept="image/*" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">作品一 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（诗文、书画、PDF 皆可）</span></label>
-      <input type="file" name="作品一" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <input type="file" name="作品一" aria-label="作品一 · First work" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">作品二</label>
-      <input type="file" name="作品二" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
+      <input type="file" name="作品二" aria-label="作品二 · Second work" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
       <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0">＊ 三个文件合计不超过 10MB。太大或不便上传，寄出后直接回信附上即可。</p>
       <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">还想说的话</label>
-      <textarea name="备注" rows="2" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical"></textarea>
+      <textarea name="备注" rows="2" aria-label="备注 · Notes" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;resize:vertical"></textarea>
+      <label class="consent"><input type="checkbox" name="资料使用同意" value="同意" required><span>我同意掌心编辑组仅为会员资料维护、编辑联络与作品发布处理本表资料；未经本人许可，不公开邮箱与原始附件。详见<a href="privacy.html">资料与隐私说明</a>。<br><span class="en-line">I consent to the use of these details for member administration, editorial correspondence and approved publication.</span></span></label>
       <button type="submit" style="margin-top:20px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:16px;letter-spacing:.2em;cursor:pointer">寄 出</button>
     </form>
   </div>
@@ -1663,7 +1692,7 @@ loadWorks();
     var D=[],T=[];
     [].slice.call(g.children).forEach(function(c){
       if(c===plus||c===qs) return;
-      if(c.textContent.indexOf("（待补）")>=0){ T.push(c); return; }
+      if(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0){ T.push(c); return; }
       D.push(c);
     });
     var want=[].concat(D, qs?[qs]:[], plus?[plus]:[], T).filter(Boolean);
@@ -1781,7 +1810,7 @@ loadWorks();
     var card=e.target.closest && e.target.closest('.wk-card'); if(!card||!g.contains(card)) return;
     if(card.id==='wkCollAdd'||card.id==='wkMemberAdd') return;
     var nm=coverName(card); if(!nm) return;
-    var todo=card.textContent.indexOf('（待补）')>=0;
+    var todo=card.textContent.indexOf('（待补）')>=0||card.textContent.indexOf('本人登录后可上传作品')>=0;
     if(C.name && C.name===nm){
       e.preventDefault(); e.stopPropagation();
       var p=document.getElementById('wkMemberAdd'); if(p) p.click();
@@ -1898,6 +1927,7 @@ loadWorks();
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       out.push({t:c.getAttribute("data-m"), k:"成员", el:c}); });
     document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
+      if(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0) return;
       var b=c.querySelector(".wk-meta b"), a=c.getAttribute("data-au")||"";
       var title=b?b.textContent.trim():""; if(!title||title.indexOf("待补")>=0) return;
       out.push({t:title+(a?" · "+a:""), k:"作品", el:c}); });
@@ -1920,23 +1950,15 @@ loadWorks();
 })();
 </script>
 <script>
-/* 尚未上传作品的成员：折叠，点开才看 */
+/* 尚未上传作品的成员：保留给本人维护，但不向访客展示施工占位卡 */
 (function(){
-  var OPEN=false;
   function tidy(){
     var g=document.getElementById("wkGrid"); if(!g) return;
     var todo=[].slice.call(g.children).filter(function(c){
-      return c.id!=="wkCollAdd"&&c.id!=="wkMemberAdd"&&c.textContent.indexOf("（待补）")>=0;});
+      return c.id!=="wkCollAdd"&&c.id!=="wkMemberAdd"&&(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0);});
     var btn=document.getElementById("wkMore");
-    if(!todo.length){ if(btn) btn.remove(); return; }
-    todo.forEach(function(c){ c.style.display=OPEN?"":"none"; });
-    if(!btn){
-      btn=document.createElement("div"); btn.id="wkMore"; btn.className="wk-more";
-      btn.addEventListener("click",function(){ OPEN=!OPEN; tidy(); });
-      g.parentNode.insertBefore(btn, g.nextSibling);
-    }
-    btn.textContent=(OPEN?"－ 收起":"＋ 尚未上传作品的同道 · 共 "+todo.length+" 位")+(OPEN?"":"（点开查看）");
-    todo.forEach(function(c){ g.appendChild(c); });
+    if(btn) btn.remove();
+    todo.forEach(function(c){ c.style.display="none"; c.setAttribute("aria-hidden","true"); });
   }
   setInterval(tidy,700); tidy();
 })();
@@ -2625,6 +2647,20 @@ loadWorks();
   }
   document.addEventListener("change",function(e){ if(e.target&&e.target.name==="来意") apply(); });
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",apply); else apply();
+})();
+</script>
+<script>
+/* 手机端主导航 */
+(function(){
+  var btn=document.getElementById("navToggle"), nav=document.getElementById("primaryNav");
+  if(!btn||!nav) return;
+  function close(){nav.classList.remove("open");btn.setAttribute("aria-expanded","false");}
+  btn.addEventListener("click",function(){
+    var open=nav.classList.toggle("open");
+    btn.setAttribute("aria-expanded",String(open));
+  });
+  nav.addEventListener("click",function(e){if(e.target.closest("a")) close();});
+  addEventListener("resize",function(){if(innerWidth>760) close();});
 })();
 </script>
 </body></html>
