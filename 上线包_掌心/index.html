@@ -1354,7 +1354,7 @@ var ROSTER=[
     <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
     <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
-    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">填入你留给掌心的邮箱，我们会寄一封信给你，<b>点开信里的链接就进来了</b>——不用密码，也不必记住任何东西。</p>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">第一次在这台设备使用时，填入你留给掌心的邮箱；收到信后，<b>点一次登录链接即可</b>。以后进入成员区或作品区都会自动认出你，不用密码，也不用重复填写邮箱。</p>
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
     <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
     <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
@@ -1394,16 +1394,28 @@ var ROSTER=[
 </div>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const SB = createClient('https://ubzykpglausstbsvijoc.supabase.co','sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP');
+const PALM_AUTH_URL = 'https://ubzykpglausstbsvijoc.supabase.co';
+const PALM_AUTH_KEY = 'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP';
+const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/#members';
+const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_AUTH_KEY, {
+  auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
+});
+globalThis.__palmSupabaseClient = SB;
 const $ = function(id){ return document.getElementById(id); };
 const say = function(m){
   m = (m||'').toString().toLowerCase();
   if(m.indexOf('rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
-    return '系统繁忙，请稍后再试。（掌心公益网站每小时能更新的信息有限，过一小时再来即可，你的资料安全不会受到任何影响。）';
+    return '刚才请求得太频繁了。请等几分钟再点一次；已经寄出的旧链接仍可使用。';
+  if(m.indexOf('security purposes')>-1 || m.indexOf('only request this after')>-1)
+    return '为避免重复寄信，请稍等片刻再点一次。已经寄出的旧链接仍可使用。';
   if(m.indexOf('invalid')>-1 && m.indexOf('email')>-1)
     return '这个邮箱地址似乎写错了，请再核对一下。';
+  if(m.indexOf('not authorized')>-1)
+    return '这个邮箱尚未登记为掌心成员。请联系掌心核对登记邮箱。';
   if(m.indexOf('signups not allowed')>-1 || m.indexOf('not allowed')>-1)
     return '这个邮箱还没有在掌心开通。请致信掌心为你开通。';
+  if(m.indexOf('smtp')>-1 || m.indexOf('sending magic link')>-1 || m.indexOf('email provider')>-1)
+    return '登录邮件暂时没有送出。请稍后再试一次；若仍未收到，请联系掌心核对邮箱。';
   if(m.indexOf('failed to fetch')>-1 || m.indexOf('network')>-1)
     return '网络似乎不通，请稍后再试。';
   return '眼下寄不出去，请稍后再试。若一直不行，请致信掌心。';
@@ -1506,7 +1518,10 @@ document.addEventListener('click', async function(e){
     var em=$('sbEmail').value.trim();
     if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
     e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
-    var r = await SB.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } });
+    var r = await SB.auth.signInWithOtp({
+      email: em,
+      options: { emailRedirectTo: PALM_AUTH_REDIRECT, shouldCreateUser:true }
+    });
     e.target.disabled=false;
     $('sbMsg').textContent = r.error ? say(r.error.message) : '已寄出。请到邮箱点开信里的链接，即可回到本页并自动登入。';
     return;
@@ -1546,7 +1561,13 @@ document.addEventListener('click', async function(e){
   }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
-SB.auth.onAuthStateChange(function(){ refreshMe(); });
+SB.auth.onAuthStateChange(function(event, session){
+  refreshMe();
+  if(event==='SIGNED_IN' && session && !globalThis.__palmOpenedAfterSignIn){
+    globalThis.__palmOpenedAfterSignIn=true;
+    setTimeout(function(){ openMine(); }, 120);
+  }
+});
 (async function(){
   var ok = await reload();
   if(ok){
@@ -1580,7 +1601,12 @@ SB.auth.onAuthStateChange(function(){ refreshMe(); });
 </div>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const WB = createClient('https://ubzykpglausstbsvijoc.supabase.co','sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP');
+const WB = globalThis.__palmSupabaseClient || createClient(
+  'https://ubzykpglausstbsvijoc.supabase.co',
+  'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP',
+  { auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true } }
+);
+globalThis.__palmSupabaseClient = WB;
 const HB = 'huangxiaoyu2001@gmail.com';
 const $ = function(id){ return document.getElementById(id); };
 let KIND='member', ME=null, MINE=null, MYNAME='';
@@ -1828,7 +1854,7 @@ loadWorks();
       b.addEventListener('click',function(ev){ev.preventDefault();go();});
       el.appendChild(b);
       var sp=document.createElement('span');
-      sp.innerHTML='<br>会先寄一封登录信到你留给掌心的邮箱。点开信里的链接，回来再点自己的名字，就能改了。';
+      sp.innerHTML='<br>第一次会寄一封登录信到你登记的邮箱。点开信里的链接，网站会自动回到你的编辑页；以后在这台设备无需再登录。';
       el.appendChild(sp);
     }else{
       var sp2=document.createElement('span');
