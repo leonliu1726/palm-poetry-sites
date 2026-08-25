@@ -343,6 +343,25 @@
   .cj-add:hover{background:rgba(156,58,47,.07)}
   .cj-b1{border:1px solid var(--seal);background:var(--seal);color:var(--paper);border-radius:20px;padding:8px 24px;font-family:var(--kai);font-size:15px;cursor:pointer}
   .cj-b2{border:1px solid var(--line);background:transparent;color:var(--ink-soft);border-radius:20px;padding:8px 20px;font-family:var(--kai);font-size:15px;cursor:pointer}
+  .cj-space-modal{position:fixed;inset:0;background:rgba(22,19,15,.6);display:none;align-items:center;justify-content:center;z-index:220;padding:18px}
+  .cj-space-panel{background:var(--paper);width:min(920px,100%);max-height:92vh;overflow:auto;border-radius:13px;padding:28px;box-shadow:0 24px 70px rgba(22,19,15,.3)}
+  .cj-space-title{font-family:var(--kai);font-size:24px;color:var(--seal);letter-spacing:.08em;margin:0 0 5px}
+  .cj-space-date{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .cj-space-cover{width:min(100%,720px);max-height:500px;object-fit:contain;display:block;margin:0 auto 22px;border-radius:8px;background:#eee7da}
+  .cj-space-summary{font-family:var(--kai);font-size:16px;line-height:1.9;color:var(--ink-soft);margin:0 0 18px}
+  .cj-space-body{white-space:pre-wrap;font-size:15px;line-height:2;color:var(--ink);margin:0 0 22px}
+  .cj-space-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+  .cj-space-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:7px;background:#e7dfd1}
+  .cj-space-gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .cj-space-gallery a:hover img{transform:scale(1.035)}
+  .cj-space-form label{display:block;font-size:13px;color:var(--ink-soft);margin:13px 0 5px}
+  .cj-space-form input,.cj-space-form textarea{width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.86);font-family:inherit;font-size:14.5px;color:var(--ink);outline:none}
+  .cj-space-form textarea{resize:vertical;line-height:1.8}
+  .cj-space-existing{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+  .cj-space-existing span{position:relative;width:66px;height:54px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .cj-space-existing img{width:100%;height:100%;object-fit:cover}
+  .cj-space-existing button{position:absolute;right:1px;top:0;border:0;background:rgba(30,26,20,.68);color:#fff;cursor:pointer;line-height:18px;width:18px;height:18px;border-radius:50%}
+  @media(max-width:680px){.cj-space-panel{padding:21px 17px}.cj-space-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.cj-space-title{font-size:21px}}
 
   .tk-in{display:flex;align-items:center;gap:0;padding-top:9px;padding-bottom:9px}
   .tk-seg{flex:1;min-width:0;display:flex;align-items:baseline;gap:9px;padding:0 16px;
@@ -544,7 +563,7 @@
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
     <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em><span class="mcount">四十四</span>位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
-    <a class="door" href="#works"><b>作 品</b><span class="en">Works</span><em>《萤火》《千山独行》、历年诗文会集，以及每位成员自己的一本书、一个网站。</em><i>进入 →</i></a>
+    <a class="door" href="#works"><b>作 品</b><span class="en">Works</span><em>《萤火》《千山独行》、历年诗文汇，以及每位成员自己的一本书、一个网站。</em><i>进入 →</i></a>
     <a class="door" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论 坛</b><span class="en">Forum</span><em>贴诗，读诗，说诗。注册后即可发帖，人人可读，向全世界敞开。</em><i>进入 →</i></a>
   </div>
 </div></section>
@@ -618,7 +637,7 @@
   </script>
 
   <div class="yh">
-    <img src="网站图片/萤火封面.jpg" alt="《萤火》— 掌心诗社诗词专辑">
+    <img src="https://palmpoetry.org/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E8%90%A4%E7%81%AB%E5%B0%81%E9%9D%A2.jpg?v=20260825" width="736" height="1024" alt="《萤火》— 掌心诗社诗词专辑" loading="lazy" decoding="async">
     <div><p data-en="Fireflies is the poetry anthology of The Palm Poetry Club, gathering work by members and by poet friends around the world. Printed in Canada by Manmei Press.">《萤火》是掌心诗社的诗词专辑，结集社员与世界各地诗人的诗作，由加拿大曼美印刷出版社印行。</p>
     <p data-en="A firefly gives very little light — but one lamp may light another, and poets’ hearts scattered across five continents are gathered here into something like a galaxy. Submissions are welcome from members and from anyone else who writes.">萤火虽微，愿以一灯传一灯——星散于五洲四海的诗心，借此聚成一片银河。欢迎社内外诗友投稿。</p>
     <p data-en="The book runs to three parts — classical verse, modern poetry, and poems in English with translations — some two hundred and fifty poems by more than thirty poets.">专辑收古典诗词、现代诗、英文诗歌及翻译三辑，凡三十余位诗人、二百五十余首作品。</p>
@@ -717,12 +736,12 @@
   
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
-  <div class="sub-head" id="collections"><b>历年诗文会集</b><span class="en">Collected Gatherings</span></div>
-  <p data-en="Poems and prose from our gatherings over the years, collected and dated, newest first — compiled and posted by our editor Hai Bian.">历年雅集所成的诗文合集，按时间倒序排列，由掌心编辑海边整理上传。</p>
+  <div class="sub-head" id="collections"><b>历年诗文汇</b><span class="en">Collected Gatherings</span></div>
+  <p data-en="Poems, prose and photographs from our gatherings over the years, collected and dated, newest first — compiled and posted by our editor Hai Bian.">历年雅集所成的诗文与照片，按时间倒序排列，由掌心编辑海边整理上传。</p>
   <div class="wk-grid" id="cjGrid">
-    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">诗文<br>会集</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文会集</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
+    <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">历年<br>诗文汇</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文汇</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
   </div>
-  <p class="m-note" id="cjNote">＊ 会集内容以论坛帖的形式保存，点开即可通读。<span class="en-line">Each collection opens as a forum thread you can read in full.</span></p>
+  <p class="m-note" id="cjNote">＊ 每次雅集可保存首页照片、诗文正文、聚会相册及外部附件，点开作品卡即可通读。<span class="en-line">Each gathering opens into its own space for a feature image, writing, photographs and related files.</span></p>
 
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
@@ -898,7 +917,7 @@
     <span class="en-line">Sign in from the Members section by clicking your own name — a link will be sent to your email.</span></p>
   </div>
 
-  <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into several collections of verse and prose. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦汇成多种诗文会集。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
+  <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into a continuing archive of verse, prose and photographs. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦编成持续增补的历年诗文汇。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
   
 
   <div class="works-sub-h">成员专著与个人作品　<span style="font-family:var(--serif-en);font-style:italic;font-size:13.5px;color:var(--ink-faint);letter-spacing:0">Members’ own books and works</span></div>
@@ -1566,30 +1585,40 @@ const HB = 'huangxiaoyu2001@gmail.com';
 const $ = function(id){ return document.getElementById(id); };
 let KIND='member', ME=null, MINE=null, MYNAME='';
 function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function wkMeta(note){ try{ var o=JSON.parse(note||'{}'); return o&&typeof o==='object'?o:null; }catch(e){ return null; } }
+function isImageUrl(url){ return /\.(?:avif|gif|jpe?g|png|webp)(?:[?#].*)?$/i.test(url||''); }
 function mkCard(w){
   var hasUrl = !!(w.url && w.url.length);
-  var el = document.createElement(hasUrl ? 'a' : 'div');
+  var el = document.createElement(w.kind==='collection' ? 'div' : (hasUrl ? 'a' : 'div'));
   el.className='wk-card'; el.setAttribute('data-wk','1');
-  if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
-  var cover=document.createElement('div'); cover.className='wk-cover ph';
+  if(w.kind==='collection'){ el.setAttribute('role','button'); el.tabIndex=0; el.style.cursor='pointer'; }
+  else if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
+  var nm=wkMeta(w.note), gallery=nm&&((Array.isArray(nm.gallery)&&nm.gallery)||(Array.isArray(nm.g)&&nm.g))||[];
+  var feature=w.cover_url || gallery[0] || (w.kind==='collection'&&isImageUrl(w.url)?w.url:'');
+  var cover=document.createElement('div'); cover.className='wk-cover';
   var tt=(w.title||'').replace(/[《》（）()]/g,'').trim();
   if(tt==='待补'||!tt) tt='';
-  cover.textContent = w.kind==='collection' ? '诗文\n会集' : (tt||w.author_name||'作品').slice(0,6);
+  if(feature){ var im=document.createElement('img'); im.src=feature; im.alt=(w.title||'作品')+' · 首页照片'; im.loading='lazy'; cover.appendChild(im); }
+  else { cover.classList.add('ph'); cover.textContent = w.kind==='collection' ? '历年\n诗文汇' : (tt||w.author_name||'作品').slice(0,6); }
   var meta=document.createElement('div'); meta.className='wk-meta';
   var au=document.createElement('em'); au.className='wk-au'; au.textContent=w.author_name||'';
   var ti=(w.title||'').trim(), an=(w.author_name||'').trim();
   if(an && ti.indexOf(an)===0 && ti.length>an.length) ti=ti.slice(an.length).replace(/^[\s·、，,：:－—-]+/,'');
   var b=document.createElement('b'); b.textContent=ti;
   var note=w.note||'';
+  if(w.kind==='collection'){
+    if(nm) note=nm.summary||nm.s||nm.intro||'点击查看照片与诗文';
+    else note=note.replace(/^\d{4}-\d{2}-\d{2}\s*[｜|·-]?\s*/,'').replace(/历年诗文(?:会集|汇集)/g,'历年诗文汇').replace(/^[｜|·\s]+|[｜|·\s]+$/g,'')||'点击查看照片与诗文';
+  }
   if(ti && ti.indexOf('待补')<0 && note.indexOf('本人登录后可上传作品')>=0) note=hasUrl?'个人作品 · 查看作品链接':'个人作品';
   var sp=document.createElement('span'); sp.textContent=note;
-  el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||'');
+  el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||''); el.setAttribute('data-id',w.id||''); el.setAttribute('data-kind',w.kind||'');
   meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
   el.appendChild(cover); el.appendChild(meta);
   return el;
 }
 async function loadWorks(){
-  var r = await WB.from('works').select('id,kind,author_name,title,url,note,created_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
+  var r = await WB.from('works').select('id,kind,author_name,title,url,note,cover_url,created_at,updated_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
   if(r.error || !r.data) return;
   var grid=$('wkGrid'), cg=$('cjGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
@@ -1613,10 +1642,10 @@ async function who(){
 async function openWk(kind){
   await who();
   if(!ME){ alert('请先用名录下方的「✦ 我自己修改 · 成员登录」登录，再来上传作品。'); return; }
-  if(kind==='collection' && ME.email.toLowerCase()!==HB){ alert('「历年诗文会集」由编辑海边维护。若有会集要收录，请致信 '+HB+'。'); return; }
+  if(kind==='collection' && ME.email.toLowerCase()!==HB){ alert('「历年诗文汇」由编辑海边维护。若有雅集资料要收录，请联系编辑海边。'); return; }
   if(kind==='member' && !MYNAME){ alert('这个邮箱还没有绑定到名录中的成员，暂时不能上传作品。'); return; }
   KIND=kind;
-  $('wkHead').textContent = kind==='collection' ? '上传历年诗文会集' : '我的作品';
+  $('wkHead').textContent = kind==='collection' ? '上传历年诗文汇' : '我的作品';
   $('wkWho').textContent = kind==='collection' ? ('编辑：'+ME.email+'　可上传多本会集') : ('作者：'+MYNAME+'　每人一件，可随时替换');
   MINE=null; $('wkTitle').value=''; $('wkUrl').value=''; $('wkNote').value=''; $('wkMsg').textContent='';
   if(kind==='member'){
@@ -1658,7 +1687,7 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeWk()
 loadWorks();
 </script>
 <script>
-/* 历年诗文会集：卡片人人可见；只有编辑海边点得开，其他人点无反应 */
+/* 历年诗文汇：卡片人人可见；只有编辑海边可以新增或修改 */
 (function(){
   var HB='huangxiaoyu2001'+String.fromCharCode(64)+'gmail.com';
   function em(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
@@ -1677,7 +1706,7 @@ loadWorks();
 })();
 </script>
 <script>
-/* 作品区：历年诗文会集（按日期倒序）→ 分隔线 → 成员作品 → 待补 */
+/* 作品区：历年诗文汇（按日期倒序）→ 成员作品 → 待补 */
 (function(){
   var HOST="",KEY="",MAP={},ready=false;
   async function conf(){ if(HOST) return;
@@ -1690,7 +1719,7 @@ loadWorks();
       {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json();
       rows.forEach(function(w){ MAP[key(w.title)]=w; });
       ready=true; }catch(e){} }
-  function dateOf(w){ var m=(w&&w.note||"").match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:""; }
+  function dateOf(w){ var n=w&&w.note||""; try{var o=JSON.parse(n); if(o&&o.date) return o.date;}catch(e){} var m=n.match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:""; }
   function human(d){ if(!d) return ""; var p=d.split("-");
     return p[0]+" 年 "+(+p[1])+" 月 "+(+p[2])+" 日"; }
   function tidy(){
@@ -2256,10 +2285,10 @@ loadWorks();
 })();
 </script>
 <script>
-/* 历年诗文会集 · 海边的四格录入（新增／修改） */
+/* 历年诗文汇 · 海边的独立雅集空间（新增／修改／阅读） */
 (function(){
   var HB="huangxiaoyu2001"+String.fromCharCode(64)+"gmail.com";
-  var HOST="",KEY="";
+  var HOST="",KEY="",ROWS={},editor=null,reader=null,E={},ACTIVE=null,GALLERY=[];
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
     if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
       var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
@@ -2270,71 +2299,89 @@ loadWorks();
     var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
     HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
     KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
-  function el(tag,css,txt){ var e=document.createElement(tag); if(css) e.style.cssText=css; if(txt!=null) e.textContent=txt; return e; }
-  var box=null;
-  function ui(){
-    if(box) return box;
-    box=el("div","position:fixed;inset:0;background:rgba(22,19,15,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:18px");
-    var p=el("div","background:var(--paper);max-width:520px;width:100%;border-radius:12px;padding:26px 26px 22px;max-height:88vh;overflow:auto");
-    p.innerHTML='<div style="font-family:var(--kai);font-size:20px;color:var(--seal);margin-bottom:4px">新增 / 修改 一次诗文会集</div>'+
-      '<div style="font-size:12.5px;color:var(--ink-faint);margin-bottom:16px">四格填完即可。会集的照片与诗作请先发在掌心论坛，再把帖子链接填在这里。</div>';
-    function row(lab,id,type,ph){
-      var w=el("div","margin-bottom:12px");
-      w.appendChild(el("div","font-size:13px;color:var(--ink-soft);margin-bottom:4px",lab));
-      var i=document.createElement("input"); i.id=id; i.type=type||"text"; if(ph) i.placeholder=ph;
-      i.style.cssText="width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.8);font-family:inherit;font-size:14.5px;color:var(--ink);outline:none";
-      w.appendChild(i); p.appendChild(w); return i; }
-    var fD=row("日期","cjD","date");
-    var fT=row("名称　例：矜园雅集 · 掌心成立","cjT","text","名称");
-    var fU=row("链接　论坛帖或 PDF 的网址","cjU","url","https://palmpoetry.discourse.group/t/…");
-    var fC=row("封面图网址（可留空）","cjC","url","https://…");
-    var fF=el("div","margin-bottom:14px");
-    fF.appendChild(el("div","font-size:13px;color:var(--ink-soft);margin-bottom:4px","或从电脑选一张封面"));
-    var file=document.createElement("input"); file.type="file"; file.accept="image/*"; file.id="cjF"; file.style.cssText="font-size:13px";
-    fF.appendChild(file); p.appendChild(fF);
-    var msg=el("div","font-size:13px;color:var(--seal);min-height:20px;margin-bottom:8px"); msg.id="cjMsg"; p.appendChild(msg);
-    var bar=el("div","display:flex;gap:10px;justify-content:flex-end");
-    var cancel=el("button",null,"取消"); cancel.className="cj-b2";
-    var save=el("button",null,"保存"); save.className="cj-b1";
-    bar.appendChild(cancel); bar.appendChild(save); p.appendChild(bar);
-    box.appendChild(p); document.body.appendChild(box);
-    cancel.onclick=function(){ box.style.display="none"; };
-    box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
-    save.onclick=async function(){
-      await conf(); var T=tok(); if(!T){ msg.textContent="请先登录。"; return; }
-      var d=fD.value, ti=fT.value.trim(), u=fU.value.trim(), c=fC.value.trim();
-      if(!d||!ti){ msg.textContent="日期和名称是必填的。"; return; }
-      msg.textContent="保存中……";
-      try{
-        if(file.files&&file.files[0]){ var bl=file.files[0];
-          var ext=(bl.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
-          var path="j/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
-          var up=await fetch(HOST+"/storage/v1/object/works/"+path,{method:"POST",
-            headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":bl.type||"image/jpeg","x-upsert":"true"},body:bl});
-          if(up.ok) c=HOST+"/storage/v1/object/public/works/"+path; }
-        var body={kind:"collection",owner_email:HB,author_name:"掌心",title:ti,url:u,note:d+"｜历年诗文会集",cover_url:c||null};
-        var r=await fetch(HOST+"/rest/v1/works",{method:"POST",
-          headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},
-          body:JSON.stringify(body)});
-        if(r.ok){ msg.textContent="已保存。稍候片刻，页面会自动出现这一条。";
-          setTimeout(function(){ location.reload(); },1400); }
-        else { msg.textContent="没能保存（"+r.status+"）。请稍后再试。"; }
-      }catch(e){ msg.textContent="网络不太顺，请稍后再试。"; }
-    };
-    return box; }
-  function open(){ var b=ui(); b.style.display="flex";
-    var m=document.getElementById("cjMsg"); if(m) m.textContent=""; }
-  /* 只给海边一个「＋ 新增会集」按钮，挂在会集分隔线上方 */
-  function place(){
-    if(!meIsHB()) { var old=document.getElementById("cjAdd"); if(old) old.remove(); return; }
-    if(document.getElementById("cjAdd")) return;
-    var g=document.getElementById("cjGrid"); if(!g) return;
-    var a=document.createElement("div"); a.id="cjAdd"; a.className="cj-add";
-    a.textContent="＋ 新增一次诗文会集";
-    a.onclick=open;
-    g.parentNode.insertBefore(a,g);
+  function headers(token){return {"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+(token||KEY)};}
+  function isImg(u){return /\.(?:avif|gif|jpe?g|png|webp)(?:[?#].*)?$/i.test(u||"");}
+  function cleanLegacy(n){return (n||"").replace(/^\d{4}-\d{2}-\d{2}\s*[｜|·-]?\s*/,"").replace(/历年诗文(?:会集|汇集)/g,"历年诗文汇").replace(/^[｜|·\s]+|[｜|·\s]+$/g,"");}
+  function meta(row){var n=row&&row.note||""; try{var o=JSON.parse(n); if(o&&typeof o==="object") return {
+    date:o.date||o.dte||"",summary:o.summary||o.s||o.intro||"",body:o.body||o.b||"",
+    gallery:(Array.isArray(o.gallery)?o.gallery:(Array.isArray(o.g)?o.g:[])).filter(Boolean)};}catch(e){}
+    var m=n.match(/^(\d{4}-\d{2}-\d{2})/); return {date:m?m[1]:"",summary:cleanLegacy(n),body:"",gallery:[]}; }
+  async function refresh(){await conf(); if(!HOST) return;
+    try{var a=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,url,note,cover_url,created_at,updated_at&kind=eq.collection&order=updated_at.desc",{headers:headers()})).json();
+      ROWS={}; (Array.isArray(a)?a:[]).forEach(function(r){ROWS[String(r.id)]=r;});}catch(e){}}
+  function el(tag,cls,txt){var x=document.createElement(tag);if(cls)x.className=cls;if(txt!=null)x.textContent=txt;return x;}
+  function field(p,label,type,placeholder,rows){var w=el("label",null,label),i=document.createElement(type==="textarea"?"textarea":"input");
+    if(type!=="textarea")i.type=type||"text";else i.rows=rows||4;if(placeholder)i.placeholder=placeholder;w.appendChild(i);p.appendChild(w);return i;}
+  function close(x){if(x)x.style.display="none";document.body.style.overflow="";}
+  function buildEditor(){if(editor)return; editor=el("div","cj-space-modal");
+    var p=el("div","cj-space-panel cj-space-form");
+    p.appendChild(el("h3","cj-space-title","新增 / 修改 一次历年诗文汇"));
+    p.appendChild(el("div","cj-space-date","每次聚会均可独立保存诗文、首页照片、相册与外部附件。"));
+    E.date=field(p,"日期 *","date"); E.title=field(p,"名称 *","text","例：矜园雅集 · 掌心成立");
+    E.summary=field(p,"首页简介","textarea","用一两句话介绍这次聚会。",3);
+    E.body=field(p,"诗文正文","textarea","可直接粘贴本次聚会的诗、散文、纪要或评论。",12);
+    E.url=field(p,"外部链接 / 附件（选填）","url","论坛帖、PDF、视频或其他资料网址");
+    E.cover=field(p,"首页照片网址（选填）","url","https://…；未填写时自动采用相册第一张");
+    E.coverFile=field(p,"或从电脑上传一张首页照片","file"); E.coverFile.accept="image/*";
+    E.gallery=field(p,"聚会照片（可多选，单次最多 30 张）","file"); E.gallery.accept="image/*"; E.gallery.multiple=true;
+    E.existing=el("div","cj-space-existing"); p.appendChild(E.existing);
+    E.msg=el("div",null,""); E.msg.style.cssText="font-size:13px;color:var(--seal);min-height:22px;margin:10px 0";p.appendChild(E.msg);
+    var bar=el("div");bar.style.cssText="display:flex;gap:10px;justify-content:flex-end";
+    var cancel=el("button","cj-b2","取消"),save=el("button","cj-b1","保存");bar.appendChild(cancel);bar.appendChild(save);p.appendChild(bar);
+    editor.appendChild(p);document.body.appendChild(editor);cancel.onclick=function(){close(editor);};
+    editor.addEventListener("click",function(e){if(e.target===editor)close(editor);});save.onclick=saveRow;
   }
-  setInterval(place,1200);
+  function drawExisting(){E.existing.innerHTML="";GALLERY.forEach(function(u,i){var s=el("span"),im=document.createElement("img"),b=el("button",null,"×");
+    im.src=u;im.alt="已上传照片";b.type="button";b.onclick=function(){GALLERY.splice(i,1);drawExisting();};s.appendChild(im);s.appendChild(b);E.existing.appendChild(s);});}
+  async function upload(file,prefix){var T=tok();if(!T||!file)return "";if(file.size>15*1024*1024)throw new Error("每张照片请控制在 15MB 以内。");
+    var ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+    var path=prefix+"/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+    var r=await fetch(HOST+"/storage/v1/object/works/"+path,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":file.type||"image/jpeg","x-upsert":"true"},body:file});
+    if(!r.ok)throw new Error("照片上传失败（"+r.status+"）。");return HOST+"/storage/v1/object/public/works/"+path;}
+  async function openEditor(row){await conf();if(!meIsHB()){alert("历年诗文汇由编辑海边上传维护。");return;}buildEditor();ACTIVE=row||null;
+    var m=meta(row||{});E.date.value=m.date||"";E.title.value=row&&row.title||"";E.summary.value=m.summary||"";E.body.value=m.body||"";
+    E.url.value=row&&row.url||"";E.cover.value=row&&row.cover_url||"";E.coverFile.value="";E.gallery.value="";GALLERY=m.gallery.slice(0,30);
+    if(row&&isImg(row.url)&&GALLERY.indexOf(row.url)<0)GALLERY.push(row.url);drawExisting();E.msg.textContent="";
+    editor.style.display="flex";document.body.style.overflow="hidden";}
+  async function saveRow(){await conf();var T=tok();if(!T||!meIsHB()){E.msg.textContent="请先用海边的登记邮箱登录。";return;}
+    var date=E.date.value,title=E.title.value.trim();if(!date||!title){E.msg.textContent="日期和名称是必填项。";return;}E.msg.textContent="正在上传并保存……";
+    try{var cover=E.cover.value.trim();if(E.coverFile.files&&E.coverFile.files[0])cover=await upload(E.coverFile.files[0],"j-cover");
+      if(E.gallery.files&&E.gallery.files.length){for(var i=0;i<E.gallery.files.length&&GALLERY.length<30;i++){GALLERY.push(await upload(E.gallery.files[i],"j-gallery"));}}
+      if(!cover)cover=GALLERY[0]||(isImg(E.url.value.trim())?E.url.value.trim():"");
+      var note=JSON.stringify({v:2,date:date,summary:E.summary.value.trim(),body:E.body.value.trim(),gallery:GALLERY.slice(0,30)});
+      var body={kind:"collection",owner_email:HB,author_name:"掌心",title:title,url:E.url.value.trim(),note:note,cover_url:cover||null};
+      var endpoint=HOST+"/rest/v1/works"+(ACTIVE&&ACTIVE.id?"?id=eq."+encodeURIComponent(ACTIVE.id):"");
+      var r=await fetch(endpoint,{method:ACTIVE&&ACTIVE.id?"PATCH":"POST",headers:Object.assign(headers(T),{Prefer:"return=minimal"}),body:JSON.stringify(body)});
+      if(!r.ok)throw new Error("保存失败（"+r.status+"）。");E.msg.textContent="已保存。页面即将更新。";setTimeout(function(){location.reload();},1100);
+    }catch(e){E.msg.textContent=e&&e.message?e.message:"网络不太顺，请稍后再试。";}}
+  function buildReader(){if(reader)return;reader=el("div","cj-space-modal");var p=el("div","cj-space-panel");
+    var closeBtn=el("button","cj-b2","关闭");closeBtn.style.cssText+=";float:right";p.appendChild(closeBtn);
+    var title=el("h3","cj-space-title");title.id="cjReadTitle";p.appendChild(title);var date=el("div","cj-space-date");date.id="cjReadDate";p.appendChild(date);
+    var cover=document.createElement("img");cover.className="cj-space-cover";cover.id="cjReadCover";p.appendChild(cover);
+    var summary=el("div","cj-space-summary");summary.id="cjReadSummary";p.appendChild(summary);
+    var body=el("div","cj-space-body");body.id="cjReadBody";p.appendChild(body);
+    var gal=el("div","cj-space-gallery");gal.id="cjReadGallery";p.appendChild(gal);
+    var bar=el("div");bar.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px";
+    var link=el("a","cj-b1","打开外部链接 / 附件");link.id="cjReadLink";link.target="_blank";link.rel="noopener";link.style.textDecoration="none";
+    var edit=el("button","cj-b2","海边编辑此条");edit.id="cjReadEdit";bar.appendChild(link);bar.appendChild(edit);p.appendChild(bar);
+    reader.appendChild(p);document.body.appendChild(reader);closeBtn.onclick=function(){close(reader);};reader.addEventListener("click",function(e){if(e.target===reader)close(reader);});}
+  function openReader(row){if(!row)return;buildReader();var m=meta(row),feature=row.cover_url||m.gallery[0]||(isImg(row.url)?row.url:"");
+    document.getElementById("cjReadTitle").textContent=row.title||"历年诗文汇";document.getElementById("cjReadDate").textContent=m.date||"";
+    var cv=document.getElementById("cjReadCover");cv.style.display=feature?"block":"none";if(feature)cv.src=feature;
+    var sm=document.getElementById("cjReadSummary");sm.textContent=m.summary||"";sm.style.display=m.summary?"block":"none";
+    var bd=document.getElementById("cjReadBody");bd.textContent=m.body||"";bd.style.display=m.body?"block":"none";
+    var photos=m.gallery.slice();if(row.url&&isImg(row.url)&&photos.indexOf(row.url)<0)photos.push(row.url);
+    var g=document.getElementById("cjReadGallery");g.innerHTML="";photos.forEach(function(u){var a=el("a");a.href=u;a.target="_blank";a.rel="noopener";var im=document.createElement("img");im.src=u;im.alt=(row.title||"雅集")+"照片";im.loading="lazy";a.appendChild(im);g.appendChild(a);});g.style.display=photos.length?"grid":"none";
+    var lk=document.getElementById("cjReadLink");lk.style.display=row.url?"inline-block":"none";if(row.url)lk.href=row.url;
+    var ed=document.getElementById("cjReadEdit");ed.style.display=meIsHB()?"inline-block":"none";ed.onclick=function(){close(reader);openEditor(row);};
+    reader.style.display="flex";document.body.style.overflow="hidden";}
+  document.addEventListener("click",async function(e){var c=e.target.closest&&e.target.closest("#cjGrid .wk-card");if(!c||c.id==="wkCollAdd")return;
+    e.preventDefault();e.stopPropagation();await refresh();openReader(ROWS[String(c.getAttribute("data-id"))]);},true);
+  document.addEventListener("keydown",async function(e){if(e.key!=="Enter")return;var c=e.target.closest&&e.target.closest("#cjGrid .wk-card[data-kind='collection']");if(c){e.preventDefault();await refresh();openReader(ROWS[String(c.getAttribute("data-id"))]);}});
+  function place(){var add=document.getElementById("wkCollAdd");if(add&&!add.__cjEditor){add.__cjEditor=1;add.addEventListener("click",function(e){if(!meIsHB())return;e.preventDefault();e.stopImmediatePropagation();openEditor(null);},true);}
+    if(!meIsHB()){var old=document.getElementById("cjAdd");if(old)old.remove();return;}if(document.getElementById("cjAdd"))return;
+    var g=document.getElementById("cjGrid");if(!g)return;var a=el("div","cj-add","＋ 新增一次历年诗文汇");a.id="cjAdd";a.onclick=function(){openEditor(null);};g.parentNode.insertBefore(a,g);}
+  refresh();setInterval(place,1000);window.__palmCollectionEditor=openEditor;
 })();
 </script>
 <script>
