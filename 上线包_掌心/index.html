@@ -68,7 +68,7 @@
   .m-group-t::after{content:"";flex:1;height:1px;background:var(--line)}
   .m-group-t .en{font-family:var(--serif-en);font-size:12px;color:var(--ink-faint);letter-spacing:.06em}
   .yh{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
-  .yh img{width:228px;border-radius:3px;box-shadow:0 14px 32px rgba(28,26,23,.18);cursor:zoom-in}.yh div{flex:1;min-width:240px}
+  .yh>img{width:228px;height:auto;max-height:none;object-fit:contain;aspect-ratio:auto;flex:0 0 auto;border-radius:3px;box-shadow:0 14px 32px rgba(28,26,23,.18);cursor:zoom-in}.yh div{flex:1;min-width:240px}
   .yh-enter{display:inline-block;margin-top:10px;padding:9px 20px;border:1px solid var(--seal);border-radius:2px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.04em;transition:all .25s}
   .yh-enter:hover{background:var(--seal);color:var(--paper)}
   .wk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px;margin-top:20px}
@@ -637,7 +637,7 @@
   </script>
 
   <div class="yh">
-    <img src="https://palmpoetry.org/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E8%90%A4%E7%81%AB%E5%B0%81%E9%9D%A2.jpg?v=20260825" width="736" height="1024" alt="《萤火》— 掌心诗社诗词专辑" loading="lazy" decoding="async">
+    <img src="https://palmpoetry.org/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E8%90%A4%E7%81%AB%E5%B0%81%E9%9D%A2.jpg?v=20260825" alt="《萤火》— 掌心诗社诗词专辑" loading="lazy" decoding="async">
     <div><p data-en="Fireflies is the poetry anthology of The Palm Poetry Club, gathering work by members and by poet friends around the world. Printed in Canada by Manmei Press.">《萤火》是掌心诗社的诗词专辑，结集社员与世界各地诗人的诗作，由加拿大曼美印刷出版社印行。</p>
     <p data-en="A firefly gives very little light — but one lamp may light another, and poets’ hearts scattered across five continents are gathered here into something like a galaxy. Submissions are welcome from members and from anyone else who writes.">萤火虽微，愿以一灯传一灯——星散于五洲四海的诗心，借此聚成一片银河。欢迎社内外诗友投稿。</p>
     <p data-en="The book runs to three parts — classical verse, modern poetry, and poems in English with translations — some two hundred and fifty poems by more than thirty poets.">专辑收古典诗词、现代诗、英文诗歌及翻译三辑，凡三十余位诗人、二百五十余首作品。</p>
@@ -1737,7 +1737,16 @@ loadWorks();
         if(m&&!m.querySelector(".wk-date")&&dateOf(w)){ var s=document.createElement("span");
           s.className="wk-date"; s.textContent=human(dateOf(w)); m.insertBefore(s,m.firstChild); }
       });
-      CC.sort(function(x,y){ return (y.getAttribute("data-d")||"").localeCompare(x.getAttribute("data-d")||""); });
+      var fixedOrder={
+        "4b1824a7-d691-42fe-a2fb-1e1ddd8e465f":1,
+        "dee37085-7ca8-4dae-90d0-1b5972619bd9":2
+      };
+      CC.sort(function(x,y){
+        var dx=x.getAttribute("data-d")||"",dy=y.getAttribute("data-d")||"";
+        if(dx!==dy) return dy.localeCompare(dx);
+        var px=fixedOrder[x.getAttribute("data-id")]||999,py=fixedOrder[y.getAttribute("data-id")]||999;
+        return px-py;
+      });
       var wantC=[].concat(CC, coll?[coll]:[]).filter(Boolean);
       var sameC = wantC.length===cg.children.length && wantC.every(function(el,i){return cg.children[i]===el;});
       if(!sameC) wantC.forEach(function(el){ cg.appendChild(el); });
