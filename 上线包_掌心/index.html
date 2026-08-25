@@ -1392,6 +1392,11 @@ var ROSTER=[
     <p id="sbCardBio" style="font-size:14.5px;line-height:2;color:var(--ink);margin:0;white-space:pre-wrap"></p>
   </div>
 </div>
+<script>
+globalThis.__palmClientReady = globalThis.__palmClientReady || new Promise(function(resolve){
+  globalThis.__resolvePalmClient = resolve;
+});
+</script>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const PALM_AUTH_URL = 'https://ubzykpglausstbsvijoc.supabase.co';
@@ -1401,6 +1406,7 @@ const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_A
   auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
 });
 globalThis.__palmSupabaseClient = SB;
+if(globalThis.__resolvePalmClient) globalThis.__resolvePalmClient(SB);
 const $ = function(id){ return document.getElementById(id); };
 const say = function(m){
   m = (m||'').toString().toLowerCase();
@@ -1600,13 +1606,7 @@ SB.auth.onAuthStateChange(function(event, session){
   </div>
 </div>
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const WB = globalThis.__palmSupabaseClient || createClient(
-  'https://ubzykpglausstbsvijoc.supabase.co',
-  'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP',
-  { auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true } }
-);
-globalThis.__palmSupabaseClient = WB;
+const WB = await globalThis.__palmClientReady;
 const HB = 'huangxiaoyu2001@gmail.com';
 const $ = function(id){ return document.getElementById(id); };
 let KIND='member', ME=null, MINE=null, MYNAME='';
