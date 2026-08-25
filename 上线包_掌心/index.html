@@ -87,6 +87,12 @@
   .wk-meta b{font-family:var(--kai);font-size:16px;display:block;margin-bottom:4px}
   .wk-meta span{font-size:12.5px;color:var(--ink-faint);line-height:1.6}
   .wk-todo{border-style:dashed}
+  .wk-pending-fold{margin-top:22px}
+  .wk-pending-fold .wk-grid{margin:4px 0 22px}
+  .wk-pending-card{appearance:none;width:100%;padding:0;text-align:left;font:inherit;cursor:pointer;border-style:dashed}
+  .wk-pending-card .wk-cover{background:linear-gradient(145deg,#eee7d9,#e5dccb)}
+  .wk-pending-card .wk-cover.ph{font-size:clamp(19px,2.4vw,30px);color:var(--seal)}
+  .wk-pending-card .wk-meta b{color:var(--seal)}
   @media(max-width:680px){.wk-grid{grid-template-columns:repeat(2,1fr)}}
   .ff-flagship{margin:16px 0 30px}
   .flag-label{font-family:var(--kai);color:var(--seal);font-size:14px;letter-spacing:.14em;margin-bottom:8px}
@@ -898,9 +904,15 @@
   <div class="works-sub-h">成员专著与个人作品　<span style="font-family:var(--serif-en);font-style:italic;font-size:13.5px;color:var(--ink-faint);letter-spacing:0">Members’ own books and works</span></div>
   <div class="wk-grid" id="wkGrid">
     <a class="wk-card" href="https://leonliu1726.github.io/beyondathousandmountains/" target="_blank" rel="noopener"><div class="wk-cover"><img src="网站图片/封面正面.jpg" alt="《千山独行》"></div><div class="wk-meta"><em class="wk-au">文刃</em><b>《千山独行》</b><span>台湾中华书局</span></div></a>
+    <a class="wk-card" data-fallback-work="zhang-xiying" data-au="张喜英" data-title="《世界如诗，加拿大如画》" href="https://www.amazon.com/dp/1926927230?lv=shuf&amp;channelId=500&amp;plpRedirect=mhFallback" target="_blank" rel="noopener"><div class="wk-cover ph">世界如诗<br>加拿大如画</div><div class="wk-meta"><em class="wk-au">张喜英</em><b>《世界如诗，加拿大如画》</b><span>个人作品 · 查看作品链接</span></div></a>
     <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
   </div>
   <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
+
+  <details class="ph-fold wk-pending-fold" id="wkPending">
+    <summary><span class="acc-t" id="wkPendingTitle">尚待上传的朋友 · 作品空间</span><span class="en-line">Reserved member spaces</span></summary>
+    <div class="wk-grid" id="wkPendingGrid" aria-live="polite"></div>
+  </details>
 
 </div></section>
 
@@ -1134,6 +1146,7 @@ var ROSTER=[
   {n:"陈河",g:2,u:""},
   {n:"青枫",g:2,u:""},
   {n:"诸黛红",g:2,u:""},
+  {n:"玲利",g:2,u:""},
   {n:"李昶",g:2,u:""},
   {n:"谭新雄",g:2,u:""},
   {n:"沈大勇",g:2,u:""},
@@ -1232,6 +1245,7 @@ var ROSTER=[
     "陈河":{role:"印度行",bio:"掌心学园讲者，分享印度行见闻。"},
     "青枫":{role:"印度旅行",bio:"掌心学园讲者，分享印度旅行见闻。"},
     "诸黛红":{role:"西餐礼仪",bio:"掌心学园讲者，主讲西餐礼仪。"},
+    "玲利":{role:"诗文知交",bio:"掌心新朋友，作品空间已开通。"},
     "李昶":{role:"西方文学",bio:"掌心学园讲者，主讲西方文学。"},
     "谭新雄":{role:"瓷器 · 量子力学",bio:"掌心学园讲者，主讲瓷器渊源与量子力学。"},
     "沈大勇":{role:"古埃及与阿拉伯世界",bio:"掌心学园讲者，主讲古埃及与阿拉伯世界。"}
@@ -1432,7 +1446,13 @@ async function reload(){
   var r = await SB.from('members').select(COLS);
   if(r.error && COLS===COLS_FULL){ COLS=COLS_BASE; r = await SB.from('members').select(COLS); }
   if(r.error || !r.data || !r.data.length) return false;
-  ROWS = r.data; paint(); return true;
+  ROWS = r.data.slice();
+  /* The checked-in roster is a fail-safe: a newly approved friend must not disappear
+     from the public directory while the backend record is still being provisioned. */
+  (window.ROSTER||[]).forEach(function(m,i){
+    if(!ROWS.some(function(x){return x.name===m.n;})) ROWS.push({name:m.n,grp:m.g,role:'',bio:'',bio_en:'',photo_url:'',sort_order:900+i,updated_at:null});
+  });
+  paint(); return true;
 }
 async function refreshMe(){
   var s = await SB.auth.getSession();
@@ -1560,7 +1580,9 @@ function mkCard(w){
   var ti=(w.title||'').trim(), an=(w.author_name||'').trim();
   if(an && ti.indexOf(an)===0 && ti.length>an.length) ti=ti.slice(an.length).replace(/^[\s·、，,：:－—-]+/,'');
   var b=document.createElement('b'); b.textContent=ti;
-  var sp=document.createElement('span'); sp.textContent=w.note||'';
+  var note=w.note||'';
+  if(ti && ti.indexOf('待补')<0 && note.indexOf('本人登录后可上传作品')>=0) note=hasUrl?'个人作品 · 查看作品链接':'个人作品';
+  var sp=document.createElement('span'); sp.textContent=note;
   el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||'');
   meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
   el.appendChild(cover); el.appendChild(meta);
@@ -1571,10 +1593,15 @@ async function loadWorks(){
   if(r.error || !r.data) return;
   var grid=$('wkGrid'), cg=$('cjGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
+  grid.querySelectorAll('[data-fallback-work]').forEach(function(e){
+    var author=e.getAttribute('data-au')||'';
+    var found=r.data.some(function(w){return w.kind==='member'&&w.author_name===author&&!/^\s*[《（(]?\s*待补/.test(w.title||'');});
+    if(found) e.remove();
+  });
   if(cg) cg.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
   r.data.forEach(function(w){
     if(w.kind==='collection'){ if(cg) cg.appendChild(mkCard(w)); }
-    else if(w.kind==='member'){ grid.appendChild(mkCard(w)); }
+    else if(w.kind==='member' && !/^\s*[《（(]?\s*待补/.test(w.title||'')){ grid.appendChild(mkCard(w)); }
   });
 }
 async function who(){
@@ -1692,7 +1719,8 @@ loadWorks();
     var D=[],T=[];
     [].slice.call(g.children).forEach(function(c){
       if(c===plus||c===qs) return;
-      if(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0){ T.push(c); return; }
+      var tb=c.querySelector(".wk-meta b"), title=tb?tb.textContent.trim():"";
+      if(/^\s*[《（(]?\s*待补/.test(title)){ T.push(c); return; }
       D.push(c);
     });
     var want=[].concat(D, qs?[qs]:[], plus?[plus]:[], T).filter(Boolean);
@@ -1810,7 +1838,8 @@ loadWorks();
     var card=e.target.closest && e.target.closest('.wk-card'); if(!card||!g.contains(card)) return;
     if(card.id==='wkCollAdd'||card.id==='wkMemberAdd') return;
     var nm=coverName(card); if(!nm) return;
-    var todo=card.textContent.indexOf('（待补）')>=0||card.textContent.indexOf('本人登录后可上传作品')>=0;
+    var tb=card.querySelector('.wk-meta b'), title=tb?tb.textContent.trim():'';
+    var todo=/^\s*[《（(]?\s*待补/.test(title);
     if(C.name && C.name===nm){
       e.preventDefault(); e.stopPropagation();
       var p=document.getElementById('wkMemberAdd'); if(p) p.click();
@@ -1927,7 +1956,6 @@ loadWorks();
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       out.push({t:c.getAttribute("data-m"), k:"成员", el:c}); });
     document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
-      if(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0) return;
       var b=c.querySelector(".wk-meta b"), a=c.getAttribute("data-au")||"";
       var title=b?b.textContent.trim():""; if(!title||title.indexOf("待补")>=0) return;
       out.push({t:title+(a?" · "+a:""), k:"作品", el:c}); });
@@ -1950,17 +1978,55 @@ loadWorks();
 })();
 </script>
 <script>
-/* 尚未上传作品的成员：保留给本人维护，但不向访客展示施工占位卡 */
+/* 会员作品空间完整性规则：正式作品在主区；未上传者也必须在折叠区保留一张可见卡片。
+   重要：只以作品标题判断“待补”，绝不读取备注；真实作品备注可能包含历史提示语。 */
 (function(){
-  function tidy(){
-    var g=document.getElementById("wkGrid"); if(!g) return;
-    var todo=[].slice.call(g.children).filter(function(c){
-      return c.id!=="wkCollAdd"&&c.id!=="wkMemberAdd"&&(c.textContent.indexOf("（待补）")>=0||c.textContent.indexOf("本人登录后可上传作品")>=0);});
-    var btn=document.getElementById("wkMore");
-    if(btn) btn.remove();
-    todo.forEach(function(c){ c.style.display="none"; c.setAttribute("aria-hidden","true"); });
+  var box=document.getElementById("wkPendingGrid"), label=document.getElementById("wkPendingTitle");
+  if(!box) return;
+  function isPendingTitle(s){ return /^\s*[《（(]?\s*待补/.test(s||"")||!(s||"").trim(); }
+  function esc(s){ var d=document.createElement("div"); d.textContent=s||""; return d.innerHTML; }
+  function fallbackMembers(){ return (window.ROSTER||[]).map(function(m){return {name:m.n,grp:m.g,sort_order:999};}); }
+  function openMember(name){
+    var card=[].slice.call(document.querySelectorAll('.m-card[data-m]')).filter(function(c){return c.getAttribute('data-m')===name;})[0];
+    if(card){ card.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){card.click();},450); }
   }
-  setInterval(tidy,700); tidy();
+  function draw(members, works){
+    var real={};
+    (works||[]).forEach(function(w){ if(w.kind==='member'&&w.author_name&&!isPendingTitle(w.title)) real[w.author_name]=true; });
+    /* Static fail-safe works also count when the data service is unavailable. */
+    document.querySelectorAll('#wkGrid .wk-card').forEach(function(c){
+      var a=c.getAttribute('data-au')||(c.querySelector('.wk-au')||{}).textContent||'';
+      var b=c.querySelector('.wk-meta b'), t=b?b.textContent:'';
+      if(a&&!isPendingTitle(t)&&c.id!=='wkMemberAdd') real[a.trim()]=true;
+    });
+    var all=(members||[]).slice();
+    fallbackMembers().forEach(function(m){if(!all.some(function(x){return x.name===m.name;})) all.push(m);});
+    var pending=all.filter(function(m){return m.name&&!real[m.name];})
+      .sort(function(a,b){return (a.grp-b.grp)||((a.sort_order||999)-(b.sort_order||999))||a.name.localeCompare(b.name,'zh-Hans');});
+    box.innerHTML='';
+    pending.forEach(function(m){
+      var c=document.createElement('button'); c.type='button'; c.className='wk-card wk-pending-card';
+      c.setAttribute('data-au',m.name); c.setAttribute('aria-label',m.name+'的作品空间，尚待上传');
+      c.innerHTML='<div class="wk-cover ph">'+esc(m.name)+'</div><div class="wk-meta"><em class="wk-au">'+esc(m.name)+'</em><b>作品空间已开通</b><span>本人登录后可上传作品或关联个人网站</span></div>';
+      c.addEventListener('click',function(){openMember(m.name);}); box.appendChild(c);
+    });
+    if(label) label.textContent='尚待上传的朋友 · 作品空间（'+pending.length+'）';
+  }
+  async function load(){
+    try{
+      var html=await (await fetch(location.pathname,{cache:'no-store'})).text();
+      var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+      var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
+      if(!host||!key){draw(fallbackMembers(),[]);return;}
+      var H={apikey:key,Authorization:'Bearer '+key};
+      var pair=await Promise.all([
+        fetch(host+'/rest/v1/members?select=name,grp,sort_order&order=grp,sort_order',{headers:H}).then(function(r){return r.json();}),
+        fetch(host+'/rest/v1/works?select=kind,author_name,title&kind=eq.member',{headers:H}).then(function(r){return r.json();})
+      ]);
+      draw(Array.isArray(pair[0])?pair[0]:fallbackMembers(),Array.isArray(pair[1])?pair[1]:[]);
+    }catch(e){ draw(fallbackMembers(),[]); }
+  }
+  load(); setTimeout(load,1800);
 })();
 </script>
 <script>
@@ -2083,7 +2149,7 @@ loadWorks();
     return true; }
   function shown(){ var b=document.getElementById("sbCard");
     return !!(b&&getComputedStyle(b).display!=="none"); }
-  var ALIAS={"fengdong":"风动","gutu":"古土","dandan":"丹丹","mowangshan":"墨望山","fengyezhenghong":"枫叶正红","tangmang":"唐芒","xinxinxiangrong":"欣欣向荣","wenren":"文刃","tim":"Tim","yangqing":"杨青","feihong":"飞鸿","wangxuejun":"王雪君","xiaoming":"晓鸣","hubian":"湖边","shifu":"石甫","wuyuehua":"五月花","luoyitong":"骆奕同","guqian":"古谦","huyang":"胡杨","wanghui":"王慧","xierongfeng":"谢蓉枫","chenhe":"陈河","qingfeng":"青枫","zhudaihong":"诸黛红","lichang":"李昶","tanxinxiong":"谭新雄","weixiaoqing":"韦小青","mingjie":"明洁","clairef":"Claire F","moranhuishou":"蓦然回首","chenning":"陈宁","zhangdi":"张迪","chenlong":"陈龙","ruoran":"若然","wangxiaoming":"王晓鸣","liningyuan":"李宁远","dongdongsheng":"东冬生","johnson":"Johnson","michaelzhang":"Michael Zhang","gracejiang":"Grace Jiang","yuqinliu":"Yu Qin Liu","taoran":"陶然","jiuwei":"久炜","junying":"俊英","baishui":"白水","zhangxiying":"张喜英","jiangni":"姜尼","wenyan":"闻雁","moquan":"墨泉","beijiang":"北江","nilrhoads":"Nil Rhoads","kenneth":"Kenneth","fuyuhua":"傅毓华","haibian":"海边","yanzhonghu":"颜钟祜","suyixin":"苏奕歆","tracygao":"Tracy Gao","shendayong":"沈大勇","peterlin":"Peter Lin","kristen":"Kristen","chenrong":"陈蓉","xiaqian":"夏倩","yimu":"以牧","churen":"楚人","nongxian":"弄弦","tiaodengkanjian":"挑灯看剑","huangzhong":"黄忠","georgeliang":"George Liang","zhangwenyao":"张文尧","zhangsu":"张苏"};
+  var ALIAS={"fengdong":"风动","gutu":"古土","dandan":"丹丹","mowangshan":"墨望山","fengyezhenghong":"枫叶正红","tangmang":"唐芒","xinxinxiangrong":"欣欣向荣","wenren":"文刃","tim":"Tim","yangqing":"杨青","feihong":"飞鸿","wangxuejun":"王雪君","xiaoming":"晓鸣","hubian":"湖边","shifu":"石甫","wuyuehua":"五月花","luoyitong":"骆奕同","guqian":"古谦","huyang":"胡杨","wanghui":"王慧","xierongfeng":"谢蓉枫","chenhe":"陈河","qingfeng":"青枫","zhudaihong":"诸黛红","lingli":"玲利","lichang":"李昶","tanxinxiong":"谭新雄","weixiaoqing":"韦小青","mingjie":"明洁","clairef":"Claire F","moranhuishou":"蓦然回首","chenning":"陈宁","zhangdi":"张迪","chenlong":"陈龙","ruoran":"若然","wangxiaoming":"王晓鸣","liningyuan":"李宁远","dongdongsheng":"东冬生","johnson":"Johnson","michaelzhang":"Michael Zhang","gracejiang":"Grace Jiang","yuqinliu":"Yu Qin Liu","taoran":"陶然","jiuwei":"久炜","junying":"俊英","baishui":"白水","zhangxiying":"张喜英","jiangni":"姜尼","wenyan":"闻雁","moquan":"墨泉","beijiang":"北江","nilrhoads":"Nil Rhoads","kenneth":"Kenneth","fuyuhua":"傅毓华","haibian":"海边","yanzhonghu":"颜钟祜","suyixin":"苏奕歆","tracygao":"Tracy Gao","shendayong":"沈大勇","peterlin":"Peter Lin","kristen":"Kristen","chenrong":"陈蓉","xiaqian":"夏倩","yimu":"以牧","churen":"楚人","nongxian":"弄弦","tiaodengkanjian":"挑灯看剑","huangzhong":"黄忠","georgeliang":"George Liang","zhangwenyao":"张文尧","zhangsu":"张苏"};
   var SEC={origin:1,reading:1,members:1,works:1,forum:1,world:1,mission:1,writings:1,album:1,join:1,guestbook:1,fireflies:1,films:1,home:1,doors:1,submit:1};
   function fromHash(){
     var h=decodeURIComponent((location.hash||"").slice(1));
@@ -2545,10 +2611,11 @@ loadWorks();
       var host=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
       var key=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
       if(!host) return;
-      var rows=await (await fetch(host+"/rest/v1/works?select=author_name&kind=eq.member",
+      var rows=await (await fetch(host+"/rest/v1/members?select=name",
         {headers:{apikey:key,Authorization:"Bearer "+key}})).json();
-      var names={}; rows.forEach(function(r){ if(r.author_name) names[r.author_name]=1; });
-      var num=Object.keys(names).length+1;   /* ＋文刃（静态卡） */
+      var names={}; rows.forEach(function(r){ if(r.name) names[r.name]=1; });
+      (window.ROSTER||[]).forEach(function(r){if(r.n) names[r.n]=1;});
+      var num=Object.keys(names).length;
       if(num<2) return;
       document.querySelectorAll(".mcount").forEach(function(e){ e.textContent=cn(num); });
       document.querySelectorAll("[data-en]").forEach(function(e){
