@@ -915,8 +915,8 @@
       <li><b>附件</b>　PDF、Word 或音频</li>
       <li><b>链接</b>　你的个人网站、购书页、论坛帖</li>
     </ul>
-    <p class="sn-f">还没登录？到<a href="#members">成员</a>那一栏，<b>点你自己的名字</b>，会寄一封登录信到你留给掌心的邮箱。<br>
-    <span class="en-line">Sign in from the Members section by clicking your own name — a link will be sent to your email.</span></p>
+    <p class="sn-f">已经登录：直接点自己的作品卡；尚未登录：点下方“登录／修改我的作品空间”，邮件链接会直接带你回到作品编辑页。<br>
+    <span class="en-line">Open your own work card when signed in, or use the direct work-space sign-in below.</span></p>
   </div>
 
   <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into a continuing archive of verse, prose and photographs. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦编成持续增补的历年诗文汇。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
@@ -933,7 +933,8 @@
     <a class="wk-card" data-fallback-work="feihong" data-au="飞鸿" data-title="《以色列集体农庄》" href="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/w/1787092182562-ydqs1f.docx" target="_blank" rel="noopener"><div class="wk-cover ph">以色列<br>集体农庄</div><div class="wk-meta"><em class="wk-au">飞鸿</em><b>《以色列集体农庄》</b><span>个人作品 · 下载阅读</span></div></a>
     <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
   </div>
-  <p class="m-note">＊ 已开通的成员登录后，点「＋」即可上传一本自己的作品或关联个人网站。</p>
+  <p class="m-note" style="margin:16px 0 0"><a href="#" class="wkSelfEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 登录／修改我的作品空间 →</a></p>
+  <p class="m-note">＊ 已登录会员可点上方入口或自己的作品卡；尚未上传的会员也可点折叠区中自己的姓名卡。</p>
 
   <details class="ph-fold wk-pending-fold" id="wkPending">
     <summary><span class="acc-t" id="wkPendingTitle">尚待上传的朋友 · 作品空间</span><span class="en-line">Reserved member spaces</span></summary>
@@ -1409,7 +1410,8 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const PALM_AUTH_URL = 'https://ubzykpglausstbsvijoc.supabase.co';
 const PALM_AUTH_KEY = 'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP';
 const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/?member-login=20260826#members';
-const PALM_AUTH_RETURN = location.hash==='#members' ||
+const PALM_WORK_REDIRECT = 'https://palmpoetry.org/?member-login=20260826&destination=works#works';
+const PALM_AUTH_RETURN = location.hash==='#members' || location.hash==='#works' ||
   /(?:[?&](?:code|token_hash|type|error|error_description)=|#.*(?:access_token|refresh_token)=)/i.test(location.search+location.hash);
 const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_AUTH_KEY, {
   auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
@@ -1553,9 +1555,11 @@ document.addEventListener('click', async function(e){
     var em=$('sbEmail').value.trim();
     if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
     e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
+    var workLogin=false;
+    try{ workLogin=localStorage.getItem('palmAfterLogin')==='works'; }catch(ignore){}
     var r = await SB.auth.signInWithOtp({
       email: em,
-      options: { emailRedirectTo: PALM_AUTH_REDIRECT, shouldCreateUser:true }
+      options: { emailRedirectTo: workLogin ? PALM_WORK_REDIRECT : PALM_AUTH_REDIRECT, shouldCreateUser:true }
     });
     if(r.error){
       var wait=retrySeconds(r.error.message);
@@ -1607,7 +1611,17 @@ SB.auth.onAuthStateChange(function(event, session){
   refreshMe();
   if(session && (event==='SIGNED_IN' || (event==='INITIAL_SESSION' && PALM_AUTH_RETURN)) && !globalThis.__palmOpenedAfterSignIn){
     globalThis.__palmOpenedAfterSignIn=true;
-    setTimeout(function(){ openMine(); }, 180);
+    var toWork=/(?:[?&]destination=works(?:&|$))/i.test(location.search);
+    try{ toWork=toWork||localStorage.getItem('palmAfterLogin')==='works'; }catch(ignore){}
+    if(toWork){
+      try{ localStorage.removeItem('palmAfterLogin'); }catch(ignore){}
+      var tries=0, openWork=function(){
+        if(globalThis.__palmMyWork){ globalThis.__palmMyWork(); return; }
+        if(++tries<20){ setTimeout(openWork,120); return; }
+        openMine();
+      };
+      setTimeout(openWork,180);
+    }else setTimeout(function(){ openMine(); }, 180);
   }
 });
 (async function(){
@@ -1941,6 +1955,14 @@ loadWorks();
     }catch(e){}
     return C.name;
   }
+  async function openOwn(name){
+    var mine=await who();
+    if(!mine||mine!==name) return false;
+    if(globalThis.__palmMyWork){ globalThis.__palmMyWork(); return true; }
+    var p=document.getElementById('wkMemberAdd'); if(p){ p.click(); return true; }
+    return false;
+  }
+  globalThis.__palmOpenOwnWork=openOwn;
   who();
   function coverName(card){ var a=card.getAttribute('data-au'); if(a) return a.trim();
     var e=card.querySelector('.wk-au'); if(e) return e.textContent.trim();
@@ -1954,7 +1976,7 @@ loadWorks();
     var todo=/^\s*[《（(]?\s*待补/.test(title);
     if(C.name && C.name===nm){
       e.preventDefault(); e.stopPropagation();
-      var p=document.getElementById('wkMemberAdd'); if(p) p.click();
+      openOwn(nm);
       return;
     }
     if(!C.name && todo){
@@ -2103,6 +2125,19 @@ loadWorks();
     var card=[].slice.call(document.querySelectorAll('.m-card[data-m]')).filter(function(c){return c.getAttribute('data-m')===name;})[0];
     if(card){ card.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){card.click();},450); }
   }
+  function openPendingMember(name){
+    var fn=globalThis.__palmOpenOwnWork;
+    if(fn){
+      Promise.resolve(fn(name)).then(function(opened){
+        if(opened) return;
+        try{localStorage.setItem('palmAfterLogin','works');}catch(ignore){}
+        openMember(name);
+      });
+      return;
+    }
+    try{localStorage.setItem('palmAfterLogin','works');}catch(ignore){}
+    openMember(name);
+  }
   function draw(members, works){
     var real={};
     (works||[]).forEach(function(w){ if(w.kind==='member'&&w.author_name&&isRealWork(w)) real[w.author_name]=true; });
@@ -2121,7 +2156,7 @@ loadWorks();
       var c=document.createElement('button'); c.type='button'; c.className='wk-card wk-pending-card';
       c.setAttribute('data-au',m.name); c.setAttribute('aria-label',m.name+'的作品空间，尚待上传');
       c.innerHTML='<div class="wk-cover ph">'+esc(m.name)+'</div><div class="wk-meta"><em class="wk-au">'+esc(m.name)+'</em><b>作品空间已开通</b><span>本人登录后可上传作品或关联个人网站</span></div>';
-      c.addEventListener('click',function(){openMember(m.name);}); box.appendChild(c);
+      c.addEventListener('click',function(){openPendingMember(m.name);}); box.appendChild(c);
     });
     if(label) label.textContent='尚待上传的朋友 · 作品空间（'+pending.length+'）';
   }
@@ -2605,6 +2640,13 @@ loadWorks();
     var c=e.target.closest&&e.target.closest(".wk-card"); if(!c) return;
     if(c.id==="wkCollAdd") return;
     if(c.id==="wkMemberAdd"){ e.preventDefault(); e.stopPropagation(); open(); return; }
+  },true);
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest(".wkSelfEntry"); if(!a) return;
+    e.preventDefault(); e.stopPropagation();
+    if(tok()){ open(); return; }
+    try{localStorage.setItem('palmAfterLogin','works');}catch(ignore){}
+    var login=document.querySelector('.sbEntry'); if(login) login.click();
   },true);
   window.__palmMyWork=open;
 })();
