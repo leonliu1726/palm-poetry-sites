@@ -1401,6 +1401,20 @@ var ROSTER=[
   </div>
 </div>
 <script>
+/* 修正旧登录链接里的双井号：#members#access_token=… → #access_token=… */
+(function(){
+  try{
+    var h=location.hash||"";
+    var i=h.indexOf("#access_token=");
+    if(i<0) i=h.indexOf("#error=");
+    if(i<0) i=h.indexOf("#error_code=");
+    if(i>0){
+      history.replaceState(null,"",location.pathname+location.search+h.slice(i));
+    }
+  }catch(e){}
+})();
+</script>
+<script>
 globalThis.__palmClientReady = globalThis.__palmClientReady || new Promise(function(resolve){
   globalThis.__resolvePalmClient = resolve;
 });
@@ -1409,8 +1423,8 @@ globalThis.__palmClientReady = globalThis.__palmClientReady || new Promise(funct
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const PALM_AUTH_URL = 'https://ubzykpglausstbsvijoc.supabase.co';
 const PALM_AUTH_KEY = 'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP';
-const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/?member-login=20260826#members';
-const PALM_WORK_REDIRECT = 'https://palmpoetry.org/?member-login=20260826&destination=works#works';
+const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/?member-login=20260826';
+const PALM_WORK_REDIRECT = 'https://palmpoetry.org/?member-login=20260826&destination=works';
 const PALM_AUTH_RETURN = location.hash==='#members' || location.hash==='#works' ||
   /(?:[?&](?:code|token_hash|type|error|error_description)=|#.*(?:access_token|refresh_token)=)/i.test(location.search+location.hash);
 const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_AUTH_KEY, {
@@ -2914,6 +2928,38 @@ loadWorks();
   });
   nav.addEventListener("click",function(e){if(e.target.closest("a")) close();});
   addEventListener("resize",function(){if(innerWidth>760) close();});
+})();
+</script>
+<script>
+/* 登录链接失效时，明确告诉本人，并一键重寄 */
+(function(){
+  var h=location.hash||"", q=location.search||"";
+  if(!/error/i.test(h)&&!/error/i.test(q)) return;
+  var code=(h+q).match(/error_code=([^&]+)/);
+  code=code?decodeURIComponent(code[1]):"";
+  var zh="这封登录信的链接已经失效了。";
+  if(/expired/i.test(code)) zh="这封登录信的链接已经过期或被用过了。";
+  var bar=document.createElement("div");
+  bar.id="loginErr";
+  bar.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:400;background:var(--seal,#9c3a2f);color:#fdf9f0;padding:14px 18px;font-size:14.5px;line-height:1.9;text-align:center;box-shadow:0 -6px 20px rgba(0,0,0,.18)";
+  var s=document.createElement("span");
+  s.textContent=zh+"　请重新寄一封，收到后请在几分钟内点开。";
+  var b=document.createElement("button");
+  b.textContent="重新寄一封登录信";
+  b.style.cssText="margin-left:14px;padding:6px 14px;border:1px solid #fdf9f0;border-radius:18px;background:transparent;color:#fdf9f0;font-family:inherit;font-size:14px;cursor:pointer";
+  b.onclick=function(){
+    history.replaceState(null,"",location.pathname);
+    bar.remove();
+    var e=document.querySelector(".sbEntry");
+    if(e){ e.scrollIntoView({block:"center"}); e.click(); }
+    else location.hash="#members";
+  };
+  var x=document.createElement("span");
+  x.textContent="×"; x.style.cssText="margin-left:16px;cursor:pointer;font-size:19px;opacity:.8";
+  x.onclick=function(){ history.replaceState(null,"",location.pathname); bar.remove(); };
+  bar.appendChild(s); bar.appendChild(b); bar.appendChild(x);
+  function put(){ if(document.body){ document.body.appendChild(bar); } else setTimeout(put,120); }
+  put();
 })();
 </script>
 </body></html>
