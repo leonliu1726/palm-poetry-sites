@@ -2376,6 +2376,8 @@ loadWorks();
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
     if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
       var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  function jwtEmail(t){try{var p=(t.split(".")[1]||"").replace(/-/g,"+").replace(/_/g,"/");
+    while(p.length%4)p+="="; return (JSON.parse(atob(p)).email||"").trim();}catch(e){return "";}}
   function meIsHB(){ var t=tok(); if(!t) return false;
     try{ var p=JSON.parse(decodeURIComponent(escape(atob(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/")))));
       return String(p.email||"").toLowerCase()===HB; }catch(e){ return false; } }
@@ -2471,7 +2473,7 @@ loadWorks();
 <script>
 /* 我的一方天地 · 作品：更丰富的内部空间 */
 (function(){
-  var HOST="",KEY="",MINE=null,NAME="";
+  var HOST="",KEY="",MINE=null,NAME="",OWNER="";
   var CATS=["诗集","散文集","小说","评论","书画","摄影","音频","视频","个人网站","其他"];
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
     if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
@@ -2549,6 +2551,12 @@ loadWorks();
   async function open(){
     await conf(); build();
     var T=tok(); if(!T){ alert("请先在成员名录里点自己的名字登录。"); return; }
+    var mr=await fetch(HOST+"/rest/v1/rpc/my_member",{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
+    var mj=await mr.json().catch(function(){return null;});
+    if(!mr.ok||!Array.isArray(mj)||!mj.length){ alert("这个登录邮箱还没有绑定到成员名录，请联系掌心核对登记邮箱。"); return; }
+    NAME=mj[0].name||""; OWNER=jwtEmail(T);
+    if(!OWNER){ alert("登录状态不完整，请重新点一次最新的登录邮件链接。"); return; }
     var r=await fetch(HOST+"/rest/v1/rpc/my_work",{method:"POST",
       headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
     var j=await r.json().catch(function(){return null;});
@@ -2560,7 +2568,7 @@ loadWorks();
     F.url.value=(MINE&&MINE.url)||""; F.desc.value=m.d||"";
     F.cover.value=""; GAL=(m.g||[]).slice(0,6); drawGal();
     F.msg.textContent="";
-    document.getElementById("myWho").textContent="每一位成员都有这一方天地。填得越用心，别人越愿意读。";
+    document.getElementById("myWho").textContent="正在编辑："+NAME+"。每一位成员都有这一方天地。";
     box.style.display="flex";
   }
   async function save(){
@@ -2579,14 +2587,17 @@ loadWorks();
       var note=JSON.stringify({c:F.cat.value, y:F.year.value.trim(), d:F.desc.value.trim(), g:GAL, f:fileUrl||(meta(MINE&&MINE.note).f||"")});
       var url=F.url.value.trim()||fileUrl||"";
       var body={title:F.title.value.trim(), url:url, note:note};
+      if(cover) body.cover_url=cover;
       var r;
-      if(MINE){ r=await fetch(HOST+"/rest/v1/works?kind=eq.member&title=eq."+encodeURIComponent(MINE.title),
+      if(MINE){ r=await fetch(HOST+"/rest/v1/works?id=eq."+encodeURIComponent(MINE.id),
           {method:"PATCH",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},body:JSON.stringify(body)});
-      } else { r={ok:false}; }
-      if(cover){ await fetch(HOST+"/rest/v1/rpc/set_cover",{method:"POST",
-        headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:JSON.stringify({p_url:cover})}); }
-      if(r.ok||cover){ F.msg.textContent="已保存。页面稍后自动刷新。"; setTimeout(function(){location.reload();},1400); }
-      else F.msg.textContent="没能保存，请稍后再试。";
+      } else {
+        body.kind="member"; body.owner_email=OWNER; body.author_name=NAME;
+        r=await fetch(HOST+"/rest/v1/works",{method:"POST",
+          headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},body:JSON.stringify(body)});
+      }
+      if(r.ok){ F.msg.textContent="已保存。页面稍后自动刷新。"; setTimeout(function(){location.reload();},1400); }
+      else F.msg.textContent="没能保存（"+r.status+"），请稍后再试或联系掌心。";
     }catch(e){ F.msg.textContent="网络不太顺，请稍后再试。"; }
   }
   /* 接管作品区的编辑入口 */
