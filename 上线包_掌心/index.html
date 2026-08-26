@@ -1360,7 +1360,7 @@ var ROSTER=[
     <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
     <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
-    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">第一次在这台设备使用时，填入你留给掌心的邮箱；收到信后，<b>点一次登录链接即可</b>。以后进入成员区或作品区都会自动认出你，不用密码，也不用重复填写邮箱。</p>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">第一次在这台设备使用时，填入你留给掌心的邮箱；收到信后，<b>点一次登录链接即可</b>。寄出后按钮会倒计时，请不要连续点击。以后进入成员区或作品区都会自动认出你，不用密码，也不用重复填写邮箱。</p>
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
     <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
     <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
@@ -1407,7 +1407,7 @@ globalThis.__palmClientReady = globalThis.__palmClientReady || new Promise(funct
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const PALM_AUTH_URL = 'https://ubzykpglausstbsvijoc.supabase.co';
 const PALM_AUTH_KEY = 'sb_publishable_5zXsjVhoKf6ws9hn5_V4nw_T1z6nWgP';
-const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/#members';
+const PALM_AUTH_REDIRECT = 'https://palmpoetry.org/?member-login=20260826#members';
 const PALM_AUTH_RETURN = location.hash==='#members' ||
   /(?:[?&](?:code|token_hash|type|error|error_description)=|#.*(?:access_token|refresh_token)=)/i.test(location.search+location.hash);
 const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_AUTH_KEY, {
@@ -1416,12 +1416,28 @@ const SB = globalThis.__palmSupabaseClient || createClient(PALM_AUTH_URL, PALM_A
 globalThis.__palmSupabaseClient = SB;
 if(globalThis.__resolvePalmClient) globalThis.__resolvePalmClient(SB);
 const $ = function(id){ return document.getElementById(id); };
-const say = function(m){
-  m = (m||'').toString().toLowerCase();
-  if(m.indexOf('rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
-    return '刚才请求得太频繁了。请等几分钟再点一次；已经寄出的旧链接仍可使用。';
-  if(m.indexOf('security purposes')>-1 || m.indexOf('only request this after')>-1)
-    return '为避免重复寄信，请稍等片刻再点一次。已经寄出的旧链接仍可使用。';
+const SEND_LABEL = '寄 出 登 录 链 接';
+let sendTimer = null;
+const retrySeconds = function(message){
+  var m=String(message||'').match(/after\s+(\d+)\s+seconds?/i);
+  return m ? Math.max(1,parseInt(m[1],10)||60) : 0;
+};
+const lockSend = function(seconds){
+  var b=$('sbSend'), end=Date.now()+Math.max(1,seconds||60)*1000;
+  if(sendTimer) clearInterval(sendTimer);
+  function tick(){
+    var left=Math.max(0,Math.ceil((end-Date.now())/1000));
+    if(left){ b.disabled=true; b.textContent='请 查 收（'+left+' 秒）'; }
+    else { clearInterval(sendTimer); sendTimer=null; b.disabled=false; b.textContent=SEND_LABEL; }
+  }
+  tick(); sendTimer=setInterval(tick,1000);
+};
+const say = function(message){
+  var raw=(message||'').toString(), m=raw.toLowerCase(), wait=retrySeconds(raw);
+  if(m.indexOf('security purposes')>-1 || m.indexOf('only request this after')>-1 || wait)
+    return '第一封登录信通常已经寄出。请不要连续点击；'+(wait?wait+' 秒':'一分钟')+'后才能再次寄送，请检查收件箱和垃圾邮件。';
+  if(m.indexOf('over_email_send_rate_limit')>-1 || m.indexOf('email rate limit')>-1 || m.indexOf('429')>-1 || m.indexOf('too many')>-1)
+    return '登录邮件发送得太频繁，服务暂时暂停了新的邮件。请检查刚才已收到的信；一分钟后仍未收到再试一次。';
   if(m.indexOf('invalid')>-1 && m.indexOf('email')>-1)
     return '这个邮箱地址似乎写错了，请再核对一下。';
   if(m.indexOf('not authorized')>-1)
@@ -1432,7 +1448,7 @@ const say = function(m){
     return '登录邮件暂时没有送出。请稍后再试一次；若仍未收到，请联系掌心核对邮箱。';
   if(m.indexOf('failed to fetch')>-1 || m.indexOf('network')>-1)
     return '网络似乎不通，请稍后再试。';
-  return '眼下寄不出去，请稍后再试。若一直不行，请致信掌心。';
+  return '这次请求没有送出。系统提示：'+raw.slice(0,140)+'。请把这行提示截屏发给掌心。';
 };
 const show = function(id){ $(id).style.display='block'; document.body.style.overflow='hidden'; };
 const hide = function(id){ $(id).style.display='none'; document.body.style.overflow=''; };
@@ -1540,8 +1556,15 @@ document.addEventListener('click', async function(e){
       email: em,
       options: { emailRedirectTo: PALM_AUTH_REDIRECT, shouldCreateUser:true }
     });
-    e.target.disabled=false;
-    $('sbMsg').textContent = r.error ? say(r.error.message) : '已寄出。请到邮箱点开信里的链接，即可回到本页并自动登入。';
+    if(r.error){
+      var wait=retrySeconds(r.error.message);
+      if(wait || /rate limit|429|too many|security purposes/i.test(r.error.message||'')) lockSend(wait||60);
+      else { e.target.disabled=false; e.target.textContent=SEND_LABEL; }
+      $('sbMsg').textContent=say(r.error.message);
+    } else {
+      lockSend(60);
+      $('sbMsg').textContent='登录信已经寄出。请检查收件箱和垃圾邮件，只点最新一封信里的链接；60 秒内不要重复寄送。';
+    }
     return;
   }
   if(e.target.id==='sbOut'){ await SB.auth.signOut(); ME=null; MINE=null; hide('sbMine'); refreshMe(); return; }
