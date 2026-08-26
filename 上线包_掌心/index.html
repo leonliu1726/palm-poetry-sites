@@ -524,6 +524,31 @@
     .tk-seg b{font-size:12px}
     .pk-search input,.sub-form input,.sub-form textarea,.sf-go{min-height:44px}
   }
+
+  #myHubBtn{position:fixed;right:18px;bottom:18px;z-index:150;padding:11px 18px;border:1px solid var(--seal);
+    border-radius:26px;background:var(--paper);color:var(--seal);font-family:var(--kai);font-size:14.5px;
+    letter-spacing:.06em;cursor:pointer;box-shadow:0 8px 22px rgba(47,44,38,.16);transition:.22s;word-break:keep-all}
+  #myHubBtn:hover{background:var(--seal);color:#fdf9f0}
+  #myHub{display:none;position:fixed;inset:0;z-index:180;background:rgba(30,26,20,.55);padding:24px;overflow:auto}
+  #myHub .hb{max-width:520px;margin:60px auto;background:var(--paper);border:1px solid var(--line);
+    border-radius:12px;padding:26px 28px 24px;position:relative}
+  #myHub .hx{position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1}
+  #myHub h4{font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em;margin:0}
+  #myHub .hen{font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px}
+  #myHub .hwho{font-size:13.5px;color:var(--ink-soft);margin:14px 0 4px;line-height:1.9}
+  #myHub .hb2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  @media(max-width:520px){#myHub .hb2{grid-template-columns:1fr}}
+  #myHub .hc{border:1px solid var(--line);border-radius:10px;padding:16px 16px 15px;cursor:pointer;
+    background:rgba(255,252,246,.6);transition:.22s;text-align:left}
+  #myHub .hc:hover{border-color:var(--seal);transform:translateY(-2px);box-shadow:0 10px 24px rgba(156,58,47,.12)}
+  #myHub .hc b{display:block;font-family:var(--kai);font-size:16.5px;color:var(--ink);margin-bottom:5px;word-break:keep-all}
+  #myHub .hc span{display:block;font-size:12.8px;line-height:1.85;color:var(--ink-soft)}
+  #myHub .hout{margin-top:16px;font-size:13px;color:var(--ink-faint);text-align:right}
+  #myHub .hout a{color:var(--seal);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(156,58,47,.3)}
+  .palm-jump{display:block;width:100%;margin-top:12px;padding:10px 14px;border:1px dashed var(--seal);
+    border-radius:9px;background:transparent;color:var(--seal);font-family:var(--kai);font-size:14.5px;
+    cursor:pointer;word-break:keep-all}
+  .palm-jump:hover{background:rgba(156,58,47,.07)}
 </style></head>
 <body>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
@@ -1540,8 +1565,8 @@ async function refreshMe(){
   });
   var state=$('sbSessionState');
   if(state) state.textContent = ME
-    ? '本设备已经登录。名片和作品区共用这次登录；点上方按钮即可修改名片，点自己的作品卡即可修改作品。'
-    : '一台设备登录一次；点邮件中的链接回到本页后，会直接打开自己的名片编辑页。';
+    ? '本设备已经登录。一次登录，名片与作品都可以改——点右下角的「我的一方天地」随时进入。'
+    : '一台设备只需登录一次。点邮件里的链接回到本页，名片与作品就都能改了。';
 }
 async function openMine(){
   await refreshMe();
@@ -1567,6 +1592,7 @@ document.addEventListener('click', async function(e){
   if(en){ e.preventDefault(); openMine(); return; }
   if(e.target.id==='sbSend'){
     var em=$('sbEmail').value.trim();
+    try{ if(em) localStorage.setItem('palm_email', em); }catch(ignore){}
     if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
     e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
     var workLogin=false;
@@ -1621,21 +1647,19 @@ document.addEventListener('click', async function(e){
   }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
+globalThis.__palmOpenMine = openMine;
+globalThis.__palmRefreshMe = refreshMe;
 SB.auth.onAuthStateChange(function(event, session){
   refreshMe();
   if(session && (event==='SIGNED_IN' || (event==='INITIAL_SESSION' && PALM_AUTH_RETURN)) && !globalThis.__palmOpenedAfterSignIn){
     globalThis.__palmOpenedAfterSignIn=true;
-    var toWork=/(?:[?&]destination=works(?:&|$))/i.test(location.search);
-    try{ toWork=toWork||localStorage.getItem('palmAfterLogin')==='works'; }catch(ignore){}
-    if(toWork){
-      try{ localStorage.removeItem('palmAfterLogin'); }catch(ignore){}
-      var tries=0, openWork=function(){
-        if(globalThis.__palmMyWork){ globalThis.__palmMyWork(); return; }
-        if(++tries<20){ setTimeout(openWork,120); return; }
-        openMine();
-      };
-      setTimeout(openWork,180);
-    }else setTimeout(function(){ openMine(); }, 180);
+    try{ localStorage.removeItem('palmAfterLogin'); }catch(ignore){}
+    var tries=0, openHub=function(){
+      if(globalThis.__palmHub){ globalThis.__palmHub(); return; }
+      if(++tries<25){ setTimeout(openHub,120); return; }
+      openMine();
+    };
+    setTimeout(openHub,200);
   }
 });
 (async function(){
@@ -1649,7 +1673,7 @@ SB.auth.onAuthStateChange(function(event, session){
   await refreshMe();
   if(ME && PALM_AUTH_RETURN && !globalThis.__palmOpenedAfterSignIn){
     globalThis.__palmOpenedAfterSignIn=true;
-    setTimeout(function(){ openMine(); }, 180);
+    setTimeout(function(){ if(globalThis.__palmHub) globalThis.__palmHub(); else openMine(); }, 250);
   }
 })();
 </script>
@@ -2962,6 +2986,86 @@ loadWorks();
   bar.appendChild(s); bar.appendChild(b); bar.appendChild(x);
   function put(){ if(document.body){ document.body.appendChild(bar); } else setTimeout(put,120); }
   put();
+})();
+</script>
+<script>
+/* 我的一方天地：一次登录，名片与作品都在这里 */
+(function(){
+  function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+    if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
+      var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
+  function jwtEmail(t){try{var p=(t.split(".")[1]||"").replace(/-/g,"+").replace(/_/g,"/");
+    while(p.length%4)p+="="; return (JSON.parse(decodeURIComponent(escape(atob(p)))).email||"").trim();}catch(e){return "";}}
+  var btn=document.createElement("button"); btn.id="myHubBtn"; btn.type="button";
+  var box=document.createElement("div"); box.id="myHub";
+  box.innerHTML='<div class="hb"><span class="hx">×</span>'+
+    '<h4>我的一方天地</h4><div class="hen">My own corner</div>'+
+    '<p class="hwho" id="hbWho"></p>'+
+    '<div class="hb2">'+
+      '<button class="hc" id="hbCard"><b>我的名片</b><span>专长标签 · 中文简介 · English introduction · 照片</span></button>'+
+      '<button class="hc" id="hbWork"><b>我的作品</b><span>作品题目 · 类别年份 · 封面与内页图 · 附件 · 个人网站</span></button>'+
+    '</div>'+
+    '<p class="hout"><a id="hbOut">退出登录</a></p></div>';
+  function put(){ if(!document.body){ setTimeout(put,120); return; }
+    document.body.appendChild(btn); document.body.appendChild(box); }
+  put();
+  function hide(){ box.style.display="none"; }
+  box.addEventListener("click",function(e){ if(e.target===box||e.target.className==="hx") hide(); });
+  async function who(){
+    var el=document.getElementById("hbWho"); if(!el) return;
+    var T=tok(); var em=jwtEmail(T);
+    el.textContent="正在读取……";
+    try{
+      var SB=globalThis.__palmSupabaseClient;
+      var r=await SB.rpc("my_member");
+      if(!r.error&&r.data&&r.data.length) el.textContent=r.data[0].name+"（"+em+"）　一次登录，下面两处都可以改。";
+      else el.textContent=em+"　这个邮箱还没有绑定到成员名录，请致信掌心核对。";
+    }catch(e){ el.textContent=em; }
+  }
+  function open(){ box.style.display="block"; who(); }
+  globalThis.__palmHub=open;
+  btn.onclick=function(){
+    if(tok()){ open(); return; }
+    var e=document.querySelector(".sbEntry"); if(e) e.click();
+  };
+  box.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("button"); if(!b) return;
+    if(b.id==="hbCard"){ hide(); if(globalThis.__palmOpenMine) globalThis.__palmOpenMine(); }
+    if(b.id==="hbWork"){ hide(); if(globalThis.__palmMyWork) globalThis.__palmMyWork(); }
+  });
+  box.addEventListener("click",async function(e){
+    if(e.target&&e.target.id==="hbOut"){
+      hide();
+      try{ await globalThis.__palmSupabaseClient.auth.signOut(); }catch(err){}
+      if(globalThis.__palmRefreshMe) globalThis.__palmRefreshMe();
+    }
+  });
+  setInterval(function(){
+    btn.textContent = tok() ? "✦ 我的一方天地" : "✦ 成员登录";
+    var em=""; try{ em=localStorage.getItem("palm_email")||""; }catch(e){}
+    var inp=document.getElementById("sbEmail");
+    if(inp&&!inp.value&&em) inp.value=em;
+    /* 名片窗里加一个直接去作品的按钮 */
+    var mine=document.getElementById("sbMine");
+    if(mine&&!document.getElementById("jumpWork")){
+      var save=document.getElementById("sbSave");
+      if(save&&save.parentNode&&save.parentNode.parentNode){
+        var j=document.createElement("button"); j.type="button"; j.id="jumpWork"; j.className="palm-jump";
+        j.textContent="✎ 接着改我的作品 →（不必再登录）";
+        j.onclick=function(){ mine.style.display="none"; if(globalThis.__palmMyWork) globalThis.__palmMyWork(); };
+        save.parentNode.parentNode.appendChild(j);
+      }
+    }
+    /* 作品窗里加一个直接回名片的按钮 */
+    var w=document.getElementById("myWho");
+    if(w&&w.parentNode&&!document.getElementById("jumpCard")){
+      var j2=document.createElement("button"); j2.type="button"; j2.id="jumpCard"; j2.className="palm-jump";
+      j2.textContent="✎ 接着改我的名片 →（不必再登录）";
+      j2.onclick=function(){ var p=w.parentNode.parentNode; if(p) p.style.display="none";
+        if(globalThis.__palmOpenMine) globalThis.__palmOpenMine(); };
+      w.parentNode.appendChild(j2);
+    }
+  },800);
 })();
 </script>
 </body></html>
