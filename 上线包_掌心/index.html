@@ -2524,6 +2524,8 @@ loadWorks();
 (function(){
   var HOST="",KEY="",MINE=null,NAME="",OWNER="";
   var CATS=["诗集","散文集","小说","评论","书画","摄影","音频","视频","个人网站","其他"];
+  function jwtEmail(t){try{var p=(t.split(".")[1]||"").replace(/-/g,"+").replace(/_/g,"/");
+    while(p.length%4)p+="="; return (JSON.parse(decodeURIComponent(escape(atob(p)))).email||"").trim();}catch(e){return "";}}
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
     if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
       var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
