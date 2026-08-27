@@ -1387,18 +1387,19 @@ var ROSTER=[
     <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
     <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
-    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">填入你留给掌心的邮箱。信里有<b>六位验证码</b>，把它填到下面即可登录；也可以直接点信里的链接。这台设备只需登录这一次——<b>名片与作品共用同一次登录</b>，以后点右下角的「我的一方天地」就能进。</p>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0"><b>第一步</b>　填入你留给掌心的邮箱，点下面的按钮，掌心会寄一封信给你。<br><b>第二步</b>　到邮箱里打开这封信，<b>点信中的「点此登录掌心」</b>——通常一步就进来了。<br><span style="color:var(--seal)"><b>万一链接打不开、或提示已失效</b>，信里还有一组六位验证码，填到本页最下面那一栏即可。</span><br>这台设备只需登录这一次，名片与作品共用同一次登录；以后点右下角的「我的一方天地」就能进。</p>
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
     <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
     <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
-    <div id="sbCodeBox" style="display:none;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)">
-      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:0 0 5px">信里的六位验证码</label>
+    <div id="sbCodeBox" style="margin-top:18px;padding:14px 14px 12px;border:1px dashed var(--seal);border-radius:9px;background:rgba(156,58,47,.045)">
+      <div style="font-family:var(--kai);font-size:14.5px;color:var(--seal);margin:0 0 3px">备选办法 · 链接不管用时才需要</div>
+      <label style="display:block;font-size:13px;color:var(--ink-soft);margin:0 0 7px">把信里那一组<b>六位验证码</b>填在这里，同样可以登录（换手机、换电脑都能用）</label>
       <div style="display:flex;gap:10px">
         <input type="text" id="sbCode" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="例：482913"
           style="flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:var(--serif-en);font-size:20px;letter-spacing:6px;color:var(--ink);box-sizing:border-box">
         <button id="sbCodeGo" style="padding:10px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.12em;cursor:pointer;word-break:keep-all">登 录</button>
       </div>
-      <p style="font-size:12.5px;color:var(--ink-faint);line-height:1.85;margin:8px 0 0">填验证码最稳妥：换手机、换电脑都能用，也不怕邮箱把链接提前点掉。</p>
+      <p style="font-size:12.5px;color:var(--ink-faint);line-height:1.85;margin:8px 0 0">＊ 有些邮箱的安全扫描会提前把链接点掉，于是链接一打开就说「已失效」——这时用验证码即可。</p>
     </div>
     <p id="sbMsg" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
   </div>
@@ -1629,7 +1630,7 @@ document.addEventListener('click', async function(e){
       $('sbMsg').textContent=say(r.error.message);
     } else {
       try{ localStorage.setItem('palm_sent_at', String(Date.now())); localStorage.setItem('palm_sent_to', em); }catch(ignore){}
-      var cb=$('sbCodeBox'); if(cb){ cb.style.display='block'; setTimeout(function(){ var c=$('sbCode'); if(c) c.focus(); },200); }
+      var cb=$('sbCodeBox'); if(cb){ cb.style.display='block'; }
       lockSend(60);
       $('sbMsg').textContent='登录信已经寄出。请检查收件箱和垃圾邮件，只点最新一封信里的链接；60 秒内不要重复寄送。';
     }
@@ -3038,7 +3039,8 @@ loadWorks();
       var e=document.querySelector(".sbEntry");
       if(e){ e.scrollIntoView({block:"center"}); e.click();
         setTimeout(function(){ var cb=document.getElementById("sbCodeBox");
-          if(cb){ cb.style.display="block"; var c=document.getElementById("sbCode"); if(c) c.focus(); } },600); }
+          if(cb){ cb.style.display="block"; cb.scrollIntoView({block:"center"});
+            var c=document.getElementById("sbCode"); if(c) c.focus(); } },600); }
       else location.hash="#members";
     };
     var x=document.createElement("span");
