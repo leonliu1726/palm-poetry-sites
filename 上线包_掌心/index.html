@@ -530,21 +530,21 @@
     letter-spacing:.06em;cursor:pointer;box-shadow:0 8px 22px rgba(47,44,38,.16);transition:.22s;word-break:keep-all}
   #myHubBtn:hover{background:var(--seal);color:#fdf9f0}
   #myHub{display:none;position:fixed;inset:0;z-index:180;background:rgba(30,26,20,.55);padding:24px;overflow:auto}
-  #myHub .hb{max-width:520px;margin:60px auto;background:var(--paper);border:1px solid var(--line);
+  #myHub .pw-card{max-width:520px;margin:60px auto;background:var(--paper);border:1px solid var(--line);
     border-radius:12px;padding:26px 28px 24px;position:relative}
-  #myHub .hx{position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1}
+  #myHub .pw-x{position:absolute;right:16px;top:10px;font-size:24px;color:var(--ink-soft);cursor:pointer;line-height:1}
   #myHub h4{font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em;margin:0}
-  #myHub .hen{font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px}
-  #myHub .hwho{font-size:13.5px;color:var(--ink-soft);margin:14px 0 4px;line-height:1.9}
-  #myHub .hb2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-  @media(max-width:520px){#myHub .hb2{grid-template-columns:1fr}}
-  #myHub .hc{border:1px solid var(--line);border-radius:10px;padding:16px 16px 15px;cursor:pointer;
+  #myHub .pw-en{font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px}
+  #myHub .pw-who{font-size:13.5px;color:var(--ink-soft);margin:14px 0 4px;line-height:1.9}
+  #myHub .pw-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  @media(max-width:520px){#myHub .pw-grid{grid-template-columns:1fr}}
+  #myHub .pw-pick{border:1px solid var(--line);border-radius:10px;padding:16px 16px 15px;cursor:pointer;
     background:rgba(255,252,246,.6);transition:.22s;text-align:left}
-  #myHub .hc:hover{border-color:var(--seal);transform:translateY(-2px);box-shadow:0 10px 24px rgba(156,58,47,.12)}
-  #myHub .hc b{display:block;font-family:var(--kai);font-size:16.5px;color:var(--ink);margin-bottom:5px;word-break:keep-all}
-  #myHub .hc span{display:block;font-size:12.8px;line-height:1.85;color:var(--ink-soft)}
-  #myHub .hout{margin-top:16px;font-size:13px;color:var(--ink-faint);text-align:right}
-  #myHub .hout a{color:var(--seal);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(156,58,47,.3)}
+  #myHub .pw-pick:hover{border-color:var(--seal);transform:translateY(-2px);box-shadow:0 10px 24px rgba(156,58,47,.12)}
+  #myHub .pw-pick b{display:block;font-family:var(--kai);font-size:16.5px;color:var(--ink);margin-bottom:5px;word-break:keep-all}
+  #myHub .pw-pick span{display:block;font-size:12.8px;line-height:1.85;color:var(--ink-soft)}
+  #myHub .pw-out{margin-top:16px;font-size:13px;color:var(--ink-faint);text-align:right}
+  #myHub .pw-out a{color:var(--seal);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(156,58,47,.3)}
   .palm-jump{display:block;width:100%;margin-top:12px;padding:10px 14px;border:1px dashed var(--seal);
     border-radius:9px;background:transparent;color:var(--seal);font-family:var(--kai);font-size:14.5px;
     cursor:pointer;word-break:keep-all}
@@ -2997,20 +2997,20 @@ loadWorks();
   function jwtEmail(t){try{var p=(t.split(".")[1]||"").replace(/-/g,"+").replace(/_/g,"/");
     while(p.length%4)p+="="; return (JSON.parse(decodeURIComponent(escape(atob(p)))).email||"").trim();}catch(e){return "";}}
   var btn=document.createElement("button"); btn.id="myHubBtn"; btn.type="button";
-  var box=document.createElement("div"); box.id="myHub";
-  box.innerHTML='<div class="hb"><span class="hx">×</span>'+
-    '<h4>我的一方天地</h4><div class="hen">My own corner</div>'+
-    '<p class="hwho" id="hbWho"></p>'+
-    '<div class="hb2">'+
-      '<button class="hc" id="hbCard"><b>我的名片</b><span>专长标签 · 中文简介 · English introduction · 照片</span></button>'+
-      '<button class="hc" id="hbWork"><b>我的作品</b><span>作品题目 · 类别年份 · 封面与内页图 · 附件 · 个人网站</span></button>'+
+  var box=document.createElement("div"); box.id="myHub"; box.style.display="none";
+  box.innerHTML='<div class="pw-card"><span class="pw-x">×</span>'+
+    '<h4>我的一方天地</h4><div class="pw-en">My own corner</div>'+
+    '<p class="pw-who" id="hbWho"></p>'+
+    '<div class="pw-grid">'+
+      '<button class="pw-pick" id="hbCard"><b>我的名片</b><span>专长标签 · 中文简介 · English introduction · 照片</span></button>'+
+      '<button class="pw-pick" id="hbWork"><b>我的作品</b><span>作品题目 · 类别年份 · 封面与内页图 · 附件 · 个人网站</span></button>'+
     '</div>'+
-    '<p class="hout"><a id="hbOut">退出登录</a></p></div>';
+    '<p class="pw-out"><a id="hbOut">退出登录</a></p></div>';
   function put(){ if(!document.body){ setTimeout(put,120); return; }
     document.body.appendChild(btn); document.body.appendChild(box); }
   put();
   function hide(){ box.style.display="none"; }
-  box.addEventListener("click",function(e){ if(e.target===box||e.target.className==="hx") hide(); });
+  box.addEventListener("click",function(e){ if(e.target===box||e.target.className==="pw-x") hide(); });
   async function who(){
     var el=document.getElementById("hbWho"); if(!el) return;
     var T=tok(); var em=jwtEmail(T);
