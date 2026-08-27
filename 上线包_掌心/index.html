@@ -3002,35 +3002,52 @@ loadWorks();
 })();
 </script>
 <script>
-/* 登录链接失效时，明确告诉本人，并一键重寄 */
+/* 登录链接失效时才提示；若这台设备其实已经登录，就安静地把地址清干净 */
 (function(){
   var h=location.hash||"", q=location.search||"";
   if(!/error/i.test(h)&&!/error/i.test(q)) return;
-  var code=(h+q).match(/error_code=([^&]+)/);
-  code=code?decodeURIComponent(code[1]):"";
-  var zh="这封登录信的链接已经失效了。";
-  if(/expired/i.test(code)) zh="这封登录信的链接已经过期或被用过了。";
-  var bar=document.createElement("div");
-  bar.id="loginErr";
-  bar.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:400;background:var(--seal,#9c3a2f);color:#fdf9f0;padding:14px 18px;font-size:14.5px;line-height:1.9;text-align:center;box-shadow:0 -6px 20px rgba(0,0,0,.18)";
-  var s=document.createElement("span");
-  s.textContent=zh+"　请重新寄一封，收到后请在几分钟内点开。";
-  var b=document.createElement("button");
-  b.textContent="重新寄一封登录信";
-  b.style.cssText="margin-left:14px;padding:6px 14px;border:1px solid #fdf9f0;border-radius:18px;background:transparent;color:#fdf9f0;font-family:inherit;font-size:14px;cursor:pointer";
-  b.onclick=function(){
-    history.replaceState(null,"",location.pathname);
-    bar.remove();
-    var e=document.querySelector(".sbEntry");
-    if(e){ e.scrollIntoView({block:"center"}); e.click(); }
-    else location.hash="#members";
-  };
-  var x=document.createElement("span");
-  x.textContent="×"; x.style.cssText="margin-left:16px;cursor:pointer;font-size:19px;opacity:.8";
-  x.onclick=function(){ history.replaceState(null,"",location.pathname); bar.remove(); };
-  bar.appendChild(s); bar.appendChild(b); bar.appendChild(x);
-  function put(){ if(document.body){ document.body.appendChild(bar); } else setTimeout(put,120); }
-  put();
+  function clean(){ try{ history.replaceState(null,"",location.pathname); }catch(e){} }
+  function signedIn(){
+    try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i);
+      if(/^sb-.*-auth-token$/.test(k)){ var v=JSON.parse(localStorage.getItem(k)||"null");
+        if(v&&(v.access_token||(v.currentSession&&v.currentSession.access_token))) return true; } } }catch(e){}
+    return false;
+  }
+  var tries=0;
+  (function wait(){
+    if(signedIn()){ clean(); return; }            /* 已经登录：不弹任何东西 */
+    if(++tries<25){ setTimeout(wait,300); return; } /* 等 Supabase 恢复会话 */
+    show();
+  })();
+  function show(){
+    if(signedIn()){ clean(); return; }
+    var code=(h+q).match(/error_code=([^&]+)/);
+    code=code?decodeURIComponent(code[1]):"";
+    var zh="这封登录信的链接已经失效了。";
+    if(/expired/i.test(code)) zh="这封登录信的链接已经过期或被点过了。";
+    var bar=document.createElement("div");
+    bar.id="loginErr";
+    bar.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:400;background:var(--seal,#9c3a2f);color:#fdf9f0;padding:14px 18px;font-size:14.5px;line-height:1.9;text-align:center;box-shadow:0 -6px 20px rgba(0,0,0,.18)";
+    var s=document.createElement("span");
+    s.textContent=zh+"　信里还有一组六位验证码，用它登录最稳妥。";
+    var b=document.createElement("button");
+    b.textContent="用验证码登录";
+    b.style.cssText="margin-left:14px;padding:6px 14px;border:1px solid #fdf9f0;border-radius:18px;background:transparent;color:#fdf9f0;font-family:inherit;font-size:14px;cursor:pointer";
+    b.onclick=function(){
+      clean(); bar.remove();
+      var e=document.querySelector(".sbEntry");
+      if(e){ e.scrollIntoView({block:"center"}); e.click();
+        setTimeout(function(){ var cb=document.getElementById("sbCodeBox");
+          if(cb){ cb.style.display="block"; var c=document.getElementById("sbCode"); if(c) c.focus(); } },600); }
+      else location.hash="#members";
+    };
+    var x=document.createElement("span");
+    x.textContent="×"; x.style.cssText="margin-left:16px;cursor:pointer;font-size:19px;opacity:.8";
+    x.onclick=function(){ clean(); bar.remove(); };
+    bar.appendChild(s); bar.appendChild(b); bar.appendChild(x);
+    function put(){ if(document.body){ document.body.appendChild(bar); } else setTimeout(put,120); }
+    put();
+  }
 })();
 </script>
 <script>
