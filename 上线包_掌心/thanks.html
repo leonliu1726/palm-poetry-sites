@@ -1,4 +1,18 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8">
+<!DOCTYPE html><html lang="zh-Hans"><head>
+<script>
+/* 老的长网址（github.io/palm-poetry-sites/上线包_掌心/…）一律换成 palmpoetry.org，地址栏保持干净 */
+(function(){try{
+  var h=location.hostname;
+  if(h.indexOf("palmpoetry.org")>=0) return;
+  if(h.indexOf("github.io")<0) return;
+  var p=decodeURIComponent(location.pathname||"");
+  if(p.indexOf("上线包_掌心")<0) return;
+  var m=p.match(/\/([^\/]+\.html)$/);
+  var f=(m&&m[1]&&m[1]!=="index.html")?m[1]:"";
+  location.replace("https://palmpoetry.org/"+f+location.search+location.hash);
+}catch(e){}})();
+</script>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>谢谢 · 掌心</title>
 <meta name="robots" content="noindex,follow">
