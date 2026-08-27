@@ -1387,10 +1387,19 @@ var ROSTER=[
     <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
     <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
-    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">第一次在这台设备使用时，填入你留给掌心的邮箱；收到信后，<b>点一次登录链接即可</b>。寄出后按钮会倒计时，请不要连续点击。以后进入成员区或作品区都会自动认出你，不用密码，也不用重复填写邮箱。</p>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0">填入你留给掌心的邮箱。信里有<b>六位验证码</b>，把它填到下面即可登录；也可以直接点信里的链接。这台设备只需登录这一次——<b>名片与作品共用同一次登录</b>，以后点右下角的「我的一方天地」就能进。</p>
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
     <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
     <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
+    <div id="sbCodeBox" style="display:none;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)">
+      <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:0 0 5px">信里的六位验证码</label>
+      <div style="display:flex;gap:10px">
+        <input type="text" id="sbCode" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="例：482913"
+          style="flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:var(--serif-en);font-size:20px;letter-spacing:6px;color:var(--ink);box-sizing:border-box">
+        <button id="sbCodeGo" style="padding:10px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.12em;cursor:pointer;word-break:keep-all">登 录</button>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-faint);line-height:1.85;margin:8px 0 0">填验证码最稳妥：换手机、换电脑都能用，也不怕邮箱把链接提前点掉。</p>
+    </div>
     <p id="sbMsg" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
   </div>
 </div>
@@ -1620,9 +1629,27 @@ document.addEventListener('click', async function(e){
       $('sbMsg').textContent=say(r.error.message);
     } else {
       try{ localStorage.setItem('palm_sent_at', String(Date.now())); localStorage.setItem('palm_sent_to', em); }catch(ignore){}
+      var cb=$('sbCodeBox'); if(cb){ cb.style.display='block'; setTimeout(function(){ var c=$('sbCode'); if(c) c.focus(); },200); }
       lockSend(60);
       $('sbMsg').textContent='登录信已经寄出。请检查收件箱和垃圾邮件，只点最新一封信里的链接；60 秒内不要重复寄送。';
     }
+    return;
+  }
+  if(e.target.id==='sbCodeGo'){
+    var code=($('sbCode').value||'').replace(/[^0-9]/g,'');
+    var mail=$('sbEmail').value.trim();
+    if(!mail){ $('sbMsg').textContent='请先填写邮箱。'; return; }
+    if(code.length<6){ $('sbMsg').textContent='请填写信里的六位数字。'; return; }
+    e.target.disabled=true; $('sbMsg').textContent='正在核对……';
+    var vr = await SB.auth.verifyOtp({ email: mail, token: code, type: 'email' });
+    e.target.disabled=false;
+    if(vr.error){ $('sbMsg').textContent = /expired|invalid/i.test(vr.error.message||'')
+      ? '验证码不对或已过期。请用信里最新的一封，或重新寄一封。' : say(vr.error.message); return; }
+    $('sbMsg').textContent='登录成功。';
+    $('sbCode').value=''; $('sbCodeBox').style.display='none';
+    hide('sbLogin');
+    await refreshMe();
+    setTimeout(function(){ if(globalThis.__palmHub) globalThis.__palmHub(); else openMine(); }, 250);
     return;
   }
   if(e.target.id==='sbForce'){
