@@ -597,6 +597,16 @@
   .al-peek{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 12px}
   .al-peek img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:7px;border:1px solid var(--line);cursor:pointer}
   @media(max-width:680px){.al-peek{grid-template-columns:repeat(3,1fr)}}
+
+  @media(max-width:640px){
+    .hero{padding:0 12px}
+    .hero-panel{padding:34px 18px 30px;max-width:100%;width:100%}
+    .hero-panel::before{inset:5px}
+    .hc{width:30px;height:30px}
+    .hc.tl{top:-6px;left:-6px}.hc.tr{top:-6px;right:-6px}
+    .hc.bl{bottom:-6px;left:-6px}.hc.br{bottom:-6px;right:-6px}
+    .w-note,.h-sub,.creed{padding:0 2px}
+  }
 </style></head>
 <body>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
