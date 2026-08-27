@@ -1593,6 +1593,18 @@ document.addEventListener('click', async function(e){
   if(e.target.id==='sbSend'){
     var em=$('sbEmail').value.trim();
     try{ if(em) localStorage.setItem('palm_email', em); }catch(ignore){}
+    if(!e.target.dataset.force){
+      var last=0, lastEm='';
+      try{ last=parseInt(localStorage.getItem('palm_sent_at')||'0',10)||0; lastEm=localStorage.getItem('palm_sent_to')||''; }catch(ignore){}
+      if(em && em===lastEm && Date.now()-last < 600000){
+        var mins=Math.max(1, Math.ceil((600000-(Date.now()-last))/60000));
+        $('sbMsg').innerHTML='刚才已经给这个邮箱寄过一封了。<b>请先到收件箱和垃圾邮件里找最新的一封</b>——'+
+          '同一个邮箱短时间内反复寄送，反而会被邮件服务暂时挡住，越点越收不到。<br>'+
+          '<a id="sbForce" style="color:var(--seal);cursor:pointer;border-bottom:1px solid rgba(156,58,47,.35)">确实没收到，'+mins+' 分钟后我要再寄一次</a>';
+        return;
+      }
+    }
+    delete e.target.dataset.force;
     if(!em){ $('sbMsg').textContent='请先填写邮箱。'; return; }
     e.target.disabled=true; $('sbMsg').textContent='正在寄出……';
     var workLogin=false;
@@ -1607,10 +1619,16 @@ document.addEventListener('click', async function(e){
       else { e.target.disabled=false; e.target.textContent=SEND_LABEL; }
       $('sbMsg').textContent=say(r.error.message);
     } else {
+      try{ localStorage.setItem('palm_sent_at', String(Date.now())); localStorage.setItem('palm_sent_to', em); }catch(ignore){}
       lockSend(60);
       $('sbMsg').textContent='登录信已经寄出。请检查收件箱和垃圾邮件，只点最新一封信里的链接；60 秒内不要重复寄送。';
     }
     return;
+  }
+  if(e.target.id==='sbForce'){
+    var last2=0; try{ last2=parseInt(localStorage.getItem('palm_sent_at')||'0',10)||0; }catch(ignore){}
+    if(Date.now()-last2 < 600000){ $('sbMsg').textContent='请再等一等，让上一封先到。'; return; }
+    var b2=$('sbSend'); b2.dataset.force='1'; b2.click(); return;
   }
   if(e.target.id==='sbOut'){ await SB.auth.signOut(); ME=null; MINE=null; hide('sbMine'); refreshMe(); return; }
   if(e.target.id==='sbSave'){
@@ -1651,7 +1669,7 @@ globalThis.__palmOpenMine = openMine;
 globalThis.__palmRefreshMe = refreshMe;
 SB.auth.onAuthStateChange(function(event, session){
   refreshMe();
-  if(session && (event==='SIGNED_IN' || (event==='INITIAL_SESSION' && PALM_AUTH_RETURN)) && !globalThis.__palmOpenedAfterSignIn){
+  if(session && PALM_AUTH_RETURN && !globalThis.__palmOpenedAfterSignIn){
     globalThis.__palmOpenedAfterSignIn=true;
     try{ localStorage.removeItem('palmAfterLogin'); }catch(ignore){}
     var tries=0, openHub=function(){
