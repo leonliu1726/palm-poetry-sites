@@ -558,6 +558,31 @@
   .cov-card span{display:block;font-size:14px;line-height:1.95;color:var(--ink-soft)}
   .cov-card .cov-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:6px}
   .cov-card em{display:inline-block;margin-top:10px;font-style:normal;font-family:var(--kai);font-size:14.5px;color:var(--seal)}
+
+  .cov-fold{max-width:820px;margin:24px auto 6px;border:1px solid var(--gold);border-radius:12px;
+    background:radial-gradient(120% 90% at 88% 8%,rgba(169,139,79,.14),transparent),rgba(255,255,255,.48);
+    transition:.24s}
+  .cov-fold:hover{border-color:var(--seal);box-shadow:0 12px 26px rgba(156,58,47,.12)}
+  .cov-fold>summary{cursor:pointer;list-style:none;padding:20px 22px}
+  .cov-fold>summary::-webkit-details-marker{display:none}
+  .cov-fold>summary b{display:block;font-family:var(--kai);font-size:18px;color:var(--seal);
+    letter-spacing:.06em;margin-bottom:7px;word-break:keep-all}
+  .cov-fold>summary span{display:block;font-size:14px;line-height:1.95;color:var(--ink-soft)}
+  .cov-fold>summary .cov-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:6px}
+  .cov-fold>summary em{display:inline-block;margin-top:10px;font-style:normal;font-family:var(--kai);
+    font-size:14.5px;color:var(--seal);word-break:keep-all}
+  .cov-fold[open]>summary em::after{content:"　（点标题可收起）";font-size:12.5px;color:var(--ink-faint)}
+  .cov-body{padding:4px 24px 22px;border-top:1px solid var(--line);margin-top:4px}
+  .cov-lead{font-size:15px;line-height:2;color:var(--ink);margin:16px 0 6px}
+  .cov-body h4{font-family:var(--kai);font-size:16.5px;color:var(--seal);letter-spacing:.06em;
+    margin:20px 0 2px;word-break:keep-all}
+  .cov-body p{font-size:14.5px;line-height:1.95;color:var(--ink-soft);margin:6px 0}
+  .cov-body a{color:var(--seal)}
+  .cov-note{font-size:13px;color:var(--ink-faint);line-height:1.9;margin-top:20px;
+    padding-top:14px;border-top:1px dashed var(--line)}
+  .al-peek{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 12px}
+  .al-peek img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:7px;border:1px solid var(--line);cursor:pointer}
+  @media(max-width:680px){.al-peek{grid-template-columns:repeat(3,1fr)}}
 </style></head>
 <body>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
@@ -565,7 +590,7 @@
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt=""><span class="brand-tx"><span class="zh">掌心</span><span class="en">THE PALM POETRY CLUB</span></span></div>
   <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNav" aria-expanded="false">菜单 · Menu</button>
   <ul id="primaryNav">
-    <li><a href="#origin">缘起<span class="e">Origin</span></a></li>
+    <li><a href="#origin">缘起与公约<span class="e">Origin &amp; Covenant</span></a></li>
     <li><a href="#reading">萤火与文存<span class="e">Fireflies</span></a></li>
     <li><a href="#members">成员与作品<span class="e">Members &amp; Works</span></a></li>
     <li><a href="#forum">公共论坛<span class="e">Forum</span></a></li>
@@ -603,7 +628,7 @@
 </div></section>
 
 <section id="origin" class="panel"><div class="wrap">
-  <div class="sec-head"><span class="sec-no">一</span><h2>缘起</h2><span class="en">Origin</span><div class="rule"></div></div>
+  <div class="sec-head"><span class="sec-no">一</span><h2>缘起与公约</h2><span class="en">Origin &amp; Covenant</span><div class="rule"></div></div>
   <div class="origin-top">
     <div class="origin-quote">
       <p class="lead">「苦读于华夏，<br>生活在西方，<br>感受自由思想与独立人格之魅力——<br>吾辈何许人也。」</p>
@@ -623,12 +648,53 @@
     <div class="mi"><b>面向世界 · 面向未来</b><span data-en="To the World, to the Future — we learn from poets, writers and artists everywhere; we write for ordinary readers, cross the borders of language, and make room for a poetic way of living.">海纳百川，与世界各地诗人、作家、艺术家切磋；为大众创作，划破语言边界，开拓诗意的栖居。</span></div>
   </div>
 
-  <a class="cov-card" href="covenant.html">
-    <b>掌心公约 · 使用与授权条款</b>
-    <span>掌心不设群规。这一纸只把话说在前头：<b>你的作品永远是你的</b>，随时可改可撤；雅集的照片与录音如何使用；邮箱只用于本人登录，不公开不外传。<br>先在诗社与沙龙公示三十天，如无异议视为认同，此后向海内外开放。</span>
-    <span class="cov-en">The Palm Covenant — what you keep, what you grant, and how we will treat your work. Posted for thirty days; silence is taken as assent.</span>
-    <em>读全文 · Read it →</em>
-  </a>
+  <div class="sub-head" id="covenant-sec"><b>掌心公约</b><span class="en">The Palm Covenant</span></div>
+
+  <details class="cov-fold">
+    <summary>
+      <b>使用本网站前，建议先读一遍</b>
+      <span>为了最大限度地保障会员的创作自由、减少不必要的管理，本网站不设硬性规定。<br>
+      这里只说清楚三件事：<b>你的作品永远是你的</b>，随时可改可撤；雅集的照片与录音如何使用；你的邮箱只用于本人登录，不公开、不外传。</span>
+      <span class="cov-en">Before you use this site, we suggest reading this once. The Palm imposes no rigid rules — only a plain statement of what you keep and what you grant.</span>
+      <em class="cov-open">点开阅读全文 · Read it →</em>
+    </summary>
+    <div class="cov-body">
+      <p class="cov-lead">为了最大限度地保障会员的创作自由、减少不必要的管理，本网站不设硬性规定。掌心以真诚待人、与人为善为共同的底色，倚重各自的自觉与自我约束——不苛责，不纵容。以下十条不是戒律，而是一份清楚的说明：你在掌心享有哪些权利，你授予掌心多大的使用范围，以及掌心将如何处理你的作品、肖像、声音与个人资料。</p>
+
+      <h4>一　你的作品，永远是你的</h4>
+      <p>你在掌心发表、上传、朗诵的一切——诗、文、书画、摄影、音频、视频——<b>版权自始至终归你本人所有</b>。掌心不主张任何所有权，也不会转让给第三方。你可以<b>随时修改、随时撤下、随时退出</b>；撤下后掌心即在网站与论坛移除。已印在纸本《萤火》上的部分无法追回，投稿时请一并考虑。</p>
+
+      <h4>二　你给掌心的许可</h4>
+      <p>为使作品能被读到，你交来作品时，即同时给予掌心一份<b>非独占、免费、可随时撤回</b>的许可，用于在掌心网站、掌心论坛、《萤火》诗刊、掌心公众号与雅集记录中展示、编排、印行，并作必要的排版调整（不改动文意），以及在介绍掌心时节录引用并署你的名。此许可<b>不含</b>授权第三方商业使用、改编出售，或以你的名义参加评奖与商业活动；凡此种种均另行征求你本人同意。</p>
+
+      <h4>三　肖像、声音与影像</h4>
+      <p>掌心的雅集、朗诵会、讲座与展览常有摄影与录音录像，用于活动记录、相册、影音与对外介绍，<b>参加活动即视为同意</b>。你随时可以说不：活动前后告知主持人或摄影师，镜头会避开你；已上网的照片、录音、视频，来信即可移除，不必说明理由；涉及未成年人的影像须其监护人事先同意。</p>
+
+      <h4>四　公示与生效</h4>
+      <p>本公约先在<b>掌心诗社与掌心沙龙公示三十天</b>。公示期内任何成员与沙龙朋友均可提出异议、要求修改；<b>期满如无异议，视为认同</b>，掌心即据此向海内外的诗文艺术朋友开放本网站。此后修改条款，同样提前三十天公示，同样以「无异议即认同」处理。你若不认同修改，随时可撤下作品、退出掌心。</p>
+
+      <h4>五　原创与转载</h4>
+      <p>原创为重，请勿以他人作品充作自己的；转贴请注明作者与出处，原作者要求撤下即照办；翻译请注明原作者，引用请在合理范围内；转载掌心内容请注明出处并链回本站。</p>
+
+      <h4>六　就诗论诗</h4>
+      <p>掌心欢迎一切观点、语言与诗体的争论，唯两件事请留在门外：<b>对人不对事的攻击</b>，与<b>违反所在地法律的内容</b>。个人作品发在自己的空间，讨论与商榷发在开放论坛。对新来的人温和些——我们都曾是新来的人。</p>
+
+      <h4>七　成员空间与作品区</h4>
+      <p>加入时可选择<b>是否需要一方作品空间</b>。开通后请在<b>一周之内</b>至少更新一次（一本书、一组诗、一个链接皆可）；长期空置的空间系统会自动收回，以保持作品区清爽。收回不影响成员身份，<b>随时可以再申请</b>，名片与既往内容仍在。</p>
+
+      <h4>八　账号与隐私</h4>
+      <p>你的邮箱<b>只用于本人登录</b>，不公开、不外传、不用于群发；掌心不设密码，只寄一次性登录链接与验证码；阅览量只统计次数，不记录是谁看过；你随时可要求删除自己的账号与全部内容。</p>
+
+      <h4>九　责任边界</h4>
+      <p>掌心是公益的文化平台，由成员义务维护。我们尽力保管每一份作品，但无法承诺网站永不故障、数据永不丢失，重要原稿请你自己也留一份。成员发表的内容由发表者本人负责；若认为掌心上的内容侵犯了自己的权利，请与管理员联系，我们会尽快核实处理。</p>
+
+      <h4>十　联络</h4>
+      <p>对本公约有任何异议、建议，或需撤下某件作品、某张照片、某段录音——请直接来信，一句话就够，不必说明理由：<a href="mailto:taoran2000@hotmail.com">陶然</a>　·　<a href="mailto:xin2k@yahoo.com">风动</a>　·　<a href="mailto:huangxiaoyu2001@gmail.com">海边</a></p>
+
+      <p class="cov-note">＊ 本公约为掌心的自律约定与使用说明，旨在明确各方权利与授权范围，减少日后争议；其本身并非法律意见。若涉及具体法律问题，请咨询专业人士。<br>
+      <a href="covenant.html">另开单页阅读或打印 · Open as a separate page →</a></p>
+    </div>
+  </details>
 
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 </div></section>
@@ -1132,21 +1198,6 @@
   <p class="coda-zh">掌心不大，但可以把自己捧着的诗交到另一个人手中。<br>
   你若真诚书写，这里有你与同道展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。诗文会友，薪火相传</p>
   <p class="coda-en">The Palm is a small world — small enough to hold a poem in the palm of your hand and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be. Poetry, friendship, and a flame passed on.</p>
-  <details class="wen" id="covenant">
-    <summary>掌心公约<span class="wcnt">The Palm Covenant</span></summary>
-    <div class="wen-body">
-      <p style="font-family:var(--kai);font-size:17px;color:var(--seal);margin:0 0 10px">掌心不设群规。</p>
-      <ul class="rules">
-        <li data-en="Meet others with sincerity and goodwill; argue with the work, never with the person.">以真诚与善意待人，对事不对人。</li>
-        <li data-en="Independent and free, respectful of difference — all views, languages and poetic forms are welcome.">独立自由，尊重多元——不同观点、语言、诗体皆受欢迎。</li>
-        <li data-en="Original work first; credit your sources when you repost; respect copyright.">原创为重，转贴注明出处，尊重版权。</li>
-        <li data-en="Keep to the poem, keep out the rancour.">就诗论诗，远离戾气；个人作品发于自己专栏，讨论发于开放论坛。</li>
-        <li data-en="Be gentle with newcomers; pass the flame on.">温和护持新人，薪火相传。</li>
-        <li data-en="Your work stays yours — you may edit or withdraw it at any time.">你的作品永远是你的，随时可改可撤。</li>
-      </ul>
-      <p style="margin:14px 0 0"><a href="covenant.html" style="color:var(--seal);border-bottom:1px solid rgba(156,58,47,.35);text-decoration:none">全文：掌心公约 · 使用与授权条款　The full covenant →</a></p>
-    </div>
-  </details>
   <div class="coda-line"></div>
 </div></div>
 <footer>
@@ -3155,6 +3206,27 @@ loadWorks();
       w.parentNode.appendChild(j2);
     }
   },800);
+})();
+</script>
+<script>
+/* 活动相册：折叠上方露出六张缩略图，点任意一张即展开全相册 */
+(function(){
+  function go(){
+    var head=document.getElementById("album"); if(!head) return;
+    if(document.getElementById("alPeek")) return;
+    var fold=head.parentNode.querySelector("details.ph-fold"); if(!fold) return;
+    var imgs=[].slice.call(fold.querySelectorAll("img")); if(!imgs.length) return;
+    var box=document.createElement("div"); box.id="alPeek"; box.className="al-peek";
+    imgs.slice(0,6).forEach(function(im){
+      var n=document.createElement("img");
+      n.src=im.getAttribute("src"); n.alt=im.getAttribute("alt")||"掌心活动"; n.loading="lazy";
+      n.addEventListener("click",function(){ fold.open=true; fold.scrollIntoView({block:"start",behavior:"smooth"}); });
+      box.appendChild(n);
+    });
+    fold.parentNode.insertBefore(box, fold);
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",go); else go();
+  setTimeout(go,1200);
 })();
 </script>
 </body></html>
