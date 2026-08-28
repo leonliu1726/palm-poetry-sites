@@ -30,7 +30,7 @@
 <meta name="keywords" content="掌心诗社,掌心,The Palm Poetry Club,多伦多诗社,华人诗社,萤火,千山独行,文刃,现代诗,古典诗词,海外华文文学">
 <link rel="canonical" href="https://palmpoetry.org/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"掌心诗社","alternateName":"The Palm Poetry Club","url":"https://palmpoetry.org/","logo":"https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png","foundingDate":"2017","location":{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressCountry":"CA"}},"description":"海内外华人诗人、作家的诗词艺术社群。"}</script>
-<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、本周萤火与诗友论坛，诗文会友，薪火相传。">
+<meta name="description" content="掌心诗社 The Palm Poetry Club —— 汇聚海内外华人诗人、作家的诗词艺术社群。中英双语诗作、《萤火》诗集、今日萤火与诗友论坛，诗文会友，薪火相传。">
 <style>
   :root{--paper:#f4f0e7;--ink:#2f2c26;--ink-soft:#5f5a4f;--ink-faint:#8d8676;--seal:#9c3a2f;--seal-deep:#7e2c23;--line:#d9d2c4;--gold:#a98b4f;
     --li:"STLiti","LiSu","隶书",serif;--kai:"Kaiti","STKaiti","楷体",serif;--serif-en:"Georgia","Times New Roman",serif;}
@@ -731,17 +731,16 @@
     <p data-en="The anthology of The Palm Poetry Club — three parts, more than thirty poets, some two hundred and fifty poems.">掌心诗社的诗词专辑——三辑，三十余位诗人，二百五十余首作品。</p>
 
   <div id="firefly-today" class="ff-today">
-    <div class="ff-tag">本周萤火 · Firefly of the Week <span class="ff-date" id="ffDate"></span></div>
+    <div class="ff-tag">今日萤火 · Firefly of the Day <span class="ff-date" id="ffDate"></span></div>
     <div class="ff-title" id="ffTitle">正在取诗……</div>
     <div class="ff-author" id="ffAuthor"></div>
     <div class="ff-poem"><div class="ff-zh" id="ffLines"></div></div>
-    <div class="ff-by">＊「本周萤火」每周一首，选自掌心诗刊《萤火》。<span class="en-line">A poem a week, drawn from the anthology Fireflies.</span></div>
+    <div class="ff-by">＊「今日萤火」每天一首，选自掌心诗刊《萤火》。<span class="en-line">A new poem each day, drawn from the anthology Fireflies.</span></div>
   </div>
   <script>
   (function(){
     var d=new Date();
-    var day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5),
-        wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7);
+    var day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
     var dt=document.getElementById("ffDate");
     if(dt) dt.textContent=d.getFullYear()+" 年 "+(d.getMonth()+1)+" 月 "+d.getDate()+" 日";
     fetch("fireflies.html").then(function(r){return r.text();}).then(function(html){
@@ -756,12 +755,12 @@
         list.push({t:h.textContent.trim(), a:au, h:ln.innerHTML});
       });
       if(!list.length) throw new Error("empty");
-      var pick=list[wk % list.length];
+      var pick=list[day % list.length];
       document.getElementById("ffTitle").textContent=pick.t;
       document.getElementById("ffAuthor").textContent=pick.a;
       document.getElementById("ffLines").innerHTML=pick.h;
     }).catch(function(){
-      document.getElementById("ffTitle").textContent="本周萤火暂时取不到";
+      document.getElementById("ffTitle").textContent="今日萤火暂时取不到";
       document.getElementById("ffLines").textContent="请稍后再来，或到《萤火》专辑翻阅。";
     });
   })();
@@ -1020,9 +1019,10 @@
   <div class="sub-head" id="roster"><b>成员</b><span class="en">Members</span></div>
   <div class="pk-search"><label class="sr-only" for="pkQ">搜索人名或作品名 · Search names and works</label><input id="pkQ" type="search" aria-label="搜索人名或作品名 · Search names and works" placeholder="搜索 · 人名、作品名　　Search names &amp; works" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
-  <div class="m-group-t">掌心 <span class="en">The Palm Poetry Club &amp; The Palm Academy</span></div>
+  <div class="m-group-t">掌心诗社 <span class="en">The Palm Poetry Club</span></div>
   <div class="m-grid" id="m-grid-1"></div>
   <div class="m-gap"></div>
+  <div class="m-group-t">掌心学园 <span class="en">The Palm Academy</span></div>
   <div class="m-grid" id="m-grid-2"></div>
   <p class="m-note" style="margin:18px 0 0" data-en="Members are warmly invited to introduce friends who love poetry, article and arts to The Palm Academy.">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 成员登录 · 修改我的名片 →</a></p>
@@ -1629,6 +1629,7 @@ function paint(){
     if(a.grp!==b.grp) return a.grp-b.grp;
     return a.sort_order-b.sort_order;
   }
+  /* 诗社在上、学园在下；两组各自按最近修改时间置顶。 */
   var g1=ROWS.filter(function(m){return m.grp===1;}).sort(seen);
   var g2=ROWS.filter(function(m){return m.grp===2||m.grp===3;}).sort(seen2);
   [['m-grid-1',g1],['m-grid-2',g2]].forEach(function(p){
@@ -1762,7 +1763,7 @@ document.addEventListener('click', async function(e){
     if(!MINE) return;
     e.target.disabled=true; $('sbMsg2').textContent='正在保存……';
     var notes=[];
-    var payload = { role:$('sbRole').value.trim(), bio:$('sbBio').value.trim() };
+    var payload = { role:$('sbRole').value.trim(), bio:$('sbBio').value.trim(), updated_at:new Date().toISOString() };
     if($('sbBioEn')) payload.bio_en = $('sbBioEn').value.trim();
     var w = await SB.from('members').update(payload).eq('name', MINE.name).select('name');
     if(w.error && payload.bio_en!==undefined){ delete payload.bio_en; w = await SB.from('members').update(payload).eq('name', MINE.name).select('name'); }
@@ -1788,7 +1789,7 @@ document.addEventListener('click', async function(e){
     }
     $('sbSave').disabled=false;
     await reload();
-    $('sbMsg2').textContent = notes.join('；') + '。名片已按最新修改时间排到本组首位。';
+    $('sbMsg2').textContent = notes.join('；') + '。名片已按最新修改时间排到所在组首位。';
   }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
@@ -1860,12 +1861,13 @@ function protectedTitle(w){
   return t||'个人作品';
 }
 function mkCard(w){
-  var hasUrl = !!(w.url && w.url.length);
+  var nm=wkMeta(w.note), gallery=nm&&((Array.isArray(nm.gallery)&&nm.gallery)||(Array.isArray(nm.g)&&nm.g))||[];
+  var openUrl=String(w.url||'').trim() || String(nm&&nm.f||'').trim() || String(w.cover_url||'').trim() || String(gallery[0]||'').trim();
+  var hasUrl = !!openUrl;
   var el = document.createElement(w.kind==='collection' ? 'div' : (hasUrl ? 'a' : 'div'));
   el.className='wk-card'; el.setAttribute('data-wk','1');
   if(w.kind==='collection'){ el.setAttribute('role','button'); el.tabIndex=0; el.style.cursor='pointer'; }
-  else if(hasUrl){ el.href=w.url; el.target='_blank'; el.rel='noopener'; }
-  var nm=wkMeta(w.note), gallery=nm&&((Array.isArray(nm.gallery)&&nm.gallery)||(Array.isArray(nm.g)&&nm.g))||[];
+  else if(hasUrl){ el.href=openUrl; el.target='_blank'; el.rel='noopener'; }
   var feature=w.cover_url || gallery[0] || (w.kind==='collection'&&isImageUrl(w.url)?w.url:'');
   var cover=document.createElement('div'); cover.className='wk-cover';
   var tt=(w.title||'').replace(/[《》（）()]/g,'').trim();
@@ -2172,7 +2174,7 @@ loadWorks();
 })();
 </script>
 <script>
-/* 今日掌心：萤火（每周）· 荐帖（每日）· 动态（滚动） */
+/* 今日掌心：全部由浏览器读取现有页面与公开数据；不调用 AI，不产生模型用量。 */
 (function(){
   var FORUM="https://palmpoetry.discourse.group";
   var box=document.getElementById("tk");
@@ -2182,30 +2184,41 @@ loadWorks();
     if(s&&txt){ s.textContent=txt; } if(href) el.href=href; }
   function cache(k,v){ try{ localStorage.setItem("palm_"+k, JSON.stringify(v)); }catch(e){} }
   function cached(k){ try{ return JSON.parse(localStorage.getItem("palm_"+k)||"null"); }catch(e){ return null; } }
+  function dayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
   /* 一、今日萤火：直接读页面上已经取好的诗 */
   function ff(){
     var t=(document.getElementById("ffTitle")||{}).textContent||"";
     var a=(document.getElementById("ffAuthor")||{}).textContent||"";
     if(!t||/正在取诗|取不到/.test(t)) return false;
     var s="《"+t.replace(/[《》]/g,"")+"》"+(a?"　"+a.trim():"");
-    put(eFF,s,"#fireflies"); cache("ff",s); return true; }
-  var c=cached("ff"); if(c) put(eFF,c,"#fireflies");
+    put(eFF,s,"#fireflies"); cache("ff",{d:dayKey(),t:s}); return true; }
+  var c=cached("ff"); if(c&&c.d===dayKey()) put(eFF,c.t,"#fireflies");
   var n1=0, t1=setInterval(function(){ if(ff()||++n1>40) clearInterval(t1); },600);
-  /* 二、今日荐帖：从论坛里按日期定选一条，当天不变 */
+  /* 二、论坛荐帖：按点赞、回复、阅读与新鲜度选一首公开诗帖。 */
   async function forum(){
-    var c=cached("fo"); if(c) put(eFO,c.t,c.h);
+    var c=cached("fo"); if(c&&c.t&&c.h) put(eFO,c.t,c.h);
     try{
       var j=await (await fetch(FORUM+"/latest.json")).json();
-      var list=(j.topic_list.topics||[]).filter(function(x){return !x.pinned_globally;});
+      var list=(j.topic_list.topics||[]).filter(function(x){
+        return !x.pinned_globally && x.visible!==false &&
+          !/(管理员|指南|准则|欢迎|注册|发不出|使用入门|hello\s*world|贴诗读诗的地方)/i.test(x.title||"");
+      });
       if(!list.length) return;
-      var d=new Date(); var day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
-      var pick=list[day % list.length];
-      var o={t:pick.title, h:FORUM+"/t/topic/"+pick.id};
+      list.sort(function(a,b){
+        function score(x){
+          var age=Math.max(0,(Date.now()-Date.parse(x.last_posted_at||x.created_at||0))/864e5);
+          return (+x.like_count||0)*9+Math.max(0,(+x.posts_count||1)-1)*4+
+            Math.min(+x.views||0,500)/50-Math.min(age,60)*.12;
+        }
+        return score(b)-score(a);
+      });
+      var pick=list[0];
+      var o={t:pick.title, h:FORUM+"/t/topic/"+pick.id, at:Date.now()};
       put(eFO,o.t,o.h); cache("fo",o);
     }catch(e){}
   }
   forum();
-  /* 三、掌心动态：成员更新与新作品，轮流播 */
+  /* 三、掌心动态：每位成员都进入轮播，近期名片和作品优先。 */
   var items=[], idx=0, timer=null;
   function ago(ts){ var d=(Date.now()-Date.parse(ts))/864e5;
     if(d<1) return "今天"; if(d<2) return "昨天"; if(d<30) return Math.floor(d)+" 天前"; return ""; }
@@ -2221,25 +2234,42 @@ loadWorks();
     var it=items[idx%items.length]; show();
     timer=setTimeout(step, (it&&it.tip)?8000:5000); }
   async function live(){
-    var out=[];
+    var activities=[], memberItems=[];
     try{
       var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
       var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
       var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
       if(host&&key){ var H={apikey:key,Authorization:"Bearer "+key};
-        (await (await fetch(host+"/rest/v1/members?select=name,updated_at&updated_at=not.is.null&order=updated_at.desc&limit=6",{headers:H})).json())
-          .forEach(function(m){ out.push({t:Date.parse(m.updated_at),
-            text:"「"+m.name+"」更新了自己的一方天地 · "+ago(m.updated_at), href:"#members"}); });
-        (await (await fetch(host+"/rest/v1/works?select=author_name,title,url,created_at,kind&order=created_at.desc&limit=20",{headers:H})).json())
-          .forEach(function(w){ if((!w.title||w.title.indexOf("待补")>=0)&&!String(w.url||"").trim()) return;
-            out.push({t:Date.parse(w.created_at),
-              text:(w.kind==="collection"?"诗文会集 · ":"新作品 · ")+(w.author_name||"")+"《"+w.title.replace(/[《》]/g,"")+"》",
-              href:(w.url&&/^https?:/.test(w.url))?w.url:"#works"}); });
+        var members=await (await fetch(host+"/rest/v1/members?select=name,updated_at,sort_order&order=updated_at.desc.nullslast,sort_order.asc",{headers:H})).json();
+        (Array.isArray(members)?members:[]).forEach(function(m){
+          var when=m.updated_at&&ago(m.updated_at);
+          memberItems.push({t:m.updated_at?Date.parse(m.updated_at):0,
+            text:when?("「"+m.name+"」更新了自己的一方天地 · "+when):("「"+m.name+"」在掌心有自己的一方天地"),
+            href:"#members"});
+        });
+        var works=await (await fetch(host+"/rest/v1/works?select=author_name,title,url,cover_url,created_at,updated_at,kind&order=updated_at.desc&limit=100",{headers:H})).json();
+        (Array.isArray(works)?works:[]).forEach(function(w){
+          if((!w.title||w.title.indexOf("待补")>=0)&&!String(w.url||"").trim()&&!String(w.cover_url||"").trim()) return;
+          activities.push({t:Date.parse(w.updated_at||w.created_at),
+            text:(w.kind==="collection"?"诗文汇 · ":"作品更新 · ")+(w.author_name||"")+"《"+String(w.title||"个人作品").replace(/[《》]/g,"")+"》",
+            href:(w.url&&/^https?:/.test(w.url))?w.url:((w.cover_url&&/^https?:/.test(w.cover_url))?w.cover_url:"#works")});
+        });
       }
     }catch(e){}
-    out.sort(function(a,b){return (b.t||0)-(a.t||0);});
-    var real = out.length? out.slice(0,8) : (cached("up")||[]);
-    if(out.length) cache("up",real);
+    activities.sort(function(a,b){return (b.t||0)-(a.t||0);});
+    memberItems.sort(function(a,b){return (b.t||0)-(a.t||0);});
+    if(memberItems.length>8){
+      var recent=memberItems.slice(0,8), rest=memberItems.slice(8);
+      var d=new Date(), day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5), shift=day%rest.length;
+      memberItems=recent.concat(rest.slice(shift),rest.slice(0,shift));
+    }
+    var real=[], ai=0, mi=0, useful=activities.slice(0,16);
+    while(ai<useful.length || mi<memberItems.length){
+      if(ai<useful.length) real.push(useful[ai++]);
+      for(var q=0;q<3&&mi<memberItems.length;q++) real.push(memberItems[mi++]);
+    }
+    if(!real.length) real=cached("up")||[];
+    else cache("up",real);
     var TIPS=[
       {tip:1,href:"#works",text:"✎ 你的一方天地已扩容——封面、内页图六张、附件、类别与年份，点自己的作品卡就能布置"},
       {tip:1,href:"#members",text:"✎ 点自己的名字即可登录，修改简介、更换照片，全凭自己做主"},
@@ -2248,7 +2278,7 @@ loadWorks();
     ];
     var mixed=[], k=0;
     for(var i=0;i<real.length;i++){ mixed.push(real[i]);
-      if((i+1)%2===0) mixed.push(TIPS[k++%TIPS.length]); }
+      if((i+1)%12===0) mixed.push(TIPS[k++%TIPS.length]); }
     if(!real.length) mixed=TIPS.slice();
     items=mixed;
     if(items.length){ box.hidden=false; step(); }
@@ -3036,12 +3066,13 @@ loadWorks();
     wrap.appendChild(el("div","sw-h","作品　Works"));
     mine.forEach(function(w){
       var a=document.createElement("a"); a.className="sw-item";
-      a.href=(w.url&&/^https?:/.test(w.url))?w.url:"#works";
+      var m=meta(w.note)||{}, g=(m.g&&Array.isArray(m.g))?m.g:[];
+      var openUrl=String(w.url||"").trim()||String(m.f||"").trim()||String(w.cover_url||"").trim()||String(g[0]||"").trim();
+      a.href=/^https?:/.test(openUrl)?openUrl:"#works";
       if(/^https?:/.test(a.getAttribute("href"))){ a.target="_blank"; a.rel="noopener"; }
       if(w.cover_url){ var im=document.createElement("img"); im.src=w.cover_url; im.alt=""; a.appendChild(im); }
       var tx=el("div","sw-tx");
       tx.appendChild(el("b",null,String(w.title||"个人作品").replace(/^\s*[《（(]?\s*待补\s*[》）)]?\s*/,"")||"个人作品"));
-      var m=meta(w.note)||{};
       var bits=[]; if(m.c) bits.push(m.c); if(m.y) bits.push(m.y);
       if(m.d) bits.push(m.d.slice(0,40));
       if(bits.length) tx.appendChild(el("span",null,bits.join(" · ")));
