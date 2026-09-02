@@ -17,6 +17,8 @@
 
 - Place the existing Chinese and English welcome paragraph directly below `面向世界 / To the World`, once only. The four language cards are removed; the Chinese/English welcome itself remains intact.
 - Show works maintenance by member 晓鸣, forum administrators 飞鸿、陶然, and in-person discussions/talks administrators 黄忠、文刃. These are visible maintenance credits, not authorization to change backend roles.
-- Keep all 2023–2026 lecture titles, dates and speakers in a single default-closed archive under `线下讨论和讲座`. Show each year as a heading within it, avoiding nested disclosure controls. Founding history and travel-gallery notes are folded, not deleted. Main member/work lists, sign-in and forum links remain immediately accessible.
+- Latest follow-up, 2026-09-02: under `线下讨论和讲座`, show all four year headings (2023–2026) immediately. Each year has its own default-closed disclosure containing the unchanged titles, dates and speakers. There is no outer disclosure. This supersedes the earlier single-fold scheme. Founding history and travel-gallery notes remain folded, not deleted.
+- Permanently place 文刃's `《千山独行》` card (`wkQianshan`) last in the main published-works grid. Preserve its cover, link and ownership. Static HTML, asynchronous loading, subsequent saves and ordering maintenance must all respect this exception without depending on a successful network request. Keep other works' relative order and the independent member-group sorting unchanged; never delete or classify an existing work as pending to achieve ordering.
+- Footer credit: `制作：掌心诗社编辑组 · 陶然　海边　风动　文刃 | 掌心草书：许之远（David Hsu）`, with corresponding English. This replaces the earlier administrator/seal-design wording; preserve rights notices and the covenant link.
 
 The deterministic ordering/expiry helpers are in `community-policy.js`. Verify changes against the local regression tests before publication.
