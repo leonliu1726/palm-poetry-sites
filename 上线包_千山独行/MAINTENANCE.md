@@ -5,6 +5,8 @@ The presentation is intentionally restrained: selected poems first; background, 
 - Preserve the final poems/translations from baseline `257bad4`. Presentation edits must not silently rewrite original poems, translations, author essays or contributed texts.
 - Keep original media URLs and the book's front cover. Do not replace complete HTML pages with abbreviated placeholders.
 - The established wording is `許之遠先生贈詩` and `贈詩手迹`; retain the author's approved “才華巧思，深情託付的經典風範” sentence.
+- Check both `book.html` and `reviews.html`, including `data-zh`, alt text and captions; no HTML page may restore `賜詩` / `赐诗`.
+- User display hold (2026-09-02): on `wayfarer.html`, hide the lead portrait and portrait/group-photo subset (47 images); keep the 44 landscape, architecture and object photographs. Hide the entire `#media` section, including audio, video, interviews and channel links. Preserve all original files and addresses; restore only upon an explicit user request. This hold does not alter Palm members or other pages' existing content.
 - Supplementary site notes are not independent reviews. Keep attribution visible and allow readers to form their own interpretations.
 - Two third-party recording players (Orchid Pavilion and Zhou Yu's Terrace) are temporarily hidden for a recording-rights review; their source files and credits remain intact. Author recordings remain available.
 - Use natural vertical flow, not forced viewport-sized blank panels. Preserve the paper palette and existing visual identity.
