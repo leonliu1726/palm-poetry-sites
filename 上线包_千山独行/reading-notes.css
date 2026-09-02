@@ -5,6 +5,8 @@ html{scroll-snap-type:none}
 .oneplay[hidden]{display:none!important}
 [data-display-hold][hidden]{display:none!important}
 .lg .callig-grid.calligraphy-only{grid-template-columns:minmax(0,420px);justify-content:center}
+.lg #launch .gallery.launch-poster-only{grid-template-columns:minmax(0,360px)!important;justify-content:center}
+.lg #launch .launch-poster-only>figure>img{height:auto;max-height:520px;object-fit:contain}
 .reader-intro{max-width:780px;margin:28px auto 12px;text-align:center;color:var(--ink-2);font-size:16px;line-height:1.9}
 .reader-intro .en{display:block;margin-top:10px;font-size:15px}
 .reader-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;margin:20px 0}

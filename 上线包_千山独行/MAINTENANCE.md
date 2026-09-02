@@ -12,6 +12,8 @@ The presentation is intentionally restrained: selected poems first; background, 
 - Supplementary site notes are not independent reviews. Keep attribution visible and allow readers to form their own interpretations.
 - Two third-party recording players (Orchid Pavilion and Zhou Yu's Terrace) are temporarily hidden for a recording-rights review; their source files and credits remain intact. Author recordings remain available.
 - Use natural vertical flow, not forced viewport-sized blank panels. Preserve the paper palette and existing visual identity.
+- Book-launch photos (2026-09-02): show only the first original poster, `网站图片/发布会/invitation.jpg`, in `#launch`. All remaining photographs stay inside the hidden `launch-photo-archive` container; preserve every source URL and file. Do not restore them during gallery or design changes.
+- Colophon tone (2026-09-02): the Chinese and English closing words should be personal and restrained, preserving self-reflection, openness, sincerity, kindness, gratitude and the encounter with readers. Remove the life-offering claim (`生命的獻禮` / “the offering of my life”) and the elevated benevolent-person / poem-as-blade rhetoric. Do not reintroduce those formulations. Contact details, source credits and unrelated original poems remain unchanged.
 - Synchronize verified HTML and `reading-notes.css` into the companion repository's `上线包_千山独行` directory after preserving newer remote changes.
 - The Palm redirect directory `thepalmpoetryclub` must remain redirects to palmpoetry.org, not be overwritten with an outdated complete site.
 
