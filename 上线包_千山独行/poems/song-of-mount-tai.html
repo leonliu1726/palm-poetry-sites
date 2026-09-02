@@ -1192,15 +1192,6 @@ function openToc(){
 }
 openToc(); window.addEventListener('hashchange',openToc);
 
-/* ---- 联系：作者邮箱一行。地址不明写在 HTML 里，运行时拼出来；
-       拼好之后看得见的是完整地址，源码里不是一串明文。 ---- */
-var cm=document.getElementById('cmail');
-if(cm){
-  var box=['leonliu1726','gmail','com'];
-  var addr=box[0]+String.fromCharCode(64)+box[1]+String.fromCharCode(46)+box[2];
-  cm.textContent=addr;
-  cm.setAttribute('href','mailto:'+addr);
-}
 })();
 </script>
 </body>

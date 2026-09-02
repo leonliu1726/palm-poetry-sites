@@ -19,7 +19,11 @@ html{scroll-snap-type:none}
 .reading-context .en{display:block;margin-top:7px;font-size:13.5px}
 .reading-fold .byeditor{margin-top:0}
 .reading-fold .byeditor>.sep{display:none}
-.contact-direct{overflow-wrap:anywhere}
+.cform button[hidden]{display:none!important}
+.cform .send:disabled{opacity:.65;cursor:wait}
+.cform #cf-fallback{margin-top:14px;font-size:13px}
+.lg #hsu-chih-yuan [data-preface-in-fold="hsu"]>summary{display:none}
+.lg #hsu-chih-yuan [data-preface-in-fold="hsu"]{border:0}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--seal);outline-offset:4px}
 @media(max-width:600px){.reader-intro{font-size:15px}.reader-intro .en{font-size:14px}.reader-links{gap:12px 18px}.reading-fold>summary .en{display:block;margin:4px 0 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{transition:none!important;animation:none!important}}

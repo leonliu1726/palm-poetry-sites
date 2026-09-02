@@ -1375,32 +1375,6 @@ function openToc(){
 }
 openToc(); window.addEventListener('hashchange',openToc);
 
-/* ---- 联系：静态站无后端，字段在浏览器里拼成 mailto: 交给访客的邮件客户端。
-       收件地址不明写在 HTML 里，运行时拼装。 ---- */
-var cf=document.getElementById('cform');
-if(cf){
-  var box=['leonliu1726','gmail','com'];
-  function addr(){ return box[0]+String.fromCharCode(64)+box[1]+'.'+box[2]; }
-  function val(id){ return (document.getElementById(id).value||'').trim(); }
-  function err(id,msg){ document.getElementById(id+'-e').textContent=msg||''; }
-  cf.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var n=val('cf-n'), m=val('cf-m'), b=val('cf-b'), s=document.getElementById('cf-s').value;
-    var ok=true;
-    err('cf-n', n?'':'请留下称呼　Please give a name');           if(!n) ok=false;
-    err('cf-m', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?'':'邮箱格式有误　Check the e-mail address');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) ok=false;
-    err('cf-b', b?'':'请写下正文　Please write a message');        if(!b) ok=false;
-    if(!ok) return;
-    var subj='《千山獨行》· '+s+'　'+n;
-    var body=b+'\n\n——\n'+n+'　'+m;
-    var href='mailto:'+addr()+'?subject='+encodeURIComponent(subj)
-             +'&body='+encodeURIComponent(body);
-    document.getElementById('cf-ok').classList.add('on');
-    cf.__mailto=href;                 /* 供自检读取，不落入 DOM */
-    window.location.href=href;
-  });
-}
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "05fc85d2a1b5407c9d41f31cb49f83f6"}'></script>
