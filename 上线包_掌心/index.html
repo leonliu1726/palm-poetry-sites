@@ -460,6 +460,8 @@
 
   #tkFF,#tkFO{flex:0 0 25%;max-width:25%}
   #tkUP{flex:0 0 50%;max-width:50%}
+  #tkUP[hidden]{display:none!important}
+  .no-activity #tkFF,.no-activity #tkFO{flex:1 1 50%;max-width:none}
   @media(max-width:820px){ #tkFF,#tkFO,#tkUP{flex:1 1 auto;max-width:none} }
 
   /* 短词、姓名、标题不在中途折行 */
@@ -609,6 +611,7 @@
   }
 </style></head>
 <body>
+<script src="community-policy.js"></script>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
 <nav><div class="wrap">
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt=""><span class="brand-tx"><span class="zh">掌心</span><span class="en">THE PALM POETRY SOCIETY</span></span></div>
@@ -624,7 +627,7 @@
 <div class="tk" id="tk" hidden><div class="wrap tk-in">
   <a class="tk-seg" id="tkFF" href="#fireflies"><b>今日萤火</b><span>——</span></a>
   <a class="tk-seg" id="tkFO" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论坛荐帖</b><span>——</span></a>
-  <a class="tk-seg tk-live" id="tkUP" href="#members"><b>掌心动态</b><span>——</span></a>
+  <a class="tk-seg tk-live" id="tkUP" href="#members" hidden><b>掌心动态</b><span></span></a>
 </div></div>
 
 <header class="hero" id="home"><div class="hero-panel">
@@ -636,18 +639,18 @@
   <div class="w-hi-zh">欢迎五湖四海的诗词艺术文化界朋友</div>
   <h1 class="h-title"><span class="sr-only">掌心 · The Palm Poetry Society</span><img class="h-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心" width="280" height="280"></h1>
   <div class="h-en">The Palm Poetry Society</div>
-  <p class="w-note">掌心是一群写诗、作文、书画的人，二〇一七年结缘于加拿大多伦多。这里不论门户，不设门槛<br>——你写，我们就读；你来，就有一方属于自己的天地。<br>
-  <span class="w-en">The Palm is a community of poets, writers and artists that began in Toronto in 2017. No gatekeeping, no hierarchy<br>— if you write, we will read; if you come, a space of your own is waiting.</span></p>
+  <p class="w-note">掌心是始于二〇一七年多伦多的诗文艺术社群，欢迎世界各地的写作者与读者。<br>在这里读作品、交换意见、认识同行；以开放的心面对未知，在交流与修订中不断学习。<br>
+  <span class="w-en">Founded in Toronto in 2017, The Palm brings writers, artists and readers together across borders.<br>Read, exchange ideas and meet fellow writers. Stay open to the unknown; learn through conversation and revision.</span></p>
   <p class="creed" data-en="In the palm, warmth; in the heart, sincerity. We come and go as fate allows, and laugh and talk without constraint.">掌上有温，心中有诚；来去随缘，谈笑无拘。</p>
-  <p class="h-sub">海纳百川，向天下诗人、作家与读书人敞开——诗文会友，以文相期，以天下英才为师。<br>知之者难离，不知者远来。<br>An open, inclusive home for poets, writers and lovers of letters the world over.</p>
+  <p class="h-sub">不以名气论高下，不以语言划边界。欢迎先读一首诗，再留下你的声音。<br>New and established voices are equally welcome.</p>
 </div></header>
 
 <main id="main-content">
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
   <div class="doors">
-    <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em><span class="mcount">四十四</span>位诗人与好友，各有一方天地。点开任一姓名读他，点自己的名字改自己。</em><i>进入 →</i></a>
+    <a class="door" href="#members"><b>成 员</b><span class="en">Members</span><em>认识诗人与好友，阅读个人简介；成员登录后可维护自己的名片与作品空间。</em><i>进入 →</i></a>
     <a class="door" href="#works"><b>作 品</b><span class="en">Works</span><em>《萤火》《千山独行》、历年诗文汇，以及每位成员自己的一本书、一个网站。</em><i>进入 →</i></a>
-    <a class="door" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论 坛</b><span class="en">Forum</span><em>贴诗，读诗，说诗。注册后即可发帖，人人可读，向全世界敞开。</em><i>进入 →</i></a>
+    <a class="door" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener"><b>论 坛</b><span class="en">Forum</span><em>贴诗，读诗，说诗。公开帖子可直接阅读；发帖和回复需登录论坛并遵守交流约定。</em><i>进入 →</i></a>
   </div>
 </div></section>
 
@@ -665,11 +668,11 @@
 
   <div class="sub-head" id="mission"><b>使命</b><span class="en">Our Mission</span></div>
 
-  <p data-en="To hold fast to a refined life of the spirit in a world that worships fame and gain; to keep the grace of a courteous people amid the coarse clamor of the international scene; and to let the finest of classical Chinese culture be carried on and renewed in an open, embracing spirit, drawing on the achievements of all civilizations.">在崇尚名利的现实世界中坚守高雅的精神追求，在粗鄙喧嚣的国际语境中保持礼仪之邦的风范，让中华优秀经典文化以开放兼容的心态、在吸收全世界文明成果的基础上传承与发展。</p>
+  <p data-en="We bring writing and attentive reading into conversation. Rooted in Chinese literary traditions and open to other languages and ways of thinking, we welcome questions, specific criticism and the possibility of changing our minds. Learning from one another helps us write with greater care for language, people and a world still unfolding.">让写作与认真阅读相互滋养。我们珍惜中文文学传统，也向不同语言、经验与思想敞开；欢迎提问、具体的批评，以及改变原有看法的可能。在彼此切磋中及时学习、持续修订，以更准确的语言回应他人和仍在展开的世界。</p>
   <div class="mission-grid">
-    <div class="mi"><b>真诚 · 友善</b><span data-en="Sincerity &amp; Kindness — truth and goodwill are our roots; together we keep this ground clean.">以真和善为根，守护这一方净土。</span></div>
-    <div class="mi"><b>独立 · 自由</b><span data-en="Independence &amp; Freedom — an independent spirit and a free mind, indifferent to fame and gain.">独立之精神，自由之思想，不慕当世名利。</span></div>
-    <div class="mi"><b>面向世界 · 面向未来</b><span data-en="To the World, to the Future — we learn from poets, writers and artists everywhere; we write for ordinary readers, cross the borders of language, and make room for a poetic way of living.">海纳百川，与世界各地诗人、作家、艺术家切磋；为大众创作，划破语言边界，开拓诗意的栖居。</span></div>
+    <div class="mi"><b>真诚 · 友善</b><span data-en="Read attentively, respond to the work, and respect the person behind it.">认真读作品，就作品交换意见，尊重每一个具体的人。</span></div>
+    <div class="mi"><b>独立 · 自由</b><span data-en="Keep your own voice; welcome disagreement. Reputation is no substitute for the work itself.">保持独立声音，容纳不同判断；以作品交流，不以头衔代替阅读。</span></div>
+    <div class="mi"><b>开放 · 求知</b><span data-en="Ask new questions, learn across disciplines, and revise in the light of what you discover.">面对未知提问，跨越学科与语言学习，让新的认识进入下一次创作。</span></div>
   </div>
 
   <div class="sub-head" id="covenant-sec"><b>掌心公约</b><span class="en">The Palm Covenant</span></div>
@@ -677,46 +680,74 @@
   <details class="cov-fold">
     <summary>
       <b>使用本网站前，建议先读一遍</b>
-      <span>为了最大限度地保障会员的创作自由、减少不必要的管理，本网站不设硬性规定。<br>
-      这里只说清楚三件事：<b>你的作品永远是你的</b>，随时可改可撤；雅集的照片与录音如何使用；你的邮箱只用于本人登录，不公开、不外传。</span>
-      <span class="cov-en">Before you use this site, we suggest reading this once. The Palm imposes no rigid rules — only a plain statement of what you keep and what you grant.</span>
+      <span>尊重创作自由，也说清楚彼此的责任：<b>作品权利归原权利人</b>；投稿不等于同意公开；名片、作品与活动影像按确认的范围展示；登录邮箱不公开。</span>
+      <span class="cov-en">Your rights, your publication choices, and how we look after your work and personal details.</span>
       <em class="cov-open">点开阅读全文 · Read it →</em>
     </summary>
     <div class="cov-body">
-      <p class="cov-lead">为了最大限度地保障会员的创作自由、减少不必要的管理，本网站不设硬性规定。掌心以真诚待人、与人为善为共同的底色，倚重各自的自觉与自我约束——不苛责，不纵容。以下十条不是戒律，而是一份清楚的说明：你在掌心享有哪些权利，你授予掌心多大的使用范围，以及掌心将如何处理你的作品、肖像、声音与个人资料。</p>
+      <p class="cov-lead">尊重创作自由，说清楚彼此的权利与责任。更新：2026年9月2日；本说明不扩大任何既有授权。</p>
+<h4>一　你的作品，永远是你的</h4>
+<p>你的原创作品权利仍归你所有；第三方作品与素材的权利归其原权利人。掌心不因上传、展示或排版而取得作品所有权。</p>
+<p>你可修改本人资料与作品，也可向管理员申请撤下或退出。核实身份后，我们会处理掌心可控制页面中的内容；已发行纸本、他人留存及搜索缓存无法保证追回。重要原稿请自行备份。</p>
+<p class="en">You retain the rights to your original work. Third-party rights remain with their holders. You may request correction or withdrawal; printed copies, third-party copies and search caches cannot necessarily be recalled.</p>
 
-      <h4>一　你的作品，永远是你的</h4>
-      <p>你在掌心发表、上传、朗诵的一切——诗、文、书画、摄影、音频、视频——<b>版权自始至终归你本人所有</b>。掌心不主张任何所有权，也不会转让给第三方。你可以<b>随时修改、随时撤下、随时退出</b>；撤下后掌心即在网站与论坛移除。已印在纸本《萤火》上的部分无法追回，投稿时请一并考虑。</p>
+<h4>二　你给掌心的许可</h4>
+<p>通过留言或投稿表单交来的作品，先用于审阅与联络，<b>不自动授权公开</b>。你主动在公开作品空间或论坛发布的内容，允许掌心在该处按你确认的内容展示及作必要排版，不改动文意。</p>
+<p>结集印行、翻译、推广节录、跨平台转载、商业使用或代为投稿参奖，都须核对并取得相应授权。公开可读不等于可以任意使用。</p>
+<p class="en">A submission for review does not authorize publication. Posting in a public space permits display there, not unrestricted reuse. Print publication, translation, promotional excerpts, republication and submissions or prize entries require the relevant permission.</p>
 
-      <h4>二　你给掌心的许可</h4>
-      <p>为使作品能被读到，你交来作品时，即同时给予掌心一份<b>非独占、免费、可随时撤回</b>的许可，用于在掌心网站、掌心论坛、《萤火》诗刊、掌心公众号与雅集记录中展示、编排、印行，并作必要的排版调整（不改动文意），以及在介绍掌心时节录引用并署你的名。此许可<b>不含</b>授权第三方商业使用、改编出售，或以你的名义参加评奖与商业活动；凡此种种均另行征求你本人同意。</p>
+<h4>三　肖像、声音与影像</h4>
+<p>活动如需摄影、录音或录像，应事先说明用途并确认适当许可。<b>出席活动本身不等于同意所有公开或推广使用。</b></p>
+<p>你可以说明自己的选择：</p>
+<ul>
+  <li>活动前后告诉主持人或摄影师，镜头会避开你；</li>
+  <li>已经上网的照片、录音、视频，来信即可移除，不必说明理由；</li>
+  <li>涉及未成年人的影像，须其监护人事先同意。</li>
+</ul>
+<p class="en">Recording and intended uses should be explained in advance. Attendance alone is not permission for every public or promotional use. Tell the organizers if you prefer not to be photographed or recorded.</p>
 
-      <h4>三　肖像、声音与影像</h4>
-      <p>掌心的雅集、朗诵会、讲座与展览常有摄影与录音录像，用于活动记录、相册、影音与对外介绍，<b>参加活动即视为同意</b>。你随时可以说不：活动前后告知主持人或摄影师，镜头会避开你；已上网的照片、录音、视频，来信即可移除，不必说明理由；涉及未成年人的影像须其监护人事先同意。</p>
+<h4>四　说明的更新</h4>
+<p>修改会注明日期并保留记录。涉及新增用途或扩大授权时，应向有关作者、参与者另行确认；不以「未提出异议」代替其同意。欢迎随时提出建议。</p>
+<p class="en">Changes are dated and recorded. New uses or wider permissions require confirmation from the people concerned; silence is not treated as consent.</p>
 
-      <h4>四　公示与生效</h4>
-      <p>本公约先在<b>掌心诗社与掌心沙龙公示三十天</b>。公示期内任何成员与沙龙朋友均可提出异议、要求修改；<b>期满如无异议，视为认同</b>，掌心即据此向海内外的诗文艺术朋友开放本网站。此后修改条款，同样提前三十天公示，同样以「无异议即认同」处理。你若不认同修改，随时可撤下作品、退出掌心。</p>
+<h4>五　原创与转载</h4>
+<ul>
+  <li><b>原创为重。</b>请勿以他人作品充作自己的。</li>
+  <li>转载、翻译、图像与配乐须确认相应权利，并注明作者、译者与出处；署名不能代替许可。</li>
+  <li>注明作品是否已发表；使用辅助工具时，按目标刊物或奖项要求如实披露。</li>
+  <li>计划向要求「未发表」的刊物或奖项投稿时，请先核对规则，暂勿公开保留稿件。隐藏或删除网页不保证恢复首发资格。</li>
+</ul>
+<p class="en">Check rights and credit authors, translators and sources. Follow the intended outlet’s rules on prior publication and disclosure of assistance. Public posting may affect eligibility; later removal does not guarantee that it is restored.</p>
 
-      <h4>五　原创与转载</h4>
-      <p>原创为重，请勿以他人作品充作自己的；转贴请注明作者与出处，原作者要求撤下即照办；翻译请注明原作者，引用请在合理范围内；转载掌心内容请注明出处并链回本站。</p>
+<h4>六　就诗论诗</h4>
+<p>掌心欢迎一切观点、语言与诗体的争论，唯独两件事请留在门外：<b>对人不对事的攻击</b>，与<b>违反所在地法律的内容</b>。</p>
+<p>个人作品发在自己的空间，讨论与商榷发在开放论坛。对新来的人温和些——我们都曾是新来的人。</p>
+<p class="en">All views, languages and poetic forms are welcome; personal attacks and unlawful content are not. Be gentle with newcomers — every one of us was one.</p>
 
-      <h4>六　就诗论诗</h4>
-      <p>掌心欢迎一切观点、语言与诗体的争论，唯两件事请留在门外：<b>对人不对事的攻击</b>，与<b>违反所在地法律的内容</b>。个人作品发在自己的空间，讨论与商榷发在开放论坛。对新来的人温和些——我们都曾是新来的人。</p>
+<h4>七　成员空间与作品区</h4>
+<p>无论身在何处，都可申请加入，朋友引荐并非必需。管理员确认资料后开通名片与作品空间，你可以按自己的节奏整理内容。</p>
+<p><b>未上传的空间保留在待补充区，不因空置自动收回。已经上传的作品、链接与照片不得因改版或排序而丢失、被降为待补充。</b>撤下由作者提出或在明确的权利处理程序中进行，不以改版代替授权。</p>
+<p class="en">Applications are welcome from anywhere; an introduction is not required. Reserved spaces are not reclaimed for inactivity. Existing works and links must survive redesigns and sorting changes. Authors control withdrawal.</p>
 
-      <h4>七　成员空间与作品区</h4>
-      <p>加入时可选择<b>是否需要一方作品空间</b>。开通后请在<b>一周之内</b>至少更新一次（一本书、一组诗、一个链接皆可）；长期空置的空间系统会自动收回，以保持作品区清爽。收回不影响成员身份，<b>随时可以再申请</b>，名片与既往内容仍在。</p>
+<h4>八　账号与隐私</h4>
+<ul>
+  <li>登录邮箱用于身份验证及必要联络，不作为公开名片字段，不出售、不擅自用于群发。</li>
+  <li>掌心成员区使用邮箱登录链接与验证码；同一浏览器会保留会话，但清除数据、隐私浏览或会话失效后可能需再次登录。论坛有独立账号与会话。</li>
+  <li>名片和作品不显示访问次数，也不新增浏览计数；排列以真实更新时间为依据。</li>
+  <li>你随时可以要求删除自己的账号与全部内容。</li>
+</ul>
+<p class="en">Login email addresses are not public profile fields or mailing lists. Sessions can expire or be cleared; the forum has its own sign-in. Necessary service providers are described in our <a href="privacy.html">privacy notice</a>.</p>
 
-      <h4>八　账号与隐私</h4>
-      <p>你的邮箱<b>只用于本人登录</b>，不公开、不外传、不用于群发；掌心不设密码，只寄一次性登录链接与验证码；阅览量只统计次数，不记录是谁看过；你随时可要求删除自己的账号与全部内容。</p>
+<h4>九　掌心的责任边界</h4>
+<p>掌心是一个公益的文化平台，由成员义务维护。我们尽力保管好每一份作品，但无法承诺网站永不故障、数据永不丢失——重要的原稿请你自己也留一份。</p>
+<p>成员发表的内容由发表者本人负责。若有人认为掌心上的内容侵犯了自己的权利，请与管理员联系，我们会尽快核实并处理。</p>
+<p class="en">The Palm is a volunteer-run, public-spirited platform. We look after your work carefully, but please keep your own copy of anything precious. Each member is responsible for what they post; if you believe something here infringes your rights, write to the administrators.</p>
 
-      <h4>九　责任边界</h4>
-      <p>掌心是公益的文化平台，由成员义务维护。我们尽力保管每一份作品，但无法承诺网站永不故障、数据永不丢失，重要原稿请你自己也留一份。成员发表的内容由发表者本人负责；若认为掌心上的内容侵犯了自己的权利，请与管理员联系，我们会尽快核实处理。</p>
+<h4>十　联络</h4>
+<p>对本公约有任何异议、建议，或需要撤下某件作品、某张照片、某段录音——请直接来信，一句话就够，不必说明理由：</p>
+<p>陶然 <a href="mailto:taoran2000@hotmail.com" style="color:var(--seal)">taoran2000@hotmail.com</a>　·　风动 <a href="mailto:xin2k@yahoo.com" style="color:var(--seal)">xin2k@yahoo.com</a>　·　海边 <a href="mailto:huangxiaoyu2001@gmail.com" style="color:var(--seal)">huangxiaoyu2001@gmail.com</a></p>
 
-      <h4>十　联络</h4>
-      <p>对本公约有任何异议、建议，或需撤下某件作品、某张照片、某段录音——请直接来信，一句话就够，不必说明理由：<a href="mailto:taoran2000@hotmail.com">陶然</a>　·　<a href="mailto:xin2k@yahoo.com">风动</a>　·　<a href="mailto:huangxiaoyu2001@gmail.com">海边</a></p>
-
-      <p class="cov-note">＊ 本公约为掌心的自律约定与使用说明，旨在明确各方权利与授权范围，减少日后争议；其本身并非法律意见。若涉及具体法律问题，请咨询专业人士。<br>
-      <a href="covenant.html">另开单页阅读或打印 · Open as a separate page →</a></p>
+      <p class="cov-note">本说明不是法律意见。<a href="covenant.html">另开单页阅读或打印 · Read the full notice →</a></p>
     </div>
   </details>
 
@@ -726,7 +757,7 @@
 <section id="reading"><div class="wrap">
   <div class="sec-head"><span class="sec-no">二</span><h2>萤火与文存</h2><span class="en">Fireflies &amp; Writings</span><div class="rule"></div></div>
 <div id="fireflies" class="ff-flagship">
-    <div class="flag-label" data-en="Made together — the most important collective work of The Palm.">众人合力 · 掌心最重要的集体结晶</div>
+    <div class="flag-label" data-en="Written and edited together">共同写作 · 合力编选</div>
     <h3 class="ff-fly-h">《萤火》<span>Fireflies · 掌心诗社诗词专辑</span></h3>
     <p data-en="The anthology of The Palm Poetry Society — three parts, more than thirty poets, some two hundred and fifty poems.">掌心诗社的诗词专辑——三辑，三十余位诗人，二百五十余首作品。</p>
 
@@ -778,9 +809,9 @@
 
   <div class="sub-head" id="writings"><b>诗社文存</b><span class="en">Writings</span></div>
 
-  <p style="text-align:center;max-width:640px;margin:0 auto 26px;text-wrap:balance">《萤火》卷中序跋数篇，记掌心结社之缘、立社之志，文辞清隽。今特录于此，以见诗社之风骨。</p>
+  <p style="text-align:center;max-width:640px;margin:0 auto 26px;text-wrap:balance">以下为结社与《萤火》编印时期的历史文存，保留原文。其中人数、活动与入社方式反映当时情况；今天的参与方式请见<a href="#join">「加入掌心」</a>。</p>
 
-  <details class="wen" open>
+  <details class="wen">
     <summary>掌心诗社简介</summary>
     <div class="wen-body">
       <p class="wen-verse">倚天照海花无数，流水高山心自知；<br>文墨丹青千古事，临风桃李正当时！</p>
@@ -793,7 +824,7 @@
 <p>The four lines above carry, hidden in them, the names of the ten earliest poets of The Palm — a fitting beginning for an unusual society.</p>
 <p>The Palm Poetry Society grew out of “The Palm,” a small circle for poetry, literature and the arts formed in Toronto, Canada, in 2017. Membership was by strict invitation; the purpose was close exchange and the encouragement of real work. Its early roster numbered seventeen.</p>
 <p>For several years the circle met freely and often — evenings of verse and wine at which everyone’s craft improved. To widen the reach of Chinese culture and of poetry as a high art, on 17 July 2022, at a gathering at Jinyuan, the twelve earliest members founded The Palm Poetry Society as its co-founders.</p>
-<p>The Club exists for serious exchange in poetry and the arts, and for the making of new work: gatherings that cross between disciplines, friendship with accomplished poets and artists, and collaboration with poetry societies and artists around the world.</p></div>
+<p>The Society exists for serious exchange in poetry and the arts, and for the making of new work: gatherings that cross between disciplines, friendship with accomplished poets and artists, and collaboration with poetry societies and artists around the world.</p></div>
     </div>
   </details>
 
@@ -1017,25 +1048,26 @@
 <section id="members"><div class="wrap">
   <div class="sec-head"><span class="sec-no">三</span><h2>成员与作品</h2><span class="en">Members &amp; Works</span><div class="rule"></div></div>
   <div class="sub-head" id="roster"><b>成员</b><span class="en">Members</span></div>
+  <p class="m-note">掌心由朋友们共同维护，每位成员自主整理自己的名片与作品。诗社在上、学园在下，各组按最新修改时间排列，不以访问量衡量参与。<span class="en-line">A community maintained together. Members manage their own profiles and work; each group is ordered by the latest update, not popularity.</span></p>
   <div class="pk-search"><label class="sr-only" for="pkQ">搜索人名或作品名 · Search names and works</label><input id="pkQ" type="search" aria-label="搜索人名或作品名 · Search names and works" placeholder="搜索 · 人名、作品名　　Search names &amp; works" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
-  <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad into a club and academy that sharpen one another. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
+  <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad in a society and learning community. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">掌心诗社 <span class="en">The Palm Poetry Society</span></div>
   <div class="m-grid" id="m-grid-1"></div>
   <div class="m-gap"></div>
   <div class="m-group-t">掌心学园 <span class="en">The Palm Academy</span></div>
   <div class="m-grid" id="m-grid-2"></div>
-  <p class="m-note" style="margin:18px 0 0" data-en="Members are warmly invited to introduce friends who love poetry, article and arts to The Palm Academy.">欢迎好友推荐感兴趣的诗文朋友加入掌心学园。</p>
+  <p class="m-note" style="margin:18px 0 0" data-en="Friends interested in poetry, prose and the arts are welcome to apply to The Palm Academy, with or without an introduction.">欢迎对诗文艺术感兴趣的朋友申请加入掌心学园，也欢迎成员引荐。</p>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="sbEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 成员登录 · 修改我的名片 →</a></p>
-  <p id="sbSessionState" class="m-note" style="margin:8px 0 0;font-size:13px;color:var(--ink-soft)">一台设备登录一次；以后可直接修改自己的名片与作品。</p>
+  <p id="sbSessionState" class="m-note" style="margin:8px 0 0;font-size:13px;color:var(--ink-soft)">同一浏览器会保留登录状态；清除数据、隐私浏览或会话失效后可能需要重新登录。</p>
 
 
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
   <div class="sub-head" id="works"><b>作品</b><span class="en">Works</span></div>
 
-  <div class="space-note">
-    <div class="sn-h">你的一方天地，已经可以好好装修了</div>
-    <div class="sn-en">Your own space — now ready to be furnished</div>
+  <details class="space-note">
+    <summary class="sn-h" style="cursor:pointer">成员使用说明 · 如何维护自己的作品空间</summary>
+    <div class="sn-en">Member guide · Updating your work space</div>
     <p class="sn-p">登录之后，<b>点你自己的作品卡</b>，就能填这些：</p>
     <ul class="sn-l">
       <li><b>题目</b>　你的书、你的集子、你的一组画</li>
@@ -1048,9 +1080,10 @@
     </ul>
     <p class="sn-f">已经登录：直接点自己的作品卡；尚未登录：点下方“登录／修改我的作品空间”，邮件链接会直接带你回到作品编辑页。<br>
     <span class="en-line">Open your own work card when signed in, or use the direct work-space sign-in below.</span></p>
-  </div>
+    <p class="sn-f">作品空间公开可读。准备向要求未发表作品的刊物或奖项投稿前，请先阅读<a href="#publication-note">发布与投稿提醒</a>，不要把保留稿件直接上传。</p>
+  </details>
 
-  <p data-en="Works first, regardless of standing. The Palm compiles and publishes the poetry anthology Fireflies; its poets and its gatherings over the years have also grown into a continuing archive of verse, prose and photographs. Each member will have a space of their own to keep poems, essays and art — we cherish every writer, and would add a little color for all the world's readers.">不论门户，作品为先。掌心结集出版诗词专辑《萤火》；社内外诗友与历年雅集，亦编成持续增补的历年诗文汇。每位成员都将拥有专属版块，上传并维护自己的诗、文、书画——我们珍视每一位写作者，愿为天下读书人增一分颜色。</p>
+  <p data-en="Read members’ books, poems, prose and art, alongside Fireflies and our gathering archive. Each writer keeps their own voice and maintains their own work space.">从一本书、一组诗、一篇散文，认识一个人的世界。这里收录成员专著与个人作品，并连接《萤火》和历年诗文汇；作者各自保有声音，维护自己的作品空间。</p>
   
 
   <div class="works-sub-h">成员专著与个人作品　<span style="font-family:var(--serif-en);font-style:italic;font-size:13.5px;color:var(--ink-faint);letter-spacing:0">Members’ own books and works</span></div>
@@ -1081,14 +1114,14 @@
     <div class="fh-seal">✦</div>
     <div class="fh-body">
       <div class="fh-t">掌心论坛　<span>The Open Forum</span></div>
-      <p class="fh-zh">这是掌心向世界敞开的一道门。贴一首诗，读一首诗，说几句真话——不必等谁允许，不必先有名气。</p>
-      <p class="fh-en">This is the door The Palm keeps open to the world. Post a poem, read a poem, say something true — no permission needed, no reputation required.</p>
+      <p class="fh-zh">这是掌心向世界敞开的一道门。读诗、分享、讨论，不必先有名气；发帖请登录论坛，尊重交流约定。</p>
+      <p class="fh-en">Read a poem, share a response, and join the conversation. No literary credentials are needed. Posting requires a forum account and respect for the community guidelines.</p>
       <a class="fh-go" href="https://palmpoetry.discourse.group/" target="_blank" rel="noopener">进入论坛　Enter the Forum →</a>
       <div class="fh-note">人人可读，注册即可发帖　·　Free to read for all; sign in to post</div>
     </div>
   </div>
 
-  <p data-en="The Palm Forum is where we study and argue together. To deepen the art of poetry through history, philosophy, comparative religion and the sciences, we hold free public lectures, seminars and debates all year round. Past programmes below — click to open.">掌心论坛是同道研习与思辨之地——为促进诗词艺术创作在文史、哲学、宗教比较与科学诸学科基础上的纵深发展，常年举办公益讲座、研讨与辩论。历年题录（点开查看）：</p>
+  <p data-en="Our learning community explores literature, history, philosophy, comparative religion and science through talks and discussion. The list below is an archive, not a current timetable. New events are announced separately.">掌心的共同学习延伸至文史、哲学、比较宗教与科学，通过讲座与讨论拓展写作的视野。以下为历年活动档案，不是当前报名日程；新的活动另行通知。</p>
         <details class="g-acc"><summary><span class="acc-t">二〇二六 · 掌心比较宗教学论坛 第二期</span></summary>
         <div class="g-body"><ul class="f-list">
             <li><span class="d">5–7月</span><span class="t">佛学三讲 · 吠陀文明漫谈（每逢周六） <span class="who">古土 · 风动</span></span></li>
@@ -1154,7 +1187,7 @@
     <div class="l"><b>日本語</b> 言語を問わず、作品を分かち合いましょう。</div>
     <div class="l"><b>Français</b> Quelle que soit votre langue, partagez ici vos vers.</div>
   </div>
-  <p data-en="Poetry has taken us across five continents — the old town of Warsaw, the green waters of the Nile, the camel-country of the great desert, the torii of Kyoto, the gate of India — and into the company of poets, writers, scholars and artists in each place. Wherever you are from, in whatever language you write, there is room for you here. Send us a photograph from your own travels, with a line of caption or a short poem; we will add it to this wall, with your name.">诗文会友，足迹遍及五洲——华沙古城、尼罗碧波、大漠驼乡、京都鸟居、印度门前，一路与各国诗人、作家、学者、艺术家往来切磋。无论你来自何方、以何种语言写作，这里都有你的位置。这面墙由大家一同填满：把你在世界各地拍下的照片，连同一句注脚或一首小诗寄来，我们陆续上墙，署名致谢。</p>
+  <p data-en="Different places and languages offer different ways of seeing. These photographs record members’ travels; they are an invitation to exchange experiences, not a list of institutional partnerships. You are welcome to send a photograph you have the right to share, with a caption or poem. Display and credit will be agreed with you.">不同地方、不同语言，带来不同的看法。这里的照片记录朋友们的行旅，也邀请更多经历进入对话。欢迎提供你有权分享的照片，附上一句注脚或一首小诗；展示与署名由编辑与你确认。</p>
   <details class="ph-fold"><summary><span class="acc-t">展开图集 · 共 12 张</span></summary>
 <div class="wgrid">
     <figure><img src="网站图片/掌心/连接世界/cx_80.jpg" alt="华沙王宫广场" loading="lazy"><figcaption>华沙王宫广场</figcaption></figure>
@@ -1178,9 +1211,9 @@
     <label class="d3"><input type="radio" form="oneForm" name="来意" value="留言问候" checked>
       <b>留言问候</b><span data-en="A line, a greeting, a verse in reply. A nickname is all you need — no sign-up.">一句话，一首和诗。填个昵称就好，无需注册。</span></label>
     <label class="d3"><input type="radio" form="oneForm" name="来意" value="投稿作品">
-      <b>投稿掌心</b><span data-en="You need not be a member. Poems, prose and criticism are read by the editors; good work is published here under your name.">不必是成员。诗、文、评论，编辑都会读；刊出署你的名。</span></label>
+      <b>投稿掌心</b><span data-en="Members and non-members may send poems, prose or criticism for consideration. Publication and permission are confirmed with the author.">社内外均可投寄诗、文与评论供编辑审阅；是否刊出及授权范围会另行确认。</span></label>
     <label class="d3"><input type="radio" form="oneForm" name="来意" value="加入掌心">
-      <b>加入掌心</b><span data-en="A page of your own — biography, portrait, works, your own site — and the open forum. Introduced by any friend of The Palm.">拥有自己的页面：简介、照片、作品、个人网站，以及开放论坛。经掌心知交引荐。<br>加入前请先读一遍 <a href="covenant.html" style="color:var(--seal)">掌心公约</a>。</span></label>
+      <b>加入掌心</b><span data-en="Apply from anywhere; an introduction is welcome but not required. Once the team confirms your details, you can maintain a profile and a work space. The forum has a separate sign-in.">无论身在何处，都可来信申请；欢迎朋友引荐，但并非必需。管理员确认资料后开通名片与作品空间。论坛需单独登录。<br>加入前请阅读 <a href="covenant.html" style="color:var(--seal)">掌心公约</a>。</span></label>
   </div>
 
   <form action="https://formsubmit.co/f89a25fc2d0a166106419d7e40fb293c" method="POST" enctype="multipart/form-data" class="sub-form" id="oneForm">
@@ -1202,7 +1235,7 @@
       <span style="font-family:var(--kai);font-size:14.5px;color:var(--ink);word-break:keep-all">要不要一方作品空间？</span>
       <label style="font-size:14px;color:var(--ink-soft);cursor:pointer"><input type="radio" name="作品空间" value="需要" checked> 需要</label>
       <label style="font-size:14px;color:var(--ink-soft);cursor:pointer"><input type="radio" name="作品空间" value="暂不需要"> 暂不需要</label>
-      <span style="flex:1 0 100%;font-size:12.5px;color:var(--ink-faint);line-height:1.85">＊ 开通后请在一周内放上一件作品或一个链接；长期空置系统会自动收回，随时可以再申请。</span>
+      <span style="flex:1 0 100%;font-size:12.5px;color:var(--ink-faint);line-height:1.85">＊ 按自己的节奏整理作品。未上传的空间保留在待补充区，不因空置而自动收回；已经上传的作品不会因网站改版被移除。</span>
     </div>
     <div class="sf-row" id="ofExtra" style="display:none">
       <input type="text" name="引荐人" aria-label="引荐人或推荐人 · Introduced by" placeholder="引荐人 / 推荐人（如有）　Introduced by">
@@ -1210,7 +1243,8 @@
     </div>
     <label class="consent"><input type="checkbox" name="资料使用同意" value="同意" required><span>我同意掌心编辑组仅为回复、审稿或会员联络处理本表所提交的资料；未经本人许可，不公开邮箱与附件。详见<a href="privacy.html">资料与隐私说明</a>。<br><span class="en-line">I consent to the use of this submission for editorial review and correspondence. Email addresses and attachments will not be published without permission.</span></span></label>
     <button type="submit" class="sf-go">寄　出　·　Send</button>
-    <p class="sf-note">＊ 直接送达掌心编辑组，无需注册。我们尊重版权，刊出前会与你确认。<br>递交即视为已读并认同 <a href="covenant.html" style="color:var(--seal)">《掌心公约 · 使用与授权条款》</a>——你的作品永远是你的，随时可改可撤。<span class="en-line">Sending is taken as having read and accepted The Palm Covenant. Your work stays yours.</span></p>
+    <p class="sf-note">＊ 通过表单服务转交掌心编辑组，无需注册。投寄仅供审阅，不等于授权公开、转载或参奖；刊出前另行确认。请阅读<a href="covenant.html" style="color:var(--seal)">《掌心公约》</a>。<span class="en-line">Sending work for review does not authorize publication, republication or prize entry. Permission is confirmed separately.</span></p>
+    <p class="sf-note" id="publication-note"><b>准备投稿或参奖？</b> 公开网页、论坛或社交媒体上的作品，可能被刊物视为已发表。若需保留首发资格，请暂勿公开全文，先核对目标刊物或奖项的最新规则；隐藏或删除网页不能保证恢复资格。本站不是保密投稿系统，也不承诺录用、代理投稿或获奖。<span class="en-line">Public posting may count as prior publication. Check the intended journal or prize rules before sharing work reserved for submission. Removing a page does not guarantee renewed eligibility.</span></p>
   </form>
 
 
@@ -1220,16 +1254,16 @@
 <div class="coda"><div class="wrap">
   <div class="coda-line"></div>
   <p class="coda-zh">掌心不大，但可以捧着自己的诗交到另一个人手中。<br>
-  你若真诚书写，这里有你与同道展示自己才华的一方天地；你若喜欢阅读严肃的创作，掌心世界将是你最好的选择。诗文会友，薪火相传</p>
-  <p class="coda-en">The Palm is a small world — small enough to hold a poem in the palm of your hand and pass it into someone else’s. If you write in earnest, here is a place to show your work beside your peers; if you read serious writing, The Palm is where you will want to be. Poetry, friendship, and a flame passed on.</p>
+  你可以带来一首诗、一次阅读的发现，或一个尚无答案的问题。愿我们彼此照亮，一起走向更辽阔的世界。</p>
+  <p class="coda-en">Bring a poem, a discovery from your reading, or a question without an answer. Let us learn from one another and keep the conversation open.</p>
   <div class="coda-line"></div>
 </div></div>
 <footer>
   <div class="f-seal">
     <img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心印章">
     <span>掌心诗社编辑组制作 · 2026　|　管理员：陶然　海边　风动　文刃　|　印章草书 许之远（David Hsu）· 印章设计 掌心诗社<br>
-      站内文字与图片音视频版权归掌心诗社，成员作品版权归作者本人；转载请注明出处并链回本站；内容如有异议，请与管理员联系。<br>
-      <span class="f-en">Made by the editors of The Palm Poetry Society, 2026. Seal calligraphy by Mr. David Hsu; seal design by The Palm Club. Site content © The Palm Poetry Society; members’ works remain their authors’. Please credit and link back; for any concern about content, please contact the administrators.</span></span>
+      作品及图像音视频的权利归各自权利人；署名不代替转载授权。使用前请确认许可，内容如有异议请联系管理员。<br>
+      <span class="f-en">Prepared by The Palm Poetry Society, 2026. Seal calligraphy by David Hsu; seal design by The Palm Poetry Society. Works and media remain the property of their respective rights holders. Credit does not replace permission.</span></span>
   </div>
   <div class="f-cr f-last"><a href="covenant.html" style="color:var(--seal);text-decoration:none;border-bottom:1px solid rgba(156,58,47,.3)">掌心公约 · 使用与授权条款</a>　·　© 2026 掌心诗社 The Palm Poetry Society　·　All rights reserved.</div>
 </footer>
@@ -1486,7 +1520,7 @@ var ROSTER=[
     <div style="font-family:var(--kai);font-size:21px;color:var(--seal);letter-spacing:.12em">成员登录</div>
     <div style="font-family:var(--serif-en);font-style:italic;color:var(--ink-soft);font-size:13px;margin-top:3px">Member sign-in</div>
     <div style="height:1px;background:var(--line);margin:16px 0"></div>
-    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0"><b>第一步</b>　填入你留给掌心的邮箱，点下面的按钮，掌心会寄一封信给你。<br><b>第二步</b>　到邮箱里打开这封信，<b>点信中的「点此登录掌心」</b>——通常一步就进来了。<br><span style="color:var(--seal)"><b>万一链接打不开、或提示已失效</b>，信里还有一组六位验证码，填到本页最下面那一栏即可。</span><br>这台设备只需登录这一次，名片与作品共用同一次登录；以后点右下角的「我的一方天地」就能进。</p>
+    <p style="font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0"><b>第一步</b>　填入你留给掌心的邮箱，点下面的按钮，掌心会寄一封信给你。<br><b>第二步</b>　到邮箱里打开这封信，<b>点信中的「点此登录掌心」</b>——通常一步就进来了。<br><span style="color:var(--seal)"><b>万一链接打不开、或提示已失效</b>，信里还有一组六位验证码，填到本页最下面那一栏即可。</span><br>名片与作品共用同一浏览器的登录；以后可从「我的一方天地」进入。隐私浏览、清除数据或会话失效后可能需再次登录。</p>
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">我的邮箱</label>
     <input type="email" id="sbEmail" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="name@example.com">
     <button id="sbSend" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:18px">寄 出 登 录 链 接</button>
@@ -1609,8 +1643,10 @@ let COLS = COLS_FULL;
 let ROWS = [], ME = null, MINE = null;
 function makeCard(m){
   var d=document.createElement('div'); d.className='m-card'; d.setAttribute('data-m',m.name);
+  d.setAttribute('role','button'); d.tabIndex=0; d.setAttribute('aria-label','查看 '+m.name+' 的名片');
+  d.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); d.click(); } });
   var s=document.createElement('span'); s.className='m-name'; s.textContent=m.name;
-  if(m.updated_at && Date.now()-Date.parse(m.updated_at) < 30*864e5){
+  if(PalmCommunityPolicy.recent(m.updated_at)){
     var i=document.createElement('i'); i.textContent='\u2726'; i.title='最近更新';
     i.style.cssText='margin-left:6px;font-size:10px;color:var(--seal);vertical-align:super;font-style:normal;opacity:.75';
     s.appendChild(i);
@@ -1618,17 +1654,7 @@ function makeCard(m){
   d.appendChild(s); return d;
 }
 function paint(){
-  function seen(a,b){
-    var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
-    if(A!==B) return B-A;
-    return a.sort_order-b.sort_order;
-  }
-  function seen2(a,b){
-    var A=a.updated_at?Date.parse(a.updated_at):-1, B=b.updated_at?Date.parse(b.updated_at):-1;
-    if(A!==B) return B-A;
-    if(a.grp!==b.grp) return a.grp-b.grp;
-    return a.sort_order-b.sort_order;
-  }
+  var seen= PalmCommunityPolicy.newestFirst, seen2=seen;
   /* 诗社在上、学园在下；两组各自按最近修改时间置顶。 */
   var g1=ROWS.filter(function(m){return m.grp===1;}).sort(seen);
   var g2=ROWS.filter(function(m){return m.grp===2||m.grp===3;}).sort(seen2);
@@ -1675,8 +1701,8 @@ async function refreshMe(){
   });
   var state=$('sbSessionState');
   if(state) state.textContent = ME
-    ? '本设备已经登录。一次登录，名片与作品都可以改——点右下角的「我的一方天地」随时进入。'
-    : '一台设备只需登录一次。点邮件里的链接回到本页，名片与作品就都能改了。';
+    ? '本浏览器已经登录，名片与作品共用本次会话——从「我的一方天地」进入。'
+    : '点邮件里的链接回到本页，名片与作品共用本次登录。同一浏览器会保留会话；失效后需重新登录。';
 }
 async function openMine(){
   await refreshMe();
@@ -1782,14 +1808,15 @@ document.addEventListener('click', async function(e){
         notes.push('照片没能传上去（'+(up.error.message||'原因不明')+'）。文字已经保存，照片可稍后再试。');
       } else {
         var url = SB.storage.from('member-photos').getPublicUrl(path).data.publicUrl;
-        var w2 = await SB.from('members').update({ photo_url:url }).eq('name', MINE.name).select('name');
+        var w2 = await SB.from('members').update({ photo_url:url, updated_at:new Date().toISOString() }).eq('name', MINE.name).select('name');
         if(w2.error || !w2.data || !w2.data.length){ notes.push('照片传上去了，但没能挂到你的版块上，请稍后再试。'); }
         else { MINE.photo_url=url; $('sbPrev').src=url; $('sbPrev').style.display='block'; notes.push('照片已更新'); }
       }
     }
     $('sbSave').disabled=false;
-    await reload();
-    $('sbMsg2').textContent = notes.join('；') + '。名片已按最新修改时间排到所在组首位。';
+    var refreshed=await reload();
+    window.dispatchEvent(new Event('palm:content-updated'));
+    $('sbMsg2').textContent = notes.join('；') + (refreshed?'。名片已按最新修改时间在所在组重新排序。':'。列表暂未刷新，请刷新页面查看最新顺序。');
   }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ hide('sbLogin'); hide('sbMine'); hide('sbCard'); } });
@@ -1872,8 +1899,11 @@ function mkCard(w){
   var cover=document.createElement('div'); cover.className='wk-cover';
   var tt=(w.title||'').replace(/[《》（）()]/g,'').trim();
   if(tt==='待补'||!tt) tt='';
-  if(feature){ var im=document.createElement('img'); im.src=feature; im.alt=(w.title||'作品')+' · 首页照片'; im.loading='lazy'; cover.appendChild(im); }
-  else { cover.classList.add('ph'); cover.textContent = w.kind==='collection' ? '历年\n诗文汇' : (tt||w.author_name||'作品').slice(0,6); }
+  function coverFallback(){ cover.replaceChildren(); cover.classList.add('ph'); cover.textContent = w.kind==='collection' ? '历年\n诗文汇' : (tt||w.author_name||'作品').slice(0,10); }
+  if(feature && !/\.(?:pdf|docx?|xlsx?|pptx?|mp3|m4a|wav|mp4|mov)(?:[?#].*)?$/i.test(feature)){
+    var im=document.createElement('img'); im.alt=(w.title||'作品')+' · 首页照片'; im.loading='lazy';
+    im.addEventListener('error',coverFallback,{once:true}); im.src=feature; cover.appendChild(im);
+  } else { coverFallback(); }
   var meta=document.createElement('div'); meta.className='wk-meta';
   var au=document.createElement('em'); au.className='wk-au'; au.textContent=w.author_name||'';
   var ti=protectedTitle(w), an=(w.author_name||'').trim();
@@ -1946,14 +1976,16 @@ document.addEventListener('click', async function(e){
       if(up.error){ $('wkMsg').textContent='文件没能传上去（'+(up.error.message||'原因不明')+'），可改用链接。'; e.target.disabled=false; return; }
       url = WB.storage.from('works').getPublicUrl(path).data.publicUrl;
     }
-    var payload={ title:title, url:url, note:$('wkNote').value.trim(), author_name: (KIND==='collection' ? '掌心' : MYNAME) };
+    var payload={ title:title, url:url, note:$('wkNote').value.trim(), author_name: (KIND==='collection' ? '掌心' : MYNAME), updated_at:new Date().toISOString() };
     var res;
     if(KIND==='member' && MINE){ res = await WB.from('works').update(payload).eq('id', MINE.id).select('id'); }
     else { payload.kind=KIND; payload.owner_email=ME.email; res = await WB.from('works').insert(payload).select('id'); }
     e.target.disabled=false;
     if(res.error){ $('wkMsg').textContent='眼下没能保存，请稍后再试。'; return; }
+    if(!res.data||!res.data.length){ $('wkMsg').textContent='没有保存成功，请确认已登录本人账号。原作品没有被修改。'; return; }
     $('wkMsg').textContent='已保存，作品已显示在下方。';
     await loadWorks();
+    window.dispatchEvent(new Event('palm:content-updated'));
     setTimeout(closeWk, 900);
   }
 });
@@ -2101,7 +2133,7 @@ loadWorks();
       b.addEventListener('click',function(ev){ev.preventDefault();go();});
       el.appendChild(b);
       var sp=document.createElement('span');
-      sp.innerHTML='<br>第一次会寄一封登录信到你登记的邮箱。点开信里的链接，网站会自动回到你的编辑页；以后在这台设备无需再登录。';
+      sp.innerHTML='<br>第一次会寄一封登录信到你登记的邮箱。点开信里的链接，网站会自动回到你的编辑页；同一浏览器会保留登录状态；会话失效后需重新登录。';
       el.appendChild(sp);
     }else{
       var sp2=document.createElement('span');
@@ -2218,73 +2250,57 @@ loadWorks();
     }catch(e){}
   }
   forum();
-  /* 三、掌心动态：每位成员都进入轮播，近期名片和作品优先。 */
-  var items=[], idx=0, timer=null;
-  function ago(ts){ var d=(Date.now()-Date.parse(ts))/864e5;
-    if(d<1) return "今天"; if(d<2) return "昨天"; if(d<30) return Math.floor(d)+" 天前"; return ""; }
-  function show(){ if(!items.length) return;
-    var it=items[idx%items.length]; var s=eUP.querySelector("span");
-    s.classList.add("fade");
-    setTimeout(function(){ s.textContent=it.text; eUP.href=it.href;
-      eUP.classList.toggle("tk-tip", !!it.tip);
-      eUP.querySelector("b").textContent = it.tip ? "掌心提示" : "掌心动态";
-      s.classList.remove("fade"); },240);
-    idx++; }
-  function step(){ if(timer) clearTimeout(timer);
-    var it=items[idx%items.length]; show();
-    timer=setTimeout(step, (it&&it.tip)?8000:5000); }
-  async function live(){
-    var activities=[], memberItems=[];
-    try{
-      var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
-      var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
-      var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
-      if(host&&key){ var H={apikey:key,Authorization:"Bearer "+key};
-        var members=await (await fetch(host+"/rest/v1/members?select=name,updated_at,sort_order&order=updated_at.desc.nullslast,sort_order.asc",{headers:H})).json();
-        (Array.isArray(members)?members:[]).forEach(function(m){
-          var when=m.updated_at&&ago(m.updated_at);
-          memberItems.push({t:m.updated_at?Date.parse(m.updated_at):0,
-            text:when?("「"+m.name+"」更新了自己的一方天地 · "+when):("「"+m.name+"」在掌心有自己的一方天地"),
-            href:"#members"});
-        });
-        var works=await (await fetch(host+"/rest/v1/works?select=author_name,title,url,cover_url,created_at,updated_at,kind&order=updated_at.desc&limit=100",{headers:H})).json();
-        (Array.isArray(works)?works:[]).forEach(function(w){
-          if((!w.title||w.title.indexOf("待补")>=0)&&!String(w.url||"").trim()&&!String(w.cover_url||"").trim()) return;
-          activities.push({t:Date.parse(w.updated_at||w.created_at),
-            text:(w.kind==="collection"?"诗文汇 · ":"作品更新 · ")+(w.author_name||"")+"《"+String(w.title||"个人作品").replace(/[《》]/g,"")+"》",
-            href:(w.url&&/^https?:/.test(w.url))?w.url:((w.cover_url&&/^https?:/.test(w.cover_url))?w.cover_url:"#works")});
-        });
-      }
-    }catch(e){}
-    activities.sort(function(a,b){return (b.t||0)-(a.t||0);});
-    memberItems.sort(function(a,b){return (b.t||0)-(a.t||0);});
-    if(memberItems.length>8){
-      var recent=memberItems.slice(0,8), rest=memberItems.slice(8);
-      var d=new Date(), day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5), shift=day%rest.length;
-      memberItems=recent.concat(rest.slice(shift),rest.slice(0,shift));
-    }
-    var real=[], ai=0, mi=0, useful=activities.slice(0,16);
-    while(ai<useful.length || mi<memberItems.length){
-      if(ai<useful.length) real.push(useful[ai++]);
-      for(var q=0;q<3&&mi<memberItems.length;q++) real.push(memberItems[mi++]);
-    }
-    if(!real.length) real=cached("up")||[];
-    else cache("up",real);
-    var TIPS=[
-      {tip:1,href:"#works",text:"✎ 你的一方天地已扩容——封面、内页图六张、附件、类别与年份，点自己的作品卡就能布置"},
-      {tip:1,href:"#members",text:"✎ 点自己的名字即可登录，修改简介、更换照片，全凭自己做主"},
-      {tip:1,href:"https://palmpoetry.discourse.group/",text:"✎ 论坛已开：贴一首诗，读一首诗，说几句真话——注册即可发帖"},
-      {tip:1,href:"#works",text:"✎ 把自己的网址发给朋友：palmpoetry.org 加井号加你的名字，直接打开你的名片"}
-    ];
-    var mixed=[], k=0;
-    for(var i=0;i<real.length;i++){ mixed.push(real[i]);
-      if((i+1)%12===0) mixed.push(TIPS[k++%TIPS.length]); }
-    if(!real.length) mixed=TIPS.slice();
-    items=mixed;
-    if(items.length){ box.hidden=false; step(); }
+  /* 三、掌心动态：仅真实的近24小时更新；不轮播旧成员或占位提示。 */
+  var items=[], idx=0, timer=null, loadedAt=0, loading=false;
+  function visible(on){
+    eUP.hidden=!on;
+    eUP.parentElement.classList.toggle("no-activity",!on);
+    if(!on){ eUP.querySelector("span").textContent=""; if(timer) clearTimeout(timer); timer=null; }
   }
-  box.hidden=false;
-  live();
+  function step(){
+    if(timer) clearTimeout(timer);
+    items=PalmCommunityPolicy.freshActivities(items);
+    if(!items.length){ visible(false); return; }
+    visible(true);
+    var it=items[idx%items.length]; idx++;
+    put(eUP,it.text,it.href);
+    eUP.title="最近24小时内的真实更新";
+    timer=setTimeout(step,5000);
+  }
+  async function live(){
+    if(loading) return;
+    loading=true;
+    var real=[];
+    try{
+      var client=await globalThis.__palmClientReady;
+      if(!client) throw new Error("Client unavailable");
+      var since=new Date(Date.now()-24*60*60*1000).toISOString();
+      var result=await Promise.all([
+        client.from("members").select("name,updated_at").gte("updated_at",since).order("updated_at",{ascending:false}),
+        client.from("works").select("author_name,title,url,cover_url,created_at,updated_at,kind").or("updated_at.gte."+since+",created_at.gte."+since).order("updated_at",{ascending:false})
+      ]);
+      if(result.some(function(r){return r.error;})) throw new Error("Updates unavailable");
+      (result[0].data||[]).forEach(function(m){
+        real.push({t:PalmCommunityPolicy.timestamp(m.updated_at), text:"名片更新 · "+m.name, href:"#"+encodeURIComponent(m.name)});
+      });
+      (result[1].data||[]).forEach(function(w){
+        if((!w.title||w.title.indexOf("待补")>=0)&&!String(w.url||"").trim()&&!String(w.cover_url||"").trim()) return;
+        real.push({t:PalmCommunityPolicy.timestamp(w.updated_at||w.created_at),
+          text:(w.kind==="collection"?"诗文汇更新 · ":"作品更新 · ")+(w.author_name||"")+"《"+String(w.title||"个人作品").replace(/[《》]/g,"")+"》",
+          href:w.kind==="collection"?"#collections":"#works"});
+      });
+      items=PalmCommunityPolicy.freshActivities(real);
+      cache("up",items); loadedAt=Date.now();
+    }catch(e){
+      items=PalmCommunityPolicy.freshActivities(cached("up"));
+    }finally{ loading=false; }
+    idx=0; step();
+  }
+  visible(false); box.hidden=false; live();
+  window.addEventListener("palm:content-updated",live);
+  document.addEventListener("visibilitychange",function(){
+    if(!document.hidden){ step(); if(Date.now()-loadedAt>5*60*1000) live(); }
+  });
 })();
 </script>
 <script>
@@ -2391,7 +2407,7 @@ loadWorks();
 })();
 </script>
 <script>
-/* 作品封面（本人自定义）＋ 阅览量 */
+/* 作品封面（本人自定义）；不记录阅览量 */
 (function(){
   var HOST="",KEY="",TOK="";
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
@@ -2441,62 +2457,7 @@ loadWorks();
   setInterval(addCover,700);
 })();
 </script>
-<script>
-/* 封面显示 ＋ 阅览量 */
-(function(){
-  var HOST="",KEY="",WORKS=[],MEM=[],VC={},done=false;
-  async function conf(){ if(HOST) return;
-    var html=await (await fetch(location.pathname,{cache:"no-store"})).text();
-    HOST=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
-    KEY=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
-  function H(){ return {apikey:KEY,Authorization:"Bearer "+KEY}; }
-  async function load(){ await conf(); if(!HOST) return;
-    try{ WORKS=await (await fetch(HOST+"/rest/v1/works?select=id,author_name,title,cover_url",{headers:H()})).json(); }catch(e){}
-    try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name,bound",{headers:H()})).json();
-          if(MEM&&MEM.message) throw 0; }catch(e){
-      try{ MEM=await (await fetch(HOST+"/rest/v1/members?select=id,name",{headers:H()})).json(); }catch(e2){} }
-    try{ (await (await fetch(HOST+"/rest/v1/view_counts?select=kind,ref_id,n",{headers:H()})).json())
-          .forEach(function(v){ VC[v.kind+":"+v.ref_id]=v.n; }); }catch(e){}
-    done=true; paint(); }
-  function badge(el,n,force){ if(!n&&!force) return; if(el.querySelector(".vw")) return;
-    var s=document.createElement("span"); s.className="vw"; s.textContent="阅 "+(n||0); el.appendChild(s); }
-  function unbound(name){ var m=MEM.filter(function(x){return x.name===name;})[0];
-    return !!(m && m.bound===false); }
-  function bump(kind,id){ if(!id) return;
-    var k="pv:"+kind+":"+id; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1"); }catch(e){}
-    fetch(HOST+"/rest/v1/rpc/bump_view",{method:"POST",
-      headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY},
-      body:JSON.stringify({p_kind:kind,p_id:id})}).catch(function(){}); }
-  function paint(){ if(!done) return;
-    document.querySelectorAll("#wkGrid .wk-card, #cjGrid .wk-card").forEach(function(c){
-      var b=c.querySelector(".wk-meta b"); if(!b) return;
-      var title=b.textContent.trim().replace(/[《》]/g,"");
-      var w=WORKS.filter(function(x){return x.title&&x.title.replace(/[《》]/g,"")===title;})[0];
-      if(!w) return;
-      var cov=c.querySelector(".wk-cover");
-      if(w.cover_url&&cov&&!cov.querySelector("img")){
-        cov.classList.remove("ph"); cov.innerHTML="";
-        var im=document.createElement("img"); im.src=w.cover_url; im.alt=title;
-        im.style.cssText="width:100%;height:100%;object-fit:cover"; cov.appendChild(im); }
-      var au=w.author_name||"";
-      if(unbound(au)){ badge(c.querySelector(".wk-meta"), 0, true); }
-      else { badge(c.querySelector(".wk-meta"), VC["work:"+w.id]);
-        if(!c.__pv){ c.__pv=1; c.addEventListener("click",function(){ bump("work",w.id); }); } }
-    });
-    document.querySelectorAll(".m-card[data-m]").forEach(function(c){
-      var nm=c.getAttribute("data-m");
-      var m=MEM.filter(function(x){return x.name===nm;})[0]; if(!m) return;
-      if(m.bound===false){ badge(c, 0, true); return; }
-      badge(c, VC["member:"+m.id]);
-    }); }
-  document.addEventListener("click", function(e){
-    var c=e.target.closest&&e.target.closest(".m-card[data-m]"); if(!c) return;
-    var m=MEM.filter(function(x){return x.name===c.getAttribute("data-m");})[0];
-    if(m && m.bound!==false) bump("member", m.id);
-  }, true);
-  load(); setInterval(paint,1200);
-})();
-</script>
+<!-- Member/work view counters retired on 2026-09-02. Historical data is retained, not queried or incremented. -->
 <script>
 /* 每人一个可分享的固定链接：palmpoetry.org/#海边 */
 (function(){
@@ -3081,8 +3042,8 @@ loadWorks();
     if(isWR){
       var q=document.createElement("a"); q.className="sw-qs"; q.href=QS; q.target="_blank"; q.rel="noopener";
       q.innerHTML='<b>《千山独行》Beyond a Thousand Mountains</b>'+
-        '<span>文刃诗文专集 · 台湾中华书局出版。此处备有全书、评论、行者影像与朗诵。<br>'+
-        '<i>A poet’s solitary journey — the full book, reviews, images and recitations. One click to enter.</i></span>'+
+        '<span>文刃诗文专集 · 台湾中华书局出版。此处备有作品选读、全书目次、评论、影像与朗诵。<br>'+
+        '<i>A poet’s solitary journey — selected works, the book’s contents, reviews, images and recitations. One click to enter.</i></span>'+
         '<em>进入千山独行 · Enter →</em>';
       wrap.appendChild(q);
     }
