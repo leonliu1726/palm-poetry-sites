@@ -20,6 +20,14 @@ html{scroll-snap-type:none}
 .reading-fold .byeditor{margin-top:0}
 .reading-fold .byeditor>.sep{display:none}
 .cform button[hidden]{display:none!important}
+.doors a[href$="poems/index.html"] .z{font-size:12.5px;letter-spacing:.1em}
+.doors a[href$="poems/index.html"] .e{font-size:9px}
+.door[href$="poems/index.html"] .z{font-size:20px;letter-spacing:.16em}
+.appreciation-index .head h1{font-size:clamp(25px,3.5vw,36px);letter-spacing:.18em}
+.appreciation.prose{max-width:760px}
+.appreciation.prose p{font-size:16px;line-height:1.9;margin:0 0 16px}
+.appreciation.prose p.en{font-size:15px;line-height:1.8}
+.concise-notes li{padding-bottom:7px;line-height:1.8}
 .cform .send:disabled{opacity:.65;cursor:wait}
 .cform #cf-fallback{margin-top:14px;font-size:13px}
 .lg #hsu-chih-yuan [data-preface-in-fold="hsu"]>summary{display:none}
