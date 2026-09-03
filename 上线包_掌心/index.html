@@ -614,6 +614,18 @@
     .hc.bl{bottom:-6px;left:-6px}.hc.br{bottom:-6px;right:-6px}
     .w-note,.h-sub,.creed{padding:0 2px}
   }
+
+  /* 掌心公约：收起时不显示边框，只留一行「展开阅读」 */
+  .cov-fold:not([open]){border-color:transparent;background:none;box-shadow:none;max-width:100%;margin:0 0 6px}
+  .cov-fold:not([open]):hover{border-color:transparent;box-shadow:none}
+  .cov-fold:not([open])>summary{padding:0}
+  .cov-fold>summary .cov-more{display:inline-block;font-style:normal;font-family:var(--kai);font-size:13px;letter-spacing:.1em;color:var(--seal);border-bottom:1px solid rgba(156,58,47,.35);padding-bottom:2px}
+  .cov-fold[open]>summary{padding:18px 22px 0}
+  .cov-fold .cov-intro{padding:10px 22px 0}
+  .cov-fold .cov-intro b{display:block;font-family:var(--kai);font-size:18px;color:var(--seal);letter-spacing:.06em;margin-bottom:7px;word-break:keep-all}
+  .cov-fold .cov-intro span{display:block;font-size:14px;line-height:1.95;color:var(--ink-soft)}
+  .cov-fold .cov-intro span b{display:inline;font-size:inherit;margin:0}
+  .cov-fold .cov-intro .cov-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:6px}
 </style></head>
 <body>
 <script src="community-policy.js?v=20260902-welcome"></script>
@@ -675,23 +687,21 @@
   <div class="sub-head" id="mission"><b>使命</b><span class="en">Our Mission</span></div>
 
   <p data-en="We bring writing and attentive reading into conversation. Rooted in Chinese literary traditions and open to other languages and ways of thinking, we welcome questions, specific criticism and the possibility of changing our minds. Learning from one another helps us write with greater care for language, people and a world still unfolding.">让写作与认真阅读相互滋养。我们珍惜中文文学传统，也向不同语言、经验与思想敞开；欢迎提问、具体的批评，以及改变原有看法的可能。在彼此切磋中及时学习、持续修订，以更准确的语言回应他人和仍在展开的世界。</p>
-  <details class="ph-fold"><summary><span class="acc-t">展开 · 三条约定 · The three commitments</span></summary>
-<div class="mission-grid">
+  <div class="mission-grid">
     <div class="mi"><b>真诚 · 友善</b><span data-en="Read attentively, respond to the work, and respect the person behind it.">认真读作品，就作品交换意见，尊重每一个具体的人。</span></div>
     <div class="mi"><b>独立 · 自由</b><span data-en="Keep your own voice; welcome disagreement. Reputation is no substitute for the work itself.">保持独立声音，容纳不同判断；以作品交流，不以头衔代替阅读。</span></div>
     <div class="mi"><b>开放 · 求知</b><span data-en="Ask new questions, learn across disciplines, and revise in the light of what you discover.">面对未知提问，跨越学科与语言学习，让新的认识进入下一次创作。</span></div>
   </div>
-</details>
 
   <div class="sub-head" id="covenant-sec"><b>掌心公约</b><span class="en">The Palm Covenant</span></div>
 
   <details class="cov-fold">
-    <summary>
+    <summary><em class="cov-more">展开阅读 · Read it →</em></summary>
+    <div class="cov-intro">
       <b>使用本网站前，建议先读一遍</b>
       <span>尊重创作自由，也说清楚彼此的责任：<b>作品权利归原权利人</b>；投稿不等于同意公开；名片、作品与活动影像按确认的范围展示；登录邮箱不公开。</span>
       <span class="cov-en">Your rights, your publication choices, and how we look after your work and personal details.</span>
-      <em class="cov-open">点开阅读全文 · Read it →</em>
-    </summary>
+    </div>
     <div class="cov-body">
       <p class="cov-lead">尊重创作自由，说清楚彼此的权利与责任。更新：2026年9月2日；本说明不扩大任何既有授权。</p>
 <h4>一　你的作品，永远是你的</h4>
@@ -804,15 +814,13 @@
   })();
   </script>
 
-  <details class="ph-fold"><summary><span class="acc-t">翻阅《萤火》· About the anthology &amp; read it in full</span></summary>
-<div class="yh">
+  <div class="yh">
     <img src="https://palmpoetry.org/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E8%90%A4%E7%81%AB%E5%B0%81%E9%9D%A2.jpg?v=20260825" alt="《萤火》— 掌心诗社诗词专辑" loading="lazy" decoding="async">
     <div><p data-en="Fireflies is the poetry anthology of The Palm Poetry Society, gathering work by members and by poet friends around the world. Printed in Canada by Manmei Press.">《萤火》是掌心诗社的诗词专辑，结集社员与世界各地诗人的诗作，由加拿大曼美印刷出版社印行。</p>
     <p data-en="A firefly gives very little light — but one lamp may light another, and poets’ hearts scattered across five continents are gathered here into something like a galaxy. Submissions are welcome from members and from anyone else who writes.">萤火虽微，愿以一灯传一灯——星散于五洲四海的诗心，借此聚成一片银河。欢迎社内外诗友投稿。</p>
     <p data-en="The book runs to three parts — classical verse, modern poetry, and poems in English with translations — some two hundred and fifty poems by more than thirty poets.">专辑收古典诗词、现代诗、英文诗歌及翻译三辑，凡三十余位诗人、二百五十余首作品。</p>
     <p><a class="yh-enter" href="fireflies.html">翻阅全本《萤火》 →　Read the full anthology</a></p></div>
   </div>
-</details>
   
   </div>
 
@@ -1382,7 +1390,9 @@ var ROSTER=[
   {n:"Tracy Gao",g:2,u:""},
   {n:"Michael Zhang",g:2,u:""},
   {n:"Grace Jiang",g:2,u:""},
-  {n:"Yu Qin Liu",g:2,u:""}
+  {n:"Yu Qin Liu",g:2,u:""},
+  {n:"万沐",g:2,u:""},
+  {n:"Sean Tan",g:2,u:""}
 ];
 (function(){
   function render(){
@@ -2487,7 +2497,7 @@ loadWorks();
     return true; }
   function shown(){ var b=document.getElementById("sbCard");
     return !!(b&&getComputedStyle(b).display!=="none"); }
-  var ALIAS={"fengdong":"风动","gutu":"古土","dandan":"丹丹","mowangshan":"墨望山","fengyezhenghong":"枫叶正红","tangmang":"唐芒","xinxinxiangrong":"欣欣向荣","wenren":"文刃","tim":"Tim","yangqing":"杨青","feihong":"飞鸿","wangxuejun":"王雪君","xiaoming":"晓鸣","hubian":"湖边","shifu":"石甫","wuyuehua":"五月花","luoyitong":"骆奕同","guqian":"古谦","huyang":"胡杨","wanghui":"王慧","xierongfeng":"谢榕枫","chenhe":"陈河","qingfeng":"青枫","zhudaihong":"诸黛红","lingli":"玲利","lichang":"李昶","tanxinxiong":"谭新雄","weixiaoqing":"韦小青","mingjie":"明洁","clairef":"Claire F","moranhuishou":"蓦然回首","chenning":"陈宁","zhangdi":"张迪","chenlong":"陈龙","ruoran":"若然","wangxiaoming":"王晓鸣","liningyuan":"李宁远","dongdongsheng":"东冬生","johnson":"Johnson","michaelzhang":"Michael Zhang","gracejiang":"Grace Jiang","yuqinliu":"Yu Qin Liu","taoran":"陶然","jiuwei":"久炜","junying":"俊英","baishui":"白水","zhangxiying":"张喜英","jiangni":"姜尼","wenyan":"闻雁","moquan":"墨泉","beijiang":"北江","nilrhoads":"Nil Rhoads","kenneth":"Kenneth","fuyuhua":"傅毓华","haibian":"海边","yanzhonghu":"颜钟祜","suyixin":"苏奕歆","tracygao":"Tracy Gao","shendayong":"沈大勇","peterlin":"Peter Lin","kristen":"Kristen","chenrong":"陈蓉","xiaqian":"夏倩","yimu":"以牧","churen":"楚人","nongxian":"弄弦","tiaodengkanjian":"挑灯看剑","huangzhong":"黄忠","georgeliang":"George Liang","zhangwenyao":"张文尧","zhangsu":"张苏"};
+  var ALIAS={"fengdong":"风动","gutu":"古土","dandan":"丹丹","mowangshan":"墨望山","fengyezhenghong":"枫叶正红","tangmang":"唐芒","xinxinxiangrong":"欣欣向荣","wenren":"文刃","tim":"Tim","yangqing":"杨青","feihong":"飞鸿","wangxuejun":"王雪君","xiaoming":"晓鸣","hubian":"湖边","shifu":"石甫","wuyuehua":"五月花","luoyitong":"骆奕同","guqian":"古谦","huyang":"胡杨","wanghui":"王慧","xierongfeng":"谢榕枫","chenhe":"陈河","qingfeng":"青枫","zhudaihong":"诸黛红","lingli":"玲利","lichang":"李昶","tanxinxiong":"谭新雄","weixiaoqing":"韦小青","mingjie":"明洁","clairef":"Claire F","moranhuishou":"蓦然回首","chenning":"陈宁","zhangdi":"张迪","chenlong":"陈龙","ruoran":"若然","wangxiaoming":"王晓鸣","liningyuan":"李宁远","dongdongsheng":"东冬生","johnson":"Johnson","michaelzhang":"Michael Zhang","gracejiang":"Grace Jiang","yuqinliu":"Yu Qin Liu","taoran":"陶然","jiuwei":"久炜","junying":"俊英","baishui":"白水","zhangxiying":"张喜英","jiangni":"姜尼","wenyan":"闻雁","moquan":"墨泉","beijiang":"北江","nilrhoads":"Nil Rhoads","kenneth":"Kenneth","fuyuhua":"傅毓华","haibian":"海边","yanzhonghu":"颜钟祜","suyixin":"苏奕歆","wanmu":"万沐","seantan":"Sean Tan","tracygao":"Tracy Gao","shendayong":"沈大勇","peterlin":"Peter Lin","kristen":"Kristen","chenrong":"陈蓉","xiaqian":"夏倩","yimu":"以牧","churen":"楚人","nongxian":"弄弦","tiaodengkanjian":"挑灯看剑","huangzhong":"黄忠","georgeliang":"George Liang","zhangwenyao":"张文尧","zhangsu":"张苏"};
   var SEC={origin:1,reading:1,members:1,works:1,forum:1,world:1,mission:1,writings:1,album:1,join:1,guestbook:1,fireflies:1,films:1,home:1,doors:1,submit:1};
   function fromHash(){
     var h=decodeURIComponent((location.hash||"").slice(1));
