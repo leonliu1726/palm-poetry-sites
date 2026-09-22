@@ -39,7 +39,8 @@ def check_pkg(pkg):
         refs = re.findall(r'(?:src|href)="([^"]+)"', html)
         miss = []
         for s in refs:
-            if s.startswith(("http", "#", "mailto:", "data:", "javascript:")): continue
+            # 以 / 开头的是站点绝对路径（上线后由服务器解析），不是本地文件，跳过
+            if s.startswith(("http", "#", "mailto:", "data:", "javascript:", "/")): continue
             if not s.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp", ".html", ".css", ".js")): continue
             if not os.path.exists(os.path.join(base, s)): miss.append(s)
         if miss:
@@ -63,7 +64,7 @@ def main():
 
     print("\n" + "=" * 48)
     if all_ok:
-        print("  全绿 ✓  可以 Commit + Push，Netlify 会自动上线。")
+        print("  全绿 ✓  可以 Commit + Push，Cloudflare 会自动上线。")
     else:
         print("  有 ✗  请先修好再推送。")
     print("=" * 48)
