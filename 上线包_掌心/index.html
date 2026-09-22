@@ -1070,7 +1070,7 @@
   <div class="sec-head"><span class="sec-no">三</span><h2>成员与作品</h2><span class="en">Members &amp; Works</span><div class="rule"></div></div>
   <div class="sub-head" id="roster"><b>成员</b><span class="en">Members</span></div>
   <p class="m-note">掌心由朋友们共同维护，每位成员自主整理自己的名片与作品。名录按各组最近更新排列，欢迎慢慢认识这里的朋友。<span class="en-line">A community maintained together. Members care for their own profiles and work; each group lists recent updates first. Take your time getting to know the people here.</span></p>
-  <div class="pk-search"><label class="sr-only" for="pkQ">搜索人名或作品名 · Search names and works</label><input id="pkQ" type="search" aria-label="搜索人名或作品名 · Search names and works" placeholder="搜索 · 人名、作品名　　Search names &amp; works" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
+  <div class="pk-search"><label class="sr-only" for="pkQ">搜索人名、作品名或诗文正文 · Search names, works and text</label><input id="pkQ" type="search" aria-label="搜索人名、作品名或诗文正文 · Search names, works and text" placeholder="搜索 · 人名、作品名、诗文正文　　Search names, works &amp; text" autocomplete="off"><div class="pk-res" id="pkRes" hidden></div></div>
   <p data-en="The Palm was founded by like-minded poet-friends and gathers poets, writers, painters and kindred spirits at home and abroad in a society and learning community. It belongs to everyone who writes and reads — all equal, each with their own gift; the roster keeps growing, and new companions are always welcome:">掌心由志同道合的诗人好友共同发起，汇聚海内外诗人、作家、画家与各界知交，结成砥砺精进的诗社与学园。这里属于每一位写作与读书的人——人人平等，各擅其长；名录持续增补，欢迎更多同道：</p>
   <div class="m-group-t">掌心诗社 <span class="en">The Palm Poetry Society</span></div>
   <div class="m-grid" id="m-grid-1"></div>
@@ -1120,10 +1120,10 @@
     <a class="wk-card" id="wkQianshan" data-au="文刃" data-title="《千山独行》" href="https://leonliu1726.github.io/beyondathousandmountains/index.html" target="_blank" rel="noopener" aria-label="进入文刃《千山独行》作品网站"><div class="wk-cover"><img src="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E5%8D%83%E5%B1%B1%E7%8B%AC%E8%A1%8C/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E5%B0%81%E9%9D%A2%E6%AD%A3%E9%9D%A2.jpg" alt="《千山独行》正面封面" loading="lazy"></div><div class="wk-meta"><em class="wk-au">文刃</em><b>《千山独行》</b><span>台湾中华书局 · 进入作品网站</span></div></a>
   </div>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="wkSelfEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 登录／修改我的作品空间 →</a></p>
-  <p class="m-note">＊ 已登录会员可点上方入口或自己的作品卡；尚未上传的会员也可点折叠区中自己的姓名卡。</p>
+  <p class="m-note">＊ 每位成员的作品空间都已开通并一直保留。已登录会员可点上方入口或自己的作品卡；尚未上传的会员登录后，本页会出现属于自己的那一格。</p>
 
-  <details class="ph-fold wk-pending-fold" id="wkPending">
-    <summary><span class="acc-t" id="wkPendingTitle">尚待上传的朋友 · 作品空间</span><span class="en-line">Reserved member spaces</span></summary>
+  <details class="ph-fold wk-pending-fold" id="wkPending" style="display:none">
+    <summary><span class="acc-t" id="wkPendingTitle"></span><span class="en-line">Your reserved space</span></summary>
     <div class="wk-grid" id="wkPendingGrid" aria-live="polite"></div>
   </details>
 
@@ -2032,6 +2032,7 @@ document.addEventListener('keydown', function(e){
   var c=e.target.closest && e.target.closest('#wkGrid .wk-card[data-hasbody="1"]');
   if(c){ e.preventDefault(); openWkReader(WKROWS[String(c.getAttribute('data-id'))]); }
 });
+globalThis.__palmOpenWorkBody=function(row){ openWkReader(row); };
 document.addEventListener('click', async function(e){
   if(e.target.id==='wkMemberAdd' || (e.target.closest && e.target.closest('#wkMemberAdd'))){ e.preventDefault(); openWk('member'); return; }
   if(e.target.id==='wkCollAdd' || (e.target.closest && e.target.closest('#wkCollAdd'))){ e.preventDefault(); openWk('collection'); return; }
@@ -2393,6 +2394,35 @@ loadWorks();
 (function(){
   var q=document.getElementById("pkQ"), res=document.getElementById("pkRes");
   if(!q) return;
+  var TEXTS=null, HOST="", KEY="";
+  async function conf(){ if(HOST) return;
+    var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
+    HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
+    KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
+  async function texts(){
+    if(TEXTS) return TEXTS;
+    TEXTS=[]; await conf(); if(!HOST) return TEXTS;
+    var H={apikey:KEY,Authorization:"Bearer "+KEY};
+    try{
+      var w=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,body&kind=in.(member,collection)",{headers:H})).json();
+      (Array.isArray(w)?w:[]).forEach(function(r){
+        if(!String(r.body||"").trim()) return;
+        TEXTS.push({t:(r.title||"无题")+(r.author_name?" · "+r.author_name:""), k:"作品正文", body:String(r.body), row:r, kind:"work"});
+      });
+    }catch(e){}
+    try{
+      var ps=await (await fetch(HOST+"/rest/v1/posts_public?select=id,author_name,title,body",{headers:H})).json();
+      (Array.isArray(ps)?ps:[]).forEach(function(r){
+        TEXTS.push({t:(r.title||"无题")+(r.author_name?" · "+r.author_name:""), k:"诗帖", body:String(r.body||""), row:r, kind:"post"});
+      });
+    }catch(e){}
+    return TEXTS;
+  }
+  function openText(x){
+    if(x.kind==="post" && globalThis.__palmOpenPost){ if(globalThis.__palmOpenPost(x.row.id)) return; }
+    if(x.kind==="work" && globalThis.__palmOpenWorkBody){ globalThis.__palmOpenWorkBody(x.row); return; }
+    var sec=document.getElementById(x.kind==="post"?"forum":"works"); if(sec) sec.scrollIntoView({behavior:"smooth"});
+  }
   function idx(){ var out=[];
     document.querySelectorAll(".m-card[data-m]").forEach(function(c){
       out.push({t:c.getAttribute("data-m"), k:"成员", el:c}); });
@@ -2404,16 +2434,32 @@ loadWorks();
   function hit(el){ el.scrollIntoView({behavior:"smooth",block:"center"});
     el.classList.add("pk-hit"); setTimeout(function(){el.classList.remove("pk-hit");},2200);
     if(el.classList.contains("m-card")) setTimeout(function(){el.click();},700); }
-  q.addEventListener("input",function(){
+  q.addEventListener("input",async function(){
     var v=q.value.trim().toLowerCase();
     if(!v){ res.hidden=true; res.innerHTML=""; return; }
-    var list=idx().filter(function(x){return x.t.toLowerCase().indexOf(v)>=0;}).slice(0,8);
+    var list=idx().filter(function(x){return x.t.toLowerCase().indexOf(v)>=0;}).slice(0,6);
     res.innerHTML="";
-    if(!list.length){ var e=document.createElement("a"); e.href="#"; e.textContent="没有找到 · No match"; res.appendChild(e); }
     list.forEach(function(x){ var a=document.createElement("a"); a.href="#";
       a.textContent=x.t; var s=document.createElement("span"); s.className="k"; s.textContent=x.k; a.appendChild(s);
       a.addEventListener("click",function(ev){ev.preventDefault(); res.hidden=true; q.value=""; hit(x.el);});
       res.appendChild(a); });
+    res.hidden=list.length===0;
+    var all=await texts();
+    if(q.value.trim().toLowerCase()!==v) return;
+    var seen={}; list.forEach(function(x){seen[x.t]=1;});
+    var more=all.filter(function(x){
+      return !seen[x.t] && (x.t.toLowerCase().indexOf(v)>=0 || x.body.toLowerCase().indexOf(v)>=0);
+    }).slice(0,6);
+    more.forEach(function(x){
+      var a=document.createElement("a"); a.href="#";
+      var i=x.body.toLowerCase().indexOf(v);
+      var frag=i>=0? ("…"+x.body.slice(Math.max(0,i-12), i+28).replace(/\s+/g," ")+"…") : "";
+      a.textContent=x.t+(frag?"　"+frag:"");
+      var s=document.createElement("span"); s.className="k"; s.textContent=x.k; a.appendChild(s);
+      a.addEventListener("click",function(ev){ev.preventDefault(); res.hidden=true; q.value=""; openText(x);});
+      res.appendChild(a);
+    });
+    if(!list.length && !more.length){ var e=document.createElement("a"); e.href="#"; e.textContent="没有找到 · No match"; res.appendChild(e); }
     res.hidden=false; });
   document.addEventListener("click",function(e){ if(!e.target.closest(".pk-search")) res.hidden=true; });
 })();
@@ -2445,6 +2491,25 @@ loadWorks();
     try{localStorage.setItem('palmAfterLogin','works');}catch(ignore){}
     openMember(name);
   }
+  var MYNAME=null;
+  async function myName(){
+    if(MYNAME!==null) return MYNAME;
+    MYNAME='';
+    try{
+      var t=''; for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
+        if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||'null');
+          var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x){t=x;break;}}}
+      if(!t) return MYNAME;
+      var html=await (await fetch(location.pathname,{cache:'no-store'})).text();
+      var host=(html.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+      var key=(html.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0];
+      if(!host||!key) return MYNAME;
+      var m=await (await fetch(host+'/rest/v1/rpc/my_member',{method:'POST',
+        headers:{'Content-Type':'application/json',apikey:key,Authorization:'Bearer '+t},body:'{}'})).json();
+      if(Array.isArray(m)&&m.length) MYNAME=m[0].name||'';
+    }catch(e){}
+    return MYNAME;
+  }
   function draw(members, works){
     var real={};
     (works||[]).forEach(function(w){ if(w.kind==='member'&&w.author_name&&isRealWork(w)) real[w.author_name]=true; });
@@ -2458,14 +2523,23 @@ loadWorks();
     fallbackMembers().forEach(function(m){if(!all.some(function(x){return x.name===m.name;})) all.push(m);});
     var pending=all.filter(function(m){return m.name&&!real[m.name];})
       .sort(function(a,b){return (a.grp-b.grp)||((a.sort_order||999)-(b.sort_order||999))||a.name.localeCompare(b.name,'zh-Hans');});
-    box.innerHTML='';
-    pending.forEach(function(m){
-      var c=document.createElement('button'); c.type='button'; c.className='wk-card wk-pending-card';
-      c.setAttribute('data-au',m.name); c.setAttribute('aria-label',m.name+'的作品空间，尚待上传');
-      c.innerHTML='<div class="wk-cover ph">'+esc(m.name)+'</div><div class="wk-meta"><em class="wk-au">'+esc(m.name)+'</em><b>作品空间已开通</b><span>本人登录后可上传作品或关联个人网站</span></div>';
-      c.addEventListener('click',function(){openPendingMember(m.name);}); box.appendChild(c);
+    /* 作品空间依旧为每位成员保留；只是不再公开陈列整片空位。
+       本人登录后，只看得到自己那一格，作为上传入口。 */
+    var fold=document.getElementById('wkPending');
+    myName().then(function(me){
+      var show=me? pending.filter(function(m){return m.name===me;}) : [];
+      if(fold) fold.style.display = show.length? '' : 'none';
+      if(label) label.textContent = show.length? '我的作品空间 · 尚待上传' : '';
+      box.innerHTML='';
+      show.forEach(function(m){
+        var c=document.createElement('button'); c.type='button'; c.className='wk-card wk-pending-card';
+        c.setAttribute('data-au',m.name); c.setAttribute('aria-label',m.name+'的作品空间，尚待上传');
+        c.innerHTML='<div class="wk-cover ph">'+esc(m.name)+'</div><div class="wk-meta"><em class="wk-au">'+esc(m.name)+'</em><b>作品空间已开通</b><span>点此上传作品或关联个人网站</span></div>';
+        c.addEventListener('click',function(){openPendingMember(m.name);});
+        box.appendChild(c);
+      });
     });
-    if(label) label.textContent='尚待上传的朋友 · 作品空间（'+pending.length+'）';
+
   }
   async function load(){
     try{
@@ -3457,6 +3531,10 @@ loadWorks();
     var b=e.target.closest&&e.target.closest("#pxNew");
     if(b){ e.preventDefault(); openEditor(null); }
   });
+  globalThis.__palmOpenPost=function(id){
+    var r=ROWS.filter(function(x){return String(x.id)===String(id);})[0];
+    if(r){ openReader(r); return true; } return false;
+  };
   load();
   window.addEventListener("palm:content-updated",load);
 })();
