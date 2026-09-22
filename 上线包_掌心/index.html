@@ -1893,6 +1893,8 @@ SB.auth.onAuthStateChange(function(event, session){
     <input type="file" id="wkFile" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box;padding:8px">
     <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">一句话说明</label>
     <input type="text" id="wkNote" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;color:var(--ink);box-sizing:border-box" placeholder="例：文刃 · 台湾中华书局">
+    <label style="display:block;font-family:var(--kai);font-size:14px;color:var(--ink);margin:14px 0 5px">作品正文 <span style="font-family:inherit;font-size:12px;color:var(--ink-soft)">（可直接粘贴诗、散文、赋、评论全文；填了正文，读者点卡片即可通读）</span></label>
+    <textarea id="wkBody" rows="12" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff;font-family:inherit;font-size:15px;line-height:1.95;color:var(--ink);box-sizing:border-box;resize:vertical" placeholder="原文照贴即可，分行与空行都会保留。"></textarea>
     <button id="wkSave" style="padding:11px 18px;border:0;border-radius:8px;background:var(--seal);color:#fdf9f0;font-family:var(--kai);font-size:15px;letter-spacing:.18em;cursor:pointer;width:100%;margin-top:20px">保 存</button>
     <p id="wkMsg" style="font-size:13px;line-height:1.9;color:var(--seal);margin:12px 0 0;min-height:1.9em"></p>
   </div>
@@ -1914,13 +1916,17 @@ function protectedTitle(w){
   if(!isPendingWork(w)) t=t.replace(/^\s*[《（(]?\s*待补\s*[》）)]?\s*/,'').trim();
   return t||'个人作品';
 }
+var WKROWS={};
 function mkCard(w){
   var nm=wkMeta(w.note), gallery=nm&&((Array.isArray(nm.gallery)&&nm.gallery)||(Array.isArray(nm.g)&&nm.g))||[];
+  var hasBody = !!String(w.body||'').trim();
+  if(hasBody && w.id) WKROWS[String(w.id)]=w;
   var openUrl=String(w.url||'').trim() || String(nm&&nm.f||'').trim() || String(w.cover_url||'').trim() || String(gallery[0]||'').trim();
   var hasUrl = !!openUrl;
-  var el = document.createElement(w.kind==='collection' ? 'div' : (hasUrl ? 'a' : 'div'));
+  var el = document.createElement((w.kind==='collection'||hasBody) ? 'div' : (hasUrl ? 'a' : 'div'));
   el.className='wk-card'; el.setAttribute('data-wk','1');
-  if(w.kind==='collection'){ el.setAttribute('role','button'); el.tabIndex=0; el.style.cursor='pointer'; }
+  if(hasBody) el.setAttribute('data-hasbody','1');
+  if(w.kind==='collection'||hasBody){ el.setAttribute('role','button'); el.tabIndex=0; el.style.cursor='pointer'; }
   else if(hasUrl){ el.href=openUrl; el.target='_blank'; el.rel='noopener'; }
   var feature=w.cover_url || gallery[0] || (w.kind==='collection'&&isImageUrl(w.url)?w.url:'');
   var cover=document.createElement('div'); cover.className='wk-cover';
@@ -1942,6 +1948,7 @@ function mkCard(w){
     else note=note.replace(/^\d{4}-\d{2}-\d{2}\s*[｜|·-]?\s*/,'').replace(/历年诗文(?:会集|汇集)/g,'历年诗文汇').replace(/^[｜|·\s]+|[｜|·\s]+$/g,'')||'点击查看照片与诗文';
   }
   if(ti && ti.indexOf('待补')<0 && note.indexOf('本人登录后可上传作品')>=0) note=hasUrl?'个人作品 · 查看作品链接':'个人作品';
+  if(hasBody && w.kind!=='collection' && (!note || note.indexOf('本人登录后可上传作品')>=0)) note='点此通读全文';
   var sp=document.createElement('span'); sp.textContent=note;
   el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||''); el.setAttribute('data-id',w.id||''); el.setAttribute('data-kind',w.kind||'');
   meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
@@ -1949,7 +1956,7 @@ function mkCard(w){
   return el;
 }
 async function loadWorks(){
-  var r = await WB.from('works').select('id,kind,author_name,title,url,note,cover_url,created_at,updated_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
+  var r = await WB.from('works').select('id,kind,author_name,title,url,note,body,cover_url,created_at,updated_at').in('kind',['member','collection']).order('updated_at',{ascending:false});
   if(r.error || !r.data) return;
   var grid=$('wkGrid'), cg=$('cjGrid'); if(!grid) return;
   grid.querySelectorAll('[data-wk]').forEach(function(e){ e.remove(); });
@@ -1979,14 +1986,49 @@ async function openWk(kind){
   KIND=kind;
   $('wkHead').textContent = kind==='collection' ? '上传历年诗文汇' : '我的作品';
   $('wkWho').textContent = kind==='collection' ? ('编辑：'+ME.email+'　可上传多本会集') : ('作者：'+MYNAME+'　每人一件，可随时替换');
-  MINE=null; $('wkTitle').value=''; $('wkUrl').value=''; $('wkNote').value=''; $('wkMsg').textContent='';
+  MINE=null; $('wkTitle').value=''; $('wkUrl').value=''; $('wkNote').value=''; if($('wkBody')) $('wkBody').value=''; $('wkMsg').textContent='';
   if(kind==='member'){
     var w = await WB.rpc('my_work');
-    if(!w.error && w.data && w.data.length){ MINE=w.data[0]; $('wkTitle').value=MINE.title||''; $('wkUrl').value=MINE.url||''; $('wkNote').value=MINE.note||''; }
+    if(!w.error && w.data && w.data.length){ MINE=w.data[0]; $('wkTitle').value=MINE.title||''; $('wkUrl').value=MINE.url||''; $('wkNote').value=MINE.note||'';
+      if(MINE.body===undefined && MINE.id){ var bq=await WB.from('works').select('body').eq('id',MINE.id).limit(1); if(!bq.error && bq.data && bq.data.length) MINE.body=bq.data[0].body; }
+      if($('wkBody')) $('wkBody').value=MINE.body||''; }
   }
   $('wkModal').style.display='block'; document.body.style.overflow='hidden';
 }
 function closeWk(){ $('wkModal').style.display='none'; document.body.style.overflow=''; }
+var wkReader=null;
+function openWkReader(w){
+  if(!w) return;
+  if(!wkReader){
+    wkReader=document.createElement('div'); wkReader.className='cj-space-modal';
+    var pn=document.createElement('div'); pn.className='cj-space-panel';
+    pn.innerHTML='<button class="cj-b2" id="wkrClose" style="float:right">关闭</button>'
+      +'<h3 class="cj-space-title" id="wkrTitle"></h3>'
+      +'<div class="cj-space-date" id="wkrAu"></div>'
+      +'<div class="cj-space-body" id="wkrBody" style="white-space:pre-wrap"></div>'
+      +'<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">'
+      +'<a class="cj-b1" id="wkrLink" target="_blank" rel="noopener" style="text-decoration:none">打开外部链接 / 附件</a></div>';
+    wkReader.appendChild(pn); document.body.appendChild(wkReader);
+    pn.querySelector('#wkrClose').onclick=function(){ wkReader.style.display='none'; document.body.style.overflow=''; };
+    wkReader.addEventListener('click',function(e){ if(e.target===wkReader){ wkReader.style.display='none'; document.body.style.overflow=''; } });
+  }
+  document.getElementById('wkrTitle').textContent = protectedTitle(w);
+  document.getElementById('wkrAu').textContent = (w.author_name||'') + (w.note && w.note.indexOf('{')!==0 ? ('　' + w.note) : '');
+  document.getElementById('wkrBody').textContent = String(w.body||'');
+  var lk=document.getElementById('wkrLink'); var u=String(w.url||'').trim();
+  lk.style.display = u ? 'inline-block' : 'none'; if(u) lk.href=u;
+  wkReader.style.display='flex'; document.body.style.overflow='hidden';
+}
+document.addEventListener('click', function(e){
+  var c=e.target.closest && e.target.closest('#wkGrid .wk-card[data-hasbody="1"]');
+  if(!c) return; e.preventDefault(); e.stopPropagation();
+  openWkReader(WKROWS[String(c.getAttribute('data-id'))]);
+}, true);
+document.addEventListener('keydown', function(e){
+  if(e.key!=='Enter') return;
+  var c=e.target.closest && e.target.closest('#wkGrid .wk-card[data-hasbody="1"]');
+  if(c){ e.preventDefault(); openWkReader(WKROWS[String(c.getAttribute('data-id'))]); }
+});
 document.addEventListener('click', async function(e){
   if(e.target.id==='wkMemberAdd' || (e.target.closest && e.target.closest('#wkMemberAdd'))){ e.preventDefault(); openWk('member'); return; }
   if(e.target.id==='wkCollAdd' || (e.target.closest && e.target.closest('#wkCollAdd'))){ e.preventDefault(); openWk('collection'); return; }
@@ -2005,6 +2047,7 @@ document.addEventListener('click', async function(e){
       url = WB.storage.from('works').getPublicUrl(path).data.publicUrl;
     }
     var payload={ title:title, url:url, note:$('wkNote').value.trim(), author_name: (KIND==='collection' ? '掌心' : MYNAME), updated_at:new Date().toISOString() };
+    if($('wkBody')) payload.body = $('wkBody').value.replace(/\s+$/,'');
     var res;
     if(KIND==='member' && MINE){ res = await WB.from('works').update(payload).eq('id', MINE.id).select('id'); }
     else { payload.kind=KIND; payload.owner_email=ME.email; res = await WB.from('works').insert(payload).select('id'); }
