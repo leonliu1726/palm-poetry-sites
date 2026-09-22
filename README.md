@@ -1,16 +1,26 @@
 # 掌心 · 千山独行 网站仓库
 
-这个仓库只收录两个上线包，用于 Netlify 自动部署。私人手稿、源图等不在其中（见 .gitignore）。
+这个仓库只收录两个上线包，用于 **Cloudflare** 自动部署。私人手稿、源图等不在其中（见 .gitignore）。
 
 ## 内容
-- `上线包_掌心/` → 部署到 Netlify 站点 **thepalmpoetrysociety**（掌心 + 萤火）
-- `上线包_千山独行/` → 部署到 Netlify 站点 **beyondathousandmountains**（千山独行）
+- `上线包_掌心/` → palmpoetry.org（掌心 + 萤火 + 诗海流风）
+- `上线包_千山独行/` → 千山独行
 - `发布前自检.py` → 每次改动后、推送前的自动检查（截断 / 草稿标记 / 空图 / 缺失资源）
+- `掌心网站交接说明.md` → **接手先读这一份**：架构、数据库、权限、已知问题
+- `掌心征稿体例.md` → 投稿标准（中英双语，四个数字待定）
+- `掌心官网改版-基线快照-20260922.md` → 改版前的逐条清单，用于核对
 
 ## 发布流程（Git 自动部署）
-1. Claude 修改上线包里的文件
+1. 修改上线包里的文件
 2. 运行 `python 发布前自检.py`，确认全绿
-3. 在 GitHub Desktop 里 Commit + Push
-4. Netlify 收到推送后自动部署上线
+3. 改过 JS 的话，另跑一次脚本块语法检查（见交接说明第二节）
+4. 在 GitHub Desktop 里 Commit + Push
+5. Cloudflare 收到推送后自动部署上线
+
+Cloudflare 有缓存，推完稍等半分钟再看，或在网址后加 `?v=2` 绕开。
 
 再也不用手动拖文件夹。
+
+## 历史说明
+- **Netlify 是旧方案，已弃用。** `thepalmpoetrysociety` 与 `beyondathousandmountains` 两个 Netlify 站点均已失效（404）。现在由 Cloudflare 部署与服务。
+- **Discourse 论坛已于 2026-09-22 停用**，内容迁入官网「诗海流风」。全站与本仓库不得再出现 discourse 链接。
