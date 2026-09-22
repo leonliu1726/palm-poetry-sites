@@ -58,4 +58,16 @@ def main():
     all_ok = True
     for pkg in PACKAGES:
         print(f"\n【{pkg}】")
-        if not check
+        if not check_pkg(pkg):
+            all_ok = False
+
+    print("\n" + "=" * 48)
+    if all_ok:
+        print("  全绿 ✓  可以 Commit + Push，Netlify 会自动上线。")
+    else:
+        print("  有 ✗  请先修好再推送。")
+    print("=" * 48)
+    return 0 if all_ok else 1
+
+if __name__ == "__main__":
+    sys.exit(main())

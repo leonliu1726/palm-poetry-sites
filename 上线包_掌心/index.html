@@ -2610,6 +2610,7 @@ loadWorks();
 (function(){
   var HB="huangxiaoyu2001"+String.fromCharCode(64)+"gmail.com";
   var HOST="",KEY="",ROWS={},editor=null,reader=null,E={},ACTIVE=null,GALLERY=[];
+  var MAXPH=200;
   function tok(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);
     if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");
       var x=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)); if(x) return x;}}}catch(e){}return "";}
@@ -2646,7 +2647,7 @@ loadWorks();
     E.url=field(p,"外部链接 / 附件（选填）","url","论坛帖、PDF、视频或其他资料网址");
     E.cover=field(p,"首页照片网址（选填）","url","https://…；未填写时自动采用相册第一张");
     E.coverFile=field(p,"或从电脑上传一张首页照片","file"); E.coverFile.accept="image/*";
-    E.gallery=field(p,"聚会照片（可多选，单次最多 30 张）","file"); E.gallery.accept="image/*"; E.gallery.multiple=true;
+    E.gallery=field(p,"聚会照片（可多选，一条雅集最多 200 张）","file"); E.gallery.accept="image/*"; E.gallery.multiple=true;
     E.existing=el("div","cj-space-existing"); p.appendChild(E.existing);
     E.msg=el("div",null,""); E.msg.style.cssText="font-size:13px;color:var(--seal);min-height:22px;margin:10px 0";p.appendChild(E.msg);
     var bar=el("div");bar.style.cssText="display:flex;gap:10px;justify-content:flex-end";
@@ -2663,15 +2664,15 @@ loadWorks();
     if(!r.ok)throw new Error("照片上传失败（"+r.status+"）。");return HOST+"/storage/v1/object/public/works/"+path;}
   async function openEditor(row){await conf();if(!meIsHB()){alert("历年诗文汇由编辑海边上传维护。");return;}buildEditor();ACTIVE=row||null;
     var m=meta(row||{});E.date.value=m.date||"";E.title.value=row&&row.title||"";E.summary.value=m.summary||"";E.body.value=m.body||"";
-    E.url.value=row&&row.url||"";E.cover.value=row&&row.cover_url||"";E.coverFile.value="";E.gallery.value="";GALLERY=m.gallery.slice(0,30);
+    E.url.value=row&&row.url||"";E.cover.value=row&&row.cover_url||"";E.coverFile.value="";E.gallery.value="";GALLERY=m.gallery.slice(0,MAXPH);
     if(row&&isImg(row.url)&&GALLERY.indexOf(row.url)<0)GALLERY.push(row.url);drawExisting();E.msg.textContent="";
     editor.style.display="flex";document.body.style.overflow="hidden";}
   async function saveRow(){await conf();var T=tok();if(!T||!meIsHB()){E.msg.textContent="请先用海边的登记邮箱登录。";return;}
     var date=E.date.value,title=E.title.value.trim();if(!date||!title){E.msg.textContent="日期和名称是必填项。";return;}E.msg.textContent="正在上传并保存……";
     try{var cover=E.cover.value.trim();if(E.coverFile.files&&E.coverFile.files[0])cover=await upload(E.coverFile.files[0],"j-cover");
-      if(E.gallery.files&&E.gallery.files.length){for(var i=0;i<E.gallery.files.length&&GALLERY.length<30;i++){GALLERY.push(await upload(E.gallery.files[i],"j-gallery"));}}
+      if(E.gallery.files&&E.gallery.files.length){var tot=E.gallery.files.length,done=0;for(var i=0;i<tot&&GALLERY.length<MAXPH;i++){GALLERY.push(await upload(E.gallery.files[i],"j-gallery"));done++;E.msg.textContent="正在上传照片 "+done+" / "+tot+"……";}if(done<tot){E.msg.textContent="已上传 "+done+" 张。本条已满 "+MAXPH+" 张，余下 "+(tot-done)+" 张未上传，请另开一条。";}}
       if(!cover)cover=GALLERY[0]||(isImg(E.url.value.trim())?E.url.value.trim():"");
-      var note=JSON.stringify({v:2,date:date,summary:E.summary.value.trim(),body:E.body.value.trim(),gallery:GALLERY.slice(0,30)});
+      var note=JSON.stringify({v:2,date:date,summary:E.summary.value.trim(),body:E.body.value.trim(),gallery:GALLERY.slice(0,MAXPH)});
       var body={kind:"collection",owner_email:HB,author_name:"掌心",title:title,url:E.url.value.trim(),note:note,cover_url:cover||null};
       var endpoint=HOST+"/rest/v1/works"+(ACTIVE&&ACTIVE.id?"?id=eq."+encodeURIComponent(ACTIVE.id):"");
       var r=await fetch(endpoint,{method:ACTIVE&&ACTIVE.id?"PATCH":"POST",headers:Object.assign(headers(T),{Prefer:"return=minimal"}),body:JSON.stringify(body)});
