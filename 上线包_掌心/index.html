@@ -2422,6 +2422,8 @@ loadWorks();
   }
   function openText(x){
     if(x.kind==="post" && globalThis.__palmOpenPost){ if(globalThis.__palmOpenPost(x.row.id)) return; }
+    if(x.kind==="work" && x.row && x.row.kind==="collection" && globalThis.__palmOpenCollection){
+      if(globalThis.__palmOpenCollection(x.row.id)) return; }
     if(x.kind==="work" && globalThis.__palmOpenWorkBody){ globalThis.__palmOpenWorkBody(x.row); return; }
     var sec=document.getElementById(x.kind==="post"?"forum":"works"); if(sec) sec.scrollIntoView({behavior:"smooth"});
   }
@@ -2754,13 +2756,25 @@ loadWorks();
   function headers(token){return {"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+(token||KEY)};}
   function isImg(u){return /\.(?:avif|gif|jpe?g|png|webp)(?:[?#].*)?$/i.test(u||"");}
   function cleanLegacy(n){return (n||"").replace(/^\d{4}-\d{2}-\d{2}\s*[｜|·-]?\s*/,"").replace(/历年诗文(?:会集|汇集)/g,"历年诗文汇").replace(/^[｜|·\s]+|[｜|·\s]+$/g,"");}
-  function meta(row){var n=row&&row.note||""; try{var o=JSON.parse(n); if(o&&typeof o==="object") return {
-    date:o.date||o.dte||"",summary:o.summary||o.s||o.intro||"",body:o.body||o.b||"",
+  function meta(row){var n=row&&row.note||"",fb=String(row&&row.body||"");
+    try{var o=JSON.parse(n); if(o&&typeof o==="object") return {
+    date:o.date||o.dte||"",summary:o.summary||o.s||o.intro||"",body:o.body||o.b||fb,
     gallery:(Array.isArray(o.gallery)?o.gallery:(Array.isArray(o.g)?o.g:[])).filter(Boolean)};}catch(e){}
-    var m=n.match(/^(\d{4}-\d{2}-\d{2})/); return {date:m?m[1]:"",summary:cleanLegacy(n),body:"",gallery:[]}; }
+    var m=n.match(/^(\d{4}-\d{2}-\d{2})/); return {date:m?m[1]:"",summary:cleanLegacy(n),body:fb,gallery:[]}; }
   async function refresh(){await conf(); if(!HOST) return;
-    try{var a=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,url,note,cover_url,created_at,updated_at&kind=eq.collection&order=updated_at.desc",{headers:headers()})).json();
-      ROWS={}; (Array.isArray(a)?a:[]).forEach(function(r){ROWS[String(r.id)]=r;});}catch(e){}}
+    try{var a=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,url,note,body,cover_url,created_at,updated_at&kind=eq.collection&order=updated_at.desc",{headers:headers()})).json();
+      ROWS={}; (Array.isArray(a)?a:[]).forEach(function(r){ROWS[String(r.id)]=r;});
+      if(meIsHB()) backfill();}catch(e){}}
+  /* 旧条目的正文只存在 note 的 JSON 里，站内搜索读的是 works.body。
+     海边登录时把缺的那几条补写一次，失败就算了，不影响任何显示。 */
+  var BF=false;
+  async function backfill(){ if(BF) return; BF=true; var T=tok(); if(!T) return;
+    for(var k in ROWS){ var r=ROWS[k], m=meta(r);
+      if(m.body && !String(r.body||"").trim()){
+        try{ await fetch(HOST+"/rest/v1/works?id=eq."+encodeURIComponent(r.id),
+          {method:"PATCH",headers:Object.assign(headers(T),{Prefer:"return=minimal"}),body:JSON.stringify({body:m.body})});
+          r.body=m.body; }catch(e){}
+      } } }
   function el(tag,cls,txt){var x=document.createElement(tag);if(cls)x.className=cls;if(txt!=null)x.textContent=txt;return x;}
   function field(p,label,type,placeholder,rows){var w=el("label",null,label),i=document.createElement(type==="textarea"?"textarea":"input");
     if(type!=="textarea")i.type=type||"text";else i.rows=rows||4;if(placeholder)i.placeholder=placeholder;w.appendChild(i);p.appendChild(w);return i;}
@@ -2830,7 +2844,7 @@ loadWorks();
       if(E.gallery.files&&E.gallery.files.length){var tot=E.gallery.files.length,done=0;for(var i=0;i<tot&&GALLERY.length<MAXPH;i++){GALLERY.push(await upload(E.gallery.files[i],"j-gallery"));done++;E.msg.textContent="正在上传照片 "+done+" / "+tot+"……";}if(done<tot){E.msg.textContent="已上传 "+done+" 张。本条已满 "+MAXPH+" 张，余下 "+(tot-done)+" 张未上传，请另开一条。";}}
       if(!cover)cover=GALLERY[0]||(isImg(E.url.value.trim())?E.url.value.trim():"");
       var note=JSON.stringify({v:2,date:date,summary:E.summary.value.trim(),body:E.body.value.trim(),gallery:GALLERY.slice(0,MAXPH)});
-      var body={kind:"collection",owner_email:HB,author_name:"掌心",title:title,url:E.url.value.trim(),note:note,cover_url:cover||null};
+      var body={kind:"collection",owner_email:HB,author_name:"掌心",title:title,url:E.url.value.trim(),note:note,body:E.body.value.trim(),cover_url:cover||null};
       var endpoint=HOST+"/rest/v1/works"+(ACTIVE&&ACTIVE.id?"?id=eq."+encodeURIComponent(ACTIVE.id):"");
       var r=await fetch(endpoint,{method:ACTIVE&&ACTIVE.id?"PATCH":"POST",headers:Object.assign(headers(T),{Prefer:"return=minimal"}),body:JSON.stringify(body)});
       if(!r.ok)throw new Error("保存失败（"+r.status+"）。");
@@ -2872,6 +2886,9 @@ loadWorks();
     if(!meIsHB()){var old=document.getElementById("cjAdd");if(old)old.remove();return;}if(document.getElementById("cjAdd"))return;
     var g=document.getElementById("cjGrid");if(!g)return;var a=el("div","cj-add","＋ 新增一次历年诗文汇");a.id="cjAdd";a.onclick=function(){openEditor(null);};g.parentNode.insertBefore(a,g);}
   refresh();setInterval(place,1000);window.__palmCollectionEditor=openEditor;
+  window.__palmOpenCollection=function(id){ var r=ROWS[String(id)];
+    if(r){ openReader(r); return true; }
+    refresh().then(function(){ var q=ROWS[String(id)]; if(q) openReader(q); }); return true; };
 })();
 </script>
 <script>
