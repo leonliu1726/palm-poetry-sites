@@ -2080,7 +2080,9 @@ loadWorks();
     c.style.display='';
     if(c.__ppcGuard) return; c.__ppcGuard=1;
     c.addEventListener('click',function(ev){
-      if(em()!==HB){ ev.stopPropagation(); ev.preventDefault(); }
+      if(em()!==HB){ ev.stopPropagation(); ev.preventDefault();
+        alert(em() ? '历年诗文汇只能用海边的登记邮箱上传。当前登录的是：'+em()
+                   : '请先点右下角「✦ 成员登录」，用海边的邮箱 huangxiaoyu2001@gmail.com 登录（输入信里的六位验证码），再点这张卡。'); }
     },true);}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',guard); else guard();
   setInterval(guard,1500);
