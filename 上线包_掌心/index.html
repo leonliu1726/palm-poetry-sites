@@ -368,6 +368,7 @@
   .cj-space-cover{width:min(100%,720px);max-height:500px;object-fit:contain;display:block;margin:0 auto 22px;border-radius:8px;background:#eee7da}
   .cj-space-summary{font-family:var(--kai);font-size:16px;line-height:1.9;color:var(--ink-soft);margin:0 0 18px}
   .cj-space-body{white-space:pre-wrap;font-size:15px;line-height:2;color:var(--ink);margin:0 0 22px}
+  .cj-space-body a{color:var(--seal);text-decoration:underline;text-underline-offset:3px;word-break:break-all}
   .cj-space-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
   .cj-space-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:7px;background:#e7dfd1}
   .cj-space-gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
@@ -2077,7 +2078,7 @@ loadWorks();
       if(tk){var p=JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))));
         return String(p.email||'').toLowerCase();}}}}catch(e){}return '';}
   function guard(){var c=document.getElementById('wkCollAdd'); if(!c) return;
-    c.style.display='';
+    c.style.display=(em()===HB)?'':'none';
     if(c.__ppcGuard) return; c.__ppcGuard=1;
     c.addEventListener('click',function(ev){
       if(em()!==HB){ ev.stopPropagation(); ev.preventDefault();
@@ -2873,7 +2874,7 @@ loadWorks();
     document.getElementById("cjReadTitle").textContent=row.title||"历年诗文汇";document.getElementById("cjReadDate").textContent=m.date||"";
     var cv=document.getElementById("cjReadCover");cv.style.display=feature?"block":"none";if(feature)cv.src=feature;
     var sm=document.getElementById("cjReadSummary");sm.textContent=m.summary||"";sm.style.display=m.summary?"block":"none";
-    var bd=document.getElementById("cjReadBody");bd.textContent=m.body||"";bd.style.display=m.body?"block":"none";
+    var bd=document.getElementById("cjReadBody");bd.textContent="";(function(s){var re=/https?:\/\/[^\s<>"'，。；、）)】」]+/g,i=0,mm;while((mm=re.exec(s))){if(mm.index>i)bd.appendChild(document.createTextNode(s.slice(i,mm.index)));var a=document.createElement("a");a.href=mm[0];a.target="_blank";a.rel="noopener";a.textContent=mm[0];bd.appendChild(a);i=mm.index+mm[0].length;}if(i<s.length)bd.appendChild(document.createTextNode(s.slice(i)));})(String(m.body||""));bd.style.display=m.body?"block":"none";
     var photos=m.gallery.slice();if(row.url&&isImg(row.url)&&photos.indexOf(row.url)<0)photos.push(row.url);
     var g=document.getElementById("cjReadGallery");g.innerHTML="";photos.forEach(function(u){var a=el("a");a.href=u;a.target="_blank";a.rel="noopener";var im=document.createElement("img");im.src=u;im.alt=(row.title||"雅集")+"照片";im.loading="lazy";a.appendChild(im);g.appendChild(a);});g.style.display=photos.length?"grid":"none";
     var lk=document.getElementById("cjReadLink");lk.style.display=row.url?"inline-block":"none";if(row.url)lk.href=row.url;
