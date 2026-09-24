@@ -2101,7 +2101,7 @@ loadWorks();
   async function load(){ await conf(); if(!HOST) return;
     try{ var rows=await (await fetch(HOST+"/rest/v1/works?select=id,kind,title,note,url,cover_url,author_name",
       {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json();
-      rows.forEach(function(w){ MAP[key(w.title)]=w; });
+      rows.forEach(function(w){ MAP[key(w.title)]=w; MAP['#'+w.id]=w; });
       ready=true; }catch(e){} }
   function dateOf(w){ var n=w&&w.note||""; try{var o=JSON.parse(n); if(o&&o.date) return o.date;}catch(e){} var m=n.match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:""; }
   function human(d){ if(!d) return ""; var p=d.split("-");
@@ -2114,7 +2114,7 @@ loadWorks();
     if(cg&&ready){
       var CC=[].slice.call(cg.children).filter(function(c){ return c!==coll; });
       CC.forEach(function(c){
-        var b=c.querySelector(".wk-meta b"); var w=b?MAP[key(b.textContent)]:null;
+        var b=c.querySelector(".wk-meta b"); var w=MAP['#'+c.getAttribute("data-id")]||(b?MAP[key(b.textContent)]:null);
         c.setAttribute("data-d",dateOf(w));
         var m=c.querySelector(".wk-meta");
         if(m&&!m.querySelector(".wk-date")&&dateOf(w)){ var s=document.createElement("span");
@@ -3595,6 +3595,24 @@ loadWorks();
   };
   load();
   window.addEventListener("palm:content-updated",load);
+})();
+</script>
+<script>
+/* 折叠标题：打开时显示「收起」，历年诗文汇显示实际条数 */
+(function(){
+  function cjCount(){var g=document.getElementById("cjGrid");if(!g)return -1;
+    return [].filter.call(g.querySelectorAll(".wk-card"),function(c){return c.id!=="wkCollAdd"&&getComputedStyle(c).display!=="none";}).length;}
+  function sync(){
+    document.querySelectorAll("details.ph-fold > summary .acc-t").forEach(function(t){
+      var d=t.closest("details"), s=t.textContent;
+      s=d.open? s.replace(/^\s*(展开|展開)/,"收起") : s.replace(/^\s*收起/,"展开");
+      if(d.querySelector("#cjGrid")){var n=cjCount();
+        s=s.replace(/（\d+）/,""); if(n>0) s=s.replace(/(历年诗文汇|歷年詩文匯)/,"$1（"+n+"）");}
+      if(t.textContent!==s) t.textContent=s;
+    });}
+  document.addEventListener("toggle",sync,true);
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sync);else sync();
+  setInterval(sync,1500);
 })();
 </script>
 </body></html>
