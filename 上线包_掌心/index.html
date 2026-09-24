@@ -368,6 +368,8 @@
   .cj-space-cover{width:min(100%,720px);max-height:500px;object-fit:contain;display:block;margin:0 auto 22px;border-radius:8px;background:#eee7da}
   .cj-space-summary{font-family:var(--kai);font-size:16px;line-height:1.9;color:var(--ink-soft);margin:0 0 18px}
   .cj-space-body{white-space:pre-wrap;font-size:15px;line-height:2;color:var(--ink);margin:0 0 22px}
+  .cj-more{display:block;margin:18px auto 6px;padding:10px 22px;border:1px solid var(--seal);border-radius:999px;background:transparent;color:var(--seal);font:inherit;font-size:15px;cursor:pointer}.cj-more:hover{background:rgba(156,58,47,.06)}
+  #cjGrid .wk-card.cj-hide{display:none!important}
   .cj-space-body a{color:var(--seal);text-decoration:underline;text-underline-offset:3px;word-break:break-all}
   .cj-space-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
   .cj-space-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:7px;background:#e7dfd1}
@@ -917,12 +919,13 @@
 
   <div class="sub-head" id="collections"><b>历年诗文汇</b><span class="en">Collected Gatherings</span></div>
   <p data-en="Poems, prose and photographs from our gatherings over the years, collected and dated, newest first — compiled and posted by our editor 海边.">历年雅集所成的诗文与照片，按时间倒序排列，由掌心编辑海边整理上传。</p>
-  <details class="ph-fold"><summary><span class="acc-t">展开 · 历年诗文汇 · Collected Gatherings</span></summary>
+  <div class="cj-wrap">
 <div class="wk-grid" id="cjGrid">
     <div class="wk-card wk-todo" id="wkCollAdd" style="cursor:pointer"><div class="wk-cover ph">历年<br>诗文汇</div><div class="wk-meta"><em class="wk-au">掌心</em><b>历年诗文汇</b><span>由编辑海边上传维护 · 点此添加</span></div></div>
   </div>
+  <button type="button" id="cjMore" class="cj-more" hidden></button>
   <p class="m-note" id="cjNote">＊ 每次雅集可保存首页照片、诗文正文、聚会相册及外部附件，点开作品卡即可通读。<span class="en-line">Each gathering opens into its own space for a feature image, writing, photographs and related files.</span></p>
-</details>
+</div>
 
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
 
@@ -3613,6 +3616,25 @@ loadWorks();
   document.addEventListener("toggle",sync,true);
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sync);else sync();
   setInterval(sync,1500);
+})();
+</script>
+<script>
+/* 历年诗文汇：直接陈列最新 6 场；超过 6 场才出现「展开其余」按钮 */
+(function(){
+  var SHOW=6, open=false;
+  function sync(){
+    var g=document.getElementById("cjGrid"), btn=document.getElementById("cjMore"); if(!g||!btn) return;
+    var cards=[].filter.call(g.querySelectorAll(".wk-card"),function(c){return c.id!=="wkCollAdd";});
+    cards.forEach(function(c,i){ c.classList.toggle("cj-hide", !open && i>=SHOW); });
+    var rest=cards.length-SHOW;
+    btn.hidden = rest<=0;
+    var t = open ? "收起 · 只看最近 "+SHOW+" 场" : "展开其余 "+rest+" 场 · 共 "+cards.length+" 场";
+    if(btn.textContent!==t) btn.textContent=t;
+  }
+  document.addEventListener("click",function(e){ if(e.target&&e.target.id==="cjMore"){ open=!open; sync();
+    if(!open){ var g=document.getElementById("cjGrid"); if(g) g.scrollIntoView({behavior:"smooth",block:"start"}); } } });
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sync);else sync();
+  setInterval(sync,800);
 })();
 </script>
 </body></html>
