@@ -629,7 +629,8 @@
   .cov-fold .cov-intro span{display:block;font-size:14px;line-height:1.95;color:var(--ink-soft)}
   .cov-fold .cov-intro span b{display:inline;font-size:inherit;margin:0}
   .cov-fold .cov-intro .cov-en{font-family:var(--serif-en);font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:6px}
-</style></head>
+</style><script src="palm-work.js"></script>
+</head>
 <body>
 <script src="community-policy.js?v=20260902-welcome"></script>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
@@ -1926,9 +1927,9 @@ function protectedTitle(w){
 var WKROWS={};
 function mkCard(w){
   var nm=wkMeta(w.note), gallery=nm&&((Array.isArray(nm.gallery)&&nm.gallery)||(Array.isArray(nm.g)&&nm.g))||[];
-  var hasBody = !!String(w.body||'').trim();
+  var hasBody = w.kind==='member' || !!String(w.body||'').trim();
   if(hasBody && w.id) WKROWS[String(w.id)]=w;
-  var openUrl=String(w.url||'').trim() || String(nm&&nm.f||'').trim() || String(w.cover_url||'').trim() || String(gallery[0]||'').trim();
+  var openUrl=PalmWork.safeUrl(w.url) || PalmWork.safeUrl(nm&&nm.f);
   var hasUrl = !!openUrl;
   var el = document.createElement((w.kind==='collection'||hasBody) ? 'div' : (hasUrl ? 'a' : 'div'));
   el.className='wk-card'; el.setAttribute('data-wk','1');
@@ -1955,7 +1956,7 @@ function mkCard(w){
     else note=note.replace(/^\d{4}-\d{2}-\d{2}\s*[｜|·-]?\s*/,'').replace(/历年诗文(?:会集|汇集)/g,'历年诗文汇').replace(/^[｜|·\s]+|[｜|·\s]+$/g,'')||'点击查看照片与诗文';
   }
   if(ti && ti.indexOf('待补')<0 && note.indexOf('本人登录后可上传作品')>=0) note=hasUrl?'个人作品 · 查看作品链接':'个人作品';
-  if(hasBody && w.kind!=='collection' && (!note || note.indexOf('本人登录后可上传作品')>=0)) note='点此通读全文';
+  if(String(w.body||'').trim() && w.kind!=='collection' && (!note || note.indexOf('本人登录后可上传作品')>=0)) note='点此通读全文';
   var sp=document.createElement('span'); sp.textContent=note;
   el.setAttribute('data-au', w.author_name||''); el.setAttribute('data-title', w.title||''); el.setAttribute('data-id',w.id||''); el.setAttribute('data-kind',w.kind||'');
   meta.appendChild(au); meta.appendChild(b); meta.appendChild(sp);
@@ -2012,7 +2013,9 @@ function openWkReader(w){
     pn.innerHTML='<button class="cj-b2" id="wkrClose" style="float:right">关闭</button>'
       +'<h3 class="cj-space-title" id="wkrTitle"></h3>'
       +'<div class="cj-space-date" id="wkrAu"></div>'
+      +'<div id="wkrSummary" style="white-space:pre-wrap;margin:16px 0"></div>'
       +'<div class="cj-space-body" id="wkrBody" style="white-space:pre-wrap"></div>'
+      +'<div id="wkrMedia"></div>'
       +'<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">'
       +'<a class="cj-b1" id="wkrLink" target="_blank" rel="noopener" style="text-decoration:none">打开外部链接 / 附件</a></div>';
     wkReader.appendChild(pn); document.body.appendChild(wkReader);
@@ -2021,9 +2024,26 @@ function openWkReader(w){
   }
   document.getElementById('wkrTitle').textContent = protectedTitle(w);
   document.getElementById('wkrAu').textContent = (w.author_name||'') + (w.note && w.note.indexOf('{')!==0 ? ('　' + w.note) : '');
-  document.getElementById('wkrBody').textContent = String(w.body||'');
-  var lk=document.getElementById('wkrLink'); var u=String(w.url||'').trim();
-  lk.style.display = u ? 'inline-block' : 'none'; if(u) lk.href=u;
+  var nm=PalmWork.meta(w.note), media=document.getElementById('wkrMedia');
+  media.replaceChildren();
+  document.getElementById('wkrSummary').textContent=String(nm.d||'');
+  var body=String(w.body||'');
+  document.getElementById('wkrBody').textContent=body;
+  var urls=[PalmWork.safeUrl(w.url),PalmWork.safeUrl(nm.f)].filter(Boolean);
+  var photos=[PalmWork.safeUrl(w.cover_url)].concat(PalmWork.gallery(w.note)).filter(Boolean);
+  photos.filter(function(u,i,a){return a.indexOf(u)===i;}).forEach(function(u){
+    if(!isImageUrl(u)) return;
+    var im=document.createElement('img'); im.src=u; im.alt=(w.title||'作品')+' · 图片';
+    im.style.cssText='display:block;max-width:100%;height:auto;margin:16px auto';
+    im.onerror=function(){var msg=document.createElement('p');msg.textContent='图片暂时无法加载，请稍后重试。';im.replaceWith(msg);};
+    media.appendChild(im);
+  });
+  if(!body.trim()&&!urls.length) document.getElementById('wkrBody').textContent=photos.length?'当前展示作品图片，尚未添加正文或附件。':'尚未添加作品正文或附件。';
+  var lk=document.getElementById('wkrLink'), u=urls[0]||'';
+  lk.style.display=u?'inline-block':'none'; lk.removeAttribute('href'); if(u)lk.href=u;
+  if(urls[1]&&urls[1]!==u){
+    var file=document.createElement('a');file.textContent='打开附件';file.href=urls[1];file.target='_blank';file.rel='noopener';media.appendChild(file);
+  }
   wkReader.style.display='flex'; document.body.style.overflow='hidden';
 }
 document.addEventListener('click', function(e){
@@ -2038,7 +2058,7 @@ document.addEventListener('keydown', function(e){
 });
 globalThis.__palmOpenWorkBody=function(row){ openWkReader(row); };
 document.addEventListener('click', async function(e){
-  if(e.target.id==='wkMemberAdd' || (e.target.closest && e.target.closest('#wkMemberAdd'))){ e.preventDefault(); openWk('member'); return; }
+  if(e.target.id==='wkMemberAdd' || (e.target.closest && e.target.closest('#wkMemberAdd'))){ e.preventDefault(); return; }
   if(e.target.id==='wkCollAdd' || (e.target.closest && e.target.closest('#wkCollAdd'))){ e.preventDefault(); openWk('collection'); return; }
   if(e.target.id==='wkClose' || e.target.id==='wkModal'){ closeWk(); return; }
   if(e.target.id==='wkSave'){
@@ -2911,13 +2931,23 @@ loadWorks();
     KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||""; }
   function meta(note){ try{ var o=JSON.parse(note||"{}"); return (o&&typeof o==="object")?o:{d:note||""}; }
     catch(e){ return {d:note||""}; } }
+  async function sessionToken(){
+    var client=await globalThis.__palmClientReady, s=await client.auth.getSession();
+    var token=s.data&&s.data.session&&s.data.session.access_token;
+    if(s.error||!token) throw PalmWork.failure("登录",401);
+    return token;
+  }
   async function upload(file,pre){
-    var T=tok(); if(!T) return "";
+    var T=await sessionToken();
     var ext=(file.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"");
+    if(!file.size) throw new Error("不能上传空文件。");
+    if((pre==="c"||pre==="g")&&!/^(jpg|jpeg|png|gif|webp|avif)$/.test(ext)) throw new Error("图片请使用 JPG、PNG、GIF、WebP 或 AVIF 格式。");
+    if(pre==="f"&&!/^(pdf|doc|docx|txt|mp3|m4a)$/.test(ext)) throw new Error("附件请使用 PDF、Word、TXT、MP3 或 M4A 格式。");
     var p=pre+"/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
     var r=await fetch(HOST+"/storage/v1/object/works/"+p,{method:"POST",
-      headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":file.type||"application/octet-stream","x-upsert":"true"},body:file});
-    return r.ok ? HOST+"/storage/v1/object/public/works/"+p : "";
+      headers:{apikey:KEY,Authorization:"Bearer "+T,"Content-Type":file.type||"application/octet-stream"},body:file});
+    if(!r.ok) throw PalmWork.failure("文件上传",r.status);
+    return HOST+"/storage/v1/object/public/works/"+p;
   }
   var box=null,F={};
   function build(){
@@ -2945,6 +2975,7 @@ loadWorks();
     var w3=fld("年份","可留空"); F.year=inp(w3,"text","例：2024");
     var w4=fld("链接","书的介绍页、个人网站、诗帖都可以"); F.url=inp(w4,"url","https://…");
     var w5=fld("说明","一两句话，介绍这件作品"); F.desc=inp(w5,"area","");
+    var wb=fld("作品正文","粘贴全文，保留原文分行"); F.body=inp(wb,"area",""); F.body.rows=12;
     var w6=fld("封面","填图片网址，或从电脑选一张"); F.cover=inp(w6,"url","https://…");
     F.coverF=document.createElement("input"); F.coverF.type="file"; F.coverF.accept="image/*";
     F.coverF.style.cssText="margin-top:7px;font-size:13px"; w6.appendChild(F.coverF);
@@ -2964,7 +2995,7 @@ loadWorks();
     box.appendChild(p); document.body.appendChild(box);
     c.onclick=function(){ box.style.display="none"; };
     box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
-    s.onclick=save;
+    F.save=s; s.onclick=save;
   }
   var GAL=[];
   function drawGal(){ F.galBox.innerHTML="";
@@ -2975,9 +3006,9 @@ loadWorks();
       x.style.cssText="position:absolute;top:0;right:2px;color:#fff;text-shadow:0 0 3px #000;cursor:pointer;font-size:15px";
       x.onclick=function(){ GAL.splice(i,1); drawGal(); };
       d.appendChild(x); F.galBox.appendChild(d); }); }
-  async function open(){
+  async function openUnsafe(){
     await conf(); build();
-    var T=tok(); if(!T){ alert("请先在成员名录里点自己的名字登录。"); return; }
+    var T=await sessionToken();
     var mr=await fetch(HOST+"/rest/v1/rpc/my_member",{method:"POST",
       headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
     var mj=await mr.json().catch(function(){return null;});
@@ -2987,51 +3018,73 @@ loadWorks();
     var r=await fetch(HOST+"/rest/v1/rpc/my_work",{method:"POST",
       headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
     var j=await r.json().catch(function(){return null;});
-    MINE=(Array.isArray(j)&&j.length)?j[0]:null;
+    if(!r.ok||!Array.isArray(j)) throw PalmWork.failure("读取作品",r.status);
+    MINE=j.length?j[0]:null;
+    if(MINE&&MINE.body===undefined){
+      var br=await fetch(HOST+"/rest/v1/works?select=body&id=eq."+encodeURIComponent(MINE.id),
+        {headers:{apikey:KEY,Authorization:"Bearer "+T}});
+      var bj=await br.json().catch(function(){return null;});
+      if(!br.ok||!Array.isArray(bj)||bj.length!==1) throw PalmWork.failure("读取正文",br.status);
+      MINE.body=bj[0].body;
+    }
     var m=meta(MINE&&MINE.note);
     F.title.value=(MINE&&MINE.title&&MINE.title.indexOf("待补")<0)?MINE.title:
       ((MINE&&(MINE.url||MINE.cover_url))?String(MINE.title||"").replace(/^\s*[《（(]?\s*待补\s*[》）)]?\s*/,""):"");
     F.cat.value=m.c||"诗集"; F.year.value=m.y||"";
     F.url.value=(MINE&&MINE.url)||""; F.desc.value=m.d||"";
-    F.cover.value=""; GAL=(m.g||[]).slice(0,6); drawGal();
+    F.body.value=MINE&&MINE.body||"";
+    F.cover.value=MINE&&MINE.cover_url||""; GAL=Array.isArray(m.g)?m.g.slice():Array.isArray(m.gallery)?m.gallery.slice():[]; drawGal();
+    F.coverF.value=""; F.gal.value=""; F.file.value=""; F.pendingFile="";
     F.msg.textContent="";
     document.getElementById("myWho").textContent="正在编辑："+NAME+"。每一位成员都有这一方天地。";
     box.style.display="flex";
   }
+  async function open(){
+    try{await openUnsafe();}catch(e){PalmWork.report(e);alert(e.message||"读取作品失败，请稍后重试。");}
+  }
   async function save(){
-    var T=tok(); if(!T) return;
+    if(F.save.disabled) return;
     if(!F.title.value.trim()){ F.msg.textContent="请先给作品起个题目。"; return; }
-    F.msg.textContent="保存中……";
+    F.save.disabled=true; F.msg.textContent="保存中……";
     try{
-      var cover=F.cover.value.trim();
-      if(F.coverF.files&&F.coverF.files[0]) cover=(await upload(F.coverF.files[0],"c"))||cover;
-      if(F.gal.files&&F.gal.files.length){
-        for(var i=0;i<F.gal.files.length && GAL.length<6;i++){
-          var u=await upload(F.gal.files[i],"g"); if(u) GAL.push(u); }
-        drawGal(); }
-      var fileUrl="";
-      if(F.file.files&&F.file.files[0]) fileUrl=await upload(F.file.files[0],"f");
-      var note=JSON.stringify({c:F.cat.value, y:F.year.value.trim(), d:F.desc.value.trim(), g:GAL, f:fileUrl||(meta(MINE&&MINE.note).f||"")});
-      var url=F.url.value.trim()||fileUrl||"";
-      var body={title:F.title.value.trim(), url:url, note:note};
-      if(cover) body.cover_url=cover;
-      var r;
-      if(MINE){ r=await fetch(HOST+"/rest/v1/works?id=eq."+encodeURIComponent(MINE.id),
-          {method:"PATCH",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},body:JSON.stringify(body)});
-      } else {
-        body.kind="member"; body.owner_email=OWNER; body.author_name=NAME;
-        r=await fetch(HOST+"/rest/v1/works",{method:"POST",
-          headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=minimal"},body:JSON.stringify(body)});
+      var T=await sessionToken();
+      var url=PalmWork.url(F.url.value), cover=PalmWork.url(F.cover.value);
+      var chosen=Array.from(F.gal.files||[]);
+      if(chosen.length&&GAL.length+chosen.length>6) throw new Error("内页图最多 6 张。请减少选择后再保存，未上传的图片不会被忽略。");
+      if(F.coverF.files&&F.coverF.files[0]){
+        cover=await upload(F.coverF.files[0],"c");
+        F.cover.value=cover; F.coverF.value="";
       }
-      if(r.ok){ F.msg.textContent="已保存。页面稍后自动刷新。"; setTimeout(function(){location.reload();},1400); }
-      else F.msg.textContent="没能保存（"+r.status+"），请稍后再试或联系掌心。";
-    }catch(e){ F.msg.textContent="网络不太顺，请稍后再试。"; }
+      var gallery=GAL.slice();
+      for(var i=0;i<chosen.length;i++) gallery.push(await upload(chosen[i],"g"));
+      GAL=gallery; F.gal.value=""; drawGal();
+      var fileUrl=F.pendingFile||"";
+      if(F.file.files&&F.file.files[0]){
+        fileUrl=await upload(F.file.files[0],"f");
+        F.pendingFile=fileUrl; F.file.value="";
+      }
+      var previous=meta(MINE&&MINE.note);
+      var note=JSON.stringify(Object.assign({},previous,{c:F.cat.value,y:F.year.value.trim(),d:F.desc.value.trim(),g:GAL,f:fileUrl||(previous.f||"")}));
+      var body={title:F.title.value.trim(),url:url||fileUrl||"",note:note,body:F.body.value,cover_url:cover||null,updated_at:new Date().toISOString()};
+      var endpoint=HOST+"/rest/v1/works?select=id", method="POST";
+      if(MINE){endpoint+="&id=eq."+encodeURIComponent(MINE.id);method="PATCH";}
+      else{body.kind="member";body.owner_email=OWNER;body.author_name=NAME;}
+      var r=await fetch(endpoint,{method:method,headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T,Prefer:"return=representation"},body:JSON.stringify(body)});
+      if(!r.ok) throw PalmWork.failure("作品保存",r.status);
+      var saved=await r.json().catch(function(){return null;});
+      if(!Array.isArray(saved)||saved.length!==1||!saved[0].id) throw new Error("未确认保存成功，请保留输入并核对本人账号后重试。");
+      MINE=Object.assign({},MINE||{},body,{id:saved[0].id}); F.pendingFile="";
+      F.msg.textContent="已保存。页面稍后自动刷新。";
+      window.dispatchEvent(new Event("palm:content-updated"));
+      setTimeout(function(){location.reload();},1400);
+    }catch(e){PalmWork.report(e);F.msg.textContent=e.message||"网络连接失败，输入内容已保留，请稍后重试。";}
+    finally{F.save.disabled=false;}
   }
   /* 接管作品区的编辑入口 */
   document.addEventListener("click",function(e){
     var c=e.target.closest&&e.target.closest(".wk-card"); if(!c) return;
     if(c.id==="wkCollAdd") return;
-    if(c.id==="wkMemberAdd"){ e.preventDefault(); e.stopPropagation(); open(); return; }
+    if(c.id==="wkMemberAdd"){ e.preventDefault(); e.stopImmediatePropagation(); open(); return; }
   },true);
   document.addEventListener("click",function(e){
     var a=e.target.closest&&e.target.closest(".wkSelfEntry"); if(!a) return;
@@ -3217,7 +3270,7 @@ loadWorks();
     HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
     KEY=(h.match(/sb_publishable_[A-Za-z0-9_-]+/)||[])[0]||"";
     if(!HOST) return;
-    try{ W=await (await fetch(HOST+"/rest/v1/works?select=author_name,title,url,note,cover_url,kind&kind=eq.member",
+    try{ W=await (await fetch(HOST+"/rest/v1/works?select=id,author_name,title,url,note,body,cover_url,kind&kind=eq.member",
       {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})).json(); ok=true; }catch(e){}
   }
   document.addEventListener("click",function(e){
@@ -3244,9 +3297,8 @@ loadWorks();
     mine.forEach(function(w){
       var a=document.createElement("a"); a.className="sw-item";
       var m=meta(w.note)||{}, g=(m.g&&Array.isArray(m.g))?m.g:[];
-      var openUrl=String(w.url||"").trim()||String(m.f||"").trim()||String(w.cover_url||"").trim()||String(g[0]||"").trim();
-      a.href=/^https?:/.test(openUrl)?openUrl:"#works";
-      if(/^https?:/.test(a.getAttribute("href"))){ a.target="_blank"; a.rel="noopener"; }
+      a.href="#works";
+      a.onclick=function(e){e.preventDefault();if(globalThis.__palmOpenWorkBody)globalThis.__palmOpenWorkBody(w);};
       if(w.cover_url){ var im=document.createElement("img"); im.src=w.cover_url; im.alt=""; a.appendChild(im); }
       var tx=el("div","sw-tx");
       tx.appendChild(el("b",null,String(w.title||"个人作品").replace(/^\s*[《（(]?\s*待补\s*[》）)]?\s*/,"")||"个人作品"));
