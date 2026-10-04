@@ -24,6 +24,10 @@
   }
   // Evergreen invitations, not news. They are never stored in the activity cache.
   var welcomeMessages = [
+    { text: '新：每位成员的作品区已扩容——多篇诗文、30 张图片、多个附件与链接，都放进自己的一个作品区。', href: '#works' },
+    { text: '新：你的名片就是 palmpoetry.org/你的名字，名片与作品合成一页，可印在名片上、发给朋友。', href: '#members' },
+    { text: '登录后点自己的作品卡，按「＋ 再加一篇」即可在同一作品区收录新作，读者点开先见目录。', href: '#works' },
+    { text: '作品区可放多份附件（PDF、Word、音频）和多条链接（购书页、个人网站、视频），每行一条「名称 | 网址」。', href: '#works' },
     { text: '初次来到掌心？先读一首诗，慢慢认识这里的朋友。', href: '#fireflies' },
     { text: '每个人都有自己的故事，点开名片，认识一位新朋友。', href: '#members' },
     { text: '一本书、一组诗、一幅画，都可以成为相识的开始。', href: '#works' },
