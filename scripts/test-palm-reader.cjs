@@ -16,7 +16,7 @@ ctx.openWkReader({title:'Image work',author_name:'Test',body:'',url:'',cover_url
 assert.equal(nodes.wkrMedia.children.length,1);assert.match(nodes.wkrBody.textContent,/图片/);assert.equal(nodes.wkrLink.style.display,'none');
 ctx.openWkReader({title:'Text work',body:'First\n\nSecond',url:'jenziartgallery.com',note:'{"f":"https://example.org/book.pdf","d":"说明"}'});
 assert.equal(nodes.wkrBody.textContent,'First\n\nSecond');assert.equal(nodes.wkrLink.href,'https://jenziartgallery.com/');
-assert.equal(nodes.wkrMedia.children[0].href,'https://example.org/book.pdf');assert.equal(nodes.wkrSummary.textContent,'说明');
+assert.equal(nodes.wkrMedia.children[0].children[0].href,'https://example.org/book.pdf');assert.equal(nodes.wkrSummary.textContent,'说明');
 ctx.openWkReader({title:'Unsafe',url:'javascript:alert(1)',body:'<script>keep as text</script>'});
 assert.equal(nodes.wkrLink.href,undefined);assert.equal(nodes.wkrBody.textContent,'<script>keep as text</script>');
 ctx.openWkReader({title:'Description',note:'{"d":"原有作品说明"}'});

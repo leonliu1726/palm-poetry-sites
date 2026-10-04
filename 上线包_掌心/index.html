@@ -633,11 +633,50 @@
 </head>
 <body>
 <script src="community-policy.js?v=20260902-welcome"></script>
+<style>
+/* 掌心书屋 · 2026-10-04 */
+.tk-news{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(150,40,30,.07),rgba(169,139,79,.10));text-decoration:none;overflow:hidden}
+.tk-news .wrap{display:flex;align-items:center;gap:12px;padding-top:7px;padding-bottom:7px;width:100%}
+.tk-news b{flex:0 0 auto;font-family:var(--kai);font-weight:400;font-size:12.5px;letter-spacing:.06em;color:#fdf9f0;background:var(--seal);border-radius:3px;padding:2px 10px}
+.tk-news .mq{flex:1;min-width:0;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.tk-news .mq-in{display:inline-block;padding-left:100%;animation:bkMarquee 38s linear infinite;font-size:14.5px;color:var(--seal);font-family:var(--kai);letter-spacing:.03em}
+.tk-news:hover .mq-in,.tk-news:focus .mq-in{animation-play-state:paused}
+@keyframes bkMarquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.tk-news .mq{white-space:normal}.tk-news .mq-in{animation:none;padding-left:0}}
+#bookhouse{padding:46px 0 40px;border-bottom:1px solid var(--line)}
+.bk-card{position:relative;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:34px;align-items:start;border:1px solid var(--line);border-radius:14px;padding:30px 32px;background:rgba(255,252,246,.7)}
+.bk-badge{display:inline-block;font-family:var(--kai);font-size:13px;letter-spacing:.12em;color:#fdf9f0;background:var(--seal);border-radius:3px;padding:3px 12px;margin-bottom:12px}
+.bk-title{font-family:var(--kai);font-size:clamp(26px,3.4vw,34px);color:var(--ink);margin:0 0 4px;font-weight:400;letter-spacing:.08em}
+.bk-title-en{font-family:var(--serif-en);font-style:italic;color:var(--ink-faint);font-size:15px;margin:0 0 18px}
+.bk-lead{font-family:var(--kai);font-size:clamp(18px,2.2vw,20px);line-height:1.95;color:var(--seal);margin:0 0 16px}
+.bk-card p{line-height:2}
+.bk-thanks{border-left:3px solid var(--seal);padding:4px 0 4px 16px;margin:18px 0}
+.bk-soon{font-family:var(--kai);font-size:17px;color:var(--ink);margin-top:18px}
+.bk-fig{margin:0}
+.bk-fig img{width:100%;border-radius:8px;border:1px solid var(--line);cursor:zoom-in}
+.bk-fig figcaption{font-size:12.5px;color:var(--ink-faint);margin-top:8px;line-height:1.7}
+@media(max-width:820px){.bk-card{grid-template-columns:1fr;padding:22px 18px;gap:20px}}
+.gallery-more-h{margin-top:4px}
+#sbCardShare{margin:14px 0 0;padding:12px 14px;border:1px dashed var(--line);border-radius:8px;font-size:13px;color:var(--ink-soft)}
+#sbCardShare .sh-row{display:flex;gap:8px;margin-top:6px}
+#sbCardShare input{flex:1;min-width:0;padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:12.5px;color:var(--ink)}
+#sbCardShare button,.mw-chip{padding:6px 12px;border:1px solid var(--seal);border-radius:6px;background:transparent;color:var(--seal);font-family:var(--kai);font-size:13.5px;cursor:pointer}
+.wkr-toc{margin:18px 0;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:rgba(255,252,246,.6)}
+.wkr-toc a{display:block;color:var(--seal);text-decoration:none;font-family:var(--kai);line-height:2}
+.wkr-h{font-size:13px;color:var(--ink-faint);margin-bottom:4px}
+.wkr-piece{border-top:1px solid var(--line);padding:16px 0;scroll-margin-top:20px}
+.wkr-piece h4{font-family:var(--kai);font-size:19px;font-weight:400;color:var(--ink);margin:0 0 10px}
+.wkr-more{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 0}
+.wkr-more a,.wkr-card{color:var(--seal)}
+.wkr-card{display:inline-block;margin-top:14px;font-family:var(--kai)}
+.mw-chip.on{background:var(--seal);color:#fdf9f0}
+</style>
 <a class="skip-link" href="#main-content">跳到正文 · Skip to content</a>
 <nav><div class="wrap">
   <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})"><img class="nav-seal" src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt=""><span class="brand-tx"><span class="zh">掌心</span><span class="en">The Palm Poetry Society</span></span></div>
   <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNav" aria-expanded="false">菜单 · Menu</button>
   <ul id="primaryNav">
+    <li><a href="#bookhouse">掌心书屋<span class="e">The Palm Library</span></a></li>
     <li><a href="#origin">缘起与公约<span class="e">Origin &amp; Covenant</span></a></li>
     <li><a href="#reading">萤火与文存<span class="e">Fireflies</span></a></li>
     <li><a href="#members">成员与作品<span class="e">Members &amp; Works</span></a></li>
@@ -645,7 +684,7 @@
     <li><a href="#world">面向世界<span class="e">To the World</span></a></li>
   </ul>
 </div></nav>
-<div class="tk" id="tk" hidden><div class="wrap tk-in">
+<div class="tk" id="tk" hidden><a class="tk-news" href="#bookhouse" aria-label="「掌心书屋」预告：九十二岁高龄的书法家、诗人、文学家、画家许之远先生，将毕生藏书与个人著作捐赠掌心书屋。掌心诗社衷心感谢先生的信任与支持！藏书与作品将逐步整理，对外展示并开放借阅。即日起掌心网站开设「掌心书屋」栏目，详情敬请期待。"><div class="wrap"><b>掌心书屋 · 预告</b><div class="mq"><span class="mq-in">「掌心书屋」预告：九十二岁高龄的书法家、诗人、文学家、画家许之远先生，将毕生藏书与个人著作捐赠掌心书屋。掌心诗社衷心感谢先生的信任与支持！藏书与作品将逐步整理，对外展示并开放借阅。即日起掌心网站开设「掌心书屋」栏目，详情敬请期待。　　✦　　Coming soon — The Palm Library: Mr. Hsu Chih-yuan (David Hsu), calligrapher, poet, man of letters and painter, now in his ninety-second year, is donating his lifelong library and his own writings to The Palm. We thank him for his trust and support. The collection will be catalogued step by step, then exhibited and opened for borrowing — details to follow.</span></div></div></a><div class="wrap tk-in">
   <a class="tk-seg" id="tkFF" href="#fireflies"><b>今日萤火</b><span>——</span></a>
   <a class="tk-seg" id="tkFO" href="#forum" title="从诗海流风中按作者每日轮换，不按热度排名"><b>诗海流风</b><span>来读一帖，留下你的声音。</span></a>
   <a class="tk-seg tk-live" id="tkUP" href="#fireflies" data-mode="welcome"><b>掌心相伴</b><span>初次来到掌心？先读一首诗，慢慢认识这里的朋友。</span></a>
@@ -664,6 +703,22 @@
   <p class="w-note">掌心是始于二〇一七年多伦多的诗文艺术社群，欢迎世界各地的写作者与读者。<br>在这里读作品、交换意见、认识同行；以开放的心面对未知，在交流与修订中不断学习。<br>不以名气论高下，不以语言划边界。欢迎先读一首诗，再留下你的声音。<br>
   <span class="w-en">Founded in Toronto in 2017, The Palm brings writers, artists and readers together across borders.<br>Read, exchange ideas and meet fellow writers. Stay open to the unknown; learn through conversation and revision.<br>New and established voices are equally welcome.</span></p>
 </div></header>
+
+<section id="bookhouse"><div class="wrap">
+  <div class="bk-card">
+    <div>
+      <span class="bk-badge">预告 · Coming soon</span>
+      <h2 class="bk-title">掌心书屋</h2>
+      <p class="bk-title-en">The Palm Library</p>
+      <p class="bk-lead" data-en="Mr. Hsu Chih-yuan (David Hsu) — calligrapher, poet, man of letters and painter, now in his ninety-second year — is giving The Palm the books he has gathered over a lifetime, together with his own published writings and works.">九十二岁高龄的书法家、诗人、文学家、画家许之远先生，将毕生藏书与个人著作，捐赠给掌心书屋。</p>
+      <p data-en="Mr. Hsu is a former member of the Legislative Yuan of the Republic of China and served as a juror in classical poetry and calligraphy for the Ministry of Education&rsquo;s literary and art creation awards. Poetry, calligraphy, painting and prose have been one practice for him across a long life. The Palm owes him much already: the cursive 「掌心」 on this site and on our seal is from his brush; and in August 2024, at ninety, he came in person to the launch of Beyond a Thousand Mountains and the Palm salon exhibition in Toronto, having written the book&rsquo;s preface and its title.">许之远先生曾任中华民国立法委员、中华民国教育部文艺创作奖古典诗词与书法评审，一生诗、书、画、文兼擅，笔耕不辍。先生与掌心渊源深厚：本站与诗社印章上的「掌心」草书，即出自先生手笔；二〇二四年八月，《千山独行》新书发布暨掌心原创作品展在多伦多举行，先生以九十高龄亲临，并为该书作序、题写书名。</p>
+      <p class="bk-thanks" data-en="A lifetime&rsquo;s books are the world a person has read; a lifetime&rsquo;s writing is the road a person has walked. In entrusting both to The Palm, Mr. Hsu shows a trust and a support that honour us deeply. On behalf of all our members, we thank him with the greatest respect.">一生的藏书，是一个人读过的世界；一生的著作，是一个人走过的道路。先生把这两样最珍贵的东西托付给掌心，这份信任与支持，令我们深感荣幸。掌心诗社全体同仁谨向许之远先生致以最崇高的敬意与最诚挚的感谢！</p>
+      <p class="bk-soon" data-en="We will catalogue the books and works step by step, and then exhibit them and open them for borrowing, so that they go on being read and studied by more people. From today, palmpoetry.org opens a new section, The Palm Library. Details to follow — please stay tuned.">藏书与著作将由掌心逐步整理、编目，陆续对外展示并开放借阅，让这些书与作品继续被更多人阅读、研习，薪火相传。即日起，掌心网站增设「掌心书屋」栏目，详情敬请期待。</p>
+    </div>
+    <figure class="bk-fig"><div class="gallery" style="display:block;margin:0"><img src="网站图片/许之远/xu-poem-2025.jpg" alt="许之远先生自撰七绝手迹 乙巳夏 时年九十" loading="lazy" style="height:auto"></div>
+      <figcaption data-en="A quatrain composed and brushed by Mr. Hsu, summer 2025, in his ninetieth year.">许之远先生自撰七绝手迹　乙巳（二〇二五）夏　时年九十</figcaption></figure>
+  </div>
+</div></section>
 
 <main id="main-content">
 <section id="doors" class="panel" style="padding:34px 0 6px;border-bottom:0"><div class="wrap">
@@ -832,7 +887,7 @@
 
   <p style="text-align:center;max-width:640px;margin:0 auto 26px;text-wrap:balance" data-en="These are documents from our founding years and from the making of Fireflies, kept as they were written. The numbers, gatherings and ways of joining describe that time; for how to take part now, see Join The Palm.">以下为结社与《萤火》编印时期的历史文存，保留原文。其中人数、活动与入社方式反映当时情况；今天的参与方式请见<a href="#join">「加入掌心」</a>。</p>
 
-  <details class="wen">
+  <details class="wen" open>
     <summary data-en="About The Palm Poetry Society">掌心诗社简介</summary>
     <div class="wen-body">
       <p class="wen-verse">倚天照海花无数，流水高山心自知；<br>文墨丹青千古事，临风桃李正当时！</p>
@@ -944,8 +999,7 @@
 
   <p data-en="Years of gatherings — morning tea and talk, lakeside meetings, exhibitions of members' work, and exchanges with artists around the world. Click any photo to enlarge.">历年雅集、早茶清谈、湖畔聚会、原创作品展，以及与世界各地艺术家的往来——点击照片可放大。</p>
   <p style="color:var(--seal);font-family:var(--kai)" data-en="If you have photographs, notes or recordings from a Palm gathering, please send them in — we would like to keep the memory here, together.">欢迎大家提供各自参与掌心活动的图片、文字、音频资料，在掌心一同展示、共享这份记忆。</p>
-  <details class="ph-fold"><summary><span class="acc-t">展开相册 · 共 119 张</span></summary>
-<div class="gallery">
+  <div class="gallery">
     <img src="网站图片/掌心/连接世界/cx_69.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_03.jpg" alt="掌心诗社 · The Palm" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_07.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -962,6 +1016,9 @@
     <img src="网站图片/掌心/连接世界/cx_08.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_317.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9154.jpeg" alt="掌心活动与文化交流" loading="lazy">
+  </div>
+  <details class="ph-fold gallery-more-h"><summary><span class="acc-t">展开其余 103 张 · 共 119 张</span></summary>
+<div class="gallery">
     <img src="网站图片/掌心/连接世界/cx_284.jpg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/IMG_9160.jpeg" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/连接世界/cx_151.jpg" alt="掌心活动与文化交流" loading="lazy">
@@ -1065,7 +1122,7 @@
     <img src="网站图片/掌心/活动/6.JPG" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/179.JPG" alt="掌心活动与文化交流" loading="lazy">
     <img src="网站图片/掌心/活动/att.w2tHX6BcjSFggNIxeDQ60x_6BEOVgINqb6-E3F4XEQo.JPG" alt="掌心活动与文化交流" loading="lazy">
-  </div>
+</div>
   </details>
 
   <div class="stamp"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/site/palm-seal.png" alt="掌心"></div>
@@ -1101,7 +1158,10 @@
       <li><b>类别</b>　诗集 · 散文集 · 小说 · 评论 · 书画 · 摄影 · 音频 · 视频 · 个人网站</li>
       <li><b>年份</b>　与一两句<b>说明</b></li>
       <li><b>封面</b>　填图片网址，或直接从电脑选一张</li>
-      <li><b>内页图</b>　<b>最多六张</b>——书影、插画、手稿、演出照都行</li>
+      <li><b>篇目</b>　在同一个作品区里<b>收录多篇</b>——每篇一个标题、一段正文，读者点开即见目录，逐篇阅读</li>
+      <li><b>图片</b>　<b>最多三十张</b>——书影、书画、插画、手稿、演出照都行</li>
+      <li><b>附件与链接</b>　附件、链接都可<b>放多个</b>：PDF、Word、音频，购书页、个人网站、视频</li>
+      <li><b>对外名片</b>　你的名片与作品区合在一页，链接就是 <b>palmpoetry.org/你的名字</b>——可印在名片上、发给朋友，作为对外介绍自己的名片</li>
       <li><b>附件</b>　PDF、Word 或音频</li>
       <li><b>链接</b>　你的个人网站、购书页、诗帖</li>
     </ul>
@@ -1121,7 +1181,7 @@
     <a class="wk-card" data-fallback-work="haibian" data-au="海边" data-title="《归》《萤火》《异乡》" href="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/w/1787181285700-y9ucd7.jpeg" target="_blank" rel="noopener"><div class="wk-cover"><img src="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/c/1787182927004-b27epb.webp" alt="海边《归》《萤火》《异乡》" loading="lazy"></div><div class="wk-meta"><em class="wk-au">海边</em><b>《归》《萤火》《异乡》</b><span>个人作品 · 查看作品</span></div></a>
     <a class="wk-card" data-fallback-work="hubian" data-au="湖边" data-title="《独自偷欢》" href="https://www.amazon.ca/%E7%8B%AC%E8%87%AA%E5%81%B7%E6%AC%A2-Solitude-Solid-Traditional-Chinese-ebook/dp/B0FMKKXHVZ/ref=sr_1_1?crid=1NJ3936JK1C8L&amp;dib=eyJ2IjoiMSJ9.eDEZ71fzIjNX0rq1-3mX_p4TTkY8ULJhFYTlhu5TJNs.Sn-72niG4a-g4TeDwBiCIwMN51mwtavjXYHym0WtX3g&amp;dib_tag=se&amp;keywords=%E7%8B%AC%E8%87%AA%E5%81%B7%E6%AC%A2&amp;qid=1786998243&amp;sprefix=%E7%8B%AC%E8%87%AA%E5%81%B7%E6%AC%A2%2Caps%2C104&amp;sr=8-1" target="_blank" rel="noopener"><div class="wk-cover ph">独自偷欢</div><div class="wk-meta"><em class="wk-au">湖边</em><b>《独自偷欢》</b><span>个人作品 · 查看作品链接</span></div></a>
     <a class="wk-card" data-fallback-work="feihong" data-au="飞鸿" data-title="《以色列集体农庄》" href="https://ubzykpglausstbsvijoc.supabase.co/storage/v1/object/public/works/w/1787092182562-ydqs1f.docx" target="_blank" rel="noopener"><div class="wk-cover ph">以色列<br>集体农庄</div><div class="wk-meta"><em class="wk-au">飞鸿</em><b>《以色列集体农庄》</b><span>个人作品 · 下载阅读</span></div></a>
-    <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后可上传一本自己的作品，或关联个人网站</span></div></div>
+    <div class="wk-card wk-todo" id="wkMemberAdd" style="cursor:pointer"><div class="wk-cover ph">＋</div><div class="wk-meta"><b>成员作品</b><span>登录后经营自己的作品区：多篇诗文、多份附件、多个链接，或关联个人网站</span></div></div>
     <a class="wk-card" id="wkQianshan" data-au="文刃" data-title="《千山独行》" href="https://leonliu1726.github.io/beyondathousandmountains/index.html" target="_blank" rel="noopener" aria-label="进入文刃《千山独行》作品网站"><div class="wk-cover"><img src="https://leonliu1726.github.io/palm-poetry-sites/%E4%B8%8A%E7%BA%BF%E5%8C%85_%E5%8D%83%E5%B1%B1%E7%8B%AC%E8%A1%8C/%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87/%E5%B0%81%E9%9D%A2%E6%AD%A3%E9%9D%A2.jpg" alt="《千山独行》正面封面" loading="lazy"></div><div class="wk-meta"><em class="wk-au">文刃</em><b>《千山独行》</b><span>台湾中华书局 · 进入作品网站</span></div></a>
   </div>
   <p class="m-note" style="margin:16px 0 0"><a href="#" class="wkSelfEntry" style="display:inline-block;margin:0;padding:9px 16px;border:1px solid var(--seal);border-radius:8px;color:var(--seal);text-decoration:none;font-family:var(--kai);font-size:15px;letter-spacing:.08em">✦ 登录／修改我的作品空间 →</a></p>
@@ -1714,6 +1774,19 @@ function openCard(name){
   if(!bx){ bx=document.createElement('p'); bx.id='sbCardBioEn'; $('sbCardBio').parentNode.insertBefore(bx, $('sbCardBio').nextSibling); }
   bx.textContent = (m.bio_en||'').trim() || 'An English introduction has not been added yet. Members may add their own at any time.';
   bx.style.opacity = (m.bio_en||'').trim() ? '1' : '.62';
+  window.__palmLastCard = m.name;
+  var sh=document.getElementById('sbCardShare');
+  if(!sh){ sh=document.createElement('div'); sh.id='sbCardShare'; bx.parentNode.appendChild(sh); }
+  var link='https://palmpoetry.org/'+m.name;
+  sh.innerHTML='';
+  var lab=document.createElement('div'); lab.textContent='我的掌心名片 · 可印在名片上、发给朋友　Share this card'; sh.appendChild(lab);
+  var row=document.createElement('div'); row.className='sh-row';
+  var inp=document.createElement('input'); inp.readOnly=true; inp.value=link; inp.setAttribute('aria-label','名片链接 · Card link'); inp.onclick=function(){this.select();};
+  var btn=document.createElement('button'); btn.type='button'; btn.textContent='复制链接';
+  btn.onclick=function(){ var done=function(){btn.textContent='已复制 ✓'; setTimeout(function(){btn.textContent='复制链接';},1800);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(link).then(done,function(){inp.select();document.execCommand('copy');done();}); }
+    else { inp.select(); document.execCommand('copy'); done(); } };
+  row.appendChild(inp); row.appendChild(btn); sh.appendChild(row);
   show('sbCard');
 }
 async function reload(){
@@ -1872,6 +1945,12 @@ SB.auth.onAuthStateChange(function(event, session){
 });
 (async function(){
   var ok = await reload();
+  try{ var qm=new URLSearchParams(location.search).get('m');
+    if(qm && ROWS.some(function(x){return x.name===qm;})){
+      document.title=qm+' · 掌心名片 · The Palm Poetry Society';
+      try{ history.replaceState(null,'','/'+encodeURIComponent(qm)); }catch(ignore){}
+      setTimeout(function(){ openCard(qm); },250);
+    } else if(qm){ try{ history.replaceState(null,'','/'); }catch(ignore){} } }catch(e){}
   if(ok){
     document.getElementById('members').addEventListener('click', function(e){
       var c = e.target.closest('.m-card[data-m]');
@@ -2030,6 +2109,24 @@ function openWkReader(w){
   var body=String(w.body||'');
   document.getElementById('wkrBody').textContent=body;
   var urls=[PalmWork.safeUrl(w.url),PalmWork.safeUrl(nm.f)].filter(Boolean);
+  var pieces=Array.isArray(nm.p)?nm.p.filter(function(x){return x&&(x.t||x.b);}):[];
+  if(pieces.length){
+    var toc=document.createElement('div'); toc.className='wkr-toc';
+    var th=document.createElement('div'); th.className='wkr-h'; th.textContent='目录 · '+pieces.length+' 篇'; toc.appendChild(th);
+    var secs=[];
+    pieces.forEach(function(x,i){
+      var a=document.createElement('a'); a.href='#'; a.textContent=(i+1)+'. '+(x.t||'无题');
+      a.onclick=function(ev){ ev.preventDefault(); if(secs[i]) secs[i].scrollIntoView({behavior:'smooth',block:'start'}); };
+      toc.appendChild(a);
+    });
+    media.appendChild(toc);
+    pieces.forEach(function(x){
+      var sec=document.createElement('section'); sec.className='wkr-piece';
+      var h=document.createElement('h4'); h.textContent=x.t||'无题'; sec.appendChild(h);
+      var bd=document.createElement('div'); bd.style.whiteSpace='pre-wrap'; bd.textContent=String(x.b||''); sec.appendChild(bd);
+      media.appendChild(sec); secs.push(sec);
+    });
+  }
   var photos=[PalmWork.safeUrl(w.cover_url)].concat(PalmWork.gallery(w.note)).filter(Boolean);
   photos.filter(function(u,i,a){return a.indexOf(u)===i;}).forEach(function(u){
     if(!isImageUrl(u)) return;
@@ -2038,11 +2135,21 @@ function openWkReader(w){
     im.onerror=function(){var msg=document.createElement('p');msg.textContent='图片暂时无法加载，请稍后重试。';im.replaceWith(msg);};
     media.appendChild(im);
   });
-  if(!body.trim()&&!urls.length) document.getElementById('wkrBody').textContent=photos.length?'当前展示作品图片，尚未添加正文或附件。':'尚未添加作品正文或附件。';
+  if(!body.trim()&&!urls.length&&!pieces.length) document.getElementById('wkrBody').textContent=photos.length?'当前展示作品图片，尚未添加正文或附件。':'尚未添加作品正文或附件。';
   var lk=document.getElementById('wkrLink'), u=urls[0]||'';
   lk.style.display=u?'inline-block':'none'; lk.removeAttribute('href'); if(u)lk.href=u;
-  if(urls[1]&&urls[1]!==u){
-    var file=document.createElement('a');file.textContent='打开附件';file.href=urls[1];file.target='_blank';file.rel='noopener';media.appendChild(file);
+  var more=[];
+  (Array.isArray(nm.fs)?nm.fs:[]).forEach(function(f){ var x=PalmWork.safeUrl(f&&f.u); if(x&&x!==u) more.push({n:'📎 '+(f.n||'附件'),u:x}); });
+  if(!more.length&&urls[1]&&urls[1]!==u) more.push({n:'📎 打开附件',u:urls[1]});
+  (Array.isArray(nm.ls)?nm.ls:[]).forEach(function(l){ var x=PalmWork.safeUrl(l&&l.u); if(x&&x!==u) more.push({n:'🔗 '+(l.n||x.replace(/^https?:\/\//,'')),u:x}); });
+  if(more.length){
+    var box=document.createElement('div'); box.className='wkr-more';
+    more.forEach(function(x){ var a=document.createElement('a'); a.textContent=x.n; a.href=x.u; a.target='_blank'; a.rel='noopener'; box.appendChild(a); });
+    media.appendChild(box);
+  }
+  if(w.kind==='member'&&w.author_name){
+    var cd=document.createElement('a'); cd.className='wkr-card'; cd.href='/'+w.author_name;
+    cd.textContent='作者名片 · palmpoetry.org/'+w.author_name+' →'; media.appendChild(cd);
   }
   wkReader.style.display='flex'; document.body.style.overflow='hidden';
 }
@@ -2956,8 +3063,8 @@ loadWorks();
     box.style.cssText="position:fixed;inset:0;background:rgba(22,19,15,.55);display:none;align-items:center;justify-content:center;z-index:210;padding:18px";
     var p=document.createElement("div");
     p.style.cssText="background:var(--paper);max-width:560px;width:100%;border-radius:12px;padding:26px;max-height:90vh;overflow:auto";
-    p.innerHTML='<div style="font-family:var(--kai);font-size:21px;color:var(--seal)">我的作品</div>'+
-      '<div id="myWho" style="font-size:12.5px;color:var(--ink-faint);margin:4px 0 16px"></div>';
+    p.innerHTML='<div style="font-family:var(--kai);font-size:21px;color:var(--seal)">我的作品区</div>'+
+      '<div id="myWho" style="font-size:12.5px;color:var(--ink-faint);margin:4px 0 12px"></div>';
     function fld(lab,tip){ var w=document.createElement("div"); w.style.cssText="margin-bottom:12px";
       var l=document.createElement("div"); l.style.cssText="font-size:13px;color:var(--ink-soft);margin-bottom:4px";
       l.textContent=lab; if(tip){ var s=document.createElement("span"); s.style.cssText="color:var(--ink-faint);font-size:12px;margin-left:6px"; s.textContent=tip; l.appendChild(s); }
@@ -2979,13 +3086,18 @@ loadWorks();
     var w6=fld("封面","填图片网址，或从电脑选一张"); F.cover=inp(w6,"url","https://…");
     F.coverF=document.createElement("input"); F.coverF.type="file"; F.coverF.accept="image/*";
     F.coverF.style.cssText="margin-top:7px;font-size:13px"; w6.appendChild(F.coverF);
-    var w7=fld("内页图","可多选，最多 6 张——书影、插画、手稿、演出照都行");
+    var wp=fld("更多篇目","同一作品区可收录多篇，每篇一个标题、一段正文");
+    F.pBox=document.createElement("div"); wp.appendChild(F.pBox);
+    var pAdd=document.createElement("button"); pAdd.type="button"; pAdd.className="mw-chip"; pAdd.textContent="＋ 再加一篇"; pAdd.onclick=function(){ addPiece("",""); }; wp.appendChild(pAdd);
+    var w7=fld("图片","可多选，最多 30 张——书影、书画、插画、手稿、演出照都行");
     F.gal=document.createElement("input"); F.gal.type="file"; F.gal.accept="image/*"; F.gal.multiple=true;
     F.gal.style.cssText="font-size:13px"; w7.appendChild(F.gal);
     F.galBox=document.createElement("div"); F.galBox.style.cssText="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px";
     w7.appendChild(F.galBox);
-    var w8=fld("附件","PDF、Word 或音频"); F.file=document.createElement("input"); F.file.type="file";
+    var w8=fld("附件","PDF、Word 或音频，可多选"); F.file=document.createElement("input"); F.file.type="file"; F.file.multiple=true;
     F.file.accept=".pdf,.doc,.docx,.txt,.mp3,.m4a"; F.file.style.cssText="font-size:13px"; w8.appendChild(F.file);
+    F.fBox=document.createElement("div"); F.fBox.style.cssText="font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.9"; w8.appendChild(F.fBox);
+    var w9=fld("更多链接","每行一个：名称 | 网址，例：购书页 | https://…"); F.links=inp(w9,"area",""); F.links.rows=3;
     F.msg=document.createElement("div"); F.msg.style.cssText="font-size:13px;color:var(--seal);min-height:20px;margin:6px 0 10px";
     p.appendChild(F.msg);
     var bar=document.createElement("div"); bar.style.cssText="display:flex;gap:10px;justify-content:flex-end";
@@ -2997,7 +3109,24 @@ loadWorks();
     box.addEventListener("click",function(e){ if(e.target===box) box.style.display="none"; });
     F.save=s; s.onclick=save;
   }
-  var GAL=[];
+  var GAL=[],LIST=[],FILES=[];
+  function addPiece(t,b){ if(!F.pBox) return;
+    var d=document.createElement("div"); d.className="mw-piece"; d.style.cssText="border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px";
+    var ti=document.createElement("input"); ti.type="text"; ti.placeholder="篇名"; ti.value=t||"";
+    var bo=document.createElement("textarea"); bo.rows=6; bo.placeholder="正文，保留原文分行"; bo.value=b||"";
+    [ti,bo].forEach(function(x){ x.style.cssText="width:100%;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(255,252,246,.85);font-family:inherit;font-size:14px;color:var(--ink);margin-bottom:6px;line-height:1.8"; d.appendChild(x); });
+    var x=document.createElement("span"); x.textContent="删去这一篇"; x.style.cssText="font-size:12px;color:var(--seal);cursor:pointer"; x.onclick=function(){ d.remove(); }; d.appendChild(x);
+    F.pBox.appendChild(d); }
+  function readPieces(){ if(!F.pBox||!F.pBox.querySelectorAll) return [];
+    return Array.from(F.pBox.querySelectorAll(".mw-piece")).map(function(d){ var i=d.querySelector("input"),a=d.querySelector("textarea");
+      return {t:String(i.value||"").trim(),b:String(a.value||"").replace(/\s+$/,"")}; }).filter(function(x){return x.t||x.b.trim();}); }
+  function drawFiles(){ if(!F.fBox) return; F.fBox.innerHTML="";
+    FILES.forEach(function(f,i){ var r=document.createElement("div"); r.textContent="📎 "+(f.n||("附件 "+(i+1)))+"　";
+      var x=document.createElement("span"); x.textContent="移除"; x.style.cssText="color:var(--seal);cursor:pointer"; x.onclick=function(){ FILES.splice(i,1); drawFiles(); };
+      r.appendChild(x); F.fBox.appendChild(r); }); }
+  function parseLinks(txt){ return String(txt||"").split(/\n/).map(function(l){ l=l.trim(); if(!l) return null;
+      var k=l.split(/\s*[|｜]\s*/); var u=k.length>1?k.slice(1).join("|"):k[0], n=k.length>1?k[0]:"";
+      return {n:n,u:PalmWork.url(u)}; }).filter(Boolean); }
   function drawGal(){ F.galBox.innerHTML="";
     GAL.forEach(function(u,i){ var d=document.createElement("div");
       d.style.cssText="position:relative;width:56px;height:56px;border-radius:6px;overflow:hidden;border:1px solid var(--line)";
@@ -3019,14 +3148,23 @@ loadWorks();
       headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+T},body:"{}"});
     var j=await r.json().catch(function(){return null;});
     if(!r.ok||!Array.isArray(j)) throw PalmWork.failure("读取作品",r.status);
-    MINE=j.length?j[0]:null;
-    if(MINE&&MINE.body===undefined){
-      var br=await fetch(HOST+"/rest/v1/works?select=body&id=eq."+encodeURIComponent(MINE.id),
+    var ids=j.filter(function(x){return x&&x.id&&(!x.kind||x.kind==="member");}).map(function(x){return x.id;});
+    LIST=[];
+    if(ids.length){
+      /* 读全行（含封面与正文）：my_work() 不返回 cover_url，旧写法再次保存会把封面清空 */
+      var br=await fetch(HOST+"/rest/v1/works?select=id,title,url,note,body,cover_url,updated_at&id=in.("+ids.map(encodeURIComponent).join(",")+")&order=updated_at.desc",
         {headers:{apikey:KEY,Authorization:"Bearer "+T}});
       var bj=await br.json().catch(function(){return null;});
-      if(!br.ok||!Array.isArray(bj)||bj.length!==1) throw PalmWork.failure("读取正文",br.status);
-      MINE.body=bj[0].body;
+      if(!br.ok||!Array.isArray(bj)) throw PalmWork.failure("读取作品",br.status);
+      LIST=bj;
     }
+    var real=LIST.filter(function(w){return !isTodo(w);});
+    pick(real.length?real[0]:(LIST[0]||null));
+    box.style.display="flex";
+  }
+  function isTodo(w){ return !!w && (!w.title||String(w.title).indexOf("待补")>-1) && !String(w.url||"").trim() && !String(w.cover_url||"").trim() && !String(w.body||"").trim(); }
+  function pick(row){
+    MINE=row||null;
     var m=meta(MINE&&MINE.note);
     F.title.value=(MINE&&MINE.title&&MINE.title.indexOf("待补")<0)?MINE.title:
       ((MINE&&(MINE.url||MINE.cover_url))?String(MINE.title||"").replace(/^\s*[《（(]?\s*待补\s*[》）)]?\s*/,""):"");
@@ -3036,8 +3174,14 @@ loadWorks();
     F.cover.value=MINE&&MINE.cover_url||""; GAL=Array.isArray(m.g)?m.g.slice():Array.isArray(m.gallery)?m.gallery.slice():[]; drawGal();
     F.coverF.value=""; F.gal.value=""; F.file.value=""; F.pendingFile="";
     F.msg.textContent="";
-    document.getElementById("myWho").textContent="正在编辑："+NAME+"。每一位成员都有这一方天地。";
-    box.style.display="flex";
+    if(F.pBox){ F.pBox.innerHTML=""; (Array.isArray(m.p)?m.p:[]).forEach(function(x){ addPiece(x&&x.t,x&&x.b); }); }
+    FILES=(Array.isArray(m.fs)?m.fs.slice():[]); if(!FILES.length&&m.f) FILES=[{n:"附件",u:m.f}]; drawFiles();
+    if(F.links) F.links.value=(Array.isArray(m.ls)?m.ls:[]).map(function(x){ return (x.n?x.n+" | ":"")+x.u; }).join("\n");
+    var card="https://palmpoetry.org/"+NAME;
+    document.getElementById("myWho").innerHTML="";
+    document.getElementById("myWho").appendChild(document.createTextNode("正在编辑："+NAME+" 的作品区。这里可以收录多篇诗文、几十张图片、多个附件与链接。对外名片："));
+    var ln=document.createElement("a"); ln.href=card; ln.target="_blank"; ln.rel="noopener"; ln.textContent="palmpoetry.org/"+NAME; ln.style.color="var(--seal)";
+    document.getElementById("myWho").appendChild(ln);
   }
   async function open(){
     try{await openUnsafe();}catch(e){PalmWork.report(e);alert(e.message||"读取作品失败，请稍后重试。");}
@@ -3050,7 +3194,7 @@ loadWorks();
       var T=await sessionToken();
       var url=PalmWork.url(F.url.value), cover=PalmWork.url(F.cover.value);
       var chosen=Array.from(F.gal.files||[]);
-      if(chosen.length&&GAL.length+chosen.length>6) throw new Error("内页图最多 6 张。请减少选择后再保存，未上传的图片不会被忽略。");
+      if(chosen.length&&GAL.length+chosen.length>30) throw new Error("图片最多 30 张。请减少选择后再保存，未上传的图片不会被忽略。");
       if(F.coverF.files&&F.coverF.files[0]){
         cover=await upload(F.coverF.files[0],"c");
         F.cover.value=cover; F.coverF.value="";
@@ -3058,13 +3202,21 @@ loadWorks();
       var gallery=GAL.slice();
       for(var i=0;i<chosen.length;i++) gallery.push(await upload(chosen[i],"g"));
       GAL=gallery; F.gal.value=""; drawGal();
+      var links=F.links?parseLinks(F.links.value):null;
       var fileUrl=F.pendingFile||"";
-      if(F.file.files&&F.file.files[0]){
-        fileUrl=await upload(F.file.files[0],"f");
-        F.pendingFile=fileUrl; F.file.value="";
+      var picked=Array.from((F.file&&F.file.files)||[]);
+      for(var k=0;k<picked.length;k++){
+        var fu=await upload(picked[k],"f");
+        if(!k){ fileUrl=fu; F.pendingFile=fu; }
+        FILES.push({n:picked[k].name||("附件 "+(FILES.length+1)),u:fu});
       }
+      F.file.value=""; drawFiles();
       var previous=meta(MINE&&MINE.note);
-      var note=JSON.stringify(Object.assign({},previous,{c:F.cat.value,y:F.year.value.trim(),d:F.desc.value.trim(),g:GAL,f:fileUrl||(previous.f||"")}));
+      var extra={c:F.cat.value,y:F.year.value.trim(),d:F.desc.value.trim(),g:GAL,f:fileUrl||(FILES[0]&&FILES[0].u)||(previous.f||"")};
+      if(F.pBox) extra.p=readPieces();
+      if(F.fBox) extra.fs=FILES.slice();
+      if(links) extra.ls=links;
+      var note=JSON.stringify(Object.assign({},previous,extra));
       var body={title:F.title.value.trim(),url:url||fileUrl||"",note:note,body:F.body.value,cover_url:cover||null,updated_at:new Date().toISOString()};
       var endpoint=HOST+"/rest/v1/works?select=id", method="POST";
       if(MINE){endpoint+="&id=eq."+encodeURIComponent(MINE.id);method="PATCH";}
@@ -3280,6 +3432,7 @@ loadWorks();
   function meta(n){ try{ var o=JSON.parse(n||"{}"); return (o&&typeof o==="object")?o:null; }catch(e){ return null; } }
   function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
   function paint(){
+    if(window.__palmLastCard) LAST=window.__palmLastCard;
     var box=document.getElementById("sbCard");
     if(!box||getComputedStyle(box).display==="none") return;
     var bio=document.getElementById("sbCardBio"); if(!bio) return;

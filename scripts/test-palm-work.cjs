@@ -41,8 +41,8 @@ const response=(status,data)=>({ok:status>=200&&status<300,status,json:async()=>
  assert.equal(body.body,'Line one\n\nLine two');assert.equal(body.url,'https://jenziartgallery.com/');
  assert.equal(JSON.parse(body.note).custom,'keep');assert.equal(JSON.parse(body.note).f,'https://files.example.org/old.pdf');
  assert.equal(f.calls[0].opts.headers.Prefer,'return=representation');
- f=fixture();f.a.setGallery(Array(6).fill('https://example.org/a.jpg'));f.a.F.gal.files=[{name:'extra.jpg',size:1}];await f.a.save();
- assert.equal(f.calls.length,0);assert.match(f.a.F.msg.textContent,/最多 6/);
+ f=fixture();f.a.setGallery(Array(30).fill('https://example.org/a.jpg'));f.a.F.gal.files=[{name:'extra.jpg',size:1}];await f.a.save();
+ assert.equal(f.calls.length,0);assert.match(f.a.F.msg.textContent,/最多 30/);
  f=fixture();f.a.F.url.value='javascript:alert(1)';await f.a.save();assert.equal(f.calls.length,0);
  f=fixture([response(403,{})]);await f.a.save();assert.match(f.a.F.msg.textContent,/权限/);assert.equal(f.events[0].detail.status,403);
  f=fixture();await assert.rejects(()=>f.a.upload({name:'empty.pdf',size:0},'f'),/空文件/);
