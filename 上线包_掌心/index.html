@@ -2156,7 +2156,7 @@ function openWkReader(w){
     im.onerror=function(){var msg=document.createElement('p');msg.textContent='图片暂时无法加载，请稍后重试。';im.replaceWith(msg);};
     media.appendChild(im);
   });
-  if(!body.trim()&&!urls.length&&!pieces.length) document.getElementById('wkrBody').textContent=photos.length?'当前展示作品图片，尚未添加正文或附件。':'尚未添加作品正文或附件。';
+  if(!body.trim()&&!String(nm.d||'').trim()&&!urls.length&&!pieces.length) document.getElementById('wkrBody').textContent=photos.length?'当前展示作品图片，尚未添加正文或附件。':'尚未添加作品正文或附件。';
   var lk=document.getElementById('wkrLink'), u=urls[0]||'';
   lk.style.display=u?'inline-block':'none'; lk.removeAttribute('href'); if(u)lk.href=u;
   var more=[];
@@ -2558,10 +2558,13 @@ loadWorks();
     TEXTS=[]; await conf(); if(!HOST) return TEXTS;
     var H={apikey:KEY,Authorization:"Bearer "+KEY};
     try{
-      var w=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,body&kind=in.(member,collection)",{headers:H})).json();
+      var w=await (await fetch(HOST+"/rest/v1/works?select=id,kind,author_name,title,body,note,cover_url,url&kind=in.(member,collection)",{headers:H})).json();
       (Array.isArray(w)?w:[]).forEach(function(r){
-        if(!String(r.body||"").trim()) return;
-        TEXTS.push({t:(r.title||"无题")+(r.author_name?" · "+r.author_name:""), k:"作品正文", body:String(r.body), row:r, kind:"work"});
+        /* 成员把诗文写在「说明」里（note.d）而正文栏空着时，也让它能被搜到 */
+        var b=String(r.body||"");
+        if(!b.trim() && r.kind==="member"){ try{ var o=JSON.parse(r.note||"{}"); var d=o&&String(o.d||""); if(d.indexOf("\n")>=0 && d.trim().length>20) b=d; }catch(e){} }
+        if(!b.trim()) return;
+        TEXTS.push({t:(r.title||"无题")+(r.author_name?" · "+r.author_name:""), k:"作品正文", body:b, row:r, kind:"work"});
       });
     }catch(e){}
     try{
