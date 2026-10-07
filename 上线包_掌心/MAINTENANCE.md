@@ -22,3 +22,5 @@
 - Footer credit: `制作：掌心诗社编辑组 · 陶然　海边　风动　文刃 | 掌心草书：许之远（David Hsu）`, with corresponding English. This replaces the earlier administrator/seal-design wording; preserve rights notices and the covenant link.
 
 The deterministic ordering/expiry helpers are in `community-policy.js`. Verify changes against the local regression tests before publication.
+
+- 2026-10-06 (Leon): photo additions only, layout unchanged. Library (#bookhouse) adds a two-thumbnail strip of Mr. Hsu's calligraphy under the existing gift poem. Gatherings album: the first 16 photos and the order of all 119 originals are unchanged (Leon: the front is the key spot); four new photos are appended at the very end of the fold (2026-02-28 马年说马, 2025-03-15 印度亲历, 2023-09-08 欧游十国行, 掌心圣诞雅集 — year unconfirmed, leave undated), now 123 total. talks.html: small thumbnails on t2023-4, t2025-9, t2026-10. 青花庄掌心诗聚 gallery gets cj-archive/20/05.webp appended (DB row, via SQL). The Palm site does not carry the author's portrait or seal; those belong to the 千山独行 site only.
