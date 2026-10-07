@@ -2554,7 +2554,9 @@ loadWorks();
 (function(){
   var q=document.getElementById("pkQ"), res=document.getElementById("pkRes");
   if(!q) return;
-  var TEXTS=null, HOST="", KEY="";
+  var TEXTS=null, HOST="", KEY="", THEMES=null;
+  /* 主题词索引（2026-10 新增，只加不改）：搜「思乡」也能找到写故乡的作品；文件缺失时照旧 */
+  async function themes(){ if(THEMES) return THEMES; try{ var r=await fetch("/search-themes.json"); THEMES=r.ok? await r.json():{}; }catch(e){ THEMES={}; } return THEMES; }
   async function conf(){ if(HOST) return;
     var h=await (await fetch(location.pathname,{cache:"no-store"})).text();
     HOST=(h.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0]||"";
@@ -2609,16 +2611,17 @@ loadWorks();
       a.addEventListener("click",function(ev){ev.preventDefault(); res.hidden=true; q.value=""; hit(x.el);});
       res.appendChild(a); });
     res.hidden=list.length===0;
-    var all=await texts();
+    var all=await texts(); var TH=await themes();
     if(q.value.trim().toLowerCase()!==v) return;
+    function th(x){ var a=(x.row&&TH[String(x.row.id)])||[]; for(var i=0;i<a.length;i++){ var t=a[i].toLowerCase(); if(t&&(t.indexOf(v)>=0||(v.length>1&&v.indexOf(t)>=0))) return a[i]; } return ""; }
     var seen={}; list.forEach(function(x){seen[x.t]=1;});
     var more=all.filter(function(x){
-      return !seen[x.t] && (x.t.toLowerCase().indexOf(v)>=0 || x.body.toLowerCase().indexOf(v)>=0);
+      return !seen[x.t] && (x.t.toLowerCase().indexOf(v)>=0 || x.body.toLowerCase().indexOf(v)>=0 || !!th(x));
     }).slice(0,6);
     more.forEach(function(x){
       var a=document.createElement("a"); a.href="#";
       var i=x.body.toLowerCase().indexOf(v);
-      var frag=i>=0? ("…"+x.body.slice(Math.max(0,i-12), i+28).replace(/\s+/g," ")+"…") : "";
+      var frag=i>=0? ("…"+x.body.slice(Math.max(0,i-12), i+28).replace(/\s+/g," ")+"…") : (th(x)?"主题："+th(x):"");
       a.textContent=x.t+(frag?"　"+frag:"");
       var s=document.createElement("span"); s.className="k"; s.textContent=x.k; a.appendChild(s);
       a.addEventListener("click",function(ev){ev.preventDefault(); res.hidden=true; q.value=""; openText(x);});
@@ -3024,6 +3027,7 @@ loadWorks();
     var title=el("h3","cj-space-title");title.id="cjReadTitle";p.appendChild(title);var date=el("div","cj-space-date");date.id="cjReadDate";p.appendChild(date);
     var cover=document.createElement("img");cover.className="cj-space-cover";cover.id="cjReadCover";p.appendChild(cover);
     var summary=el("div","cj-space-summary");summary.id="cjReadSummary";p.appendChild(summary);
+    var enSum=el("div","cj-space-summary");enSum.id="cjReadEn";enSum.lang="en";enSum.style.cssText="font-style:italic;opacity:.82";p.appendChild(enSum);
     var body=el("div","cj-space-body");body.id="cjReadBody";p.appendChild(body);
     var gal=el("div","cj-space-gallery");gal.id="cjReadGallery";p.appendChild(gal);
     var bar=el("div");bar.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px";
@@ -3034,6 +3038,7 @@ loadWorks();
     document.getElementById("cjReadTitle").textContent=row.title||"历年诗文汇";document.getElementById("cjReadDate").textContent=m.date||"";
     var cv=document.getElementById("cjReadCover");cv.style.display=feature?"block":"none";if(feature)cv.src=feature;
     var sm=document.getElementById("cjReadSummary");sm.textContent=m.summary||"";sm.style.display=m.summary?"block":"none";
+    var ce=document.getElementById("cjReadEn");if(ce){var et=(window.__cjEn||{})[String(row.id)]||"";ce.textContent=et?("English summary (AI-assisted): "+et):"";ce.style.display=et?"block":"none";}
     var bd=document.getElementById("cjReadBody");bd.textContent="";(function(s){var re=/https?:\/\/[^\s<>"'，。；、）)】」]+/g,i=0,mm;while((mm=re.exec(s))){if(mm.index>i)bd.appendChild(document.createTextNode(s.slice(i,mm.index)));var a=document.createElement("a");a.href=mm[0];a.target="_blank";a.rel="noopener";a.textContent=mm[0];bd.appendChild(a);i=mm.index+mm[0].length;}if(i<s.length)bd.appendChild(document.createTextNode(s.slice(i)));})(String(m.body||""));bd.style.display=m.body?"block":"none";
     var photos=m.gallery.slice();if(row.url&&isImg(row.url)&&photos.indexOf(row.url)<0)photos.push(row.url);
     var g=document.getElementById("cjReadGallery");g.innerHTML="";photos.forEach(function(u){var a=el("a");a.href=u;a.target="_blank";a.rel="noopener";var im=document.createElement("img");im.src=u;var cap=(window.__cjAlt||{})[u];im.alt=cap||((row.title||"雅集")+"照片");if(cap)im.title=cap;im.loading="lazy";a.appendChild(im);g.appendChild(a);});g.style.display=photos.length?"grid":"none";
@@ -3048,6 +3053,7 @@ loadWorks();
     var g=document.getElementById("cjGrid");if(!g)return;var a=el("div","cj-add","＋ 新增一次历年诗文汇");a.id="cjAdd";a.onclick=function(){openEditor(null);};g.parentNode.insertBefore(a,g);}
   refresh();setInterval(place,1000);window.__palmCollectionEditor=openEditor;
   try{fetch("/cj-alt.json").then(function(r){return r.ok?r.json():{};}).then(function(m){window.__cjAlt=m;}).catch(function(){});}catch(e){}
+  try{fetch("/cj-en.json").then(function(r){return r.ok?r.json():{};}).then(function(m){window.__cjEn=m;}).catch(function(){});}catch(e){}
   window.__palmOpenCollection=function(id){ var r=ROWS[String(id)];
     if(r){ openReader(r); return true; }
     refresh().then(function(){ var q=ROWS[String(id)]; if(q) openReader(q); }); return true; };
