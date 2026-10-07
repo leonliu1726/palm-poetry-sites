@@ -896,6 +896,7 @@
     <div class="wen-body">
       <p class="wen-verse">倚天照海花无数，流水高山心自知；<br>文墨丹青千古事，临风桃李正当时！</p>
       <p>这诗就包含了掌心诗社最早的十位诗人的名字，道出了诗社独特的开始。</p>
+      <p>前两句原是曾国藩集苏东坡、王安石诗句而成的明志对联；后两句为文刃多年前与诗友畅饮时续成。</p>
       <p>掌心诗社（The Palm Poetry Society），缘起于2017年加拿大多伦多的一个诗词文学艺术创作群“掌心”，诗社采取小群严格的邀请制度，以深度交流和促进创作为目的，目前有十七名成员。他们是：文刃、风动、古土、海边、五月花、丹丹、墨望山、杨青、湖边、枫叶正红、陶然、Tim、挑灯看剑、晓鸣、石甫、王雪君、黄忠。</p>
       <p>几年来，掌心群以自由随缘促进诗词交流的方式举办了多次诗词酒会，共同提高诗艺。为了逐步扩大优秀中华文化和高雅诗词艺术的影响力，2022年7月17日矜园聚会时，先期入会的十二位会员以共同发起人的名义成立了“掌心诗社”。</p>
       <p>掌心诗社旨在深度交流诗词及艺术心得，促进创作。通过举办文化艺术跨界的交流活动，广交诗词、艺术文化界高手，加强与世界各地诗社和艺术家的交流合作，扩大高雅诗词中华文化在海外的影响。</p>
@@ -3030,7 +3031,7 @@ loadWorks();
     var sm=document.getElementById("cjReadSummary");sm.textContent=m.summary||"";sm.style.display=m.summary?"block":"none";
     var bd=document.getElementById("cjReadBody");bd.textContent="";(function(s){var re=/https?:\/\/[^\s<>"'，。；、）)】」]+/g,i=0,mm;while((mm=re.exec(s))){if(mm.index>i)bd.appendChild(document.createTextNode(s.slice(i,mm.index)));var a=document.createElement("a");a.href=mm[0];a.target="_blank";a.rel="noopener";a.textContent=mm[0];bd.appendChild(a);i=mm.index+mm[0].length;}if(i<s.length)bd.appendChild(document.createTextNode(s.slice(i)));})(String(m.body||""));bd.style.display=m.body?"block":"none";
     var photos=m.gallery.slice();if(row.url&&isImg(row.url)&&photos.indexOf(row.url)<0)photos.push(row.url);
-    var g=document.getElementById("cjReadGallery");g.innerHTML="";photos.forEach(function(u){var a=el("a");a.href=u;a.target="_blank";a.rel="noopener";var im=document.createElement("img");im.src=u;im.alt=(row.title||"雅集")+"照片";im.loading="lazy";a.appendChild(im);g.appendChild(a);});g.style.display=photos.length?"grid":"none";
+    var g=document.getElementById("cjReadGallery");g.innerHTML="";photos.forEach(function(u){var a=el("a");a.href=u;a.target="_blank";a.rel="noopener";var im=document.createElement("img");im.src=u;var cap=(window.__cjAlt||{})[u];im.alt=cap||((row.title||"雅集")+"照片");if(cap)im.title=cap;im.loading="lazy";a.appendChild(im);g.appendChild(a);});g.style.display=photos.length?"grid":"none";
     var lk=document.getElementById("cjReadLink");lk.style.display=row.url?"inline-block":"none";if(row.url)lk.href=row.url;
     var ed=document.getElementById("cjReadEdit");ed.style.display=meIsHB()?"inline-block":"none";ed.onclick=function(){close(reader);openEditor(row);};
     reader.style.display="flex";document.body.style.overflow="hidden";}
@@ -3041,6 +3042,7 @@ loadWorks();
     if(!meIsHB()){var old=document.getElementById("cjAdd");if(old)old.remove();return;}if(document.getElementById("cjAdd"))return;
     var g=document.getElementById("cjGrid");if(!g)return;var a=el("div","cj-add","＋ 新增一次历年诗文汇");a.id="cjAdd";a.onclick=function(){openEditor(null);};g.parentNode.insertBefore(a,g);}
   refresh();setInterval(place,1000);window.__palmCollectionEditor=openEditor;
+  try{fetch("/cj-alt.json").then(function(r){return r.ok?r.json():{};}).then(function(m){window.__cjAlt=m;}).catch(function(){});}catch(e){}
   window.__palmOpenCollection=function(id){ var r=ROWS[String(id)];
     if(r){ openReader(r); return true; }
     refresh().then(function(){ var q=ROWS[String(id)]; if(q) openReader(q); }); return true; };
