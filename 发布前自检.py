@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# 掌心 / 千山独行 发布前自检脚本
+# 掌心 发布前自检脚本
 # 用法：python 发布前自检.py
 # 检查项：① 文件是否被截断  ② 残留「草稿/DRAFT」水印  ③ 空 img src  ④ 本地图片/链接是否缺失
 # 通过 = 可以安全上传 Netlify；有 ✗ = 先修好再传
@@ -7,7 +7,7 @@
 import re, os, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PACKAGES = ["上线包_掌心", "上线包_千山独行"]
+PACKAGES = ["上线包_掌心"]  # 千山独行已并入 leonliu1726.github.io 仓库（2026-10-08）
 
 def check_pkg(pkg):
     base = os.path.join(ROOT, pkg)
@@ -54,7 +54,7 @@ def check_pkg(pkg):
 
 def main():
     print("=" * 48)
-    print("  掌心 / 千山独行 发布前自检")
+    print("  掌心 发布前自检")
     print("=" * 48)
     all_ok = True
     for pkg in PACKAGES:

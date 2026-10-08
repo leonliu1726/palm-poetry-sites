@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://leonliu1726.github.io/beyondathousandmountains/sitemap.xml
