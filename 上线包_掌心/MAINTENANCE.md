@@ -24,3 +24,8 @@
 The deterministic ordering/expiry helpers are in `community-policy.js`. Verify changes against the local regression tests before publication.
 
 - 2026-10-06 (Leon): photo additions only, layout unchanged. Library (#bookhouse) adds a two-thumbnail strip of Mr. Hsu's calligraphy under the existing gift poem. Gatherings album: the first 16 photos and the order of all 119 originals are unchanged (Leon: the front is the key spot); four new photos are appended at the very end of the fold (2026-02-28 马年说马, 2025-03-15 印度亲历, 2023-09-08 欧游十国行, 掌心圣诞雅集 — year unconfirmed, leave undated), now 123 total. talks.html: small thumbnails on t2023-4, t2025-9, t2026-10. 青花庄掌心诗聚 gallery gets cj-archive/20/05.webp appended (DB row, via SQL). The Palm site does not carry the author's portrait or seal; those belong to the 千山独行 site only.
+
+
+## 2026-10-19 用户批准的署名与出版社口径
+
+用户最新明确指示优先于旧口径：文学与社媒署名均采用 Leon Liu（文刃），不再以 Wen Ren 作显示署名。出版社英文以台湾中华书局繁体官网联络页为据，采用 Chung Hwa Book Company, Limited；地域另标 Taiwan。官网：https://www.chunghwabook.com.tw/eforms.php?lang=tw&tb=1 。英文诗题不用 Ode to；保留旧文件名和网址，保护已有链接。诗文与第三方原始中文不作批量润写；历史文件保留。此次仅本机源文件修改，线上未发布。
